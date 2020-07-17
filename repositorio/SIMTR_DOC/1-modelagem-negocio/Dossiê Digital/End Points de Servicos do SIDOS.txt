@@ -1,0 +1,168 @@
+SMNTDB01
+
+CEDESSP - Rafael Sabino
+
+Serviços SIDOS
+-----------------------
+
+Chamada 1:
+----------
+
+POST /sidos-api/rest/v2/autorizacao
+
+Exemplo Corpo:
+
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"produtos" : [
+		{
+			"operacao" : 1,
+			"modalidade" : 0
+		},
+		{
+			"operacao" : 110,
+			"modalidade" : 0
+		}
+	]
+}
+
+
+Resposta 200:
+
+[
+    {
+        "autorizacao": 383554059308508,
+        "autorizado": true,
+        "produto_localizado": true,
+        "data_hora": "2018-01-15 10:45:49.835",
+        "cpf_cnpj": "11122233301",
+        "tipo_pessoa": "F",
+        "operacao": 1,
+        "modalidade": 0,
+        "produto": "CONTA_CORRENTE_PF",
+        "observacao": null,
+		"resulta_pesquisa" : { <OBJETO_RESULTADO> },
+		"mensagens_orientacao" : [
+			{
+				"sistema" : "<NOME_SISTEMA> (SINAD/SICOW/etc)",
+				"mensagem" : "XXXXXXXXXXXXXXXXXXXXXX"
+			},
+			{
+				"sistema" : "<NOME_SISTEMA> (SINAD/SICOW/etc)",
+				"mensagem" : "XXXXXXXXXXXXXXXXXXXXXX"
+			},
+		]
+    },
+    {
+        "autorizado": false,
+        "produto_localizado": true,
+        "data_hora": "2018-01-15 10:45:50.343",
+        "cpf_cnpj": "11122233301",
+        "tipo_pessoa": "F",
+        "operacao": 110,
+        "modalidade": 0,
+        "produto": "CONSIGNADO",
+        "documentos_pendentes": [
+            "REGISTRO_CRM"
+        ],
+        "observacao": null,
+		"resulta_pesquisa" : { <OBJETO_RESULTADO> }
+		"mensagens_orientacao" : [
+			{
+				"sistema" : "<NOME_SISTEMA> (SINAD/SICOW/etc)",
+				"mensagem" : "XXXXXXXXXXXXXXXXXXXXXX"
+			},
+			{
+				"sistema" : "<NOME_SISTEMA> (SINAD/SICOW/etc)",
+				"mensagem" : "XXXXXXXXXXXXXXXXXXXXXX"
+			},
+		]
+    }
+]
+
+
+-------------------------------------------------------------------------------------------------------------
+
+Chamada 3:
+----------
+
+POST /sidos-api/rest/v1/documento/extracao-dados
+
+Exemplo Corpo:
+
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"formato" : "XXXX", (Ex: TIFF / PNG / etc)
+	"classe" : "<IDENTIFICADOR_DA_CLASSE_DOCUMENTAL>" (Ex: CNH / RG / CONTA_LUZ / etc)    (Atributo Opcional - Se não estiver definido o serviço de OCR deverá classificar)
+	"imagem" : "<BINARIO_DA_IMAGEM_BASE_64>"
+}
+
+Resposta 200:
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"formato" : "XXXX", (Ex: TIFF / PNG / etc)
+	"tamanho" : 999999 (Tamanho em bytes)
+	"identificador" : "<IDENTIFICADOR_UNICO_DA_IMAGEM_ECM>"
+	"dados" : [
+		{
+			"chave" : "NOME_DO_ATRIBUTO_EXTRAIDO",
+			"valor" : "CONTEUDO_DO_ATRIBUTO_EXTRAIDO",
+		},
+		{
+			"chave" : "NOME_DO_ATRIBUTO_EXTRAIDO",
+			"valor" : "CONTEUDO_DO_ATRIBUTO_EXTRAIDO",
+		}
+	]
+}
+
+Resposta 503: Service Unavailable
+
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"codigo_retorno" : 99,
+	"observacao": <DESCRICAO_DA_CAUSA_DA_FALHA_DE_COMUNICACAO> (Provavelmente falha de comunicação com o GED)	
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+Chamada 4:
+----------
+
+POST /sidos-api/rest/v1/documento/atualizacao-dados
+
+Exemplo Corpo:
+
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"identificador" : "<IDENTIFICADOR_UNICO_DA_IMAGEM_ECM>"
+	"dados" : [
+		{
+			"chave" : "NOME_DO_ATRIBUTO",
+			"valor" : "CONTEUDO_DO_ATRIBUTO_PARA_ATUALIZAR",
+		},
+		{
+			"chave" : "NOME_DO_ATRIBUTO",
+			"valor" : "CONTEUDO_DO_ATRIBUTO_PARA_ATUALIZAR",
+		}
+	]
+}
+
+
+Resposta 204: Success - No Content
+
+Os dados foram atualizados com sucesso e não é necessario nenhuma resposta.
+
+Resposta 503: Service Unavailable
+
+{
+	"cpf_cnpj" : 11122233301,
+	"tipo_pessoa" : "F",
+	"identificador" : "<IDENTIFICADOR_UNICO_DA_IMAGEM_ECM>"
+	"codigo_retorno" : 99,
+	"observacao": <DESCRICAO_DA_CAUSA_DA_FALHA_DE_COMUNICACAO> (Provavelmente falha de comunicação com o GED / Antifraude)	
+}

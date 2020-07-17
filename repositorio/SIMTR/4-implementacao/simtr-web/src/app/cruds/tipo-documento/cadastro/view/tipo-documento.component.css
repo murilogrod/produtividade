@@ -1,0 +1,38 @@
+.custum-dropdown-tipo-documento::ng-deep .ui-dropdown {
+    width: 100% !important;
+    height: 36px;
+}
+
+.custum-dropdown-tipo-documento::ng-deep .ui-dropdown-label{
+    margin: 4px;
+    width: 90%;
+}
+
+.pointer-events {
+    pointer-events: none;
+}
+
+.pointer-events-color {
+    color: #80808082;
+}
+
+.funcao-documental {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.custom-loading-grid-funcao-documental::ng-deep .corpoLoadingRelativo{
+    width: 77%;
+    height: 21%;
+}
+
+.custom-loading-grid-funcao-documental::ng-deep .input-group-addon{
+    width: 30px;
+    float: right;
+}

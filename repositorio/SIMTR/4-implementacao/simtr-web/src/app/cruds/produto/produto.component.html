@@ -1,0 +1,205 @@
+<section class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-10">
+        <div class="box box-primary" >
+          <div class="content">
+          <div class="box-header with-border">
+              <h3 class="box-title">Cadastro de Produto</h3>
+          </div>
+          <div *ngIf="exibirMensagem" class="alert alert-{{tipoMensagem}} alert-dismissible col-md-12">
+            <h4><i class="fa fa-{{tipoIcone}}"></i>&nbsp;&nbsp;Atenção!</h4>
+                {{ mensagem }}
+          </div>
+          <div *ngIf="telaCadastro" id="incluir"  >
+            <form #f="ngForm" >
+                
+              <div class="box-body">
+                <p-card class="no-padding col-md-12" [style]="{'margin-bottom': '10px'}">
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="nome">Nome Produto:</label>
+                        <input class="form-control" id="nome" [(ngModel)]="entidade.nome_produto" name="nome" autofocus
+                          placeholder="Nome Produto" required #nome="ngModel" minlength="5" maxlength="255">
+                        <div *ngIf="!f.pristine && !nome.valid && nome.touched" class="alert alert-danger">
+                            Nome não informado ou não tem no mínimo 5 caracteres!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="operacao">Operação Produto:</label>
+                      <input class="form-control" id="operacao" [(ngModel)]="entidade.operacao_produto" name="operacao" somenteNumeros
+                        placeholder="Operação Produto" required #operacao="ngModel" minlength="1" maxlength="4">
+                      <div *ngIf="!f.pristine && !operacao.valid && operacao.touched" class="alert alert-danger">
+                          Operação não informada!
+                      </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="modalidade">Modalidade Produto:</label>
+                      <input class="form-control" id="modalidade" [(ngModel)]="entidade.modalidade_produto" name="modalidade" somenteNumeros
+                        placeholder="Modalidade Prouduto" required #modalidade="ngModel" minlength="1" maxlength="4">
+                      <div *ngIf="!f.pristine && !modalidade.valid && modalidade.touched" class="alert alert-danger">
+                          Modalidade do Produto não informada!
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class= "row">
+                    <div class="form-group col-md-4">
+                      <label for="pessoa">Tipo Pessoa:</label>
+                      <select class="contato-select form-control"  id="pessoa" [(ngModel)]="tipoPessoa" name="pessoa"  >
+                        <option value="F" selected >Física</option>
+                        <option value="J" >Jurídica</option>
+                        <option value="A" >Ambos</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="codigoportal">Código Produto Portal Empreendedor:</label>
+                      <input class="form-control" id="codigoportal" [(ngModel)]="codigo_produto_portal_empreendedor" name="codigoportal" somenteNumeros
+                       placeholder="Código do produto no portal do empreendedor." #codigoportal="ngModel" minlength="1" maxlength="8">
+                    </div>
+                  </div>
+                </p-card>
+                <p-card class="no-padding col-md-12" [style]="{'margin-bottom': '10px'}">
+                    <div class= "row">
+                        <div class="form-group col-md-4">
+                          <label for="pesquisaCadin">Pesquisa Cadin:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="pesquisaCadin" type="checkbox" [(ngModel)]="pesquisaCadin">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>     
+                        <div class="form-group col-md-4">
+                          <label for="ccf">Pesquisa Ccf:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="ccf" type="checkbox" [(ngModel)]="pesquisaCcf">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>    
+                        
+                        <div class="form-group col-md-4">
+                          <label for="receita">Pesquisa Receita:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="receita" type="checkbox" [(ngModel)]="pesquisaReceita">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>     
+                      </div>
+    
+                      <div class= "row">
+                        <div class="form-group col-md-4">
+                          <label for="scpc">Pesquisa Scpc:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="scpc" type="checkbox" [(ngModel)]="pesquisaScpc">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>     
+                        <div class="form-group col-md-4">
+                          <label for="serasa">Pesquisa Serasa:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="serasa" type="checkbox" [(ngModel)]="pesquisaSerasa">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>    
+                        
+                        <div class="form-group col-md-4">
+                          <label for="sicow">Pesquisa Sicow:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="sicow" type="checkbox" [(ngModel)]="pesquisaSicow">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>     
+                      </div>
+                      <div class= "row">
+                        <div class="form-group col-md-4">
+                          <label for="sinad">Pesquisa Sinad:</label>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="sinad" type="checkbox" [(ngModel)]="pesquisaSinad">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                        </div>   
+                        <div class="form-group col-md-4">
+                            <label for="contratacaoConjunta">Contratação Conjunta:</label>
+                            <div>
+                              <label class="switch">
+                                <input class="contato-select form-control" name="contratacaoConjunta" type="checkbox" [(ngModel)]="contratacaoConjunta">
+                                <span class="slider round"></span>
+                              </label>
+                            </div>
+                          
+                          </div>     
+                          <div class="form-group col-md-4">
+                            <label for="usoDossieDigital">Uso Dossiê Digital</label>
+                            <div>
+                              <label class="switch">
+                                <input class="contato-select form-control" name="usoDossieDigital" type="checkbox" [(ngModel)]="usoDossieDigital">
+                                <span class="slider round"></span>
+                              </label>
+                            </div>
+                          </div>  
+                      </div>
+                </p-card>
+
+              </div>
+           
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="cancelar(f)" >Voltar</button>
+                  <button type="button" name="submitModal" (click)="salvar(f)" [disabled]="!f.valid" class="btn btn-primary">Gravar</button>
+              </div>
+            </form>
+          </div>
+          <div *ngIf="!telaCadastro">
+            <button style="margin-top: 10px; margin-left: 15px; margin-bottom: 8px" type="button" name="novo" (click)="abrirModal()" class="btn btn-primary">Novo Produto</button>
+            <div class="" style="padding:4px 10px;border-bottom: 0 none">
+              <i class="fa fa-search" style="margin:10px 10px 10px 10px"></i>
+              <input #gb type="text" pInputText size="50" placeholder="Filtro Global">
+            </div> 
+            <p-dataTable [value] = "itens"  emptyMessage="Não existem dados cadastrados"
+              [globalFilter]="gb" #dt [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20]">
+              
+              <p-column field="identificador_produto" sortable="true" header="ID" [style]="{'width':'7%', 'text-align':'center'}"></p-column>
+              <p-column field="nome_produto" sortable="true" header="NOME PRODUTO" [style]="{'width':'20%', 'text-align':'left'}"></p-column>
+              <p-column field="operacao_produto" sortable="true" header="OPERAÇÃO" [style]="{'width':'5%', 'text-align':'center'}"></p-column>
+              <p-column field="modalidade_produto" sortable="true" header="MODALIDADE" [style]="{'width':'5%', 'text-align':'center'}"></p-column>
+              <p-column header="AÇÕES" [style]="{'width':'6%',  'text-align':'center'}">
+                  <ng-template let-col let-dados="rowData" pTemplate="body">
+                    <a name="btn-excluir" class="btn btn-link btn-xs" (click)="excluir(dados,f)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a name="btn-alterar" class="btn btn-link btn-xs" (click)="alterar(dados)">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                  </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+          <p-confirmDialog id="modalConfirma" header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+            <p-footer>
+                <button type="button" pButton label="Não" icon="fa fa-close" (click)="cd.reject()"></button>
+                <button type="button" pButton label="Sim" icon="fa fa-check"  (click)="cd.accept()"></button>
+            </p-footer>
+        
+          </p-confirmDialog>
+          
+        
+        </div>  
+
+
+        </div>
+    </div>
+    </div>
+    </section>

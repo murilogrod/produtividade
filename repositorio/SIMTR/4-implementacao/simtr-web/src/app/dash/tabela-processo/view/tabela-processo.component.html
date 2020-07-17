@@ -1,0 +1,128 @@
+<div id="{{tipoTabela}}" class="box-body no-padding">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="input-group pull-right" style="width: 30%">
+            <input pInputText type="text" (input)="dataDossieProcesso.filterGlobal($event.target.value, 'contains')"
+                class="form-control" placeholder="Pesquisar...">
+            <span class="input-group-addon btn btn-link">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </span>
+        </div>
+    </nav>
+    <p-table #dataDossieProcesso [columns]="tabelaProcessoPresenter.tabelaProcesso.cols" [value]="listaDossies"
+        (sortFunction)="realizarOrdenacao($event)" [customSort]="true"
+        [totalRecords]="tabelaProcessoPresenter.tabelaProcesso.rowTotal" class="dashboard-table" scrollable="true"
+        scrollHeight="600px" scrollWidth="600px" [paginator]="true" [rows]="10" [responsive]="true"
+        [rowsPerPageOptions]="[10, 20,30,40,50,60,70,80,90,100]">
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns.length">
+                    Nenhum registro encontrado
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <ng-template ngFor let-col [ngForOf]="columns">
+                    <th class="{{col.class}}" [pSortableColumn]="col.field" *ngIf="col.sort && col.tooltip"
+                        tooltipPosition="top" pTooltip="{{col.msg}">
+                        {{col.header}}
+                        <p-sortIcon [field]=" col.ordering">
+                        </p-sortIcon>
+                    </th>
+                    <th class="{{col.class}}" *ngIf="!col.sort && col.tooltip" tooltipPosition="top"
+                        pTooltip="{{col.msg}}">
+                        {{col.header}}
+                    </th>
+                    <th class="{{col.class}}" [pSortableColumn]="col.field" *ngIf="col.sort && !col.tooltip">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.ordering"></p-sortIcon>
+                    </th>
+                    <th class="{{col.class}}" *ngIf="!col.sort && !col.tooltip">
+                        {{col.header}}
+                    </th>
+                </ng-template>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dossie let-columns="columns">
+            <tr [pSelectableRow]="dossie">
+                <td *ngFor="let col of columns" class="{{col.class}}" [ngSwitch]="col.field">
+                    <ng-container *ngSwitchDefault>
+                        {{dossie[col.field]}}
+                    </ng-container>
+                    <div *ngSwitchCase="'processo_dossie'" class="processoFase capitalize" tooltipPosition="top"
+                        pTooltip="{{dossie[col.field]}}">
+                        <input id="processo-dossie-input-{{dossie.id}}" #inputProcessoDossie type="hidden"
+                            value="{{dossie[col.field]}}">
+                        {{formataTextoCaixaBaixa(inputProcessoDossie.value)}}
+                    </div>
+                    <div *ngSwitchCase="'processo_fase'" class="processoFase capitalize" tooltipPosition="top"
+                        pTooltip="{{dossie[col.field]}}">
+                        <input #processoFase type="hidden" value="{{dossie[col.field]}}">
+                        {{formataTextoCaixaBaixa(processoFase.value)}}
+                    </div>
+                    <div *ngSwitchCase="'cnpj'" tooltipPosition="top" pTooltip="{{dossie.nome_cliente}}">
+                        <input #cnpj type="hidden" value="{{dossie.cnpj}}">
+                        <input #cpf type="hidden" value="{{dossie.cpf}}">
+                        {{formatarCpfCnpj(cnpj.value, cpf.value)}}
+                    </div>
+                    <div *ngSwitchCase="'matricula'" class="uppercase">
+                        {{dossie[col.field]}}
+                    </div>
+                    <div *ngSwitchCase="'situacao_atual'" class="situacao capitalize" tooltipPosition="top"
+                        pTooltip="{{dossie[col.field]}}">
+                        <input id="situacao-atual-dossie-input-{{dossie.id}}" #inputSituacaoAtual type="hidden"
+                            value="{{dossie[col.field]}}">
+                        {{formataTextoCaixaBaixa(inputSituacaoAtual.value)}}
+                    </div>
+
+                    <div *ngSwitchCase="'data_hora_situacao'" tooltipPosition="top" pTooltip="{{dossie[col.field]}}">
+                        <input #dataHoraSituacao type="hidden" value="{{dossie[col.field]}}">
+                        {{formatarData(dataHoraSituacao.value)}}
+                    </div>
+                    <div *ngSwitchCase="'fieldUnidadesContratadas'">
+                        <ng-container *ngIf="dossie.unidades_tratamento.length  == 1">
+                            {{dossie[col.field]}}
+                        </ng-container>
+                        <ng-container *ngIf="dossie.unidades_tratamento.length > 1">
+                            <input #valueTooltip type="hidden" value="{{dossie[col.field]}}">
+                            <div tooltipPosition="top" [pTooltip]="formatarHint(valueTooltip.value)">
+                                <input #unidadesContratadas type="hidden" value="{{dossie.unidades_tratamento}}">
+                                {{formatarUnidadesProdutosContratados(unidadesContratadas.value, false)}}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div *ngSwitchCase="'fieldProdutosContratados'">
+                        <ng-container *ngIf="dossie.produtos_contratados.length  == 1">
+                            {{dossie[col.field]}}
+                        </ng-container>
+                        <ng-container *ngIf="dossie.produtos_contratados.length > 1">
+                            <input #produtosContratados type="hidden" value="{{dossie[col.field]}}">
+                            <div tooltipPosition="top" [pTooltip]="formatarHint(produtosContratados.value)">
+                                {{formatarUnidadesProdutosContratados(produtosContratados.value, true)}}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div *ngSwitchCase="'acoes'">
+                        <ng-container
+                            *ngIf="verificarUnidadeAutorizada(dossie); then habilitarBotao else desabilitarBotao">
+                        </ng-container>
+                        <ng-template #desabilitarBotao>
+                            <a>
+                                <i class="fa fa-fw fa-edit consultaDossie" tooltipPosition="top"
+                                    pTooltip="Sua unidade não está autorizada a manipular dossiês neste processo."></i>
+                            </a>
+                        </ng-template>
+                        <ng-template #habilitarBotao>
+                            <a *ngIf="verificarSituacao(dossie)" (click)="manterDossie(dossie)">
+                                <i class="fa fa-fw fa-edit consultaDossie"></i>
+                            </a>
+                        </ng-template>
+                        <a (click)="consultarDossie(dossie)">
+                            <i class="fa fa-fw fa-search consultaDossie"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

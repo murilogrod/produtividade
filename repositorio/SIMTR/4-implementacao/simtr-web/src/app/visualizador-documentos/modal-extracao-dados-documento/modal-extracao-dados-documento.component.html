@@ -1,0 +1,45 @@
+<div class="modal-dialog dialog-extracao-dados">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="row">
+              <div class="box-body col-md-4">
+                  <div class="modal-header">
+                    <h4 class="modal-title title-extracao-documento" style="text-align: center;">Extração de Dados</h4>
+                  </div>
+              </div>
+              <div class="box-body col-md-8" style="text-align: center;">
+                  <div class="modal-header">
+                    <h4 class="modal-title title-extracao-documento">Visualização Documento</h4>
+                  </div>
+              </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="box-body col-md-4">
+                <form-extracao-manual 
+                    [(documentoPost)]="documentoPost" 
+                    [(exibeTodos)]="exibeTodos"
+                    (erro)="ocorreuErroForm($event)" 
+                    (statusForm)="alterouStatusForm($event)" 
+                    [(cancelarForm)]="cancelarForm"
+                    [(salvarForm)]="salvarForm">
+                </form-extracao-manual>
+                <div class="modal-footer" style="text-align: left;">
+                  <button id="modal-extracao-dados-btnSalvar" type="button" class="btn btn-primary"  [disabled]="!statusForm" (click)="salvar()">Salvar</button>
+                  <button id="modal-extracao-dados-declarados-btnCancelar" type="button" class="btn btn-primary" (click)="cancelar()">Cancelar</button>
+                </div>  
+            </div>
+            <div class="box-body col-md-8">
+              <visualizador-documento
+                [binario]="binario" 
+                [mimeType]="mimetype"
+                [comprimentoMaximo]="comprimentoVisualizador"
+                [alturaMaxima] = "alturaVisualizador"
+                (erro)="exibeErro($event)">
+              </visualizador-documento>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>    

@@ -1,0 +1,1532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dados_declarados" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="30" bottomMargin="30" uuid="66dee34f-549f-4eb2-8f47-9a86bd340a77">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1375"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Dados_Declarados"/>
+	<style name="sombreado" mode="Opaque" backcolor="#C0C0C0"/>
+	<parameter name="LOGO_CAIXA" class="java.lang.String" isForPrompting="false"/>
+	<queryString language="JSON">
+		<![CDATA[]]>
+	</queryString>
+	<field name="bairro_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bairro_comercial"/>
+		<fieldDescription><![CDATA[bairro_comercial]]></fieldDescription>
+	</field>
+	<field name="bairro_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="bairro_residencial"/>
+		<fieldDescription><![CDATA[bairro_residencial]]></fieldDescription>
+	</field>
+	<field name="cep_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cep_comercial"/>
+		<fieldDescription><![CDATA[cep_comercial]]></fieldDescription>
+	</field>
+	<field name="cep_comercial_complemento" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cep_comercial_complemento"/>
+		<fieldDescription><![CDATA[cep_comercial_complemento]]></fieldDescription>
+	</field>
+	<field name="cep_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cep_residencial"/>
+		<fieldDescription><![CDATA[cep_residencial]]></fieldDescription>
+	</field>
+	<field name="cep_residencial_complemento" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cep_residencial_complemento"/>
+		<fieldDescription><![CDATA[cep_residencial_complemento]]></fieldDescription>
+	</field>
+	<field name="cidade_assinatura" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cidade_assinatura"/>
+		<fieldDescription><![CDATA[cidade_assinatura]]></fieldDescription>
+	</field>
+	<field name="cidade_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cidade_comercial"/>
+		<fieldDescription><![CDATA[cidade_comercial]]></fieldDescription>
+	</field>
+	<field name="cidade_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cidade_residencial"/>
+		<fieldDescription><![CDATA[cidade_residencial]]></fieldDescription>
+	</field>
+	<field name="cnpj_fonte_pagadora" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cnpj_fonte_pagadora"/>
+		<fieldDescription><![CDATA[cnpj_fonte_pagadora]]></fieldDescription>
+	</field>
+	<field name="codigo_ocupacao" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="codigo_ocupacao"/>
+		<fieldDescription><![CDATA[codigo_ocupacao]]></fieldDescription>
+	</field>
+	<field name="complemento_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="complemento_comercial"/>
+		<fieldDescription><![CDATA[complemento_comercial]]></fieldDescription>
+	</field>
+	<field name="complemento_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="complemento_residencial"/>
+		<fieldDescription><![CDATA[complemento_residencial]]></fieldDescription>
+	</field>
+	<field name="conjuge_cpf" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="conjuge_cpf"/>
+		<fieldDescription><![CDATA[conjuge_cpf]]></fieldDescription>
+	</field>
+	<field name="conjuge_nascimento" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="conjuge_nascimento"/>
+		<fieldDescription><![CDATA[conjuge_nascimento]]></fieldDescription>
+	</field>
+	<field name="conjuge_nome" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="conjuge_nome"/>
+		<fieldDescription><![CDATA[conjuge_nome]]></fieldDescription>
+	</field>
+	<field name="consolidado_informal" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="consolidado_informal"/>
+		<fieldDescription><![CDATA[consolidado_informal]]></fieldDescription>
+	</field>
+	<field name="contato_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="contato_1"/>
+		<fieldDescription><![CDATA[contato_1]]></fieldDescription>
+	</field>
+	<field name="contato_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="contato_2"/>
+		<fieldDescription><![CDATA[contato_2]]></fieldDescription>
+	</field>
+	<field name="contato_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="contato_3"/>
+		<fieldDescription><![CDATA[contato_3]]></fieldDescription>
+	</field>
+	<field name="contato_4" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="contato_4"/>
+		<fieldDescription><![CDATA[contato_4]]></fieldDescription>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="cpf"/>
+		<fieldDescription><![CDATA[cpf]]></fieldDescription>
+	</field>
+	<field name="ddd_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ddd_1"/>
+		<fieldDescription><![CDATA[ddd_1]]></fieldDescription>
+	</field>
+	<field name="ddd_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ddd_2"/>
+		<fieldDescription><![CDATA[ddd_2]]></fieldDescription>
+	</field>
+	<field name="ddd_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ddd_3"/>
+		<fieldDescription><![CDATA[ddd_3]]></fieldDescription>
+	</field>
+	<field name="ddd_4" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="ddd_4"/>
+		<fieldDescription><![CDATA[ddd_4]]></fieldDescription>
+	</field>
+	<field name="declaracao_proposito" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="declaracao_proposito"/>
+		<fieldDescription><![CDATA[declaracao_proposito]]></fieldDescription>
+	</field>
+	<field name="email_principal" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="email_principal"/>
+		<fieldDescription><![CDATA[email_principal]]></fieldDescription>
+	</field>
+	<field name="email_secundario" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="email_secundario"/>
+		<fieldDescription><![CDATA[email_secundario]]></fieldDescription>
+	</field>
+	<field name="estado_civil" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="estado_civil"/>
+		<fieldDescription><![CDATA[estado_civil]]></fieldDescription>
+	</field>
+	<field name="fatca" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="fatca"/>
+		<fieldDescription><![CDATA[fatca]]></fieldDescription>
+	</field>
+	<field name="finalidade_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="finalidade_1"/>
+		<fieldDescription><![CDATA[finalidade_1]]></fieldDescription>
+	</field>
+	<field name="finalidade_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="finalidade_2"/>
+		<fieldDescription><![CDATA[finalidade_2]]></fieldDescription>
+	</field>
+	<field name="finalidade_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="finalidade_3"/>
+		<fieldDescription><![CDATA[finalidade_3]]></fieldDescription>
+	</field>
+	<field name="finalidade_4" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="finalidade_4"/>
+		<fieldDescription><![CDATA[finalidade_4]]></fieldDescription>
+	</field>
+	<field name="grau_instrucao" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="grau_instrucao"/>
+		<fieldDescription><![CDATA[grau_instrucao]]></fieldDescription>
+	</field>
+	<field name="logradouro_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="logradouro_comercial"/>
+		<fieldDescription><![CDATA[logradouro_comercial]]></fieldDescription>
+	</field>
+	<field name="logradouro_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="logradouro_residencial"/>
+		<fieldDescription><![CDATA[logradouro_residencial]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_1"/>
+		<fieldDescription><![CDATA[meio_comunicacao_1]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_2"/>
+		<fieldDescription><![CDATA[meio_comunicacao_2]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_3"/>
+		<fieldDescription><![CDATA[meio_comunicacao_3]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_4" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_4"/>
+		<fieldDescription><![CDATA[meio_comunicacao_4]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_5" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_5"/>
+		<fieldDescription><![CDATA[meio_comunicacao_5]]></fieldDescription>
+	</field>
+	<field name="meio_comunicacao_6" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="meio_comunicacao_6"/>
+		<fieldDescription><![CDATA[meio_comunicacao_6]]></fieldDescription>
+	</field>
+	<field name="n_tin" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="n_tin"/>
+		<fieldDescription><![CDATA[n_tin]]></fieldDescription>
+	</field>
+	<field name="naturalidade" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="naturalidade"/>
+		<fieldDescription><![CDATA[naturalidade]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="nome"/>
+		<fieldDescription><![CDATA[nome]]></fieldDescription>
+	</field>
+	<field name="nome_social" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="nome_social"/>
+		<fieldDescription><![CDATA[nome_social]]></fieldDescription>
+	</field>
+	<field name="numero_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="numero_comercial"/>
+		<fieldDescription><![CDATA[numero_comercial]]></fieldDescription>
+	</field>
+	<field name="numero_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="numero_residencial"/>
+		<fieldDescription><![CDATA[numero_residencial]]></fieldDescription>
+	</field>
+	<field name="pais_crs" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="pais_crs"/>
+		<fieldDescription><![CDATA[pais_crs]]></fieldDescription>
+	</field>
+	<field name="profissao" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="profissao"/>
+		<fieldDescription><![CDATA[profissao]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="sexo"/>
+		<fieldDescription><![CDATA[sexo]]></fieldDescription>
+	</field>
+	<field name="telefone_1" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="telefone_1"/>
+		<fieldDescription><![CDATA[telefone_1]]></fieldDescription>
+	</field>
+	<field name="telefone_2" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="telefone_2"/>
+		<fieldDescription><![CDATA[telefone_2]]></fieldDescription>
+	</field>
+	<field name="telefone_3" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="telefone_3"/>
+		<fieldDescription><![CDATA[telefone_3]]></fieldDescription>
+	</field>
+	<field name="telefone_4" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="telefone_4"/>
+		<fieldDescription><![CDATA[telefone_4]]></fieldDescription>
+	</field>
+	<field name="tipo_renda" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="tipo_renda"/>
+		<fieldDescription><![CDATA[tipo_renda]]></fieldDescription>
+	</field>
+	<field name="tipo_logradouro_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="tipo_logradouro_comercial"/>
+		<fieldDescription><![CDATA[tipo_logradouro_comercial]]></fieldDescription>
+	</field>
+	<field name="tipo_logradouro_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="tipo_logradouro_residencial"/>
+		<fieldDescription><![CDATA[tipo_logradouro_residencial]]></fieldDescription>
+	</field>
+	<field name="tipo_ocupacao" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="tipo_ocupacao"/>
+		<fieldDescription><![CDATA[tipo_ocupacao]]></fieldDescription>
+	</field>
+	<field name="tipo_patrimonio" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="tipo_patrimonio"/>
+		<fieldDescription><![CDATA[tipo_patrimonio]]></fieldDescription>
+	</field>
+	<field name="token" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="token"/>
+		<fieldDescription><![CDATA[token]]></fieldDescription>
+	</field>
+	<field name="uf_comercial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="uf_comercial"/>
+		<fieldDescription><![CDATA[uf_comercial]]></fieldDescription>
+	</field>
+	<field name="uf_residencial" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="uf_residencial"/>
+		<fieldDescription><![CDATA[uf_residencial]]></fieldDescription>
+	</field>
+	<field name="valor_renda" class="java.lang.Double">
+		<property name="net.sf.jasperreports.json.field.expression" value="valor_renda"/>
+		<fieldDescription><![CDATA[valor_renda]]></fieldDescription>
+	</field>
+	<field name="valor_total_patrimonio" class="java.lang.Double">
+		<property name="net.sf.jasperreports.json.field.expression" value="valor_total_patrimonio"/>
+		<fieldDescription><![CDATA[valor_total_patrimonio]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="105">
+			<staticText>
+				<reportElement x="129" y="0" width="315" height="40" uuid="eb8e2dd6-0fb0-489c-9897-10ecb2a68bfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DADOS DECLARADOS DO CLIENTE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="0" width="128" height="40" uuid="95f4b929-46fc-43d1-be42-4e8ab2aeff5f"/>
+				<imageExpression><![CDATA[$P{LOGO_CAIXA}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="444" y="0" width="71" height="20" uuid="7ff89932-e7e2-4fee-8251-4489dc73d01a"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Grau de sigilo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="20" width="71" height="20" uuid="9598d6ff-4b15-4f13-8c6e-a6e992c1304d"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[#PESSOAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="50" height="16" isRemoveLineWhenBlank="true" uuid="a27e6540-cbe4-427a-91e9-efb299137aa4">
+					<printWhenExpression><![CDATA[(($F{nome} != null) && (!$F{nome}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="60" width="465" height="16" isRemoveLineWhenBlank="true" uuid="7ba5d8bf-af5c-47fd-b9f1-012240995aa3">
+					<printWhenExpression><![CDATA[(($F{nome} != null) && (!$F{nome}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="40" width="515" height="20" uuid="239ab75c-0bc9-460c-b2d8-4ff275ec9344"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dados do Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="76" width="50" height="16" uuid="d92f8d2f-d223-45ba-831e-aaf9d7d551cf">
+					<printWhenExpression><![CDATA[(($F{cpf} != null) && (!$F{cpf}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="76" width="465" height="16" isRemoveLineWhenBlank="true" uuid="21c55e34-7bc9-4623-86d5-3e905b4bb737">
+					<printWhenExpression><![CDATA[(($F{cpf} != null) && (!$F{cpf}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="265" splitType="Immediate">
+			<staticText>
+				<reportElement x="0" y="0" width="515" height="20" uuid="8da98116-fc10-4ecf-9c2d-f5f4057e0074"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dados Gerais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="80" height="16" isRemoveLineWhenBlank="true" uuid="f6f55d8c-ed56-4ea7-b0b3-0d796e378aa8">
+					<printWhenExpression><![CDATA[(($F{nome_social} != null) && (!$F{nome_social}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nome Social:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="40" height="16" isRemoveLineWhenBlank="true" uuid="8a27d7b0-0b4b-409a-abd0-0d2be8bd8188">
+					<printWhenExpression><![CDATA[(($F{sexo} != null) && (!$F{sexo}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="148" width="110" height="16" isRemoveLineWhenBlank="true" uuid="406c6aad-4f5a-4cfa-95b2-52af9f8ec2dd">
+					<printWhenExpression><![CDATA[(($F{grau_instrucao} != null) && (!$F{grau_instrucao}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Grau de Instrução:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="20" width="435" height="16" isRemoveLineWhenBlank="true" uuid="d9485ba4-ac41-4072-927a-d773315f2f21">
+					<printWhenExpression><![CDATA[(($F{nome_social} != null) && (!$F{nome_social}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_social}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="40" y="36" width="475" height="16" isRemoveLineWhenBlank="true" uuid="2a6b0591-2726-49b9-9103-c8f61b7a792f">
+					<printWhenExpression><![CDATA[(($F{sexo} != null) && (!$F{sexo}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="148" width="405" height="16" isRemoveLineWhenBlank="true" uuid="e67e4093-4936-45c0-96db-3f74498aa9c9">
+					<printWhenExpression><![CDATA[(($F{grau_instrucao} != null) && (!$F{grau_instrucao}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grau_instrucao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="164" width="455" height="16" isRemoveLineWhenBlank="true" uuid="bfb8cf69-72fc-476b-bb50-8be0ea9ba2ea">
+					<printWhenExpression><![CDATA[(($F{profissao} != null) && (!$F{profissao}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{profissao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="164" width="60" height="16" isRemoveLineWhenBlank="true" uuid="930d77a6-7f10-4e6f-bf33-dfbb74f66a14">
+					<printWhenExpression><![CDATA[(($F{profissao} != null) && (!$F{profissao}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Profissão:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="180" width="435" height="16" isRemoveLineWhenBlank="true" uuid="ff8c108f-4fba-4057-ade3-64915212bde1">
+					<printWhenExpression><![CDATA[(($F{estado_civil} != null) && (!$F{estado_civil}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_civil}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="180" width="80" height="16" isRemoveLineWhenBlank="true" uuid="4705a44e-e23c-44ec-a53a-6910d6cca878">
+					<printWhenExpression><![CDATA[(($F{estado_civil} != null) && (!$F{estado_civil}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="196" width="80" height="16" isRemoveLineWhenBlank="true" uuid="2e6e5ef2-9f04-4849-bf8d-187c550d38ab">
+					<printWhenExpression><![CDATA[($F{conjuge_nome} != null) || ($F{conjuge_cpf} != null) || ($F{conjuge_nascimento} != null)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Cônjuge:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="212" width="435" height="16" isRemoveLineWhenBlank="true" uuid="692f2589-832e-484d-a18f-640a50d3acdf"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conjuge_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="212" width="60" height="16" isRemoveLineWhenBlank="true" uuid="bf1fb5de-c2b8-4130-8cec-18a830667277">
+					<printWhenExpression><![CDATA[$F{conjuge_nome} != null]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="228" width="60" height="16" isRemoveLineWhenBlank="true" uuid="97e2669f-c8bc-4421-bf5c-116af6ed9f51">
+					<printWhenExpression><![CDATA[$F{conjuge_cpf} != null]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="228" width="435" height="16" isRemoveLineWhenBlank="true" uuid="94ee5994-c7ec-4d68-a1a0-b24d555d99a2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conjuge_cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="20" y="244" width="60" height="16" isRemoveLineWhenBlank="true" uuid="293f5151-58f9-4842-b4f4-ce076a523cd1">
+					<printWhenExpression><![CDATA[$F{conjuge_nascimento} != null]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Data nasc:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="244" width="435" height="16" isRemoveLineWhenBlank="true" uuid="707b1759-3016-4626-b694-9d801f26eae6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conjuge_nascimento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="52" width="435" height="16" isRemoveLineWhenBlank="true" uuid="3b609d22-b42b-4527-a2b4-7b2b18259585">
+					<printWhenExpression><![CDATA[(($F{consolidado_informal} != null) && (!$F{consolidado_informal}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consolidado_informal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="52" width="80" height="16" isRemoveLineWhenBlank="true" uuid="2ca22eee-f663-4092-aa64-f107637fc6f5">
+					<printWhenExpression><![CDATA[(($F{consolidado_informal} != null) && (!$F{consolidado_informal}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Tipo de renda:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="50" y="68" width="465" height="16" isRemoveLineWhenBlank="true" uuid="aa48bf0c-2089-4af9-8a24-ba2fce0f0433">
+					<printWhenExpression><![CDATA[($F{valor_renda} != null) && ($F{valor_renda} != 0)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_renda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="68" width="50" height="16" isRemoveLineWhenBlank="true" uuid="fb0dd340-0fa9-4710-b36c-0d592dd5bcf7">
+					<printWhenExpression><![CDATA[($F{valor_renda} != null) && ($F{valor_renda} != 0)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Renda:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="100" width="438" height="16" isRemoveLineWhenBlank="true" uuid="48792369-7c76-4756-b490-adf19b690af2">
+					<printWhenExpression><![CDATA[(($F{naturalidade} != null) && (!$F{naturalidade}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{naturalidade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="100" width="76" height="16" isRemoveLineWhenBlank="true" uuid="bfd43450-a56f-4602-9e51-8dbd21e838d4">
+					<printWhenExpression><![CDATA[(($F{naturalidade} != null) && (!$F{naturalidade}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Naturalidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="116" width="116" height="16" isRemoveLineWhenBlank="true" uuid="550b95c8-6767-4a44-a25b-e8c43a9e500d">
+					<printWhenExpression><![CDATA[(($F{logradouro_comercial} != null) && (!$F{logradouro_comercial}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Endereço Comercial:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="116" width="398" height="16" isRemoveLineWhenBlank="true" uuid="aca55e57-7fe8-494c-b731-0b00575a1982">
+					<printWhenExpression><![CDATA[(($F{logradouro_comercial} != null) && (!$F{logradouro_comercial}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_logradouro_comercial} +" " + $F{logradouro_comercial} + ", " + $F{numero_comercial} + " " + $F{complemento_comercial} + ", " + $F{bairro_comercial} + ", " + $F{cidade_comercial} + " - " + $F{uf_comercial} + " CEP: " + $F{cep_comercial} + "-" + $F{cep_comercial_complemento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="128" y="132" width="387" height="16" isRemoveLineWhenBlank="true" uuid="b188bd46-39ed-458c-8140-eddc1301c74c">
+					<printWhenExpression><![CDATA[(($F{logradouro_residencial} != null) && (!$F{logradouro_residencial}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_logradouro_residencial} +" " + $F{logradouro_residencial} + ", " + $F{numero_residencial} + " " + $F{complemento_residencial} + ", " + $F{bairro_residencial} + ", " + $F{cidade_residencial} + " - " + $F{uf_residencial} + " CEP: " + $F{cep_residencial} + "-" + $F{cep_residencial_complemento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="132" width="126" height="16" isRemoveLineWhenBlank="true" uuid="19436e2d-6b98-4f9d-98b1-e5c39f57a228">
+					<printWhenExpression><![CDATA[(($F{logradouro_residencial} != null) && (!$F{logradouro_residencial}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Endereço Residencial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="150" height="16" isRemoveLineWhenBlank="true" uuid="b1edf05f-17c4-422f-bf19-81ba986f5de0">
+					<printWhenExpression><![CDATA[(($F{cnpj_fonte_pagadora} != null) && (!$F{cnpj_fonte_pagadora}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CNPJ da Fonte Pagadora:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="150" y="84" width="365" height="16" isRemoveLineWhenBlank="true" uuid="c4fd9e80-1d4f-4586-ac16-b81a2200d0d8">
+					<printWhenExpression><![CDATA[(($F{cnpj_fonte_pagadora} != null) && (!$F{cnpj_fonte_pagadora}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cnpj_fonte_pagadora}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="77" splitType="Immediate">
+			<printWhenExpression><![CDATA[($F{finalidade_1} != null) || ($F{meio_comunicacao_1} != null) || ($F{ddd_1} != null) || ($F{telefone_1} != null)]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="515" height="20" uuid="69ec7f55-4087-423c-ba0c-461eaca0958c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Meios de Comunicação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="131" height="16" isRemoveLineWhenBlank="true" uuid="d482ec6a-3273-48d3-8770-2b401a65e925"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="20" width="384" height="16" isRemoveLineWhenBlank="true" uuid="37d6007e-7a7b-47c4-9ffa-4016a04b076c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="50" height="16" isRemoveLineWhenBlank="true" uuid="9d82dbeb-0372-48d0-8e39-f292a627633b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[DDD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="36" width="465" height="16" isRemoveLineWhenBlank="true" uuid="df915b4e-fa0a-42af-a8f4-965bb8f63a1c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ddd_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="52" width="100" height="16" isRemoveLineWhenBlank="true" uuid="01d387ea-2921-49d7-9ceb-8c732739aa7f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Telefone/Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="52" width="415" height="16" isRemoveLineWhenBlank="true" uuid="04db9cf6-186e-49e8-985a-f6352d62a4c1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_1}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="57">
+			<printWhenExpression><![CDATA[($F{finalidade_2} != null) || ($F{meio_comunicacao_2} != null) || ($F{ddd_2} != null) || ($F{telefone_2} != null)]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="0" width="384" height="16" isRemoveLineWhenBlank="true" uuid="0abc4374-0dfc-4578-a6cd-6689bbe5d997"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="32" width="100" height="16" isRemoveLineWhenBlank="true" uuid="6a4154aa-1531-4d78-aaaa-fd18d5f60002"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Telefone/Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="50" height="16" isRemoveLineWhenBlank="true" uuid="996604f7-7626-4b66-96b4-e007fde5cb52"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[DDD:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="32" width="415" height="16" isRemoveLineWhenBlank="true" uuid="d44f3c91-18ea-43d9-b9ba-1a2c52ed1462"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="131" height="16" isRemoveLineWhenBlank="true" uuid="43e72f65-a673-40d0-8a52-b54ec1e25803"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="16" width="465" height="16" isRemoveLineWhenBlank="true" uuid="38b4cbdb-a6d5-4ebb-a272-a2c3478eba35"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ddd_2}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="65">
+			<printWhenExpression><![CDATA[($F{finalidade_3} != null) || ($F{meio_comunicacao_3} != null) || ($F{ddd_3} != null) || ($F{telefone_3} != null)]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="131" height="18" isRemoveLineWhenBlank="true" uuid="3aa9f2d0-8937-4c25-a74c-4f23b55bc92b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="36" width="415" height="18" isRemoveLineWhenBlank="true" uuid="055a1d0e-f1ba-40b2-841d-1c5018c060cc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="50" height="18" isRemoveLineWhenBlank="true" uuid="e766867b-0353-4555-ab8d-be50027513e9"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[DDD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="0" width="384" height="18" isRemoveLineWhenBlank="true" uuid="0f27bca0-f4cc-45bf-972e-5f22de18c9d3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="100" height="18" isRemoveLineWhenBlank="true" uuid="8b89af43-b91e-4171-b996-9fb170f1840b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Telefone/Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="18" width="465" height="18" isRemoveLineWhenBlank="true" uuid="738c29ce-5f62-4ece-badc-b60221414383"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ddd_3}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="64">
+			<printWhenExpression><![CDATA[($F{finalidade_4} != null) || ($F{meio_comunicacao_4} != null) || ($F{ddd_4} != null) || ($F{telefone_4} != null)]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="131" height="18" isRemoveLineWhenBlank="true" uuid="dfa37a4e-c0b3-4022-9a5f-235497435d95"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="36" width="415" height="18" isRemoveLineWhenBlank="true" uuid="87cda839-6e3b-44ba-a5d6-053e02a61fc2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone_4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="50" height="18" isRemoveLineWhenBlank="true" uuid="706d4186-a3be-45c4-9ea5-84650e98a59a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[DDD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="0" width="384" height="18" isRemoveLineWhenBlank="true" uuid="7a9ba021-ba98-486d-8cbb-e7a9c617af08"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="100" height="18" isRemoveLineWhenBlank="true" uuid="bbbbe874-3af1-45fe-9fe7-03f534c7996c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Telefone/Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="18" width="465" height="18" isRemoveLineWhenBlank="true" uuid="61cc940d-2a2a-4be5-bc74-23f5da3b2a4e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ddd_4}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="36">
+			<printWhenExpression><![CDATA[($F{meio_comunicacao_5} != null) || ($F{email_principal} != null)]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="131" height="18" isRemoveLineWhenBlank="true" uuid="287f2c3e-e467-42f7-8a7e-3b1ec5a74f08"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="18" width="41" height="18" isRemoveLineWhenBlank="true" uuid="b2ba532e-ce20-47b6-9a39-0494c7077c1a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="131" y="0" width="384" height="18" isRemoveLineWhenBlank="true" uuid="7582fe7c-412f-444a-aed6-17060113ac45"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="18" width="474" height="18" isRemoveLineWhenBlank="true" uuid="c3ea1998-e2e5-4e44-a9dd-f45ec42d4ab3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email_principal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="36">
+			<printWhenExpression><![CDATA[($F{meio_comunicacao_6} != null) || ($F{email_secundario} != null)]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement x="127" y="0" width="388" height="18" isRemoveLineWhenBlank="true" uuid="f65cae4a-a72f-4934-8fb9-6cebb9438ab8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{meio_comunicacao_6}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="41" height="18" isRemoveLineWhenBlank="true" uuid="83cc9af6-9c7d-41b3-85fa-cbcf59713f28"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement x="41" y="18" width="474" height="18" isRemoveLineWhenBlank="true" uuid="b9789cc3-38e6-4470-808a-b815c1c2a212"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email_secundario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="127" height="18" isRemoveLineWhenBlank="true" uuid="45088154-d138-49ee-947b-259b6be97934"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Meio de Comunicação:]]></text>
+			</staticText>
+		</band>
+		<band height="66">
+			<printWhenExpression><![CDATA[(($F{consolidado_informal} != null) || ($F{valor_total_patrimonio} != null))]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="515" height="20" uuid="92b7c70c-c18c-4bf5-889c-f07494b21465"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informações Patrimoniais]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="" x="0" y="20" width="515" height="18" isRemoveLineWhenBlank="true" uuid="02518e1d-7d8e-4212-94da-6cfed22d985a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consolidado_informal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement key="" x="50" y="38" width="465" height="18" isRemoveLineWhenBlank="true" uuid="a3c57130-a575-4a77-b877-9643d5802260">
+					<printWhenExpression><![CDATA[$F{valor_total_patrimonio} != null]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_total_patrimonio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="38" width="50" height="18" uuid="95e4fb20-4ea9-4f3b-ba85-0630bf243d4b">
+					<printWhenExpression><![CDATA[$F{valor_total_patrimonio} != null]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+		</band>
+		<band height="89">
+			<printWhenExpression><![CDATA[(($F{fatca} != null) || ($F{n_tin} != null) || ($F{pais_crs} != null))]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="0" width="515" height="20" uuid="41e1d67d-dcae-46c0-abc2-c2cc3c082f50"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Declaração FATCA ou CRS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="20" width="465" height="18" isRemoveLineWhenBlank="true" uuid="c37b717a-2d4d-41de-ab09-42b9c5a903f6">
+					<printWhenExpression><![CDATA[(($F{fatca} != null) && (!$F{fatca}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fatca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="50" height="18" isRemoveLineWhenBlank="true" uuid="1dc7da22-7ca0-465b-a68f-ba702e1689f3">
+					<printWhenExpression><![CDATA[(($F{fatca} != null) && (!$F{fatca}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[FATCA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="70" height="18" uuid="3ad89d88-9218-4e3b-90d7-276b7c6847c0">
+					<printWhenExpression><![CDATA[(($F{n_tin} != null) && (!$F{n_tin}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Nº de TIN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="38" width="445" height="18" isRemoveLineWhenBlank="true" uuid="4b29dc11-2a32-4517-bdbf-b63dc3967483">
+					<printWhenExpression><![CDATA[(($F{n_tin} != null) && (!$F{n_tin}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{n_tin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="56" width="445" height="18" isRemoveLineWhenBlank="true" uuid="aa0141fa-e8c9-42cc-9bee-a09c65d6ac05">
+					<printWhenExpression><![CDATA[(($F{pais_crs} != null) && (!$F{pais_crs}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais_crs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="56" width="70" height="18" isRemoveLineWhenBlank="true" uuid="ecb34b46-0f25-4600-9bab-692b55324322">
+					<printWhenExpression><![CDATA[(($F{n_tin} != null) && (!$F{n_tin}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[País CRS:]]></text>
+			</staticText>
+		</band>
+		<band height="38">
+			<printWhenExpression><![CDATA[$F{declaracao_proposito} != null]]></printWhenExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="20" width="514" height="18" isRemoveLineWhenBlank="true" uuid="6b3622a4-12f1-4b51-bbb5-cc491507ed1d">
+					<printWhenExpression><![CDATA[(($F{declaracao_proposito} != null) && (!$F{declaracao_proposito}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{declaracao_proposito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="514" height="20" uuid="f2ec9b51-ec47-4177-a09a-b9d53fa9700d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Declaração de Propósitos e da Natureza da Conta Depósito]]></text>
+			</staticText>
+		</band>
+		<band height="240">
+			<printWhenExpression><![CDATA[$F{token} != null]]></printWhenExpression>
+			<staticText>
+				<reportElement x="0" y="4" width="514" height="20" uuid="2308868b-1530-4b44-b49c-52e7adb3a390"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento assinado eletrônicamente pelo cliente representado pelo QRCode]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="Float" x="0" y="50" width="240" height="187" uuid="8bab9702-68ef-4963-bbd3-cf07602d493f"/>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$F{token}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<textField>
+				<reportElement x="100" y="24" width="415" height="18" isRemoveLineWhenBlank="true" uuid="bfe3c329-a0b6-4b9c-8040-9640868615fc">
+					<printWhenExpression><![CDATA[(($F{cidade_assinatura} != null) && (!$F{cidade_assinatura}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_assinatura}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="24" width="100" height="18" isRemoveLineWhenBlank="true" uuid="c21b8381-abbc-47e6-adb6-e6258d95ccc7">
+					<printWhenExpression><![CDATA[(($F{cidade_assinatura} != null) && (!$F{cidade_assinatura}.isEmpty()))]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Local Assinatura:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

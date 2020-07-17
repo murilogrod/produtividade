@@ -1,0 +1,317 @@
+<div class="crud-container">
+  <div class="panel panel-default crud-border">
+    <div class="crud-title">
+        <label>Checklists</label>
+        <hr class="crud-line-bottom-grid">
+    </div>
+    <div class="panel panel-default crud-align">
+        <div class="panel-heading crud-background">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="row">
+                    <div class="col-md-4">
+                      <div class="col-md-12">
+                        <label class="control-label">Processo:</label>  
+                      </div>
+                      <div class="col-md-12">
+                        <p-dropdown 
+                          id="dropdown-processo" 
+                          class="dropdown-item"
+                          [options]="pesquisaCheckListPresenter.pesquisaChecklist.processos" 
+                          filter="true"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          (onChange)="filtrarChecklistsPorProcesso(); selecionarFasesProcessoGeraDossie();"
+                          [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.selectedProcesso"
+                          placeholder="Todos" 
+                          optionLabel="name" 
+                          [showClear]="true">
+                          <ng-template let-item pTemplate="selectedItem"> 
+                            <span 
+                              style="vertical-align:middle" 
+                              tooltipPosition="top" 
+                              pTooltip="{{item.label}}">
+                              {{item.label}}
+                            </span>
+                          </ng-template>                             
+                        </p-dropdown>  
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-12">
+                          <label class="control-label">Fase:</label>  
+                        </div> 
+                        <div class="col-md-12">
+                          <p-dropdown 
+                            id="dropdown-fase" 
+                            class="dropdown-item"
+                            [disabled]="pesquisaCheckListPresenter.pesquisaChecklist.emptyProcesso"
+                            [options]="pesquisaCheckListPresenter.pesquisaChecklist.fases" 
+                            filter="true"
+                            emptyFilterMessage = "Nenhum resultado encontrado"
+                            (onChange)="filtrarChecklistsPorProcessoGeraDossieFase();"
+                            [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.selectedFase"
+                            placeholder="Todas" 
+                            optionLabel="name" 
+                            [showClear]="true">
+                            <ng-template let-item pTemplate="selectedItem"> 
+                              <span 
+                                style="vertical-align:middle" 
+                                tooltipPosition="top" 
+                                pTooltip="{{item.label}}">
+                                {{item.label}}
+                              </span>
+                            </ng-template>                             
+                          </p-dropdown>  
+                        </div>
+                    </div>                  
+                    <div class="col-md-2">
+                      <div class="col-md-12">
+                        <div class="input-group">
+                          <label class="control-label">Incluir Inativos:</label>
+                          <div class="input-group-addon background-checkbox">
+                            <label class="switch">
+                              <input class="form-control" type="checkbox" 
+                                [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.inactiveChecklist"
+                                  (change)="mostrarChecklistsPorSituacao(); anularRegistrosFiltrados();">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>                                   
+                        </div> 
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button type="button" class="btn btn-primary pull-right" (click)="novoChecklist()">Novo
+                        <span class="fa fa-plus"></span>
+                      </button> 
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="class-with-pad-5"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="col-md-12">
+                      <label class="control-label">Tipo Documento:</label> 
+                    </div>
+                    <div class="col-md-12">
+                      <p-dropdown 
+                        id="dropdown-tipo-documento" 
+                        class="dropdown-item"
+                        [options]="pesquisaCheckListPresenter.pesquisaChecklist.tiposDocumento" 
+                        filter="true"
+                        emptyFilterMessage = "Nenhum resultado encontrado"
+                        (onChange)="filtrarChecklistsPorTipoDocumento();"
+                        [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.selectedTipoDocumento"
+                        placeholder="Todos" 
+                        optionLabel="name" 
+                        [showClear]="true">
+                          <ng-template let-item pTemplate="selectedItem"> 
+                            <span 
+                              style="vertical-align:middle" 
+                              tooltipPosition="top" 
+                              pTooltip="{{item.label}}">
+                              {{item.label}}
+                            </span>
+                          </ng-template> 
+                      </p-dropdown>  
+                    </div>
+                  </div>	                  
+                  <div class="col-md-4">
+                    <div class="col-md-12">
+                      <label class="control-label">Função Documental:</label> 
+                    </div>
+                    <div class="col-md-12">
+                      <p-dropdown 
+                        id="dropdown-funcao-documental" 
+                        class="dropdown-item"
+                        [options]="pesquisaCheckListPresenter.pesquisaChecklist.funcoesDocumentais" 
+                        filter="true"
+                        emptyFilterMessage = "Nenhum resultado encontrado"
+                        (onChange)="filtrarChecklistsPorFuncaoDocumental();"
+                        [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.selectedFuncaoDocumental"
+                        placeholder="Todas" 
+                        optionLabel="name" 
+                        [showClear]="true">
+                        <ng-template let-item pTemplate="selectedItem"> 
+                          <span 
+                            style="vertical-align:middle" 
+                            tooltipPosition="top" 
+                            pTooltip="{{item.label}}">
+                            {{item.label}}
+                          </span>
+                        </ng-template>                           
+                      </p-dropdown>  
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="col-md-12">
+                      <div class="class-with-pad-5"></div>
+                    </div>
+                    <div class="col-md-12" style="margin-left: 5%;">
+                      <div class="input-group" style="width: 100%;">
+                        <input pInputText type="text" #globalFilter
+                          (input)="realizarFiltroChecklists($event.target.value, dataChecklists);" 
+                          placeholder="Pesquisar..." class="form-control" placeholder="Filtro Global">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+            </nav> 
+        </div>
+    </div>      
+    <div class="panel-body">
+      <p-table #dataChecklists [columns]="pesquisaCheckListPresenter.pesquisaChecklist.configTableColsChecklists" class="crud-table"
+        [paginator]="true" [rows]="15" [responsive]="true" (sortFunction)="realizarOrdenacao($event)" (onFilter)="onFilter($event, globalFilter)"
+        [rowsPerPageOptions]="pesquisaCheckListPresenter.pesquisaChecklist.rowsPerPageOptions" [responsive]="true" scrollable="true" scrollHeight="500px"
+          [customSort]="true" [value]="pesquisaCheckListPresenter.pesquisaChecklist.checklists">
+          <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="columns.length">
+                    Nenhum checklist encontrado
+                </td>
+            </tr>
+          </ng-template>   
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <ng-template ngFor let-col [ngForOf]="columns">
+                  <ng-container [ngSwitch]="col.field">
+                    <ng-container *ngSwitchCase="'acoes'">
+                        <th class="{{col.class}}">
+                            {{col.header}}
+                        </th>                       
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ativo'">
+                      <th class="{{col.class}}" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon 
+                            [field]="col.field">
+                          </p-sortIcon>
+                          <label class="switch" tooltipPosition="top" pTooltip="Filtrar por situação">
+                              <input class="form-control" type="checkbox" 
+                                [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.situacaoFiltro"
+                                  (change)="realizarFiltroSituacaoChecklist();">
+                              <span class="slider round"></span>
+                          </label>                                              
+                      </th> 
+                    </ng-container>  
+                    <ng-container *ngSwitchCase="'verificacao_previa'">
+                      <th class="{{col.class}}" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon 
+                            [field]="col.field">
+                          </p-sortIcon>
+                          <label class="switch" tooltipPosition="top" pTooltip="Filtrar por verificação prévia">
+                              <input class="form-control" type="checkbox" 
+                                [(ngModel)]="pesquisaCheckListPresenter.pesquisaChecklist.verificacaoPreviaFiltro"
+                                  (change)="realizarFiltroVerificacaoPrevia();">
+                              <span class="slider round"></span>
+                          </label>                                              
+                      </th> 
+                    </ng-container>                                          
+                    <ng-container *ngSwitchDefault>
+                        <th class="{{col.class}}" [pSortableColumn]="col.field">
+                            <div *ngIf="col.tooltip" tooltipPosition="top" pTooltip="{{col.msg}}">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field"></p-sortIcon>
+                            </div>
+                            <div *ngIf="!col.tooltip">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field"></p-sortIcon>
+                            </div>                          
+                        </th>                      
+                    </ng-container>
+                  </ng-container>
+              </ng-template> 
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-checklist let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                    <ng-container *ngSwitchCase="'acoes'">
+                        <span 
+                            class="fa fa-fw fa-edit" 
+                            tooltipPosition="top" 
+                            pTooltip="Editar Checklist"
+                            (click)="editarChecklist(checklist)"
+                            style="cursor: pointer">
+                        </span>
+                        <span 
+                            *ngIf="!checklist.data_hora_inativacao"
+                            class="fa fa-fw fa-trash" 
+                            tooltipPosition="top" 
+                            pTooltip="Remover Checklist"
+                            (click)="abrirModalRemocaoChecklist(checklist);"
+                            style="cursor: pointer">
+                        </span>                           
+                        <span 
+                            class="fa fa-fw fa-copy" 
+                            tooltipPosition="left" 
+                            pTooltip="Copiar Checklist"
+                            (click)="abrirModalCloneChecklist(checklist);"
+                            style="cursor: pointer">
+                        </span>                                                
+                    </ng-container>   
+                    <ng-container *ngSwitchCase="'nome'">
+                      <div class="checklist capitalize" tooltipPosition="top" pTooltip="{{checklist[col.field]}}">
+                        {{checklist[col.field] != undefined ? checklist[col.field] : '-'}}
+                      </div>
+                    </ng-container>                       
+                    <ng-container *ngSwitchCase="'verificacao_previa'">
+                      {{checklist[col.field] ? 'Sim' : 'Não'}}
+                    </ng-container> 
+                    <ng-container *ngSwitchCase="'ativo'">
+                        <span *ngIf="!checklist.data_hora_inativacao">Sim</span>                      
+                        <div 
+                          *ngIf="checklist.data_hora_inativacao"
+                          class="error"
+                          tooltipPosition="top"
+                          style="cursor: pointer;"
+                          pTooltip="Checklist inativado no dia {{checklist.data_hora_inativacao}}.">
+                          Não
+                        </div>                      
+                    </ng-container>                                                                                   
+                    <ng-container *ngSwitchCase="'vinculacoes'">
+                      {{checklist[col.field] ? checklist[col.field].length : '0'}}
+                    </ng-container> 
+                    <ng-container *ngSwitchCase="'quantidade_associacoes'">
+                      {{checklist[col.field] > 0 ? checklist[col.field] : '0'}}
+                    </ng-container>   
+                    <ng-container *ngSwitchCase="'data_hora_criacao'">
+                        <div class="checklist capitalize" tooltipPosition="top" pTooltip="{{checklist[col.field]}}">
+                          {{checklist[col.field] != undefined ? checklist[col.field] : '-'}}
+                        </div>
+                    </ng-container>                                             
+                    <ng-container *ngSwitchDefault>
+                        {{checklist[col.field] != undefined ? checklist[col.field] : '-'}}
+                    </ng-container>                          
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <ng-container *ngIf="pesquisaCheckListPresenter.pesquisaChecklist.checklists.length > 0 && pesquisaCheckListPresenter.pesquisaChecklist.filteredRecords == 0
+                && pesquisaCheckListPresenter.pesquisaChecklist.totalRecords == pesquisaCheckListPresenter.pesquisaChecklist.checklists.length">
+                Total: {{pesquisaCheckListPresenter.pesquisaChecklist.checklists.length}} checklists.
+            </ng-container>  
+            <ng-container *ngIf="pesquisaCheckListPresenter.pesquisaChecklist.checklists.length > 0 && pesquisaCheckListPresenter.pesquisaChecklist.filteredRecords > 0">
+                Total: {{pesquisaCheckListPresenter.pesquisaChecklist.filteredRecords}} de {{pesquisaCheckListPresenter.pesquisaChecklist.totalRecords}}.
+            </ng-container>                          
+        </ng-template>
+      </p-table>
+      <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+          <p-footer>
+              <button type="button" pButton icon="fa fa-close" label="Não" (click)="cd.reject()"></button>
+              <button type="button" pButton icon="fa fa-check" label="Sim" (click)="cd.accept()"></button>
+          </p-footer>
+      </p-confirmDialog>
+      <cx-alert-message id="component-alert-pesquisa-checklist" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+        [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+        (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+        [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+      </cx-alert-message>              
+    </div>
+  </div>
+</div>

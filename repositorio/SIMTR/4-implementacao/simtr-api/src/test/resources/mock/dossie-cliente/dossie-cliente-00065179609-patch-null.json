@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "cpfCnpj": 65179609,
+    "tipoPessoa": "F",
+    "nome": null,
+    "dataHoraApuracaoNivel": null,
+    "dataNascimento": null,
+    "nomeMae": null,
+    "documentos": [],
+    "composicoesDocumentais": [],
+    "dossiesClienteProduto": [],
+    "dossiesClienteProdutoRelacionado": [],
+    "garantiasInformadas": []
+}

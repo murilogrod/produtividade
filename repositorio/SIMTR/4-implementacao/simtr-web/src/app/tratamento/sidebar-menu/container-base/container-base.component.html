@@ -1,0 +1,155 @@
+<div style="text-transform: uppercase; font-weight: bold;" *ngFor="let vinculoPessoa of dossieProduto.vinculos_pessoas" class="espacamento-entre-componentes">
+    <visualizador-dossie-cliente *ngIf="verificarTitular(vinculoPessoa.tipo_relacionamento)" 
+            [dossieCliente]="vinculoPessoa.dossie_cliente">
+    </visualizador-dossie-cliente>
+</div>
+
+<fieldset style="text-transform: uppercase; font-weight: bold;" class="marginBottom12px">    
+    <fieldset class="fieldsetRadio">
+        <legend>SELECIONE UMA OPÇÃO</legend>
+        <span *ngFor="let radio of listaRadio ; let idx = index">
+          <input class="pull-left clickRadio" type="radio" [value]="radio.id" [checked] = "radio.checked" name="radioOpcao"/> {{radio.descricao}}&nbsp;&nbsp;
+        </span>        
+    </fieldset>
+</fieldset>
+<switch  
+    *ngIf="showTooglePrincipal()"
+    (handleChangeExpandAll)="handleChangeExpandAll($event)"
+    [multiple]="true"
+    [tipoArvore]="'PRINCIPAL'"
+    [tooltip]="'Mostrar todos os blocos'"
+    [title]="'Todos os Blocos'">
+</switch>    
+<div style="text-transform: uppercase; font-weight: bold;" *ngIf="mostrarChecklist">
+    <div class="espacamento-entre-componentes">
+        <div *ngFor="let processo_filho of processoDossieReFerenciaPatriarca.processos_filho">
+            <div *ngIf="processo_filho.id == dossieProduto.processo_fase.id">
+                <visualizador-check-list  
+                    [checkListFaseAtualDossie]="processo_filho.checklists" 
+                    [listaChekList]="listaChekList" 
+                    [listaDocumentoObrigatorio]="listaDocumentoObrigatorio" 
+                    (idCheckListAtivadoChanged)="handlleChangeEventCheckList($event)" 
+                    (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)" 
+                    [singleExpandAllDocuments]="singleExpandAllDocuments">
+                </visualizador-check-list>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="undefined != dossieProduto.processo_dossie && (!exibindoChecklistsPrevios)" class="espacamento-entre-componentes">
+        <div *ngIf="processoDossieReFerenciaPatriarca.id == dossieProduto.processo_dossie.id">
+            <visualizador-arvore-documentos 
+                  [elementosConteudoProcessoDossieOuFase]="processoDossieReFerenciaPatriarca.elementos_conteudo" 
+                  [processoDossieOuFase]= "dossieProduto.processo_dossie" 
+                  [listaChekList]="listaChekList" 
+                  [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                  [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                  (handleChangeListaChekList)="handleChangeListaChekList($event)"
+                  (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                  [singleExpandAllDocuments]="singleExpandAllDocuments">
+            </visualizador-arvore-documentos>
+        </div>
+    </div>
+    <div *ngIf="undefined != dossieProduto.processo_fase && (!exibindoChecklistsPrevios)" class="espacamento-entre-componentes">
+        <div *ngFor="let processo_filho of processoDossieReFerenciaPatriarca.processos_filho">
+            <div *ngIf="processo_filho.id == dossieProduto.processo_fase.id">
+                <visualizador-arvore-documentos 
+                    [elementosConteudoProcessoDossieOuFase]="processo_filho.elementos_conteudo" 
+                    [listaChekList]="listaChekList" 
+                    [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                    [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                    (listaCheklistChanged)="handleChangeListaChekList($event)"
+                    [processoDossieOuFase]= "dossieProduto.processo_fase" 
+                    (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                    [singleExpandAllDocuments]="singleExpandAllDocuments">
+                </visualizador-arvore-documentos>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="(!exibindoChecklistsPrevios)">
+        <div *ngFor="let vinculoPessoa of dossieProduto.vinculos_pessoas" class="espacamento-entre-componentes">
+            <visualizador-arvore-documentos 
+                [cliente]="vinculoPessoa" 
+                [documentosVinculoCliente]="processoDossieReFerenciaPatriarca.documentos_vinculo"  
+                [listaChekList]="listaChekList" 
+                [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                (listaCheklistChanged)="handleChangeListaChekList($event)"
+                (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                [singleExpandAllDocuments]="singleExpandAllDocuments">
+            </visualizador-arvore-documentos>
+        </div>
+    </div>
+    <div *ngIf="(!exibindoChecklistsPrevios)">
+        <div *ngFor="let produtoContratado of dossieProduto.produtos_contratados" class="espacamento-entre-componentes">
+            <visualizador-arvore-documentos 
+                [produto]="produtoContratado" 
+                [documentosProdutosVinculados]="processoDossieReFerenciaPatriarca.produtos_vinculados" 
+                [listaChekList]="listaChekList" 
+                [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                (listaCheklistChanged)="handleChangeListaChekList($event)"
+                (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                [singleExpandAllDocuments]="singleExpandAllDocuments">
+            </visualizador-arvore-documentos>
+        </div>
+    </div>
+    <div *ngIf="(!exibindoChecklistsPrevios)">
+        <div *ngFor="let garantiaInformada of dossieProduto.garantias_informadas" class="espacamento-entre-componentes">
+            <visualizador-arvore-documentos 
+                [garantia]="garantiaInformada" 
+                [documentosGarantiasVinculadas]="processoDossieReFerenciaPatriarca.garantias_vinculadas" 
+                [documentosProdutosVinculados]="processoDossieReFerenciaPatriarca.produtos_vinculados" 
+                [listaChekList]="listaChekList" 
+                [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                (listaCheklistChanged)="handleChangeListaChekList($event)"
+                (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                [singleExpandAllDocuments]="singleExpandAllDocuments">
+            </visualizador-arvore-documentos>
+        </div>
+    </div>
+</div>
+<div style="text-transform: uppercase; font-weight: bold;" *ngIf="mostrarFormulario">
+    <div class="espacamento-entre-componentes">
+        <visualizador-formulario 
+            [dossieProduto]="dossieProduto" 
+            [respostasCampoFormulario]="dossieProduto.processo_fase.respostas_formulario">
+        </visualizador-formulario>
+    </div>
+</div>
+<div style="text-transform: uppercase; font-weight: bold;" *ngIf="mostrarGarantias">
+    <fieldset>
+        <h5 *ngIf="dossieProduto.garantias_informadas.length > 0">GARANTIAS</h5>
+        <h5 *ngIf="dossieProduto.garantias_informadas.length == 0">Não há garantias cadastradas.</h5>
+        <div *ngFor="let garantiaVinculada of dossieProduto.garantias_informadas" class="espacamento-entre-componentes">
+            <visualizar-garantia 
+                [garantiaVinculada]="garantiaVinculada"
+                [dossieProduto]="dossieProduto">
+            </visualizar-garantia>
+        </div>
+    </fieldset>  
+</div>
+<div style="text-transform: uppercase; font-weight: bold;" *ngIf="mostrarPessoas">
+    <fieldset>
+        <h5 *ngIf="dossieProduto.vinculos_pessoas.length > 0">PESSOAS</h5>
+        <h5 *ngIf="dossieProduto.vinculos_pessoas.length == 0">Não há pessoas cadastradas.</h5>
+        <div *ngFor="let pessoaVinculada of dossieProduto.vinculos_pessoas" class="espacamento-entre-componentes">
+            <visualizar-pessoa *ngIf="'TOMADOR_PRIMEIRO_TITULAR' != pessoaVinculada.tipo_relacionamento" 
+                [pessoaVinculada]="pessoaVinculada"
+                [dossieProduto]="dossieProduto">
+            </visualizar-pessoa>
+        </div>
+    </fieldset>
+</div>
+<div style="text-transform: uppercase; font-weight: bold;" *ngIf="mostrarProdutos">
+    <fieldset>
+        <h5 *ngIf="dossieProduto.produtos_contratados.length > 0">PRODUTOS</h5>
+        <h5 *ngIf="dossieProduto.produtos_contratados.length == 0">Não há produtos cadastrados.</h5>
+        <div *ngFor="let produtoVinculado of dossieProduto.produtos_contratados" class="espacamento-entre-componentes">
+            <visualizar-produto 
+                [produtoVinculado]="produtoVinculado"
+                [dossieProduto]="dossieProduto">
+            </visualizar-produto>
+        </div>
+    </fieldset>
+</div>

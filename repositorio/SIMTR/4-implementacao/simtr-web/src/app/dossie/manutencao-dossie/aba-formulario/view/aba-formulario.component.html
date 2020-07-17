@@ -1,0 +1,5 @@
+<formulario-generico [tipoFormulario]="tipoFormulario" [habilitaAlteracao]="habilitaAlteracao"
+	[clienteLista]="clienteLista" [listaGarantias]="listaGarantias" [produtoLista]="produtoLista"
+	[toogleFieldSet]="true" [hasClienteValido]="hasClienteValido" [campoFormulario]="campoFormulario"
+	[legenda]="'Dados do Processo'" (formValidacaoChanged)="handleChangeFormValidacao($event)"
+	(camposFormularioChanged)="handleChangeCampoFormulario($event)"></formulario-generico>

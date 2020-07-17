@@ -1,0 +1,111 @@
+<div class="crud-container">
+    <div class="panel panel-default crud-border">
+      <div class="crud-title">
+          <label>{{checklistPresenter.checklistModel.editar ? 'Edição de Checklist' : 'Novo Checklist'}}</label>
+          <hr class="crud-line-bottom-form">
+      </div>
+      <div class="row" *ngIf="checklistPresenter.checklistModel.showHeader">
+          <div class="col-md-12">
+              <div class="col-md-6" *ngFor="let header of checklistPresenter.checklistModel.configGridHeader">
+                <crud-grid-header 
+                  [width]="header.width"          
+                  [classIcon]="header.classIcon" 
+                  [labelTitle]="header.labelTitle" 
+                  [labelValue]="header.labelValue"> 
+                </crud-grid-header>
+              </div>
+          </div>
+      </div>   
+      <div class="crud-container">
+          <form #checklistForm="ngForm">
+              <fieldset class="crud-card-fieldset">
+                <legend class="crud-card-title">Dados Básicos</legend>
+                <div class="row">
+                    <div class="form-group col-md-8" [class.has-error]="(nome.dirty && nome.errors && nome.errors.required)">
+                        <label for="nome" class="crud-label-title-form">Nome *</label>
+                        <input class="form-control" id="nome" [(ngModel)]="checklistPresenter.checklist.nome" name="nome" autofocus maxlength="150"
+                          placeholder="Nome do Checklist" required #nome="ngModel">
+                        <validation-form-message [control]="nome" error="required" text="Nome é obrigatório"></validation-form-message>
+                    </div>
+                    <div class="form-group col-md-2" [class.has-error]="(unidadeResponsavel.dirty && unidadeResponsavel.errors && unidadeResponsavel.errors.required)">
+                        <label for="unidadeResponsavel" class="crud-label-title-form">Unid. Responsável *</label>
+                        <input #unidade class="form-control" id="unidadeResponsavel" [(ngModel)]="checklistPresenter.checklist.unidade_responsavel" name="unidadeResponsavel" pKeyFilter="int"
+                          (change)="formatarUnidade();" placeholder="Unidade Responsável" required #unidadeResponsavel="ngModel" maxlength="4">
+                        <validation-form-message [control]="unidadeResponsavel" error="required" text="Unidade responsável é obrigatória"></validation-form-message>                                           
+                    </div> 
+                    <div class="form-group col-md-2">
+                        <label class="crud-label-title-form">Verificação Prévia</label>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="m0" type="checkbox" [(ngModel)]="checklistPresenter.checklist.verificacao_previa">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                    </div>                             
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="orientacaoPrevia" class="crud-label-title-form">Orientação Prévia</label>
+                    </div>
+                    <div class="col-md-12">
+                        <textarea 
+                            id="orientacaoPrevia" 
+                            name="orientacaoPrevia" 
+                            style="width: 100%;"
+                            kzCountCharacters="500"
+                            [(ngModel)]="checklistPresenter.checklist.orientacao_operador"
+                            #orientacao_previa="ngModel" 
+                            maxlength="500"
+                            rows="4" 
+                            cols="59">
+                        </textarea>       
+                    </div>
+                </div>
+              </fieldset>            
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Apontamentos</legend>
+                  <apontamentos 
+                    *ngIf="checklistPresenter.checklistModel.mostrarApontamentos"
+                    [apontamentos]="checklistPresenter.checklist.apontamentos"
+                    [disabledApontamentos]="checklistPresenter.checklistModel.disabledChecklist"
+                    (apontamentosChanged)="handleChangeApontamentos($event);"
+                    (apontamentosRemovidosChanged)="handleChangeApontamentosRemovidos($event);">
+                  </apontamentos>
+                </fieldset>
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Vinculações</legend>
+                  <vinculacoes 
+                    *ngIf="checklistPresenter.checklistModel.mostrarVinculacoes"
+                    [vinculacoes]="checklistPresenter.checklist.vinculacoes"
+                    [cloneChecklist]="checklistPresenter.checklistModel.cloneChecklist"
+                    (vinculacoesChanged)="handleChangeVinculacoes($event);"
+                    (vinculacoesRemovidasChanged)="handleChangeVinculacoesRemovidas($event);">
+                  </vinculacoes>  
+                </fieldset>                              
+                <div>
+                    <button id="checklist-btn-salvar" type="button" (click)="salvarChecklist()" 
+                      [disabled]="!checklistForm.valid" class="btn btn-primary pull-right">Salvar
+                        <span class="fa fa-save"></span>
+                    </button>  
+                    <button id="checklist-btn-voltar" type="button" (click)="pesquisaChecklist();"
+                        class="btn btn-warning pull-right">Voltar
+                        <span class="fa fa-arrow-left"></span>
+                    </button>
+                </div>                               
+          </form>
+      </div>
+      <div class="panel-body">
+        <cx-alert-message id="component-alert-pesquisa-checklist" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+          [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+          (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+          [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+        </cx-alert-message>              
+      </div>
+      <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+        <p-footer>
+            <button type="button" pButton icon="fa fa-close" label="Não" (click)="cd.reject()"></button>
+            <button type="button" pButton icon="fa fa-check" label="Sim" (click)="cd.accept()"></button>
+        </p-footer>
+      </p-confirmDialog>      
+    </div>
+  </div>

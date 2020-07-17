@@ -1,0 +1,94 @@
+<p-fieldset class="corpoVisualizacao" legend="Visualização de Documentos" [toggleable]="false">
+    <div class="corpSelect" style="display: table !important; table-layout: fixed !important">
+        <classificacao-generico 
+            [tipoDossie]="tipoDossie"
+            [desativaComboClassificacao]="desativaComboClassificacao" 
+            [listaVinculoArvore]="listaVinculoArvore" 
+            (indexArvoreChange)="handleChangeIndexArvore($event)"
+            (tipoDocumentoChange)="handleChangeTipoDocumento($event)" 
+            (listaIndexArvoreSelecionadaChange)="handleChangelistaIndexArvoreSelecionada($event)" 
+            [idSeletor]="idSeletor" 
+            (idSeletorChange)="handleChangeidSeletor($event)"
+            [arvoreTipoDocumento]="arvoreTipoDocumento"
+            [clickArvoreTipoDocumento]="clickArvoreTipoDocumento"
+            (ocultarComboTipoDocumentoChange)="handleChangeOcultarComboTipoDocumento($event)"
+            [dossieCliente]="dossieCliente">
+        </classificacao-generico>
+
+        <div class="corpoSwitch mesmaLinha espacoRigth espacoLeft" [hidden]="!incluirImagem">          
+          <label class="switch">
+            <input id="marcaTodasImagens" class="toggle" type="checkbox" (change)="chekarTodasImagens()" [checked]="chekarTodoasImg">
+            <span class="slider round"></span>
+          </label>
+          <span class="tamanhoIcone fa fa-check-square-o espaco corTexto"></span>
+          <label class="corTexto espaco">Marcar Todos</label>
+        </div>
+
+        <div class="corpoSwitch mesmaLinha espacoRigth" [hidden]="!incluirImagem">          
+          <label class="switch">
+            <input id="excluirTodasImagens" class="toggle" type="checkbox" (change)="excluirTodasImagens($event)" name="excluirTodasimagem" [(ngModel)]="excluirTodasimagem">
+            <span class="slider round"></span>
+          </label>
+          <span class="tamanhoIcone fa fa-check-square-o espaco corTexto"></span>
+          <label class="corTexto espaco">Excluir Todos</label>
+        </div>
+
+        <div id="div-switch-miniatura" class="corpoSwitch mesmaLinha" [hidden]="!incluirImagem">          
+            <label id="label-switch-miniatura" class="switch">
+              <input id="input-checkbox-miniatura" 
+                    class="toggle" 
+                    name="chekMiniaturaDoc" 
+                    type="checkbox" 
+                    (change)="inicializarModoMiniatura()"
+                    [(ngModel)]="manterPdfEmMiniatura">
+              <span id="span-slider-miniatura" class="slider round"></span>
+            </label>
+            <span id="span-icone-miniatura" class="tamanhoIcone fa fa-check-square-o espaco corTexto"></span>
+            <label id="label-miniatura" class="corTexto espaco">Miniatura por Documento</label>
+        </div> 			
+        
+        <button class="pull-right btn btn-salvar btn-categorizar" (click)="acaoClassificar()"  style="margin-top: 5px;" [disabled]="!habilitarBtnAcao">{{incluirImagem ? 'Classificar' : 'Reclassificar'}} </button>
+        <a id="linkDownload" href="" class="btn btn-primary pull-right"  download="imagem" [hidden]="incluirImagem" style="margin-top: 5px; color: #f4f4f4 !important;">Download</a>
+        <button class="btn btn-primary pull-right" *ngIf="isMostrarBotaoModalExtracao && !incluirImagem" style="margin-top: 5px; color: #f4f4f4 !important;" [title]="tituloHint" [disabled]="!isDocumentoTemAtributoExtracao" (click)="abrirModalExtracaoDeDados()">Atualizar Dados</button>
+       
+        <div>
+            <button class="btn btn-primary pull-right" *ngIf="isMostrarBotaoExtracaoExterna" style="margin-top: 5px; color: #f4f4f4 !important;" [title]="extracaoHint" [disabled]="isAnaliseOutsourcing" (click)="clicouExtracaoExterna()">Extração Externa</button>
+        </div>
+        
+
+    </div>
+    <div id="campoImagens" class="col-md-12" style="display: table !important; table-layout: fixed !important">
+        
+        <p-carousel id="carrocelImg" [value]="images" [numVisible]="'5'" headerText="{{tituloTipodaAcao}}">
+            <ng-template let-obj pTemplate="obj">
+                <div class="boxImagem" id="imagem_{{obj.index}}">
+                    <a id="imagemExcluir_{{obj.index}}" class="excluirImg" (click)="removeImage(obj.index)" [hidden]="!incluirImagem">
+                        <span class="fa fa-trash-o">
+                            <label>Excluir</label>
+                        </span>
+                    </a>
+                    <input id="input_excluir_{{obj.index}}" class="posicao" min = "1" type="text" [(ngModel)]="obj.index" (blur) = "ordenarListaImages(obj)" 
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                    [readonly]="!incluirImagem" [ngClass]="{fundoCinza: !incluirImagem}">
+                    <a (click)="imageChecked(obj, obj.index)">
+                        <img id="idxImagem_{{obj.index}}" [ngClass]="{imagem: true, bordaVermelha: obj.ativo}" src="data:image/png;base64,{{obj.image}}" alt="imagem">
+                        <span id="sombraImagem_{{obj.index}}" class="sobreImagem {{obj.ativo}}" [hidden]="obj.oculto" style=" table-layout: fixed !important">
+                            <a class="fa fa-search mostrarImagem"  (click)="showImagem(obj.index)" tooltipPosition="top" pTooltip="Visualizar Imagem"></a>                    
+                            <label [hidden]="!incluirImagem || obj.checked">Classificar</label>     
+                        </span>
+                    </a>
+ 
+                    <div *ngIf="incluirImagem && obj.type === 'application/pdf' && !manterPdfEmMiniatura && (!obj.reclassificar)" [ngClass]="{posicaoIconPdf: true, openPosicaoAtivo: obj.ativo}"><i class="fa fa-file-pdf-o"></i> {{addPosicao(obj.indiceDocListPdfOriginal)}} ({{obj.paginaAtual}} / {{obj.totalPaginas}})</div>
+
+                    <div *ngIf="incluirImagem && obj.type === 'application/pdf' && manterPdfEmMiniatura  && (obj.reclassificar)" [ngClass]="{posicaoIconPdf: true, openPosicaoAtivo: obj.ativo}"><i class="fa fa-file-pdf-o"></i> {{addPosicao(obj.indiceDocListPdfOriginal)}}</div>
+
+                    <div *ngIf="incluirImagem && obj.type === 'application/pdf' && manterPdfEmMiniatura && (obj.reclassificar || obj.primeiraPagina)" [ngClass]="{posicaoIconPdf: true, openPosicaoAtivo: obj.ativo}"><i class="fa fa-file-pdf-o"></i> {{addPosicao(obj.indiceDocListPdfOriginal)}} ({{obj.paginaAtual}} / {{obj.totalPaginas}})</div>
+
+                </div>
+            </ng-template>
+        </p-carousel>            
+    </div>
+    <div class="col-md-12">
+        <visualizador-expandido [images]="images" [chekarTodoasImg]="chekarTodoasImg" [manterPdfEmMiniatura]="manterPdfEmMiniatura" [indexVisualizador]="indexVisualizador" [incluirImagem]="incluirImagem"></visualizador-expandido>
+    </div>
+</p-fieldset>

@@ -1,0 +1,293 @@
+<div [ngClass]="{'col-md-12' : true, 'corpFormularioModal': verificarFormularioModal()}" class="col-md-12" *ngIf="hasClienteValido">
+	<form #formDinamico="ngForm" class="form-horizontal">
+		<p-fieldset [ngClass]="{'legendModalForm': verificarFormularioModal()}" legend="{{legenda}}" [toggleable]="toogleFieldSet">
+			<div *ngIf="habilitarMenssagem && campoFormulario.length == 0" class="col-md-12">
+				{{messageFormularioVazio}}
+			</div>
+			<div *ngIf="campoFormulario.length > 0" class="col-md-12 posicaoColM2Relativa">
+				<app-loader-relativo [ativo]="contadorCampos < campoFormulario.length" [posicao]="contadorCampos" [qtdComponent]="campoFormulario.length"></app-loader-relativo>
+				<div *ngFor="let formulario of campoFormulario; let indexForm = index">
+					<span style="display: none;">{{contadoCampos()}}</span>
+
+					<div *ngIf="formulario.showCampo && formulario.tipo_campo != 'HIDDEN'" [ngClass]="defineLarguraCampo(formulario)"
+						[class.has-error]="formulario.obrigatorio && checkValidAndTouched(formDinamico, formulario)" style="margin-bottom: 15px">
+
+						<label *ngIf="formulario.showCampo && formulario.tipo_campo != 'HIDDEN'" for="segmento" class="label-align">{{formulario.label}}
+							<span class="asteriscoVermelho" for="obrigatorio" *ngIf="formulario.obrigatorio">*</span>
+						</label>
+
+						<!--SELECT-->
+						<div *ngIf="formulario.tipo_campo === 'SELECT'">
+							<select class="form-control" id="{{formulario.id}}" name="{{formulario.id}}"
+								(change)="changeAcao(formulario, formDinamico)" [disabled]="!habilitaAlteracao"
+								*ngIf="!formulario.obrigatorio" [(ngModel)]="formulario.resposta_aberta">
+								<option value="" selected>Selecione</option>
+								<option value="{{opcao.valor_opcao}}"
+									*ngFor="let opcao of formulario.opcoes_disponiveis">
+									{{opcao.descricao_opcao}}</option>
+							</select>
+
+							<select class="form-control" id="{{formulario.id}}" name="{{formulario.id}}"
+								(change)="changeAcao(formulario, formDinamico)" [disabled]="!habilitaAlteracao"
+								*ngIf="formulario.obrigatorio" [(ngModel)]="formulario.resposta_aberta" required
+								#{{formulario.nome_campo}}="ngModel">
+								<option value="" selected>Selecione</option>
+								<option value="{{opcao.valor_opcao}}"
+									*ngFor="let opcao of formulario.opcoes_disponiveis">
+									{{opcao.descricao_opcao}}</option>
+							</select>
+						</div>
+
+						<!--COLOR-->
+						<div *ngIf="formulario.tipo_campo === 'COLOR'">
+							<input class="form-control" id="{{formulario.id}}" type="color" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="!formulario.obrigatorio"
+								[(ngModel)]="formulario.resposta_aberta" (change)="changeAcao(formulario, formDinamico)" />
+
+							<input class="form-control" id="{{formulario.id}}" type="color" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="formulario.obrigatorio"
+								[(ngModel)]="formulario.resposta_aberta" required #{{formulario.nome_campo}}="ngModel"
+								(change)="changeAcao(formulario, formDinamico)" />
+						</div>
+
+						<!--TEXT-->
+						<div *ngIf="formulario.tipo_campo === 'TEXT'">
+
+							<input *ngIf="!formulario.obrigatorio && formulario.mascara_campo != null"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								kzMask="{{formulario.mascara_campo}}" maxlength="{{formulario.tamanho_maximo}}"
+								(change)="changeAcao(formulario, formDinamico)" />
+
+							<input *ngIf="formulario.obrigatorio && formulario.mascara_campo != null"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								kzMask="{{formulario.mascara_campo}}" maxlength="{{formulario.tamanho_maximo}}" required
+								#{{formulario.nome_campo}}="ngModel" (change)="changeAcao(formulario, formDinamico)" />
+
+							<input *ngIf="!formulario.obrigatorio && formulario.mascara_campo == null"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="{{formulario.tamanho_maximo}}" (change)="changeAcao(formulario, formDinamico)" />
+
+							<input *ngIf="formulario.obrigatorio && formulario.mascara_campo == null"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="{{formulario.tamanho_maximo}}" required #{{formulario.nome_campo}}="ngModel"
+								(change)="changeAcao(formulario, formDinamico)" />
+						</div>
+
+						<!--EMAIL-->
+						<div *ngIf="formulario.tipo_campo === 'EMAIL'">
+							<input class="form-control" id="{{formulario.id}}" type="email" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="!formulario.obrigatorio"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="{{formulario.tamanho_maximo}}" (change)="changeAcao(formulario, formDinamico)">
+
+							<input class="form-control" id="{{formulario.id}}" type="email" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="formulario.obrigatorio"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="{{formulario.tamanho_maximo}}" required #{{formulario.nome_campo}}="ngModel"
+								(change)="changeAcao(formulario, formDinamico)">
+						</div>
+
+						<!--TEXTAREA-->
+						<div *ngIf="formulario.tipo_campo === 'TEXTAREA'">
+							<textarea id="{{formulario.id}}" name="{{formulario.id}}" [disabled]="!habilitaAlteracao"
+								*ngIf="!formulario.obrigatorio" [(ngModel)]="formulario.resposta_aberta"
+								placeholder="{{formulario.placeholder_campo}}" maxlength="{{formulario.tamanho_maximo}}"
+								rows="4" cols="40" (change)="changeAcao(formulario, formDinamico)">
+						</textarea>
+							<textarea id="{{formulario.id}}" name="{{formulario.id}}" [disabled]="!habilitaAlteracao"
+								*ngIf="formulario.obrigatorio" required [(ngModel)]="formulario.resposta_aberta"
+								placeholder="{{formulario.placeholder_campo}}" maxlength="{{formulario.tamanho_maximo}}"
+								rows="4" cols="40" (change)="changeAcao(formulario, formDinamico)">
+						</textarea>
+						</div>
+
+						<!--DATE-->
+						<div *ngIf="formulario.tipo_campo === 'DATE'">
+							<p-calendar [(ngModel)]="formulario.resposta_aberta" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="!formulario.obrigatorio" dateFormat="dd/mm/yy"
+								[locale]="formularioGenericoComponentPresenter.formularioGenericoModel.ptBR"
+								showButtonBar="true" (onInput)="maskCalendar($event)"
+								[defaultDate]="dataAtual" [monthNavigator]="true" [yearNavigator]="true"
+								yearRange="1900:2200" (onSelect)="changeAcao(formulario)"
+								(onClearClick)="changeAcao(formulario, formDinamico)">
+							</p-calendar>
+
+							<p-calendar [(ngModel)]="formulario.resposta_aberta" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" *ngIf="formulario.obrigatorio" dateFormat="dd/mm/yy"
+								[locale]="formularioGenericoComponentPresenter.formularioGenericoModel.ptBR"
+								showButtonBar="true" #{{formulario.nome_campo}}="ngModel" required
+								(onInput)="maskCalendar($event)" [defaultDate]="dataAtual"
+								[monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2200"
+								(onSelect)="changeAcao(formulario, formDinamico)"></p-calendar>
+						</div>
+
+						<!--RADIO-->
+						<div 
+							*ngIf="formulario.tipo_campo === 'RADIO' && formulario.opcoes_disponiveis">
+							<span *ngFor="let radio of formulario.opcoes_disponiveis ; let idx = index">
+
+								<p-radioButton inputId="radio-dinamico-{{idx}}-{{formulario.id}}"
+									*ngIf="!formulario.obrigatorio" [(name)]="formulario.id"
+									[disabled]="!habilitaAlteracao" value="{{radio.valor_opcao}}"
+									label="{{radio.descricao_opcao}}" [(ngModel)]="formulario.resposta_aberta"
+									(onClick)="activityTreeTypeClicked(radio, formulario, formDinamico)">
+								</p-radioButton>&nbsp;&nbsp;
+
+								<p-radioButton inputId="radio-dinamico-{{idx}}-{{formulario.id}}"
+									*ngIf="formulario.obrigatorio" [(name)]="formulario.id"
+									[disabled]="!habilitaAlteracao" value="{{radio.valor_opcao}}"
+									label="{{radio.descricao_opcao}}" [(ngModel)]="formulario.resposta_aberta" required
+									(onClick)="activityTreeTypeClicked(radio, formulario, formDinamico)">
+								</p-radioButton>&nbsp;&nbsp;
+
+							</span>
+						</div>
+
+						<!--CHECKBOX-->
+						<div  *ngIf="formulario.tipo_campo === 'CHECKBOX'">
+							<span *ngFor="let checkbox of formulario.opcoes_disponiveis ; let idx = index">
+
+								<p-checkbox inputId="checkbox-dinamico-{{idx}}-{{formulario.id}}"
+									*ngIf="!formulario.obrigatorio" name="{{formulario.id}}"
+									value="{{checkbox.valor_opcao}}" [disabled]="!habilitaAlteracao"
+									label="{{checkbox.descricao_opcao}}" [(ngModel)]="formulario.string_selecionadas"
+									(onChange)="changeAcao(formulario, formDinamico)">
+								</p-checkbox>&nbsp;&nbsp;
+
+								<p-checkbox inputId="checkbox-dinamico-{{idx}}-{{formulario.id}}"
+									*ngIf="formulario.obrigatorio" name="{{formulario.id}}"
+									value="{{checkbox.valor_opcao}}" [disabled]="!habilitaAlteracao"
+									label="{{checkbox.descricao_opcao}}" [(ngModel)]="formulario.string_selecionadas"
+									required (onChange)="changeAcao(formulario, formDinamico)">
+								</p-checkbox>&nbsp;&nbsp;
+
+							</span>
+						</div>
+
+						<!--CEP-->
+						<div *ngIf="formulario.tipo_campo === 'CEP'">
+							
+							<input *ngIf="formulario.obrigatorio" id="cep-{{formulario.id}}"   
+								kzMask="99.999-999" type="text" name="{{formulario.id}}"
+								placeholder="{{formulario.placeholder_campo}}" [disabled]="!habilitaAlteracao"
+								minlength="8"
+								style="width: 100%;"
+								[(ngModel)]="formulario.resposta_aberta" required 
+								(change)="changeAcao(formulario, formDinamico); preencherCampoHidden(formulario);" />
+
+							<input *ngIf="!formulario.obrigatorio" id="{{formulario.id}}"
+								kzMask="99.999-999"  type="text" name="{{formulario.id}}"
+								placeholder="{{formulario.placeholder_campo}}" [disabled]="!habilitaAlteracao"
+								minlength="8"
+								style="width: 100%;"
+								[(ngModel)]="formulario.resposta_aberta" 
+								(change)="changeAcao(formulario, formDinamico); preencherCampoHidden(formulario);" />	
+						</div>
+
+						<!--CEP-ONLINE-->
+						<div *ngIf="formulario.tipo_campo === 'CEP_ONLINE'">
+							
+							<input *ngIf="formulario.obrigatorio" id="cep-{{formulario.id}}"   
+								kzMask="99.999-999" type="text" name="{{formulario.id}}"
+								placeholder="{{formulario.placeholder_campo}}" [disabled]="!habilitaAlteracao"
+								minlength="8"
+								style="width: 100%;"
+								[(ngModel)]="formulario.resposta_aberta" required 
+								(change)="changeAcao(formulario, formDinamico);" 
+								(blur)="onBlurCepOnline($event, formulario); preencherCampoHidden(formulario);"/>
+
+							<input *ngIf="!formulario.obrigatorio" id="{{formulario.id}}"
+								kzMask="99.999-999"  type="text" name="{{formulario.id}}"
+								placeholder="{{formulario.placeholder_campo}}" [disabled]="!habilitaAlteracao"
+								minlength="8"
+								style="width: 100%;"
+								[(ngModel)]="formulario.resposta_aberta" 
+								(change)="changeAcao(formulario, formDinamico); "
+								(blur)="onBlurCepOnline($event, formulario); preencherCampoHidden(formulario);"/>	
+						</div>
+
+						<!-- MONETARIO -->
+						<div *ngIf="formulario.tipo_campo === 'MONETARIO'">
+							
+							<input *ngIf="!formulario.obrigatorio" [disabled]="!habilitaAlteracao"
+								class="form-control" 
+								id="{{formulario.id}}" 
+								type="text"
+								kzMaskCurrency="0,00"  
+								name="{{formulario.id}}"
+								[(ngModel)]="formulario.resposta_aberta" 
+								maxlength="18"
+								(change)="changeAcao(formulario, formDinamico)" />
+							
+							<input *ngIf="formulario.obrigatorio" [disabled]="!habilitaAlteracao"
+								class="form-control" 
+								id="{{formulario.id}}" 
+								type="text"
+								kzMaskCurrency="0,00" 
+								name="{{formulario.id}}"
+								[(ngModel)]="formulario.resposta_aberta" 
+								maxlength="18"
+								(change)="changeAcao(formulario, formDinamico)" required #{{formulario.nome_campo}}="ngModel" />
+						</div>	
+						<!-- FIM MONETARIO -->	
+
+						<!-- DECIMAL -->
+						<div *ngIf="formulario.tipo_campo === 'DECIMAL'">
+
+							<input *ngIf="formulario.obrigatorio"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" (keyup)="formatDecimal(formulario)"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="18" somenteNumeros
+								(change)="changeAcao(formulario, formDinamico)" required #{{formulario.nome_campo}}="ngModel" />
+								
+							<input *ngIf="!formulario.obrigatorio"
+								class="form-control" id="{{formulario.id}}" type="text" name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao" (keyup)="formatDecimal(formulario)"
+								[(ngModel)]="formulario.resposta_aberta" placeholder="{{formulario.placeholder_campo}}"
+								maxlength="18" somenteNumeros
+								(change)="changeAcao(formulario, formDinamico)" />	
+						</div>
+
+						<!-- CONTA_CAIXA -->
+						<div *ngIf="formulario.tipo_campo === 'CONTA_CAIXA'">
+							<input *ngIf="!formulario.obrigatorio"
+								class="form-control" 
+								id="{{formulario.id}}" 
+								type="text"
+								tipo-conta-caixa
+								(blur)="completarContaCaixaComZeroEsquerda(formulario)"
+								name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" 
+								(change)="changeAcao(formulario, formDinamico)" />
+							
+							<input *ngIf="formulario.obrigatorio"
+								class="form-control" 
+								id="{{formulario.id}}" 
+								type="text"
+								tipo-conta-caixa
+								(blur)="completarContaCaixaComZeroEsquerda(formulario)"
+								name="{{formulario.id}}"
+								[disabled]="!habilitaAlteracao"
+								[(ngModel)]="formulario.resposta_aberta" 
+								(change)="changeAcao(formulario, formDinamico)" required #{{formulario.nome_campo}}="ngModel" />
+						</div>
+
+						<div class="error" *ngIf="formulario.obrigatorio && checkValidAndTouched(formDinamico, formulario)">
+							Campo Obrigatório
+						</div>
+					</div>
+				</div>
+			</div>
+		</p-fieldset>
+	</form>
+</div>

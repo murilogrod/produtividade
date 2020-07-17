@@ -1,0 +1,260 @@
+<!--
+	Aqui é definido o rodapé de seu projeto . 
+	O projeto pode ter nenhum, um ou vários rodapés definidos de acordo com o estado definido no App.js
+-->
+<nav class="navbar navbar-default navbar-fixed-bottom theme-footer" role="navigation" style="margin-bottom: 0">
+
+<!---------------------------------------------------------------------------------------------------------------------->	
+<!---------------------------------------------  INICIO RODAPE IBC2017  ------------------------------------------------>
+<!---------------------------------------------------------------------------------------------------------------------->
+
+	<div class="container-fluid rodape">
+		<div class="row">
+			
+				<!-- esquerdo -->
+				<!-- empresa nome (lg) -->
+				<div class="hidden-xs hidden-sm hidden-md col-lg-2" id="txt-empresa-baixo">
+				    <div ng-if="project.footer.left" class="pull-left theme-footer-left">
+				        <div class="navbar-text">
+				            <!-- {{compiler(project.footer.left)}} -->
+				            <span ng-if="contextEditable" ng-model="project.footer.left" contenteditable="{{contextEditable}}"></span>
+				            <span ng-if="!contextEditable">{{compiler(project.footer.left)}}</span>
+				        </div>
+				    </div>
+			    </div>
+			    
+			    
+			    <!-- centro -->
+			    
+			    <!-- rodape (xs) -->
+			    <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
+					    
+			    	<!-- painel opcoes esquerdo -->
+			    	<div class="col-xs-4 pnl-esq-opcoes-baixo pull-left">
+							
+						<!-- botao configuracoes -->
+				      	<div class="btnconfig-pnl-esq-opcoes-baixo">
+			    			<p><span class="glyphicon glyphicon-cog"></span></p>
+				        </div>
+				        
+				        <!-- botao home -->
+				    	<div class="btnhome-pnl-esq-opcoes-baixo">
+				            <p><span class="glyphicon glyphicon-home"></span></p>
+				        </div> 	
+			    	</div>
+			    				    				    	
+			    	<!-- painel conta -->
+			    	<div class="col-xs-4 pnl-conta-baixo text-center">
+			    		<div>
+							<p class="text-left">AG 1679&nbsp;OP 013<br>CONTA 1001-1</p>
+						</div>
+			    	</div>
+			    				    	
+			    	<!-- painel opcoes direito -->
+			    	<div class="col-xs-4 pnl-dir-opcoes-baixo pull-right">
+							
+						<!-- botao aviso -->
+				      	<div class="btnaviso-pnl-dir-opcoes-baixo">
+			    			<p><span class="glyphicon glyphicon-alert"></span></p>
+				        </div>
+				        
+				        <!-- botao mensagem -->
+				    	<div class="btnmsg-pnl-dir-opcoes-baixo">
+			    			<p><span class="glyphicon glyphicon-envelope"></span></p>
+				        </div> 	
+			    	</div>
+			    	
+			    </div>
+			    
+			    <!-- informacoes (sm/md/lg) -->
+			    <div class="hidden-xs col-sm-4 col-md-3 col-lg-2" id="txt-info-baixo">
+					<p>Suporte Tecnológico CAIXA<br>3004 1104 (Capitais/Regiões metr.) ou 0800 726 0104 (Demais regiões)</p>
+				</div>
+				
+				<!-- links (sm/md/lg) -->
+			    <div class="hidden-xs col-sm-5 col-md-6 col-lg-5" id="links-baixo">
+					<ul>
+						<li class="esq-links-baixo"><p>Segurança</p></li>
+						<li class="esqdir-links-baixo"><p>Rede de Atendimento</p></li>
+						<li class="esqdir-links-baixo"><p>Ajuda</p></li>
+						<li class="dir-links-baixo"><p>Termos e Contratos</p></li>
+					</ul>
+				</div>
+				
+			    
+			    <!-- painel opcoes (sm/md/lg) -->
+			    <div class="hidden-xs col-sm-3 col-md-3 col-lg-2 pnl-opcoes-baixo text-center">
+									
+					<!-- botao aviso -->
+			      	<div class="btnaviso-pnl-opcoes-baixo">
+		    			<p><span class="glyphicon glyphicon-alert"></span></p>
+			        </div>
+			        
+			        <!-- botao mensagem -->
+			    	<div class="btnmsg-pnl-opcoes-baixo">
+		    			<p><span class="glyphicon glyphicon-envelope"></span></p>
+			        </div>
+			        
+			        <!-- botao calculadora -->
+			      	<div class="btncalc-pnl-opcoes-baixo">
+		    			<p><span class="glyphicon glyphicon-th"></span></p>
+			        </div>
+			        
+			        <!-- botao calendario -->
+			    	<div class="btncalendar-pnl-opcoes-baixo">
+		    			<p><span class="glyphicon glyphicon-calendar"></span></p>
+			        </div>
+			        	    	
+		    	</div>
+			    
+			    <!-- (apagar aqui quando necessario) 
+			    <span ng-if="project.footer.middle" class="navbar-text header-title navbar-brand-middle hidden-xs theme-footer-middle">
+			        <div class="navbar-text">
+			        <!-- {{compiler(project.footer.middle)}} -->
+			        	<!-- (apagar aqui quando necessario)
+			            <span ng-if="contextEditable" ng-model="project.footer.middle" contenteditable="{{contextEditable}}"></span>
+			            <span ng-if="!contextEditable">{{compiler(project.footer.middle)}}</span>
+			        </div>
+			    </span>
+			    (apagar aqui quando necessario) -->
+				    
+			    
+				<!-- direito -->
+				<!-- data (lg) --> 
+				<div class="hidden-xs hidden-sm hidden-md col-lg-1 pull-right" id="txt-data-baixo">
+				    <div ng-if="project.footer.right" class="pull-right theme-footer-right">
+				        <div class="navbar-text">
+				            <!-- {{compiler(project.footer.right)}} -->
+				            <span ng-if="contextEditable" ng-model="project.footer.right" contenteditable="{{contextEditable}}"></span>
+				            <span ng-if="!contextEditable">{{compiler(project.footer.right)}}</span>
+				        </div>
+				    </div>
+			    </div>
+   		</div>
+	</div>
+<!---------------------------------------------------------------------------------------------------------------------->	
+<!----------------------------------------------  FINAL RODAPE IBC2017  ------------------------------------------------>
+<!---------------------------------------------------------------------------------------------------------------------->
+
+<!---------------------------------------------------------------------------------------------------------------------->	
+<!-------------------------------------------------  INCIO ATM  ------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------->	
+
+	<div class="rodape-atm">
+		<div class="voltar  col-xs-12 col-sm-2 col-md-2"> 
+			
+			 <a href="#"><img src="imgs/theme-atm/botao_voltar.png"></a>	 
+		</div>	
+		
+		<div class="texto-footer  col-xs-12 col-sm-8 col-md-8 ">
+			 <text><b><font color="#555a6d">Dica do gerente</text></font></b>
+			 <p><font color="#555a6d">Washington, se você aplicar <b>R$ 40,00</b> por mês na poupança, em janeiro você pode usar para <b>pagar seu IPVA.</b></p>
+		
+		</div>	
+		<div class="menu-atm col-xs-12 col-sm-2 col-md-2">
+			<a href="#"><img src="imgs/theme-atm/menu.png"></a>
+		</div>
+	</div>
+
+
+<!---------------------------------------------------------------------------------------------------------------------->	
+<!--------------------------------------------------  FINAL ATM  ------------------------------------------------------->
+<!---------------------------------------------------------------------------------------------------------------------->	
+
+	<div ng-if="project.footer.left" class="pull-left theme-footer-left">
+        <div class="navbar-text">
+            <!-- {{compiler(project.footer.left)}} -->
+            <span ng-if="contextEditable" ng-model="project.footer.left" contenteditable="{{contextEditable}}"></span>
+            <span ng-if="!contextEditable">{{compiler(project.footer.left)}}</span>
+        </div>
+    </div>
+    
+    <span ng-if="project.footer.middle" class="navbar-text header-title navbar-brand-middle hidden-xs theme-footer-middle">
+        <div class="navbar-text">
+        <!-- {{compiler(project.footer.middle)}} -->
+            <span ng-if="contextEditable" ng-model="project.footer.middle" contenteditable="{{contextEditable}}"></span>
+            <span ng-if="!contextEditable">{{compiler(project.footer.middle)}}</span>
+        </div>
+    </span>
+
+    <div ng-if="project.footer.right" class="pull-right theme-footer-right">
+        <div class="navbar-text">
+            <!-- {{compiler(project.footer.right)}} -->
+            <span ng-if="contextEditable" ng-model="project.footer.right" contenteditable="{{contextEditable}}"></span>
+            <span ng-if="!contextEditable">{{compiler(project.footer.right)}} - Instância: {{instanciaJboss}}</span>
+        </div>
+    </div>
+</nav>
+<div class="overlay" data-toggle="collapse" data-target=".navbar-collapse"></div>
+<div class="overlay-galeria">
+	<span class="overlay-close">X</span>
+</div>
+
+<script>
+$(".gallery").on("click", ".gallery-item", function() {
+	var caminho = $(this).attr("src");
+	$(".overlay-galeria").append("<img class='ov-item'>");
+	$(".ov-item").attr("src", caminho);
+	$(".overlay-galeria").css("display","block");
+});
+$(".overlay-galeria").on("click", ".overlay-close", function() {
+	$(".overlay-galeria .ov-item").remove();
+	$(".overlay-galeria").css("display","none");
+});
+
+(function() {
+	if (window.location.href.indexOf("splash")){
+		document.body.children[0].classList.add("splash");
+	}
+	else{
+		document.body.children[0].classList.remove("splash");
+	}
+})();
+$(function() { $.support.transition = false; })
+    $(function() { $.support.transition = false; })
+    $(".navbar-toggle").click(function() {
+        var aux = $(".navbar-collapse").attr('aria-expanded'); 
+        if (  aux == "false" || typeof aux === "undefined"){
+            $(".overlay").css("display","block");
+            $(".side-menubar").css({"margin-left": "0px"});
+        }
+        else{
+            $(".overlay").css("display","none");
+            $(".side-menubar").css({"margin-left": "-700px"});
+        }
+    });
+
+$(".feedback-menu a").click(function() {
+        var aux = $(".navbar-collapse").attr('aria-expanded'); 
+        if (  aux == "false" || typeof aux === "undefined"){
+            $(".overlay").css("display","block");
+            $(".side-menubar").css({"margin-left": "0px"});
+        }
+        else{
+            $(".overlay").css("display","none");
+            $(".side-menubar").css({"margin-left": "-700px"});
+        }
+});
+$(".overlay").click(function() {
+        var aux = $(".navbar-collapse").attr('aria-expanded'); 
+        if (  aux == "false" || typeof aux === "undefined"){
+            $(".overlay").css("display","block");
+            $(".side-menubar").css({"margin-left": "0px"});
+        }
+        else{
+            $(".overlay").css("display","none");
+            $(".side-menubar").css({"margin-left": "-700px"});
+        }
+});
+$(".btn-sair-menu").click(function() {
+        var aux = $(".navbar-collapse").attr('aria-expanded'); 
+        if (  aux == "false" || typeof aux === "undefined"){
+            $(".overlay").css("display","block");
+            $(".side-menubar").css({"margin-left": "0px"});
+        }
+        else{
+            $(".overlay").css("display","none");
+            $(".side-menubar").css({"margin-left": "-700px"});
+        }
+});
+</script>

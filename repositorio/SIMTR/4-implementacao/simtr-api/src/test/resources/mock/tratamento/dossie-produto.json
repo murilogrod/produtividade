@@ -1,0 +1,120 @@
+{
+    "id": 116,
+    "versao": 2,
+    "processo": {
+        "id": 0,
+        "nome": "Processo Concessao Comercial",
+        "ativo": true,
+        "avatar": "glyphcon glyphcon-processo",
+        "controlaValidade": true,
+        "tipoPessoa": "F",
+        "indicadorGeracaoDossie": true,
+        "nomeProcessoBPM": "processo-bpm",
+        "nomeContainerBPM": "container-bpm",
+        "dataHoraUltimaAlteracao": 1554819752109,
+        "produtos": [],
+        "relacoesProcessoVinculoPai": [],
+        "relacoesProcessoVinculoFilho": [],
+        "unidadesAutorizadas": [],
+        "elementosConteudo": [],
+        "processoDocumentos": [],
+        "documentosGarantia": [],
+        "vinculacoesChecklists": [],
+        "vinculacoesChecklistsFase": [],
+        "checklistsAssociados": []
+    },
+    "processosFaseDossie": [
+        {
+            "id": 1,
+            "processoFase": {
+                "id": 10,
+                "nome": "",
+                "ativo": true,
+                "avatar": "",
+                "controlaValidade": true,
+                "tipoPessoa": "F",
+                "indicadorGeracaoDossie": true,
+                "nomeProcessoBPM": "",
+                "nomeContainerBPM": "",
+                "dataHoraUltimaAlteracao": 1554819752109,
+                "produtos": [],
+                "dossiesProduto": [],
+                "unidadesAutorizadas": [],
+                "camposFormulario": [],
+                "elementosConteudo": [],
+                "vinculacoesChecklistsFase": [],
+                "checklistsAssociados": []
+            },
+            "dataHoraInclusao" : 1554819752109,
+            "dataHoraSaida" : null,
+            "responsavel" : "",
+            "unidade" : 0
+        }
+    ],
+    "unidadeCriacao": 9999,
+    "unidadePriorizado": null,
+    "matriculaPriorizado": null,
+    "pesoPrioridade": null,
+    "dataHoraFinalizacao": null,
+    "canal": {
+    	"id": 1,
+    	"sigla": "SIMTRWEB",
+    	"descricao": null,
+    	"canalCaixa": "AGE",
+    	"clienteSSO": null,
+    	"janelaExtracaoM0": null,
+    	"janelaExtracaoM30": null,
+    	"janelaExtracaoM60": null,
+    	"indicadorAvaliacaoAutenticidade": null,
+    	"indicadorAtualizacaoDocumento": null,
+    	"indicadorOutorgaReceita": null,
+    	"indicadorOutorgaCadastroCaixa": null,
+    	"indicadorOutorgaApimanager": null,
+    	"indicadorOutorgaSiric": null,
+    	"urlCallbackDocumento": null,
+    	"urlCallbackDossie": null,
+    	"unidadeCallbackDossie": null
+    },
+    "idInstanciaProcessoBPM": null,
+    "instanciasDocumento": [],
+    "dossiesClienteProduto": [],
+    "produtosDossie": [],
+    "situacoesDossie": [
+        {
+            "id": 46,
+            "tipoSituacaoDossie": {
+                "id": 1,
+                "nome": "Rascunho",
+                "tipoInicial": true,
+                "tipoFinal": false,
+                "dataHoraUltimaAlteracao": 1554819752109
+            },
+            "dataHoraInclusao": 1554819752109,
+            "dataHoraSaida": 1554819752109,
+            "responsavel": "c102030",
+            "unidade": 1010,
+            "observacao": null
+        },
+        {
+            "id": 58,
+            "tipoSituacaoDossie": {
+                "id": 2,
+                "nome": "Criado",
+                "tipoInicial": true,
+                "tipoFinal": false,
+                "dataHoraUltimaAlteracao": 1554819752109
+            },
+            "dataHoraInclusao": 1554819752109,
+            "dataHoraSaida": 1554819752109,
+            "responsavel": "c102030",
+            "unidade": 1010,
+            "observacao": null
+        }
+    ],
+    "respostasDossie": [],
+    "unidadesTratamento": [],
+    "garantiasInformadas": [],
+    "checklistsAssociados": []
+}
+
+

@@ -1,0 +1,91 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Dados do Cliente Do SIMTR</h4>
+    </div>
+    <!-- Para mostrar Detalhes de um único cliente-->
+    <div class="modal-body">
+      <div class="box box-solid">
+        <div class="box-body no-padding">
+          <!-- CNPJ -->
+          <div class="col-md-12" *ngIf="!isCPF">
+            <div class="col-md-6">
+              <label>CNPJ:</label>
+              <p>{{ user.cnpj | kzCnpj }}</p>
+            </div>
+            <div class="col-md-6">
+              <label>Razão Social:</label>
+              <p>{{ user.razao_social }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Data Fundação:</label>
+              <p>{{ user.data_fundacao }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Email:</label>
+              <p>{{ user.email ?  user.email : ' '}}</p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Porte:</label>
+              <p>{{ user.porte }}</p>
+            </div>
+
+            <div class="col-md-6">
+                <label>Conglomerado:</label>
+                <p>{{ user.conglomerado ? 'SIM' : 'NÃO' }}</p>
+              </div>            
+          </div>
+
+          <!-- CPF -->
+          <div class="col-md-12" *ngIf="isCPF">
+            <div class="col-md-6">
+              <label>CPF:</label>
+              <p>{{ user.cpf | kzCpf }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Nome:</label>
+              <p>{{ user.nome }}</p>
+            </div>
+
+            <div class="col-md-6">
+                <label>Email:</label>
+                <p>{{ user.email }}</p>
+            </div>    
+
+            <div class="col-md-6">
+              <label>Data Nascimento:</label>
+              <p>{{ user.data_nascimento }}</p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Nome Mãe:</label>
+              <p>{{ user.nome_mae }}</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-6 form-group" *ngFor="let resposta of listaCampos">
+            <label class="col-md-12" for="">{{resposta.label}}</label>
+            <div class="col-md-12" *ngIf="resposta.tipoCampo == 'MONETARIO'">
+              {{resposta.value | currency:'BRL':'symbol':'0.0-2':'pt'}}
+            </div>
+            <div class="col-md-12" *ngIf="resposta.mascara && resposta.tipoCampo != 'MONETARIO'">
+              {{resposta.value | mask: resposta.mascara}}
+            </div>
+            <div class="col-md-12" *ngIf="!resposta.mascara && resposta.tipoCampo != 'MONETARIO'">
+                {{resposta.value}}
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="closeDialog()">OK</button>
+    </div>
+  </div>
+</div>

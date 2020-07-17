@@ -1,0 +1,93 @@
+.modal-header-inline{
+    display: inline-flex;
+    width: 100%;
+    padding: 0px 0px 1px 2px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.modal-color-title{
+    color:rgb(0, 90, 156);
+    font-weight: 600;
+}
+
+.ui-widget-content {
+    border: none !important;
+}
+
+.ui-datatable thead tr {
+    border-bottom: 3px solid rgb(0, 90, 156);
+}
+
+.ui-datatable th.ui-state-default{
+    background:rgb(206, 235, 248);
+    color:rgb(0, 90, 156);
+    font-weight: bold !important;
+}
+
+
+.modal-table-column{
+    border: none !important;
+    text-align: center;
+}
+
+.icon-reuso-doc-modal{
+    padding: 7px 7px 0px 0px;
+    color: rgb(0, 90, 156);
+}
+
+.checkmark-modal-reutilizacao {
+    position: absolute;
+    top: -4px;
+    left: 9px;
+    height: 15px;
+    width: 15px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid #ebedf0;
+  }
+
+ /* On mouse-over, add a grey background color */
+ .containerChek:hover input ~ .checkmark-modal-reutilizacao {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .containerChek input:checked ~ .checkmark-modal-reutilizacao {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 90, 156);
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark-modal-reutilizacao:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .containerChek input:checked ~ .checkmark-modal-reutilizacao:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .containerChek .checkmark-modal-reutilizacao:after {
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(0, 90, 156);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.checkbox-documento{
+    vertical-align: top !important;
+    background-color :rgb(91, 180, 220) !important;
+}
+
+.checkbox-documento input:checked {
+    background-color: #2196F3 !important;
+    color: #ccc !important;
+}

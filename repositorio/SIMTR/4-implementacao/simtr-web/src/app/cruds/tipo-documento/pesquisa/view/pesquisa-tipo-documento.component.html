@@ -1,0 +1,139 @@
+<div class="crud-container">
+  <div class="panel panel-default crud-border">
+    <div class="crud-title">
+      <label>Tipos de Documento</label>
+      <hr class="crud-line-bottom-grid">
+    </div>
+    <div class="panel panel-default crud-align">
+      <div class="panel-heading crud-style">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <table id="table-header-tipo-documento" style="width: 100%;">
+            <tr>
+              <td>
+                <div class="input-group pull-left" style="width: 100%">
+                  <input pInputText type="text" class="form-control" placeholder="Filtro Global" #globalFilter
+                    (input)="realizarFiltroTipoDocumento($event.target.value, dataTipoDocumentos);">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div class="pull-right" style="width: 75%;">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <label class="control-label">Situação:</label> 
+                    </div>
+                    <div class="col-md-9">
+                      <p-selectButton 
+                        [options]="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.configSelectButtonOptions" 
+                        [(ngModel)]="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.selectedStatus"
+                        (onOptionClick)="atualizarTiposDocumentosConformeSituacao($event)">
+                      </p-selectButton>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="pull-right">
+                  <button type="button" class="btn btn-primary" (click)="novoTipoDocumento()">Novo
+                    <span class="fa fa-plus"></span>
+                  </button>
+                </div>                
+              </td>
+            </tr>
+          </table>
+        </nav>
+      </div>
+    </div>
+    <div class="panel-body">
+      <p-table #dataTipoDocumentos [columns]="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.columns"
+        (onFilter)="onFilter($event, globalFilter)" class="crud-table" [paginator]="true" [rows]="15"
+        [responsive]="true" (sortFunction)="realizarOrdenacao($event)" scrollHeight="500px" [customSort]="true"
+        [rowsPerPageOptions]="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.rowsPerPageOptions" scrollable="true"
+        [value]="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.tipoDocumentos">
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length">
+              Nenhum Tipo Documento encontrado
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <ng-template ngFor let-col [ngForOf]="columns">
+              <ng-container [ngSwitch]="col.field">
+                <ng-container *ngSwitchCase="'acoes'">
+                  <th class="{{col.class}}">
+                    {{col.header}}
+                  </th>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <th class="{{col.class}}" *ngIf="col.tooltip" tooltipPosition="top" pTooltip="{{col.msg}}"
+                    [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                  <th class="{{col.class}}" *ngIf="!col.tooltip" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </ng-container>
+              </ng-container>
+            </ng-template>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tipoDocumento let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+              <ng-container *ngSwitchCase="'acoes'">
+                <span class="fa fa-fw fa-edit" tooltipPosition="top" pTooltip="Editar Tipo Documento"
+                  (click)="editarTipoDocumento(tipoDocumento.id)" style="cursor: pointer">
+                </span>
+                <span class="fa fa-fw fa-trash" tooltipPosition="top" pTooltip="Remover Tipo Documento"
+                  (click)="confirmarRemocao(tipoDocumento.id)" style="cursor: pointer">
+                </span>
+              </ng-container>
+              <ng-container *ngSwitchCase="'nome'">
+                <div class="tipoDocumento capitalize" tooltipPosition="top" pTooltip="{{tipoDocumento[col.field]}}">
+                  {{tipoDocumento[col.field] != undefined ? tipoDocumento[col.field] : '-'}}
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'codigo_tipologia'">
+                <div class="tipoDocumento capitalize" tooltipPosition="top" pTooltip="{{tipoDocumento[col.field]}}">
+                  {{tipoDocumento[col.field] != undefined ? tipoDocumento[col.field] : '-'}}
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                {{tipoDocumento[col.field] ? tipoDocumento[col.field] : '-'}}
+              </ng-container>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <ng-container
+            *ngIf="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.tipoDocumentos.length > 0 && pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.filteredRecords == 0
+            && pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.totalRecords == pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.tipoDocumentos.length">
+            Total: {{pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.tipoDocumentos.length}} Tipo(s) de Documento(s)
+          </ng-container>
+          <ng-container
+            *ngIf="pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.tipoDocumentos.length > 0 && pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.filteredRecords > 0">
+            Total: {{pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.filteredRecords}} de
+            {{pesquisaTipoDocumentoPresenter.pesquisaTipoDocumento.totalRecords}}.
+          </ng-container>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+        <p-footer>
+          <button type="button" pButton icon="fa fa-close" label="Não" (click)="cd.reject()"></button>
+          <button type="button" pButton icon="fa fa-check" label="Sim" (click)="cd.accept()"></button>
+        </p-footer>
+      </p-confirmDialog>
+      <cx-alert-message id="component-alert-pesquisa-tipo-documento" [messagesInfo]="messagesInfo"
+        [messagesSuccess]="messagesSuccess" [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+        (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+        [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+      </cx-alert-message>
+    </div>
+  </div>
+</div>

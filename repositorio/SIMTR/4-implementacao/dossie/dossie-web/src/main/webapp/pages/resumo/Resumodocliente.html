@@ -1,0 +1,316 @@
+					<!--
+					Aqui � definido o conte�do apresentado pela tela do seu projeto (a parte vis�vel).
+					Cada tela do seu projeto define um estado. 
+					Cada estado � composto por um controller (js) e uma tela (html)
+					Os estados s�o definidos no App.js
+					As p�ginas s�o armazenadas na pasta pages										
+				-->
+<div class="theme-main" ng-controller="ResumodoclienteController" analytics-page="P�gina Resumo do Cliente">
+		<form id="formMain" name="formMain" tabindex="0">
+   			<div class="row">
+   				<div  class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+						<tr>
+							<td><b><div style="text-align: left; color:#267fb9;">{{ 'LABEL.RESUMO.DO.CLIENTE' | translate}}</div></b>
+								   <div style="text-align: left; color:#555a6d" >{{ 'label.' | translate}}</div><br>
+							</td>
+						</tr>
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+				</div>
+					<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+    			<span ncy-breadcrumb></span>
+                        <!-- id:h4 - name:T�tulo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: col-xs-6
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-6 theme-main-h4" align="left">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{ 'label.resumo.do.cliente' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:h4 - name:T�tulo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 theme-main-h4" align="left">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{sicpf['nome-contribuinte']}} / CPF: {{cpf | cpfFilter}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:input-check - name:Entrada de Verifica��o (checkbox) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Verificacao 
+                            			id: chkPesquisacadastral2
+                            			ajuda: {{ 'label.selecione.as.opes' | translate}}
+                            			estilo: col-xs-12
+                            			t�tulo: Pesquisa Cadastral
+                            		-->
+                                <div class="form-group col-xs-12 theme-main-input-check">
+                                    <label>{{ 'label.pesquisa.cadastral' | translate}}</label>
+                                    <div class="input-group">
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Cadin
+                                                    &nbsp;
+                                                </label>
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Serasa
+                                                    &nbsp;
+                                                </label>
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Siccf
+                                                    &nbsp;
+                                                </label>
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Sinad
+                                                    &nbsp;
+                                                </label>
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Sicow
+                                                    &nbsp;
+                                                </label>
+                                                <label class="margin">
+                                                    <input id="chkPesquisacadastral2" type="checkbox" ng-disabled="true" placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="true"></input>
+                                                    &nbsp;
+                                                    Todos
+                                                    &nbsp;
+                                                </label>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:button - name:Bot�o -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                           			<!-- 
+                           				tipo: Acao  
+                           					ATENCAO: no ng-click defina sua acao
+                           					ex: ng-click="incluir()" ou ng-click="salvar()"
+                           				id: btnConsultar2
+                           				ajuda: {{ 'label.clique.aqui.para.consultar' | translate}}
+                           				t�tulo: {{ 'label.consultar' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-left
+                           				ativo: true
+                           				�cone:  
+                           			-->
+	                                	<button id="btnConsultar2" ng-disabled="true" ng-click="openViewDelayed('',3,$event,'Procedimento executado com sucesso')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.aqui.para.consultar' | translate}}" title="{{ 'label.clique.aqui.para.consultar' | translate}}" class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Consultar">
+                                    <i class="fa  ">&nbsp;</i>
+                                        <span style="font-size: 14px;;">{{ 'label.consultar' | translate}}</span>
+                                </button>
+                        </div>
+                        <!-- id:rule - name:Separador (hr) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: text-primary pull-left col-xs-12
+                            			texto: Texto
+                            		-->
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                    Nome: {{sicpf['nome-contribuinte']}}
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                    Data de Nascimento: {{sicpf['data-nascimento'] | date:'dd/MM/yyyy'}}
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                   {{'label.profissao' | translate}}: {{sicli.dados.cliente.campos.PROFISSAO_SIRIC ? sicli.dados.cliente.campos.PROFISSAO_SIRIC.descricaoprofissao : 'label.naoinformado' | translate}}
+                                </span>
+                        </div>
+                         <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                    Renda Total: {{rendaTotal | currency:"R$":2}}
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                	Contato(s): 
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span ng-repeat="row in telefones" class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto" style="margin-left:15px">
+                                	{{'label.telefonecomum' | translate}}: ({{row.prefixoDiscagem}}) - {{row.codComunicacao}}
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto">
+                                	E-mail(s): 
+                                </span>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <span ng-repeat="row in emails" class="label padding text-primary pull-left col-xs-12 theme-main-label" title="Texto" style="margin-left:15px">
+                                	{{row.codComunicacao}} 
+                                </span>
+                        </div>
+                        <!-- id:rule - name:Separador (hr) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        <!-- id:h6 - name:Sub-t�tulo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!--  
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+                                <h6 class="padding text-primary bold col-xs-12 theme-main-h6" align="left">
+                                        <i class="fa ">&nbsp;</i>
+                                    <span>{{ 'label.produtos.ativos' | translate}}</span>
+                                </h6>
+                        </div>
+                        <!-- id:table-filter - name:Tabela Filtro por Colunas -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="table-responsive col-xs-12 theme-main-table">
+                                    <table id="tbl" class="table table-bordered table-hover table-striped text-black" 
+                                    ng-show="sicli.dados.cliente.campos.PRODUTO_CAIXA != null && sicli.dados.cliente.campos.PRODUTO_CAIXA.length > 0"
+                                    st-table="sicli.dados.cliente.campos.PRODUTO_CAIXA">
+                                        <thead class="theme-main-table-head">
+	                                        <tr class="theme-main-table-head-row">
+	                                            <th class="text-left">
+	                                               {{'label.agencia' | translate}}
+	                                            </th>
+	                                            <th class="text-left">
+	                                               {{'label.codigoProduto' | translate}}
+	                                            </th>
+	                                            <th class="text-left">
+	                                               Contrato
+	                                            </th>
+	                                        </tr>
+                                        </thead>
+                                        <!-- para cada linha de acordo com os elementos de $scope.container.tblData -->
+	                                      <tr ng-repeat="row in sicli.dados.cliente.campos.PRODUTO_CAIXA" class="theme-main-table-row">
+	                                      	<td>{{("0000"+row.agencia).slice(-4)}}</td>
+	                                      	<td>{{row.produto}}</td>
+	                                      	<td>{{row.contrato}}</td>
+	                                      </tr>
+				                    <tfoot>
+				                        <tr>
+				                            <td colspan="3" class="text-center">
+				                                <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+				                            </td>
+				                        </tr>
+				                    </tfoot>
+                            </table>
+											<div class="alert alert-warning ng-hide" 
+												ng-show="sicli.dados.cliente.campos.PRODUTO_CAIXA == null || sicli.dados.cliente.campos.PRODUTO_CAIXA.length == 0">
+					                            Nenhum dado localizado.
+					                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+				</div>
+                <br>&nbsp;
+                <br>&nbsp;
+    	</div>
+    </form>
+</div>

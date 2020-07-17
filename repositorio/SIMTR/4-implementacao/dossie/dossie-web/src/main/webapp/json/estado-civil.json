@@ -1,0 +1,23 @@
+[
+{"nome": "Não Informado", "codigo" : "0"},
+{"nome": "Solteiro (a)", "codigo" : "1"},
+{"nome": "Casado (a)", "codigo" : "2"},
+{"nome": "Divorciado (a)", "codigo" : "3"},
+{"nome": "Separado (a) Judicialmente", "codigo" : "4"},
+{"nome": "Viúvo (a)", "codigo" : "5"},
+{"nome": "Com União Estável", "codigo" : "6"},
+{"nome": "Casado (a) com comunhão total de bens", "codigo" : "7"},
+{"nome": "Casado (a) sem comunhão de bens", "codigo" : "8"},
+{"nome": "Casado (a) com comunhão parcial de bens ", "codigo" : "9"}
+]
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,257 @@
+<div class="cx-page box box-primary">
+	<div id="titiloTela">
+		<cx-header-widget></cx-header-widget>
+	</div>
+	<div class="box-body">
+		<div class="col-md-12 corpoIndentificador" style="width: 97.8%">
+			<h4>PROCESSO&nbsp;:&nbsp;{{nomeProcessoEscolhido}}&nbsp;-&nbsp;{{tipoProcessoEscolhido}}</h4>
+		</div>
+
+		<div class="corpoIndentificador box-body box-title pull-left" style="width: 97.8%">
+			<div class="divIdentificador">
+				<span class="fa fa-user espaco"></span>
+				<div class="mesmaLinha colunaDivisor">
+					<span
+						*ngIf="clienteTitle !== undefined && clienteTitle.nome !== undefined && clienteTitle.cnpj === undefined">
+						<label class="tituloApresentacao">NOME:&nbsp;</label>
+						<label>{{clienteTitle.nome}}</label>
+					</span>
+					<span *ngIf="clienteTitle !== undefined && clienteTitle.razao_social !== undefined">
+						<label class="tituloApresentacao">RAZÃO SOCIAL:&nbsp;</label>
+						<label>{{clienteTitle.razao_social}}</label>
+					</span>
+				</div>
+				<span class="fa fa-credit-card espaco"></span>
+				<div class="mesmaLinha colunaDivisor">
+					<span *ngIf="clienteTitle !== undefined && clienteTitle.cpf">
+						<label class="tituloApresentacao">CPF:&nbsp;</label>
+						<label>{{clienteTitle.cpf | kzCpfCnpj}}</label>
+					</span>
+					<span *ngIf="clienteTitle !== undefined && clienteTitle.cnpj">
+						<label class="tituloApresentacao">CNPJ:&nbsp;</label>
+						<label>{{clienteTitle.cnpj | kzCpfCnpj}}</label>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div [ngClass]="{'breadcrumb flat': true, 'breadCancelado': situacaoCancelada, 'breadFinalizado': situacaoFinalizada}" *ngIf="!habilitaTratamento">
+				<a *ngFor="let lst of listaEtapas; let idx = index" (click)="selecionaEtapa(lst.id, idProcessoFase, idx)" id="etapa{{idx}}" name="position_{{idx}}"
+					href="javascript:void(0)"
+					[ngClass]="{'classAtiva' : (processoAtivo == lst.id), 'active': (idProcessoFase == lst.id), 'faseConsulta' : (processoAtivo != lst.id && idx < posicaoFase), 'ativoSeta': (processoAnterior == lst.id)}"
+					[ngStyle]="{'width': cssFase}">
+					<div class="internoWirzard">
+						<label class="centralizador"></label>
+						<label>{{lst.nome}}</label>
+					</div>
+				</a>
+			</div>		
+			<div class="col-md-12 textLeft">                
+				<a (click)="op.show($event, actualTarget)" pTooltip="Legenda de significado de cores.">
+					<i class="fa fa-question iconInterrogacao"></i>
+				</a>
+				<div #actualTarget></div>
+				<p-overlayPanel id="corpDescricaoCor" #op [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [dismissable]="true" [showCloseIcon]="true">
+					<div class="help-descricao-doc">
+						<label id="help-label-doc-azul_escuro">Etapa na cor azul escuro:</label><p>Etapa Finalizada.</p>
+					</div>
+					<br/>
+					<div class="help-descricao-doc">
+						<label id="help-label-doc-azul_claro">Etapa na cor azul claro:</label><p>Etapa Futura.</p>
+					</div>
+					<br/>
+					<div class="help-descricao-doc">
+						<label id="help-label-doc-cinza">Etapa na cor cinza:</label><p>Dossiê Cancelada Nessa Etapa.</p>
+					</div>
+					<br/>
+					<div class="help-descricao-doc">
+						<label id="help-label-doc-verde">Etapa na cor verde:</label><p>Etapa Atual.</p>
+					</div>
+					<br/>
+					<div class="help-descricao-doc">
+						<label id="help-label-doc-ocre">Borda Ocre:</label><p> – Etapa em Visualização/Manutenção.</p>
+					</div>
+				</p-overlayPanel>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<alert-menssagem [hidden]="ocultarOrientacao" [msgOrientacao]="msgOrientacao" [tituloMsg]="tituloMsg"
+				[ocultarBtnFechar]="false"></alert-menssagem>
+		</div>
+		<div class="col-md-12" *ngIf="habilitaBotoesSalvar">
+			<div class="box-body pull-left">
+				<button *ngIf="habilitarBtnRevogar" class="btn btn-primary" (click)="revogar()"
+					title="Revogar Dossiê">Revogar</button>
+			</div>
+			<div class="box-body pull-right" *ngIf="situacaoRascunhoOuNovo">
+				<button id="bnt-validar-dossie-top" class="btn btn-primary" [disabled]="clienteLista && clienteLista.length === 0"
+					title="Submeter Rascunho." (click)="salvar('VALIDAR_DOSSIE')">Validar Dossiê</button>
+				<button id="btn-rascunho-dossie-top" *ngIf="!situacaoComplementacao && !situacaoEmAlimentacao"
+					[disabled]="clienteLista && clienteLista.length === 0" class="btn btn-primary" title="Submeter Rascunho."
+					(click)="salvar('SALVAR_PARCIAL')">Salvar Rascunho</button>
+				<button id="btn-enviar-dossie-top" [disabled]="clienteLista && clienteLista.length === 0" class="btn btn-primary"
+					title="Submeter alterações realizadas." (click)="salvar('SALVAR_ENVIAR')">Enviar</button>
+				<button id="btn-cancelar-dossie-top" class="btn btn-primary" (click)="goBack()"
+					title="Descartar alterações">Cancelar</button>
+			</div>
+		</div>
+		<div class="col-md-12" *ngIf="(!habilitaBotoesSalvar && !habilitaTratamento) || !situacaoRascunhoOuNovo">
+			<div class="box-body pull-left">
+				<ng-container *ngIf="verificarUnidadeAutorizada(); then habilitarBotao else disabilitarBotao">
+				</ng-container>
+				<ng-template #habilitarBotao>
+					<button id="btn-manipular-dossie" class="btn btn-primary" *ngIf="habilitarBtnManipular"
+						(click)="manipularDossie()">Manipular Dossiê</button>
+				</ng-template>
+				<ng-template #disabilitarBotao>
+					<div id="btn-manipular-dossie-unidade-autorizada" class="btn btn-primary" disabled="true"
+						 tooltipPosition="top" pTooltip="Sua unidade não está autorizada a manipular dossiês neste processo.">
+						 Manipular Dossiê</div>
+				</ng-template>
+				
+				<button id="btn-efetuar-tratamento-dossie" class="btn btn-primary" *ngIf="habilitarBtnEfetuarTratamento"
+					(click)="tratamentoDossie()">Efetuar Tratamento</button>	
+			</div>
+			<div class="box-body pull-right">
+				<button class="btn btn-primary" (click)="sairConsulta()">Sair</button>
+			</div>
+		</div>
+		<div class="box-body" style="margin: 290px 5px -25px 5px">
+			<cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+				[messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+				(onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+				[messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+			</cx-alert-message>
+		</div>
+		<div class="box-body" *ngIf="habilitaAbas">
+			<p-tabView [activeIndex]="index" (onChange)="handleChange($event)">
+				<div>
+					<div>
+						<p-tabPanel header="Vínculos">
+							<aba-vinculo 
+								[identificadorDossieFase]="identificadorDossieFase" 
+								[cliente]="cliente" 
+								[processo]="processo" 
+								[nuEtapa]="nuEtapa"
+								[clienteLista]="clienteLista" 
+								[processoEscolhido]="processoEscolhido"
+								[idProcessoFase]="idProcessoFase" 
+								[exibeVincularPessoa]="exibeVincularPessoa"
+								[cnpj]="cnpj" 
+								[listaVinculoArvore]="listaVinculoArvore" 
+								[produtoLista]="produtoLista"
+								[exibeVincularProduto]="exibeVincularProduto" 
+								[produtosVinculados]="produtosVinculados"
+								[garantias]="garantias" 
+								[exibeVincularGarantia]="exibeVincularGarantia"
+								(primeiroVinculoPessoa)="handlePrimeiroVinculoPessoa($event)"
+								(listaVinculoArvoreChanged)="handleChangeListaVinculoArvore($event)"
+								(clienteListaChanged)="handleChangeCliente($event)" 
+								[idDossie]="idDossie"
+								[habilitaAlteracao]="habilitaAlteracao"
+								[naoExisteVinculoPessoaPrincipal]="naoExisteVinculoPessoaPrincipal"
+								(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+								(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+								(alertMessagesErrorChanged)="handlleMessagesError($event)"
+								(alertMessagesWarningChanged)="handlleMessagesWarning($event)"
+								(produtoListaChanged)="handleChangeVinculo($event)"
+								(garantiasChanged)="handleChangeVinculoGarantia($event)" 
+								[icTipoPessoa]="ic_tipo_pessoa"
+								[exibeLoadArvore]="exibeLoadArvore"
+								(exibeLoadArvoreChanged)="handleChangeExibeLoad($event)"
+								(arvoreVinculoClienteChanged)="arvoreVinculoCliente($event)"
+								[listaTipoRelacionamento]="listaTipoRelacionamento"
+								[novosVinculos]="novosVinculos"
+								[changeProduto]="changeProduto"
+								[changeGarantia]="changeGarantia">
+							</aba-vinculo>
+						</p-tabPanel>
+					</div>
+					<p-tabPanel header="Formulário">
+						<aba-formulario [hasClienteValido]="hasClienteValido" [campoFormulario]="campoFormulario"
+							(formValidacaoChanged)="handleChangeFormValidacao($event)"
+							[habilitaAlteracao]="habilitaAlteracao" [clienteLista]="clienteLista"
+							[listaGarantias]="garantias" [produtoLista]="produtoLista">
+						</aba-formulario>
+					</p-tabPanel>
+				</div>
+				<div>
+					<p-tabPanel header="Documentos">
+						<aba-documento [cliente]="cliente" 
+							[habilitaBotoesSalvar]="habilitaBotoesSalvar"
+							[processoGeraDossie]="processoPatriarca"
+							(listaProcessoChanged)="handleChangeProcessoGeraDossie($event)" 
+							[processo]="processo"
+							[usarAvaliacaoTomadorVigente]="usarAvaliacaoTomadorVigente"
+							[formularioSalvo]="formularioSalvo" 
+							[dossieProduto]="dossieProduto"
+							(arvoreDinamicaChanged)="handleChangeArvoreDinamica($event)" 
+							[idDossie]="idDossie"
+							[habilitaAlteracao]="habilitaAlteracao" 
+							[habilitaTratamento]="habilitaTratamento"
+							[hasAlteracaoTrata]="hasAlteracaoTrata"
+							(hasAlteracaoTrataChanged)="handleHasAlteracaoTrata($event)"
+							[exibeLoadArvore]="exibeLoadArvore" 
+							[listaVinculoArvore]="listaVinculoArvore"
+							(listaVinculoArvoreChanged)="handleChangeListaVinculoArvore($event)"
+							[msgValidacao]="msgValidacao" 
+							[clienteLista]="clienteLista" 
+							[produtoLista]="produtoLista"
+							[garantias]="garantias"
+							(arvoreVinculoClienteChanged)="handleChangeArvoreVinculoCliente($event)"
+							(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+							(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+							(alertMessagesWarningChanged)="handlleMessagesWarning($event)"
+							(alertMessagesErrorChanged)="handlleMessagesError($event)" 
+							[dossieCliente]="false">
+						</aba-documento>
+					</p-tabPanel>
+				</div>
+				<div>
+					<p-tabPanel header="Histórico" *ngIf="exibeHistoricoDossieProduto">
+						<aba-historico [exibeHistoricoDossieProduto]="exibeHistoricoDossieProduto"
+							[hitoriaDossieLista]="hitoriaDossieLista"></aba-historico>
+					</p-tabPanel>
+				</div>
+				<div>
+					<p-tabPanel header="Verificações" *ngIf="exibeVerificacao">
+						<aba-verificacao [listaComboFase]="listaComboFase" [listaAbaVerificacao]="listaAbaVerificacao"
+							[listaVinculoArvore]="listaVinculoArvore" [listaVerificacao]="listaVerificacao">
+						</aba-verificacao>
+					</p-tabPanel>
+				</div>
+				<div id="div-aba-administrar-dossie" *ngIf="hasCredentialAdministrarDossie();">
+					<p-tabPanel header="Administrar Dossiê">
+						<aba-administrar-dossie
+							[dossieProduto]="dossieProduto"
+							(loadDossieProdutoChanged)="handlleChangeLoadDossieProduto()">
+						</aba-administrar-dossie>
+					</p-tabPanel>
+				</div>				
+			</p-tabView>
+		</div>
+		<div class="col-md-12" *ngIf="habilitaBotoesSalvar">
+			<div class="box-body pull-left">
+				<button *ngIf="habilitarBtnRevogar" class="btn btn-primary" (click)="revogar()"
+					title="Revogar Dossiê">Revogar</button>
+			</div>
+			<div class="box-body pull-right" *ngIf="situacaoRascunhoOuNovo">
+				<button id="bnt-validar-dossie-bottom" class="btn btn-primary" [disabled]="clienteLista && clienteLista.length === 0"
+					title="Submeter Rascunho." (click)="salvar('VALIDAR_DOSSIE')">Validar Dossiê</button>
+				<button id="btn-rascunho-dossie-bottom" *ngIf="!situacaoComplementacao && !situacaoEmAlimentacao"
+					[disabled]="clienteLista && clienteLista.length === 0" class="btn btn-primary" title="Submeter Rascunho."
+					(click)="salvar('SALVAR_PARCIAL')">Salvar Rascunho</button>
+				<button id="btn-enviar-dossie-bottom" [disabled]="clienteLista && clienteLista.length === 0" class="btn btn-primary"
+					title="Submeter alterações realizadas." (click)="salvar('SALVAR_ENVIAR')">Enviar</button>
+				<button id="btn-cancelar-dossie-bottom" class="btn btn-primary" (click)="goBack()"
+					title="Descartar alterações">Cancelar</button>
+			</div>
+		</div>
+		<div class="col-md-12" *ngIf="(!habilitaBotoesSalvar && !habilitaTratamento) || !situacaoRascunhoOuNovo">
+			<div class="box-body pull-right">
+				<button class="btn btn-primary" (click)="sairConsulta()">Sair</button>
+			</div>
+		</div>
+	</div>
+</div>

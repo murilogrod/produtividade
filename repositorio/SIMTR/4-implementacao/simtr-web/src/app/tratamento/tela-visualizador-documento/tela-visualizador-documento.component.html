@@ -1,0 +1,36 @@
+<section>
+    <app-visualizar 
+    [idCombo]="idCombo"
+    [idVisualizar]="idVisualizar"
+    [visualizadorDois]="visualizadorDois"
+    [showPortal] ="showPortal"
+    class="componentVisualizar" 
+    [dossieProduto]="dossieProduto" 
+    [hasMapListaCombo]="hasMapListaCombo"
+    [listaDocumentacao]="listaDocumentacao" 
+    [listDocumentosImagens]="listDocumentosImagens" 
+    (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)" 
+    [listDocumentosImagensComparar]="listDocumentosImagensComparar" 
+    [alutraMaxHeigthImg]="alutraMaxHeigthImg"
+    (showPortalChanged)="handleChangeShowPortal($event)"
+    [opemModal]="true"></app-visualizar>
+
+    <app-open-visualizador 
+    *ngIf="showPortal"
+    [showPortal] ="showPortal"
+    (showPortalChange)="handleChangeShowPortal($event)"
+    [idCombo]="idCombo" 
+    class="componentVisualizar" 
+    [dossieProduto]="dossieProduto" 
+    [hasMapListaCombo]="hasMapListaCombo" 
+    [idVisualizar]="idVisualizar" 
+    [visualizadorDois] ="visualizadorDois" 
+    [listaDocumentacao]="listaDocumentacao" 
+    [listDocumentosImagens]="listDocumentosImagens" 
+    (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)" 
+    [listDocumentosImagensComparar]="listDocumentosImagensComparar" 
+    [alutraMaxHeigthImg] ="alutraMaxHeigthImg" 
+    [layoutVerticalA]="layoutVerticalA"
+    [layoutVerticalB]="layoutVerticalB"
+    [opemModal]="true"></app-open-visualizador>
+</section>

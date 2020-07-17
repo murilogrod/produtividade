@@ -1,0 +1,502 @@
+					<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+<div class="theme-main" ng-controller="DigitalizacaocomprendaabertoController" analytics-page="Página Digitalização Comp Renda Aberto">
+		<form id="formMain" name="formMain" tabindex="0">
+   			<div class="row">
+   				<div  class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+						<tr>
+							<td><b><div style="text-align: left; color:#267fb9;">{{ 'LABEL.DIGITALIZAO.COMP.RENDA.ABERTO' | translate}}</div></b>
+								   <div style="text-align: left; color:#555a6d" >{{ 'label.' | translate}}</div><br>
+							</td>
+						</tr>
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+				</div>
+					<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+    			<span ncy-breadcrumb></span>
+                        <!-- id:h4 - name:Título -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 theme-main-h4" align="left">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{ 'label.abertura.de.conta.dossi.digital' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:img - name:Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			id: imgBarra3png
+                            			origem: /imgs/barra3.png         
+                            			estilo: col-xs-12
+                            			alinhamento: text-center col-xs-12                 		
+                            		-->
+                                <div class="padding text-center col-xs-12 theme-main-img" align="center">
+                                    <img class="img-responsive center-block" id="imgBarra3png" ng-src="./imgs/barra3.png">
+                                </div>
+                        </div>
+                        <!-- id:h4 - name:Título -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 theme-main-h4" align="left">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{ 'label.resultado.da.digitalizao.de.documentos' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:img-button - name:Botão Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                   			<!-- 
+                           				tipo: Navegacao
+                           				destino:  digitalizacaoCompRendaFechado
+                           				id: btiDocrendimentopng
+                           				ajuda: {{ 'label.clique.aqui.para.visualizar.o.comprovante.de.rendimento' | translate}}
+                           				título: 
+                           				alinhamento: pull-right
+                           				ativo: 
+                           				origem: /imgs/doc-rendimento.png
+                           			-->
+	                              <a href ng-disabled="formMain.$invalid" ng-click="openView('digitalizacaoCompRendaFechado')" class="btn btn-sm margin-3x btn- pull-right theme-main-img-button" title="{{ 'label.clique.aqui.para.visualizar.o.comprovante.de.rendimento' | translate}}" analytics-event="img-button:digitalizacaoCompRendaFechado">
+                                  <img id="btiDocrendimentopng" ng-src="./imgs/doc-rendimento.png" class="theme-main-img-button-image img-responsive"><br/>
+                                      <span class="hidden-xs theme-main-img-button-label">{{ 'label.' | translate}}</span>
+                              </a>                            
+                        </div>
+                        <!-- id:img-button - name:Botão Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                   			<!-- 
+                           				tipo: Navegacao
+                           				destino:  digitalizacaoCompResidnciaFechado
+                           				id: btiDocresidenciapng
+                           				ajuda: {{ 'label.clique.aqui.para.visualizar.o.comprovante.de.residncia' | translate}}
+                           				título: 
+                           				alinhamento: pull-right
+                           				ativo: 
+                           				origem: /imgs/doc-residencia.png
+                           			-->
+	                              <a href ng-disabled="formMain.$invalid" ng-click="openView('digitalizacaoCompResidnciaFechado')" class="btn btn-sm margin-3x btn- pull-right theme-main-img-button" title="{{ 'label.clique.aqui.para.visualizar.o.comprovante.de.residncia' | translate}}" analytics-event="img-button:digitalizacaoCompResidnciaFechado">
+                                  <img id="btiDocresidenciapng" ng-src="./imgs/doc-residencia.png" class="theme-main-img-button-image img-responsive"><br/>
+                                      <span class="hidden-xs theme-main-img-button-label">{{ 'label.' | translate}}</span>
+                              </a>                            
+                        </div>
+                        <!-- id:img-button - name:Botão Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                   			<!-- 
+                           				tipo: Navegacao
+                           				destino:  digitalizacaoDocIdentificacaoFechado
+                           				id: btiDocidentificacaopng
+                           				ajuda: {{ 'label.clique.aqui.para.visualizar.o.comprovante.de.identificao' | translate}}
+                           				título: 
+                           				alinhamento: pull-right
+                           				ativo: 
+                           				origem: /imgs/doc-identificacao.png
+                           			-->
+	                              <a href ng-disabled="formMain.$invalid" ng-click="openView('digitalizacaoDocIdentificacaoFechado')" class="btn btn-sm margin-3x btn- pull-right theme-main-img-button" title="{{ 'label.clique.aqui.para.visualizar.o.comprovante.de.identificao' | translate}}" analytics-event="img-button:digitalizacaoDocIdentificacaoFechado">
+                                  <img id="btiDocidentificacaopng" ng-src="./imgs/doc-identificacao.png" class="theme-main-img-button-image img-responsive"><br/>
+                                      <span class="hidden-xs theme-main-img-button-label">{{ 'label.' | translate}}</span>
+                              </a>                            
+                        </div>
+                        <!-- id:h4 - name:Título -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 theme-main-h4" align="left">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{ 'label.comprovante.de.renda' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                           			<!-- 
+                           				tipo: Navegacao
+                           				destino:  digitalizacaoCompRendaFechado
+                           				id: btnOcultardocumento2
+                           				ajuda: {{ 'label.clique.aqui.para' | translate}}
+                           				título: {{ 'label.ocultar.documento' | translate}}
+                           				estilo: btn-warning
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone:  
+                           			-->
+	                                	<button id="btnOcultardocumento2" ng-disabled="formMain.$invalid" ng-click="openViewDelayed('digitalizacaoCompRendaFechado',3,$event,'Procedimento executado com sucesso')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.aqui.para' | translate}}" title="{{ 'label.clique.aqui.para' | translate}}" class="btn btn-sm margin-3x btn-warning pull-right sizeAuto theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Ocultar Documento">
+                                    <i class="fa  ">&nbsp;</i>
+                                        <span style="font-size: 14px;;">{{ 'label.ocultar.documento' | translate}}</span>
+                                </button>
+                        </div>
+                        <!-- id:img - name:Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			id: imgComprendajpg
+                            			origem: /imgs/comp-renda.jpg         
+                            			estilo: col-xs-12
+                            			alinhamento: text-center col-xs-12                 		
+                            		-->
+                                <div class="padding text-center col-xs-12 theme-main-img" align="center">
+                                    <img class="img-responsive center-block" id="imgComprendajpg" ng-src="./imgs/comp-renda.jpg">
+                                </div>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- 
+                            			estilo: text-info pull-left col-xs-12
+                            			texto: Texto
+                            		-->
+                                <span class="label padding text-info pull-left col-xs-12 theme-main-label" title="Texto">
+                                    {{ 'label..' | translate}}
+                                </span>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Combo 
+                            			id: cmbTipodefontepagadora
+                            			contexto: container.cmbtipodefontepagadora
+                            			ajuda: {{ 'label.selecione.o.item' | translate}}
+                            			ativo: true
+                            			tamanho max: 
+                            			título: Tipo de fonte pagadora
+                            			ATENCAO: acessivel por $scope.container.cmbtipodefontepagadora no seu controller                               			
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-select">
+                                    <label>{{ 'label.tipo.de.fonte.pagadora' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-th-list"></i>
+                                            </span>
+                                        <select id="cmbTipodefontepagadora" ng-model="container.cmbtipodefontepagadora" class="form-control" 
+                                        		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                        		data-ng-options="item as item for item in container.cmbtipodefontepagadoraContent" >
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:input-number-cnpj - name:Entrada de CNPJ -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de CNPJ
+                            			id: numCnpj2
+                            			contexto: container.numcnpj2
+                            			ajuda: {{ 'label.informe.o.cnpj' | translate}}
+                            			ativo: true
+                            			tamanho max: 14
+                            			ATENCAO: acessivel por $scope.container.numcnpj2 no seu controller
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-number-cnpj">
+                                    <label>{{ 'label.cnpj' | translate}}</label>
+									<div id="cnpj-group" class="form-group">
+										<div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-calculator"></i>
+												</span>
+												<input id="numCnpj2" type="cnpj" ui-mask="99.999.999/9999-99" onchange="disparaCNPJ(this)" ng-model="container.numcnpj2" class="form-control" title="{{ 'label.informe.o.cnpj' | translate}}" ng-readonly="!true" ng-required="false" ng-required="false"/>
+												<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.numcnpj2" contenteditable="{{contextEditable}}"></label>
+												<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.cnpj' | translate}}</label>
+										</div>
+										<span id="cnpj-help" class="help-block hide">CNPJ invalido</span>
+									</div>
+                                </div>
+                        </div>
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Texto 
+                            			id: txtNomedafontepagadora2
+                            			contexto: container.txtnomedafontepagadora2
+                            			ajuda: {{ 'label.informe.o.nome.da.fonte.pagadora' | translate}}
+                            			ativo: true
+                            			tamanho max: 250
+                            			ATENCAO: acessivel por $scope.container.txtnomedafontepagadora2 no seu controller
+                            		-->
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.nome.da.fonte.pagadora' | translate}}</label>
+									<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-keyboard-o"></i>
+											</span>
+										<input id="txtNomedafontepagadora2" type="text" ng-model="container.txtnomedafontepagadora2" class="form-control" placeholder="{{ 'label.informe.o.nome.da.fonte.pagadora' | translate}}" title="{{ 'label.informe.o.nome.da.fonte.pagadora' | translate}}" ng-readonly="!true" maxlength="250" ng-required="false"/>
+										<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.txtnomedafontepagadora2" contenteditable="{{contextEditable}}"></label>
+										<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.nome.da.fonte.pagadora' | translate}}</label>
+									</div>
+                                </div>
+                        </div>
+                        <!-- id:input-number - name:Entrada de Número -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Número 
+                            			id: numCoclidafontepagadora2
+                            			contexto: container.numcoclidafontepagadora2
+                            			ajuda: {{ 'label.informe.o.nmero' | translate}}
+                            			ativo: true
+                            			tamanho max: 100
+                            			ATENCAO: acessivel por $scope.container.numcoclidafontepagadora2 no seu controller                            		
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-mail">
+                                    <label>{{ 'label.cocli.da.fonte.pagadora' | translate}}</label>
+									<div class="form-group">
+										<div class="input-group">
+												<span class="input-group-addon">
+													<i class="fa fa-calculator"></i>
+												</span>
+											<input id="numCoclidafontepagadora2" type="numero" ng-model="container.numcoclidafontepagadora2" class="form-control" placeholder="{{ 'label.informe.o.nmero' | translate}}" title="{{ 'label.informe.o.nmero' | translate}}" ng-readonly="!true" maxlength="100" input-restrictor-number ng-required="false"/>
+											<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.numcoclidafontepagadora2" contenteditable="{{contextEditable}}"></label>
+											<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.cocli.da.fonte.pagadora' | translate}}</label>
+										</div>
+									</div>	
+                                </div>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Combo 
+                            			id: cmbOcupacao
+                            			contexto: container.cmbocupacao
+                            			ajuda: {{ 'label.selecione.o.item' | translate}}
+                            			ativo: true
+                            			tamanho max: 
+                            			título: Ocupação
+                            			ATENCAO: acessivel por $scope.container.cmbocupacao no seu controller                               			
+                            		-->
+                                <div class="form-group col-xs-6 theme-main-input-select">
+                                    <label>{{ 'label.ocupao' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-th-list"></i>
+                                            </span>
+                                        <select id="cmbOcupacao" ng-model="container.cmbocupacao" class="form-control" 
+                                        		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                        		data-ng-options="item as item for item in container.cmbocupacaoContent" >
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:input-date - name:Entrada de Data (calendário popup) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de Data 
+                            			id: dtDatadeadmissaoinicio2
+                            			contexto: container.dtdatadeadmissaoinicio2
+                            			ajuda: {{ 'label.selecione.a.data.de.admisso' | translate}}
+                            			ativo: true
+                            			tamanho max: 
+                            			ATENCAO: acessivel por $scope.container.dtdatadeadmissaoinicio2 no seu controller                               		
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-date">
+                                    <label>{{ 'label.data.de.admisso/incio' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-keyboard-o"></i>
+                                            </span>
+                                        <input id="dtDatadeadmissaoinicio2" ng-model="container.dtdatadeadmissaoinicio2" type="text" class="form-control" placeholder="{{ 'label.selecione.a.data.de.admisso' | translate}}" title="{{ 'label.selecione.a.data.de.admisso' | translate}}" ng-readonly="!true" ng-init="initDate('dtDatadeadmissaoinicio2')" ng-required="false"/>
+                                        <label class="label-mobilidade" ng-if="contextEditable" ng-model="container.dtdatadeadmissaoinicio2" contenteditable="{{contextEditable}}"></label>
+										<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.data.de.admisso/incio' | translate}}</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:input-moeda-brasil - name:Entrada de Moeda Brasileira -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de MOEDA BRASILEIRA (REAL)
+                            			id: numRendabruta2
+                            			contexto: container.numrendabruta2
+                            			ajuda: {{ 'label.informe.o.valor.da.renda.bruta' | translate}}
+                            			ativo: true
+                            			tamanho max: 20
+                            			ATENCAO: acessivel por $scope.container.numrendabruta2 no seu controller
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-number-moeda-brasil">
+                                    <label>{{ 'label.renda.bruta' | translate}}</label>
+																		<div class="input-group">
+																				<span class="input-group-addon">
+																					<i class="fa fa-calculator"></i>
+																				</span>
+																			<input id="numRendabruta2" type="text" ng-model="container.numrendabruta2" class="form-control" title="{{ 'label.informe.o.valor.da.renda.bruta' | translate}}" ng-readonly="!true" onfocus="mascaraMoeda(this)" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=","  ng-required="false"/>
+																			<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.numrendabruta2" contenteditable="{{contextEditable}}"></label>
+																			<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.renda.bruta' | translate}}</label>
+																		</div>
+                                </div>
+                        </div>
+                        <!-- id:input-moeda-brasil - name:Entrada de Moeda Brasileira -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de MOEDA BRASILEIRA (REAL)
+                            			id: numRendaliquida2
+                            			contexto: container.numrendaliquida2
+                            			ajuda: {{ 'label.informe.o.valor.da.renda.lquida' | translate}}
+                            			ativo: true
+                            			tamanho max: 20
+                            			ATENCAO: acessivel por $scope.container.numrendaliquida2 no seu controller
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-number-moeda-brasil">
+                                    <label>{{ 'label.renda.lquida' | translate}}</label>
+																		<div class="input-group">
+																				<span class="input-group-addon">
+																					<i class="fa fa-calculator"></i>
+																				</span>
+																			<input id="numRendaliquida2" type="text" ng-model="container.numrendaliquida2" class="form-control" title="{{ 'label.informe.o.valor.da.renda.lquida' | translate}}" ng-readonly="!true" onfocus="mascaraMoeda(this)" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=","  ng-required="false"/>
+																			<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.numrendaliquida2" contenteditable="{{contextEditable}}"></label>
+																			<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.renda.lquida' | translate}}</label>
+																		</div>
+                                </div>
+                        </div>
+                        <!-- id:input-moeda-brasil - name:Entrada de Moeda Brasileira -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Entrada de MOEDA BRASILEIRA (REAL)
+                            			id: numValordoimpostoretidonafonte2
+                            			contexto: container.numvalordoimpostoretidonafonte2
+                            			ajuda: {{ 'label.informe.o.valor.do.imposto.retido.na.fonte' | translate}}
+                            			ativo: true
+                            			tamanho max: 20
+                            			ATENCAO: acessivel por $scope.container.numvalordoimpostoretidonafonte2 no seu controller
+                            		-->
+                                <div class="form-group col-xs-4 theme-main-input-number-moeda-brasil">
+                                    <label>{{ 'label.valor.do.imposto.retido.na.fonte' | translate}}</label>
+																		<div class="input-group">
+																				<span class="input-group-addon">
+																					<i class="fa fa-calculator"></i>
+																				</span>
+																			<input id="numValordoimpostoretidonafonte2" type="text" ng-model="container.numvalordoimpostoretidonafonte2" class="form-control" title="{{ 'label.informe.o.valor.do.imposto.retido.na.fonte' | translate}}" ng-readonly="!true" onfocus="mascaraMoeda(this)" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=","  ng-required="false"/>
+																			<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.numvalordoimpostoretidonafonte2" contenteditable="{{contextEditable}}"></label>
+																			<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.valor.do.imposto.retido.na.fonte' | translate}}</label>
+																		</div>
+                                </div>
+                        </div>
+                        <!-- id:rule - name:Separador (hr) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                           			<!-- 
+                           				tipo: Navegacao
+                           				destino:  cartaoAssinatura
+                           				id: btnContinuar2
+                           				ajuda: {{ 'label.clique.aqui.para.continuar' | translate}}
+                           				título: {{ 'label.continuar' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone:  
+                           			-->
+	                                	<button id="btnContinuar2" ng-disabled="formMain.$invalid" ng-click="openViewDelayed('cartaoAssinatura',3,$event,'Procedimento executado com sucesso')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.aqui.para.continuar' | translate}}" title="{{ 'label.clique.aqui.para.continuar' | translate}}" class="btn btn-sm margin-3x btn-primary pull-right col-xs-4 theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Continuar">
+                                    <i class="fa  ">&nbsp;</i>
+                                        <span style="font-size: 14px;;">{{ 'label.continuar' | translate}}</span>
+                                </button>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                           			<!-- 
+                           				tipo: Navegacao
+                           				destino:  digitalizacaoCompResidnciaFechado
+                           				id: btnVoltar2
+                           				ajuda: {{ 'label.clique.aqui.para.voltar' | translate}}
+                           				título: {{ 'label.voltar' | translate}}
+                           				estilo: btn-warning
+                           				alinhamento: pull-left
+                           				ativo: true
+                           				ícone:  
+                           			-->
+	                                	<button id="btnVoltar2" ng-disabled="formMain.$invalid" ng-click="openViewDelayed('digitalizacaoCompResidnciaFechado',3,$event,'Procedimento executado com sucesso')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}" title="{{ 'label.clique.aqui.para.voltar' | translate}}" class="btn btn-sm margin-3x btn-warning pull-left col-xs-4 theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Voltar">
+                                    <i class="fa  ">&nbsp;</i>
+                                        <span style="font-size: 14px;;">{{ 'label.voltar' | translate}}</span>
+                                </button>
+                        </div>
+                </div>
+                <div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+				</div>
+                <br>&nbsp;
+                <br>&nbsp;
+    	</div>
+    </form>
+</div>

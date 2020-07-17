@@ -1,0 +1,73 @@
+import { Produto } from '../../produto';
+import { DossieProduto } from '../../dossie-produto';
+import { Calendar } from 'primeng/primeng';
+import { VinculoProduto } from './vinculo-produto';
+import { VinculoGarantia } from './vinculo-garantia';
+import { Vinculo } from './vinculo.model';
+import { DocumentoArvore } from '../../documento-arvore';
+import { TipoRelacionamento } from '../../tipo-relacionamento';
+import { RespostaFormulario } from 'src/app/dossie/manutencao-dossie/model-endPoint-dossie-produto/respostaFormulario';
+import { CampoFormulario } from 'src/app/model/campo-formulario'
+export class VinculoCliente implements Vinculo {
+    cpf?: string;
+    nome?: string;
+    email?: string;
+    tipo_pessoa? : string;
+    data_nascimento?: string;
+    estado_civil?: number;
+    id?: number;
+    relacionado?: string;
+    relacionadoAntigo?: string;
+    numero_identidade?: string;
+    numero_nis?: string;
+    nome_pai?: string;
+    nome_mae?: string;
+    orgao_emissor?: string;
+    telefone?: string;
+    cnpj?: string;
+    razao_social?: string;
+    data_fundacao?: string;
+    segmento?: string;
+    documentos?: DocumentoArvore[];
+    instancias_documento: any;
+    produtos_habilitados?: Produto[];
+    dossies_produto?: DossieProduto[];
+    ic_tipo_relacionamento?: string;
+    tipo_relacionamento?: TipoRelacionamento;
+    tipoRelacioamentoAntigo?:string;
+    co_erro?: string;
+    pessoas?: VinculoCliente[];
+    dossie_produto: number;
+    produtos?: VinculoProduto[];
+    garantias?: VinculoGarantia[];
+    id_garantia?: number;
+    processo?: number;
+    co_processo?: string;
+    matricula?: string;
+    data_hora_situacao?: Calendar;
+    //INCLUSÃO DEVIDO A ERRO DE COMPILAÇÃO!!!
+    nis?: string;
+    identidade?: string;
+    sequencia_titularidade?: number;
+    seqTitularidade?:number;
+    seqTitularidadeAntiga?: number;
+    dossie_cliente_relacionado?: number;
+    dossie_cliente_relacionado_anterior?: number;
+    // campos voltado a aba vinculo dossiê produto
+    principal?:boolean;
+    indica_relacionado?:boolean;
+    indica_sequencia?:boolean;
+    // fim campos voltado a aba vinculo dossiê produto
+    vinculoNovo?:boolean;
+    vinculoEditar?:boolean;
+    vinculoRelacionadoPessoa?:string;
+    exclusao?:boolean;
+    conglomerado?: boolean;
+    valor_renda?: number;
+    valor_faturamento?: number;
+    situacao_Documento?: string;
+    porte?: string;
+    sigla_porte?: string;
+    respostas_formulario?: RespostaFormulario[];
+    campos_formulario?: CampoFormulario[];
+}

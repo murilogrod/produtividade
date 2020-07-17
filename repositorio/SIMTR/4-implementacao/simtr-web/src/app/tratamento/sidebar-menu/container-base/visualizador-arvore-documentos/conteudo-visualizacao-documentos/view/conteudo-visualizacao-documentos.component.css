@@ -1,0 +1,88 @@
+.panel{
+    margin-bottom: 0 !important;
+    background-color: #fff !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05) !important; 
+}
+
+.panel-heading-top{
+    color: #333 !important;
+    background-color: rgb(195, 195, 195) !important;
+    border-color: #ddd !important;
+    padding: 10px 3px;
+    border-top: 1px solid #ddd;
+    border-top-left-radius: 0px !important; 
+    border-top-right-radius: 0px !important; 
+}
+
+.panel-heading{
+    color: #333 !important;
+    background-color: #f5f5f5 !important;
+    border-color: #ddd !important;
+    padding: 10px 15px;
+    border-top-left-radius: 0px !important; 
+    border-top-right-radius: 0px !important; 
+}
+
+.list-group{
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.list-item-inline{
+    position: relative !important;
+    display: inline-flex !important;
+    width: 100%;
+    padding: 10px 15px !important;
+    margin-bottom: -1px !important;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+}
+
+.list-item-inline a{
+    color: rgb(0, 90, 156) !important;
+    font-size: 13px !important;
+    padding-left: 15px !important;
+    width: inherit !important;
+}
+
+.list-item-inline a.doc-rejeitado {
+    color: rgb(170, 6, 6) !important;
+}
+
+.list-item-inline a.doc-conforme {
+    color: rgb(0, 166, 80) !important;
+}
+
+.list-item-inline a.doc-nao-tratado {
+    color: #e4c200 !important; 
+}
+
+.list-item-inline label{
+    top: 1px !important;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 1px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    -webkit-transition: .4s;
+}
+
+.iconInterrogacao {
+    border: 1px solid;
+    border-radius: 100em;
+    padding: 0px 2px;
+    font-size: 10px;
+    color: #005a9c;
+    margin-left: 5px;
+    position: relative;
+}
+
+.fonteVermelha{
+    color: rgb(170, 6, 6) !important;
+}

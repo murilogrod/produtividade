@@ -1,0 +1,51 @@
+.produtos-table::ng-deep th {
+    background: rgb(206, 235, 248) !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: rgb(0, 90, 156) !important;
+    border: none !important;
+    border-bottom: 3px solid rgb(0, 90, 156) !important;
+    text-align: center !important;
+}
+
+.produtos-table tr td {
+    border: none;
+    border-bottom: 1px solid #ece4e4;
+    text-align: center !important;
+}
+
+.produtos-table .ui-widget-header {
+    background: rgb(206, 235, 248) !important;
+}
+
+.produtos-table::ng-deep .ui-paginator {
+    background: #80808042 !important;
+}
+
+.produtos-table::ng-deep .ui-table-sort-icon {
+    background: none;
+    padding: 3px;
+}
+
+.produtos-table::ng-deep .ui-sortable-column-icon {
+    color: #005a9c;
+}
+
+.W-15 {
+    width: 15%;
+}
+
+.W-20 {
+    width: 20%;
+}
+
+.produto {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

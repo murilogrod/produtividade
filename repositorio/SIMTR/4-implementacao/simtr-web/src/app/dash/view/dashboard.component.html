@@ -1,0 +1,199 @@
+<cx-alert-message id="component-alert-dashboard" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+    [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+    (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+    [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+</cx-alert-message>
+<div class="cx-page box box-primary" analytics-page>
+    <div class="box-body">
+        <section id="corpoDashBoard" class="content">           
+            <div>
+                <div class="boxDash">
+                    <div class="col-md-12">
+                        <p-panel header="Unidade Analisada" [toggleable]="true" styleClass="panel-dashboard" [style]="{'margin-bottom':'20px'}" *ngIf="hasCredentialUnidadeAnalisada();">
+                            <app-loader-relativo [ativo]="dashboardPresenter.loadingModel.resumoSituacao" [posicao]="0" [bloco]="true"></app-loader-relativo>
+                            <div id="collapseUnidadeAnalisada" class="box-body pull-right">
+                                <div class="row caixa-topic">
+                                    <div class="form-group col-sm-4"
+                                        [class.has-error]="!unidade.valid && unidade.touched">
+                                        <label for="unidade" class="control-label">Unidade:</label>
+                                        <input id="codigo-unidade-analisada" class="form-control" type="text"
+                                            #unidade="ngModel" required
+                                            [(ngModel)]="dashboardPresenter.unidadeAnalisada.unidade" name="unidade"
+                                            pKeyFilter="int" maxlength="4" />
+                                        <div *ngIf="!unidade.valid && unidade.touched" class="error">
+                                            Unidade Obrigatória
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-2">
+                                        <label class="control-label">Vinculadas:</label>
+                                        <p-inputSwitch onLabel="Sim" offLabel="Não"
+                                            [(ngModel)]="dashboardPresenter.unidadeAnalisada.vinculadas"
+                                            class="form-control no-border"></p-inputSwitch>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label class="control-label" style="color: white">Empty</label>
+                                        <button id="btn-atualizar-informacoes-unidade-analisada"
+                                            (click)="atualizarInformacoes()"
+                                            [disabled]="!unidade.valid && unidade.touched" type="button"
+                                            class="btn btn-primary">Atualizar Informações</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                    <div class="col-md-12">
+                        <app-loader-relativo [ativo]="dashboardPresenter.loadingModel.resumoSituacao" [posicao]="0" [bloco]="true"></app-loader-relativo>
+                        <p-panel header="Resumo por Situação" [collapsed]="dashboardPresenter.dashboard.collapse" 
+                            styleClass="panel-dashboard" [style]="{'margin-bottom':'20px'}">  
+                            <p-header class="pull-right">
+                                <a id="collapse-all-elements" *ngIf="dashboardPresenter.dashboard.collapseAll" 
+                                    (click)="dashboardPresenter.mudarExibicaoEvento(true);">
+                                    <i class="fa fa-search-plus" style="color: white;"></i>
+                                </a>   
+                                <a id="collapse-in-all-elements" *ngIf="!dashboardPresenter.dashboard.collapseAll" 
+                                    (click)="dashboardPresenter.mudarExibicaoEvento(false);">
+                                    <i class="fa fa-search-minus" style="color: white;"></i>
+                                </a>                                                                 
+                                <a id="collapse-in-resumo-por-situacao" *ngIf="!dashboardPresenter.dashboard.collapse" 
+                                    (click)="dashboardPresenter.expandeResumoPorSituacao();">
+                                    <i class="pi pi-minus" style="color: white;"></i>
+                                </a>
+                                <a id="collapse-resumo-por-situacao" *ngIf="dashboardPresenter.dashboard.collapse"  
+                                    (click)="dashboardPresenter.recolheResumoPorSituacao();">
+                                    <i class="pi pi-plus" style="color: white;"></i>
+                                </a>                                
+                            </p-header>
+                            <div id="divResumoPorSituacao" class="box-body">
+                                <div class="row caixa-topic">
+                                    <div *ngFor="let item of dashboardPresenter.dashboard.atributos; let i = index">
+                                        <div class="col-lg-4 col-xs-6">
+                                            <!-- small box -->
+                                            <div class="small-box {{ pegaCor(item) }} boxCursor"
+                                                (click)="changeTabResumoSituacao(item)">
+                                                <div class="inner">
+                                                    <h3>{{ pegaQtde(item) }}</h3>
+
+                                                    <p id="divSituacao" style="font-weight: bold;">{{ formataSituacao(item) }}</p>
+                                                </div>
+                                                <div class="icon">
+                                                    <i class="fa {{ pegaIcone(item) }}"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./col -->
+                                    </div>
+                                </div>
+                                <!-- Box-->
+                            </div>
+                        </p-panel>                 
+                    </div>
+                </div>
+                <div class="boxDash">
+                    <div class="col-md-12">
+                        <app-loader-relativo [ativo]="dashboardPresenter.loadingModel.resunoProcesso" [posicao]="0" [bloco]="true"></app-loader-relativo>
+                        <p-panel header="Resumo por Processo" [toggleable]="true" styleClass="panel-dashboard" [style]="{'margin-bottom':'20px'}">
+                            <div class="box-body">
+                                <div #resumoProcesso class="row" style="width: 100%;">
+                                    <canvas id="pieChart" style="width: 100%;" (click)="changeTabResumoProcesso($event)"></canvas>
+                                    <div class="legenda" #legenda id="legenda"></div>
+                                </div>
+                                <div id="circulo" *ngIf="dashboardPresenter.dashboard.emptyResumoProcesso"></div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box caixa-box">
+                        <div class="box-header caixa-header">
+                            <h3 class="box-title">Dossiês de Produto</h3>
+
+                            <a data-toggle="collapse" href="#collapseDossie" id="btnExpandedDossie" class="caixa-white"
+                                aria-expanded="false" aria-controls="collapseDossie">
+                                <i class="fa fa-minus"></i>
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <app-loader-relativo [ativo]="dashboardPresenter.loadingModel.situacaoProcesso" [posicao]="dashboardPresenter.dashboard.contadorLista" [qtdComponent]="dashboardPresenter.dashboard.qtdLista"></app-loader-relativo>
+                        <!-- /.box-header -->
+                        <div class="box-body" id="collapseDossie">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box caixa-box">
+                                        <div class="box-header caixa-header">
+                                            <h3 class="box-title">Situação</h3>
+
+                                            <a data-toggle="collapse" href="#collapseSituacao" id="btnExpandedSituacao"
+                                                class="caixa-white" aria-expanded="false"
+                                                aria-controls="collapseSituacao">
+                                                <i class="fa fa-minus"></i>
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body collapse" id="collapseSituacao">
+                                            <div class="row">
+                                                <div id="Situacao" class="tabcontent">
+                                                    <!-- Situacao -->
+                                                    <div class="col-md-12 coprBoxAba"> 
+                                                        <a [ngClass]="{'boxAba': true, 'boxAbaAtiva': dashboardPresenter.dashboard.eventoSituacao == 'TODOS'}" (click)="filtraEventoSituacao('TODOS')">Todos</a>                                                       
+                                                        <a *ngFor="let situacao of dashboardPresenter.dashboard.situacoes; let idx = index" [ngClass]="{'boxAba': true, 'boxAbaAtiva': dashboardPresenter.dashboard.eventoSituacao == situacao }" (click)="filtraEventoSituacao(situacao)">
+                                                            {{situacao}}
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <tabela-situacao 
+                                                            [listaDossies]="dashboardPresenter.dashboard.listaSituacao">
+                                                        </tabela-situacao>
+                                                    </div>
+                                                </div>
+                                                <!-- /.col -->
+                                                <!-- Collapsible -->
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
+                                        <!-- ./box-body -->
+
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="box caixa-box" id="boxProcesso">
+                                        <div class="box-header caixa-header">
+                                            <h3 class="box-title">Processo</h3>
+
+                                            <a data-toggle="collapse" href="#collapseProcesso" id="btnExpandedProcesso"
+                                                class="caixa-white" aria-expanded="true"
+                                                aria-controls="collapseProcesso">
+                                                <i class="fa fa-minus"></i>
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body" id="collapseProcesso">
+
+                                            <div id="Processos" class="tabcontent">
+                                                <!-- Processos -->
+                                                <div class="col-md-12 coprBoxAba"> 
+                                                    <a [ngClass]="{'boxAba': true, 'boxAbaAtiva': dashboardPresenter.dashboard.eventoProcesso == 'TODOS'}" (click)="filtraEventoProcesso('TODOS')">TODOS</a>
+                                                    <a *ngFor="let processo of dashboardPresenter.dashboard.processos; let idx = index" [ngClass]="{'boxAba': true, 'boxAbaAtiva': dashboardPresenter.dashboard.eventoProcesso == processo}" (click)="filtraEventoProcesso(processo)">
+                                                        {{processo}}
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <tabela-processo 
+                                                        [listaDossies]="dashboardPresenter.dashboard.listaProcesso">
+                                                    </tabela-processo>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

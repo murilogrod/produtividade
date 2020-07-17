@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RetornoExtrairDadosImagemDataCap>
+    <operacao>EXTRAIR_DADOS_IMAGEM_DATACAP</operacao>
+    <codigoRetorno>0</codigoRetorno>
+    <mensagem>OPERACAO REALIZADA COM SUCESSO</mensagem>
+    <dadosImagem>
+        <dado>
+            <nome>Anchor1</nome>
+            <valor/>
+        </dado>
+        <dado>
+            <nome>Anchor2</nome>
+            <valor/>
+        </dado>
+        <dado>
+            <nome>NOME</nome>
+            <valor>ODILON DE FREITAS MILITAO NETO</valor>
+        </dado>
+        <dado>
+            <nome>NUMERO_DOC_IDENTIDADE_EMISSOR _UF</nome>
+            <valor>078519741 SECC RJ</valor>
+        </dado>
+        <dado>
+            <nome>DATA_NASCIMENTO</nome>
+            <valor>05/01/197</valor>
+        </dado>
+        <dado>
+            <nome>FILIACAO</nome>
+            <valor>ODILON DE FREITAS
+                MILITAO FILHO
+                MARIA HELENA SA COSTA
+                MILITAO</valor>
+        </dado>
+        <dado>
+            <nome>NUMERO_REGISTRO</nome>
+            <valor>02242496102</valor>
+        </dado>
+        <dado>
+            <nome>IDENTIFICADOR_CLIENTE</nome>
+            <valor>611.307.965-15</valor>
+        </dado>
+        <dado>
+            <nome>DATA_VALIDADE</nome>
+            <valor>16/07/2018</valor>
+        </dado>
+        <dado>
+            <nome>DATA_1A_HABILITACAO</nome>
+            <valor>22/08/1991</valor>
+        </dado>
+        <dado>
+            <nome>DATA_EMISSAO</nome>
+            <valor>23/07/2013</valor>
+        </dado>
+        <dado>
+            <nome>EMISSOR</nome>
+            <valor>DETRAN</valor>
+        </dado>
+        <dado>
+            <nome>UF_EXPEDICAO</nome>
+            <valor> DF</valor>
+        </dado>
+        <dado>
+            <nome>CATEGORIA_HABILITACAO</nome>
+            <valor/>
+        </dado>
+        <dado>
+            <nome>NUMERO_FORMULARIO</nome>
+            <valor/>
+        </dado>
+        <dado>
+            <nome>NUMERO_FORMULARIO_RENACH</nome>
+            <valor/>
+        </dado>
+        <dado>
+            <nome>UF_HABILITACAO_ATUAL</nome>
+            <valor/>
+        </dado>
+    </dadosImagem>
+</RetornoExtrairDadosImagemDataCap>

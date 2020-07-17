@@ -1,0 +1,7 @@
+{
+    "id": 1,
+    "sistemaRetorno": "RECEITA",
+    "valorCodigoRetorno": "SICPF_2",
+    "bloqueio": true,
+    "orientacao": "CPF Suspenso. Necessario regularizar situação junto a Receita Federal"
+}

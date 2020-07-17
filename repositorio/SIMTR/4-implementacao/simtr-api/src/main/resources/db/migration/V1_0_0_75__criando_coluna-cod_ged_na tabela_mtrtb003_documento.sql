@@ -1,0 +1,1 @@
+ALTER TABLE mtr.mtrtb003_documento ADD COLUMN cod_ged character varying(255);

@@ -1,0 +1,27 @@
+﻿<!-- Modal Abrir Projeto -->
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="dismissDialog()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Adicionar Ocorrência
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="form-group col-xs-12">
+        <label>Ocorrência</label>
+		<input id="txtOcorrencia" type="text" ng-model="descricaoOcorrencia" class="form-control" maxlength="100"/>
+    </div>
+     <div class="form-group col-xs-12">
+        <label>R / N / I ?</label>
+		<input id="txtOcorrencia" type="text" ng-model="descricaoOcorrencia" class="form-control" maxlength="100"/>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type='button' class='btn btn-primary' data-dismiss="modal" ng-click="closeDialog()">
+        <i class='fa fa-check'></i>&nbsp;Ok
+    </button>
+    <button type='button' class='btn btn-default' data-dismiss="modal" ng-click="dismissDialog()">
+        <i class='fa fa-times'></i>&nbsp;Cancelar
+    </button>
+</div>

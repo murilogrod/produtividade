@@ -1,0 +1,147 @@
+<cx-alert-message id="component-alert-aba-administrar-dossie" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+    [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+    (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+    [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+</cx-alert-message>
+<div class="inline-title">
+  <h4>
+      <b>Administração do Dossiê de Produto</b>
+  </h4> 
+</div>
+<p-fieldset class="fieldset-administrar-dossie">
+  <p-header>
+      <div class="titulo-grid">Nova Situação</div>
+  </p-header>
+  <div class="container">
+      <div class="row">
+          <label for="dropdown-situacao" class="col-sm-3 col-form-label">Incluir Nova Situação:</label>
+          <div class="col-sm-9">
+              <div class="col-md-6">
+                  <p-dropdown id="dropdown-situacao" [options]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.situacoes" filter="true"
+                      emptyFilterMessage = "Nenhum resultado encontrado"
+                      [(ngModel)]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.selectedSituacaoDossieProduto"
+                      placeholder="Selecione uma situação" optionLabel="name" [showClear]="true">
+                  </p-dropdown>                     
+              </div>
+              <div class="col-md-6">
+                  <button id="btn-enviar-situacao" type="button" (click)="abrirModalAdministracaoDossie('NOVA_SITUACAO');"
+                      [disabled] = "abaAdministrarDossieComponentPresenter.abaAdministrarDossie.isDisabledInclusaoSituacao()"
+                      class="btn btn-primary btn-administrar-dossie">Incluir Situação
+                      <span class="fa fa-plus"></span>
+                   </button>                      
+              </div>                    
+          </div>         
+      </div>
+  </div>
+</p-fieldset>
+<p-fieldset class="fieldset-administrar-dossie">
+  <p-header>
+      <div class="titulo-grid">Remover Situação</div>
+  </p-header>
+  <div class="container">
+      <div class="row">
+          <label for="dropdown-situacao" class="col-sm-3 col-form-label">Remover Últimas Situações:</label>
+          <div class="col-sm-9">
+              <div class="col-md-6">
+                  <p-spinner 
+                      pKeyFilter="int"
+                      size="10" 
+                      [(ngModel)]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.lastestSituations" 
+                      [min]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.limitMin" 
+                      [max]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.limitMax">
+                  </p-spinner>                
+              </div>
+              <div class="col-md-6">
+                  <button id="btn-remover-situacao" type="button" (click)="abrirModalAdministracaoDossie('REMOVER_SITUACAO');"
+                      [disabled] = "abaAdministrarDossieComponentPresenter.abaAdministrarDossie.isDisabledRemoverSituacao()"
+                      class="btn btn-primary btn-administrar-dossie">Remover Situação
+                      <span class="fa fa-remove"></span>
+                  </button>                      
+              </div>                    
+          </div>         
+      </div>
+  </div>   
+</p-fieldset>
+<p-fieldset class="fieldset-administrar-dossie">
+  <p-header>
+      <div class="titulo-grid">Atualizar Unidades</div>
+  </p-header>
+  <div class="container">
+      <div class="row">
+        <label for="dropdown-situacao" class="col-sm-3 col-form-label">Atualizar Lista de Unidades Manipuladoras:</label>
+        <div class="col-sm-9">
+              <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input id="codigo-unidade" class="form-control" style="width: 40%;" required
+                            [(ngModel)]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.unidade"
+                                name="codigo-unidade" #unidade="ngModel" type="text" pKeyFilter="int" minlength="4" maxlength="4"/>
+                        <div class="input-group-append">
+                            <button 
+                                id="btn-adicionar-unidades" 
+                                (click)="adicionarUnidade();"
+                                type="button"
+                                [disabled]="!unidade.valid || abaAdministrarDossieComponentPresenter.abaAdministrarDossie.unidade == 0"
+                                tooltipPosition="right" 
+                                pTooltip="Adicionar unidade"
+                                class="btn btn-adicionar-unidade">
+                                <span 
+                                    class="fa fa-arrow-down">
+                                </span>
+                            </button> 
+                        </div>
+                    </div> 
+              </div>
+              <div class="col-md-6">
+                  <button id="btn-atualizar-unidades" type="button" (click)="abrirModalAdministracaoDossie('ATUALIZAR_UNIDADES');"
+                      class="btn btn-primary btn-administrar-dossie" 
+                      [disabled]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.unidades.length == 0">Atualizar Lista
+                      <span class="fa fa-plus"></span>
+                  </button>                      
+              </div>                    
+        </div>         
+      </div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-sm-9">
+            <div id="div-limitadora" style="width: 50%;">
+                <ng-template ngFor let-unidade let-i="index" [ngForOf]="abaAdministrarDossieComponentPresenter.abaAdministrarDossie.unidades">
+                    <div class="col-md-3 mt-10">
+                        <div class="card-unidade">
+                            <div class="btn-group container-card-unidade">
+                                <label>{{unidade}}</label>
+                                <button type="button" class="close" (click)="removerUnidade(i);" style="margin-left: 15px;">
+                                    <span 
+                                        class="fa fa-close" 
+                                        style="color: white; font-size: 15px;" 
+                                        aria-hidden="true">
+                                    </span>
+                                </button>
+                            </div> 
+                        </div>     
+                    </div>
+                </ng-template>
+            </div>
+        </div>  
+      </div>
+  </div>       
+</p-fieldset>
+<p-fieldset class="fieldset-administrar-dossie">
+  <p-header>
+      <div class="titulo-grid">Exclusão de Dossiê</div>
+  </p-header>
+  <div class="container">
+      <div class="row">
+          <label class="col-sm-3 col-form-label">Excluir Dossiê:</label>
+          <div class="col-sm-9">
+              <div class="col-md-6"></div>
+              <div class="col-md-6">
+                  <button id="btn-excluir-dossie" type="button" (click)="abrirModalAdministracaoDossie('EXCLUIR_DOSSIE');"
+                      class="btn btn-danger btn-administrar-dossie">Excluir
+                      <span class="fa fa-remove"></span>
+                  </button>                      
+              </div>         
+          </div>
+      </div>
+  </div>       
+</p-fieldset>
+

@@ -1,0 +1,121 @@
+<div class="crud-container">
+  <div class="panel panel-default crud-border">
+      <div class="crud-title">
+          <label>{{tipoRelacionamentoPresenter.tipoRelacionamentoModel.editar ? 'Edição de Tipo de Relacionamento' : 'Novo Tipo Relacionamento'}}</label>
+          <hr class="crud-line-bottom-form">
+      </div>
+      <div class="row" *ngIf="tipoRelacionamentoPresenter.tipoRelacionamentoModel.showHeader">
+          <div class="col-md-12">
+              <div class="col-md-6" *ngFor="let header of tipoRelacionamentoPresenter.tipoRelacionamentoModel.configGridHeader">
+                <crud-grid-header 
+                  [width]="header.width"          
+                  [classIcon]="header.classIcon" 
+                  [labelTitle]="header.labelTitle" 
+                  [labelValue]="header.labelValue"> 
+                </crud-grid-header>
+              </div>
+          </div>
+      </div>   
+      <div class="crud-container">
+        <form #tipoRelacionamentoForm="ngForm">
+          <div class="row">
+            <div class="form-group col-md-8" [class.has-error]="(tipoRelacionamento.dirty && tipoRelacionamento.errors && tipoRelacionamento.errors.required) || (tipoRelacionamento.dirty && tipoRelacionamento.errors && tipoRelacionamento.errors.minlength)">
+              <label for="nome-tipo-relacionamento" class="crud-label-title-form">Tipo de Relacionamento *</label>
+              <input id="nome-tipo-relacionamento" name="nome-tipo-relacionamento" class="form-control" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.nome" autofocus
+                placeholder="Informe o tipo de relacionamento" required #tipoRelacionamento="ngModel" maxlength="50">
+                <validation-form-message
+                  [control]="tipoRelacionamento" 
+                  error="required" 
+                  text="Tipo de relacionamento é obrigatório">
+                </validation-form-message>                          
+            </div>
+            <div class="form-group col-md-4" [class.has-error]="(tipoPessoa.dirty && tipoPessoa.errors && tipoPessoa.errors.required)">
+              <div class="col-md-12">
+                <label for="dropdown-tipo-pessoa" class="crud-label-title-form">Tipo de Pessoa *</label>
+              </div>
+              <div class="col-md-12">
+                <p-dropdown id="dropdown-tipo-pessoa" name="dropdown-tipo-pessoa" [options]="tipoRelacionamentoPresenter.tipoRelacionamentoModel.tipoPessoas" filter="true"
+                  emptyFilterMessage = "Nenhum resultado encontrado" class="dropdown-tipo-pessoa" required
+                    [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamentoModel.selectedTipoPessoa" #tipoPessoa="ngModel"
+                      placeholder="Selecione um tipo de pessoa" optionLabel="name" [showClear]="true">
+                </p-dropdown>   
+                <validation-form-message
+                  [control]="tipoPessoa" 
+                  error="required" 
+                  text="Tipo de pessoa é obrigatório">
+                </validation-form-message>                                 
+              </div>
+            </div>            
+          </div>  
+          <fieldset class="crud-card-fieldset">
+            <legend class="crud-card-title">Habilitar Serviços</legend>
+            <div class= "row">
+              <div class="form-group col-md-2">
+                <label for="principal" class="crud-label-title-form">Principal:</label>
+                <div>
+                  <label class="switch">
+                    <input id="principal" name="principal" class="contato-select form-control" type="checkbox" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.indicador_principal">
+                    <span class="slider round"></span>
+                  </label>
+                </div>                   
+              </div> 
+              <div class="form-group col-md-2">
+                <label for="relacionado" class="crud-label-title-form">Relacionado:</label>
+                <div>
+                  <label class="switch">
+                    <input id="relacionado" name="relacionado" class="contato-select form-control" type="checkbox" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.indicador_relacionado">
+                    <span class="slider round"></span>
+                  </label>
+                </div>                  
+              </div>    
+              <div class="form-group col-md-2">
+                <label for="sequencia" class="crud-label-title-form">Sequência:</label>
+                <div>
+                  <label class="switch">
+                    <input id="sequencia" name="sequencia" class="contato-select form-control" type="checkbox" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.indicador_sequencia">
+                    <span class="slider round"></span>
+                  </label>
+                </div>                  
+              </div>  
+              <div class="form-group col-md-3">
+                <label for="receitaPF" class="crud-label-title-form">Receita (Pessoa Física):</label>
+                <div>
+                  <label class="switch">
+                    <input id="receitaPF" name="receitaPF" (change)="anularReceitaJuridica()" class="contato-select form-control" type="checkbox" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.indicador_receita_pf">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div> 
+              <div class="form-group col-md-3">
+                <label for="receitaPJ" class="crud-label-title-form">Receita (Pessoa Jurídica):</label>
+                <div>
+                  <label class="switch">
+                    <input id="receitaPJ" name="receitaPJ" (change)="anularReceitaFisica()" class="contato-select form-control"type="checkbox" [(ngModel)]="tipoRelacionamentoPresenter.tipoRelacionamento.indicador_receita_pj">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>                                                                        
+            </div>
+          </fieldset>                             
+          <div>
+            <button id="canal-btn-salvar" type="button" (click)="salvarTipoRelacionamento()" [disabled]="!tipoRelacionamentoForm.valid"
+                class="btn btn-primary pull-right">Salvar
+                <span class="fa fa-save"></span>
+            </button>  
+            <button id="canal-btn-voltar" type="button" (click)="pesquisaTipoRelacionamento();"
+                class="btn btn-warning pull-right">Voltar
+                <span class="fa fa-arrow-left"></span>
+            </button>
+          </div>
+        </form>      
+      </div>
+      <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd></p-confirmDialog>  
+      <div class="panel-body">
+        <cx-alert-message id="component-alert-pesquisa-canal" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+          [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+          (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+          [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+        </cx-alert-message>              
+      </div>       
+  </div>
+</div>

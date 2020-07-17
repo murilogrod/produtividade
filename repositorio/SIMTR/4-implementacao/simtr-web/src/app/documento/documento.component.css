@@ -1,0 +1,49 @@
+a.glyphicon {
+  cursor: pointer;
+  color: black !important;
+}
+
+.ui-widget-content div[role='tabpanel'] a.btn.btn-xs {
+  color: #ffffff !important;
+}
+
+#listImagesCategorizar,
+#listImagesVisualizar {
+  overflow-y: auto !important;
+}
+
+@media (max-height: 768px) {
+  #listImagesCategorizar,
+  #listImagesVisualizar {
+    overflow-y: auto !important;
+    max-height: 400px;
+  }
+}
+
+@media (max-height: 1024px) {
+  #listImagesCategorizar,
+  #listImagesVisualizar {
+    overflow-y: auto !important;
+    max-height: 580px;
+  }
+}
+
+@media (min-height: 1025px) {
+  #listImagesCategorizar,
+  #listImagesVisualizar {
+    overflow-y: auto !important;
+    max-height: 700px;
+  }
+}
+
+.removeImagem{
+  padding: 0px 2px 0px 2px;
+}
+
+a.glyphicon.removeImagem{
+  color: red !important;
+}
+
+.ui-carousel .ui-carousel-viewport .ui-carousel-items .ui-carousel-item {
+  width: 0.28% !important;
+}

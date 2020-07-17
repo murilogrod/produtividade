@@ -1,0 +1,160 @@
+.epacamentoTop fieldset{
+    margin-top: 10px !important;
+}
+#corpoVisualizadorChecklist .ui-widget {
+    width: auto !important;
+ }
+
+.cabecalho-doc  {
+    padding: 0 !important;
+    border: none !important;
+}
+  
+.cabecalho-doc .ui-widget-content{
+    border: none !important;
+    padding: 0 !important;
+}
+  
+.ui-fieldset-toggleable .ui-fieldset-legend {
+    border: none !important;
+    background:  rgb(206, 235, 248) !important;
+    color: rgb(0, 90, 156) !important;
+    border-bottom: 3px solid rgb(0, 90, 156) !important;
+    font-weight: bold !important;
+    margin: 0px !important;
+}
+  
+.ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover {
+    border-color:  rgb(206, 235, 248) !important;
+    background-color: rgb(0, 90, 156) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.destaqueAmarelo .ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend, .destaqueAmarelo .ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover {
+    border-color:  rgb(206, 235, 248) !important;
+    background-color: #e4c200 !important;
+    color: rgb(255, 255, 255) !important;
+}
+  
+.list-item-inline a.fontVermelha {
+    color: rgb(170, 6, 6) !important;
+}
+  
+.ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover a {
+    color: rgb(255, 255, 255) !important;
+}
+  
+.cabecalho-doc legend a .ui-fieldset-toggler {
+    float: right;
+    padding: 4px 0px;
+    position: relative;
+}
+            
+.cabecalho-doc legend a .pi {
+    font: normal normal normal 14px/1 FontAwesome !important;
+}
+  
+.cabecalho-doc legend a .pi-minus:before {
+    content: "\f139" !important;
+
+}
+
+.cabecalho-doc legend a .pi-plus:before {
+    content: "\f13a" !important;
+}
+  
+.tamanhoCorpToogleExpandir {
+    margin-left: 5%;
+}
+  
+.cabecalho-doc legend{
+    white-space: normal !important;
+    text-align: justify;
+}
+  
+.cabecalho-doc .ui-fieldset-toggleable .ui-fieldset-legend a{
+    padding: 10px 10px 10px 10px !important;
+    cursor: pointer !important;
+    white-space: normal !important;
+    display: block !important;
+}
+  
+.titulo-container{
+    font-size: 13px !important;
+    text-align: left !important;
+    overflow-wrap: break-word !important;
+}
+
+.panel-title{
+    font-size: 13px !important;
+    color: rgb(0, 90, 156) !important;
+    font-weight: bold !important;
+}
+
+.panel{
+    margin-bottom: 0 !important;
+    background-color: #fff !important;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05) !important; 
+}
+
+.panel-heading{
+    color: #333 !important;
+    background-color: #f5f5f5 !important;
+    border-color: #ddd !important;
+    padding: 10px 15px;
+    border-top-left-radius: 0px !important; 
+    border-top-right-radius: 0px !important; 
+}
+
+.panel-check-list-fase{
+    padding: 0px;
+}
+
+.list-group{
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.list-item-inline{
+    position: relative !important;
+    display: inline-flex !important;
+    width: 100%;
+    padding: 10px 15px !important;
+    margin-bottom: -1px !important;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+}
+
+.list-item-inline a{
+    color: rgb(0, 90, 156) !important;
+    font-size: 13px !important;
+    padding-left: 15px !important;
+    width: inherit !important;
+}
+
+.list-item-inline label{
+    top: 1px !important;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 1px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    -webkit-transition: .4s;
+}
+
+.list-item-inline a.doc-rejeitado {
+    color: rgb(170, 6, 6) !important;
+}
+
+.list-item-inline a.doc-conforme {
+    color: rgb(0, 166, 80) !important;
+}
+
+.list-item-inline a.doc-nao-tratado {
+    color: #e4c200 !important;
+}

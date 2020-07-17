@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "versao": 1,
+    "produto": null,
+    "sistemaRetorno": "SICCF",
+    "valorCodigoRetorno": "SICCF_2",
+    "bloqueio": false,
+    "orientacao": "Texto com orientação a ser retornada."
+}

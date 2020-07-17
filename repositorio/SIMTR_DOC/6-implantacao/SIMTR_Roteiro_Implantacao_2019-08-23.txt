@@ -1,0 +1,223 @@
+﻿1) **HMP**
+1.1) Remover no standalone.xml do SIMTR-API HMP todas as properties antes existentes, deixando no lugar as seguintes:
+<system-properties>
+	<property name="ged_token_teste" value="false"/>
+	<property name="mock_siiso" value="false"/>
+	<property name="mock_siiso_pf" value="false"/>
+	<property name="mock_sipes" value="false"/>
+	<property name="obj_siiso" value="{}"/>
+	<property name="obj_siiso_pf" value="{}"/>
+	<property name="obj_sipes" value="{}"/>
+	<property name="simtr_apikey" value="l7eee98acd64c94538af840e0d15f4504b"/>
+	<property name="simtr_pae_acesso_matriz_funcao" value="2030;2037;2038;2048"/>
+	<property name="simtr_pae_acesso_matriz_unidade" value="5402;5061;5532;5307"/>
+	<property name="simtr_auth_server_url_sso_filter" value="https://login.des.caixa/auth"/>
+	<property name="simtr_resource_sso_filter" value="cli-ser-mtr"/>
+	<property name="simtr_realm_sso_filter" value="intranet"/> 
+	<property name="simtr_ignore_sso_link_filter" value="false"/> 
+	<property name="simtr_sso_client_secret" value="d2dc0325-c071-4f1f-897b-c3e0dec512a6"/>
+	<property name="simtr_url_ignore_filter" value="/rest/servidor"/>
+	<property name="simtr_url_manual_usuario" value="ftp://ftp.go.caixa/PEDES/SIICD/SIICD_Manual_Usuario.pdf"/>
+	<property name="sipes_user" value="SMTRPESD"/>
+	<property name="sipes_password" value="123"/>
+	<property name="url_localidade" value="http://api.des.caixa:8080/informacoes-corporativas/v1/localidades/ceps"/>
+	<property name="url_siecm_ged" value="http://siecm.des.caixa/siecm-web/"/>
+	<property name="url_sipes" value="http://api.des.caixa:8080/pesquisa-cadastral/v1/pesquisar"/>
+	<property name="url_sso_internet" value="https://logindes.caixa.gov.br"/>
+	<property name="url_sso_intranet" value="https://login.des.caixa"/>
+	<property name="url.servico.avalia.documento.sifrc" value="http://s.siclon.caixa/DossieProcessaAntifraude/"/>
+	<property name="url.servico.avalia.documento.sicod" value="http://ba0000sx205.ba.caixa:8080/sicod/api/avaliacao/consultar/cnh"/>
+	<property name="url.servico.consulta.cpf.sicli" value="http://api.des.caixa:8080/cadastro/v1/clientes"/>
+	<property name="url.servico.consulta.cnpj.siiso" value="https://api.des.caixa:8443/cadastro-receita/v2/pessoas-juridicas"/>
+	<property name="url.servico.consulta.cpf.siiso" value="https://api.des.caixa:8443/cadastro-receita/v2/pessoas-fisicas"/>
+	<property name="url.simtr.api" value="http://simtr-api-hmp.nprd2.caixa"/>
+	<property name="url.servico.bpm" value="http://simtr-jbpm-hmp.nprd2.caixa/kie-server/services/rest"/>
+</system-properties>
+
+
+1.2) Alterar no standalone.xml do SIMTR-API HMP o nível de log para "org.jboss.as.config" e "org.keycloak" para que fique como abaixo:
+<logger category="org.jboss.as.config">
+	<level name="INFO"/>
+</logger>
+<logger category="org.keycloak">
+	<level name="WARN"/>
+</logger>
+
+
+1.3) Remover no standalone.xml do SIMTR-API HMP o datasource que encontra-se comentado.
+
+
+1.4) Adicionar a tag background-validation-millis no standalone.xml do SIMTR-API HMP, datasources "siico-mtr-ds" e "simtr-ds", abaixo da tag <background-validation>, conforme abaixo:
+	<background-validation-millis>10000</background-validation-millis>
+
+	
+1.5) Adicionar no standalone.xml do SIMTR-API HMP, datasource "siico-mtr-ds", abaixo da tag </security> e acima da tag <validation> o pool de conexões, conforme abaixo:
+<pool>
+	<min-pool-size>5</min-pool-size>
+	<max-pool-size>15</max-pool-size>
+	<prefill>true</prefill>
+</pool> 
+
+
+1.6) Adicionar no standalone.xml do SIMTR-API HMP, datasource "simtr-ds", abaixo da tag </security> e acima da tag <validation> o pool de conexões, conforme abaixo:
+<pool>
+	<min-pool-size>20</min-pool-size>
+	<max-pool-size>50</max-pool-size>
+	<prefill>true</prefill>
+</pool> 
+
+1.7) Alterar no standalone.xml do SIMTR-API HMP, o driver PostgreSQL como abaixo:
+REMOVER: <driver-class>org.postgresql.Driver</driver-class>
+ADICIONAR NO LUGAR: <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+
+REMOVER:
+<driver name="h2" module="com.h2database.h2">
+	<xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+</driver>
+
+
+1.8) Remover no standalone.xml do SIMTR-API HMP os módulos abaixo:
+<module name="br.gov.caixa.siusr" slot="main"/>
+<module name="br.gov.caixa.siusrfake" slot="main"/>
+
+
+1.9) Remover no standalone.xml do SIMTR-API HMP o mail-session abaixo:
+<mail-session name="default" jndi-name="java:jboss/mail/Default">
+	<smtp-server outbound-socket-binding-ref="mail-smtp"/>
+</mail-session>
+
+
+1.10) Remover no standalone.xml do SIMTR-API HMP o <subsystem xmlns="urn:jboss:domain:resource-adapters:4.0"> por inteiro (44 linhas), deixando no lugar apenas o que consta abaixo:
+<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0"/>
+
+
+1.11) Remover no standalone.xml do SIMTR-API HMP o login-module abaixo:
+<login-module code="org.kie.security.jaas.KieLoginModule" flag="optional" module="deployment.kie-wb.war"/>
+
+
+1.12) Remover no standalone.xml do SIMTR-API HMP o security-domain abaixo:
+<security-domain name="simtrLogin" cache-type="default">
+	<authentication>
+		<login-module code="br.gov.caixa.security.CaixaLoginModuleFake" flag="required" module="br.gov.caixa.siusrfake"/>
+	</authentication>
+</security-domain>
+
+
+1.13) Remover no standalone.xml do SIMTR-API HMP o host abaixo:
+<host name="SIMTR" default-web-module="SIMTR" alias="simtr-dev.nprd.caixa">
+	<location name="/" handler="welcome-content"/>
+</host>
+
+
+1.14) Subir o pacote 20190823.2 do SIMTR-API em HMP.
+
+1.15) Subir o pacote 20190820.2 do SIMTR-DOSSIE em HMP.
+
+-------------------------------------------------------------------------------
+
+2) **PRD**
+2.1) Remover no standalone.xml do SIMTR-API PRD todas as properties antes existentes, deixando no lugar as seguintes:
+<system-properties>
+	<property name="ged_token_teste" value="false"/>
+	<property name="mock_siiso" value="false"/>
+	<property name="mock_siiso_pf" value="false"/>
+	<property name="mock_sipes" value="false"/>
+	<property name="obj_siiso" value="{}"/>
+	<property name="obj_siiso_pf" value="{}"/>
+	<property name="obj_sipes" value="{}"/>
+	<property name="simtr_apikey" value="l7xx355608790cd7415f89058990aa7940a7"/>
+	<property name="simtr_pae_acesso_matriz_funcao" value="2030;2037;2038;2048"/>
+	<property name="simtr_pae_acesso_matriz_unidade" value="5402;5061;5532;5307"/>
+	<property name="simtr_auth_server_url_sso_filter" value="https://login.prd.caixa/auth"/>
+	<property name="simtr_resource_sso_filter" value="cli-ser-mtr"/>
+	<property name="simtr_realm_sso_filter" value="intranet"/> 
+	<property name="simtr_ignore_sso_link_filter" value="false"/> 
+	<property name="simtr_sso_client_secret" value="299a5018-90df-4ef5-a241-49d9e2c27fb9"/>
+	<property name="simtr_url_ignore_filter" value="/rest/servidor"/>
+	<property name="simtr_url_manual_usuario" value="ftp://ftp.go.caixa/PEDES/SIICD/SIICD_Manual_Usuario.pdf"/>
+	<property name="sipes_user" value="SMTRPESD"/>
+	<property name="sipes_password" value="123"/>
+	<property name="url_localidade" value="https://api.caixa:8443/informacoes-corporativas/v1/localidades/ceps"/>
+	<property name="url_siecm_ged" value="https://siecm.caixa/siecm-web/"/>
+	<property name="url_sipes" value="https://api.caixa:8443/pesquisa-cadastral/v1/pesquisar"/>
+	<property name="url_sso_internet" value="https://login.caixa.gov.br"/>
+	<property name="url_sso_intranet" value="https://login.prd.caixa"/>
+	<property name="url.servico.avalia.documento.sifrc" value="http://s.siclon.caixa/DossieProcessaAntifraude"/>	
+	<property name="url.servico.consulta.cpf.sicli" value="https://api.caixa:8443/cadastro/v1/clientes"/>
+	<property name="url.servico.consulta.cnpj.siiso" value="https://api.caixa:8443/cadastro-receita/v2/pessoas-juridicas"/>
+	<property name="url.servico.consulta.cpf.siiso" value="https://api.caixa:8443/cadastro-receita/v2/pessoas-fisicas"/>
+	<property name="url.simtr.api" value="https://simtr-api.apl.caixa"/>
+	<property name="url.servico.bpm" value="https://simtr-jbpm.apl.caixa/kie-server/services/rest"/>
+</system-properties>
+
+
+2.2) Remover no standalone.xml do SIMTR-API PRD o datasource que encontra-se comentado.
+
+
+2.3) Adicionar a tag background-validation-millis no standalone.xml do SIMTR-API PRD, datasources "siico-mtr-ds" e "simtr-ds", abaixo da tag <background-validation>, conforme abaixo:
+	<background-validation-millis>10000</background-validation-millis>
+
+	
+2.4) Adicionar no standalone.xml do SIMTR-API PRD, datasource "siico-mtr-ds", abaixo da tag </security> e acima da tag <validation> o pool de conexões, conforme abaixo:
+<pool>
+	<min-pool-size>10</min-pool-size>
+	<max-pool-size>30</max-pool-size>
+	<prefill>true</prefill>
+</pool> 
+
+
+2.5) Adicionar no standalone.xml do SIMTR-API PRD, datasource "simtr-ds", abaixo da tag </security> e acima da tag <validation> o pool de conexões, conforme abaixo:
+<pool>
+	<min-pool-size>25</min-pool-size>
+	<max-pool-size>100</max-pool-size>
+	<prefill>true</prefill>
+</pool> 
+
+2.6) Alterar no standalone.xml do SIMTR-API PRD, o driver PostgreSQL como abaixo:
+REMOVER: <driver-class>org.postgresql.Driver</driver-class>
+ADICIONAR NO LUGAR: <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+
+REMOVER:
+<driver name="h2" module="com.h2database.h2">
+	<xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+</driver>
+
+
+2.7) Remover no standalone.xml do SIMTR-API PRD os módulos abaixo:
+<module name="br.gov.caixa.siusr" slot="main"/>
+<module name="br.gov.caixa.siusrfake" slot="main"/>
+
+
+2.8) Remover no standalone.xml do SIMTR-API PRD o mail-session abaixo:
+<mail-session name="default" jndi-name="java:jboss/mail/Default">
+	<smtp-server outbound-socket-binding-ref="mail-smtp"/>
+</mail-session>
+
+
+2.9) Remover no standalone.xml do SIMTR-API PRD o <subsystem xmlns="urn:jboss:domain:resource-adapters:4.0"> por inteiro (44 linhas), deixando no lugar apenas o que consta abaixo:
+<subsystem xmlns="urn:jboss:domain:resource-adapters:4.0"/>
+
+
+2.10) Remover no standalone.xml do SIMTR-API PRD o login-module abaixo:
+<login-module code="org.kie.security.jaas.KieLoginModule" flag="optional" module="deployment.kie-wb.war"/>
+
+
+2.11) Remover no standalone.xml do SIMTR-API PRD o security-domain abaixo:
+<security-domain name="simtrLogin" cache-type="default">
+	<authentication>
+		<login-module code="br.gov.caixa.security.CaixaLoginModuleFake" flag="required" module="br.gov.caixa.siusrfake"/>
+	</authentication>
+</security-domain>
+
+
+2.12) Remover no standalone.xml do SIMTR-API PRD o host abaixo:
+<host name="SIMTR" default-web-module="SIMTR" alias="simtr-dev.nprd.caixa">
+	<location name="/" handler="welcome-content"/>
+</host>
+
+
+2.13) Subir o pacote 20190823.2 do SIMTR-API em PRD.
+
+2.14) Subir o pacote 20190820.2 do SIMTR-DOSSIE em PRD.
+
+

@@ -1,0 +1,340 @@
+<div>
+	<alert-menssagem [hidden]="ocultarMsg" [msgOrientacao]="msg_checkList.descricao" [tituloMsg]="tituloMsg"
+		[ocultarBtnFechar]="true"></alert-menssagem>
+</div>
+<!-- Layout apenas ChecklistFase -->
+<ng-template [ngIf]="exibindoChecklistFase">
+	<div class="p-grid">
+		<div [ngClass]="{'p-col-6': !exibindoChecklistFase, 'layoutVertical': !exibindoChecklistFase, 'p-col-12': exibindoChecklistFase }">
+			<div id="checklist" data-id="checklist" class=" p-col-12 box boxRiseze vertical boxCheklist">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-check-square-o"></i>
+						<span>Verificação do Documento</span>
+					</h4>
+					<a id="collapsar1" class="minimizarComponente" title="Minimizar" (click)="collapse('collapsar1')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<check-list [showPortal]="showPortal"
+					[processoGerador]="processoGerador" [dossieProduto]="dossieProduto"
+					[listaChekList]="listaChekList" (listaCheklistChanged)="handleChangeListaChekList($event)"
+					[processoFaseCheckList]="processoFaseCheckList" [idCheckListAtivado]="idCheckListAtivado"
+					[listDocumentosImagens]="listDocumentosImagens" [alturaMaxheigtChek]="alturaMaxheigtChek"
+					(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+					(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+					(alertMessagesErrorChanged)="handlleMessagesError($event)"
+					(msg_checkListChanged)="handleMsgCheckList($event)">
+				</check-list>
+			</div>
+		</div>
+	</div>
+</ng-template>
+<!-- Layout Vertical A -->
+<ng-template [ngIf]="layoutVerticalA && !exibindoChecklistFase">
+	<div class="p-grid">
+		<div [hidden]="showPortal"
+			[ngClass]="{'p-col-6': true, 'layoutVertical': true, 'boxResize_left': true, 'showPortal': showPortal, 'naoExisteChekList': ocultarChecklist}">
+			<div id="corpPrincipalVisualizadorImg_1" data-id="corpPrincipalVisualizadorImg_1"
+				class=" p-col-12 box boxVisualizar horizontal vertical ">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="1" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="1"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagens]="listDocumentosImagens"
+					(listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" [layoutVerticalA]="layoutVerticalA"
+					[showPortal]="showPortal" 
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+			<div id="corpPrincipalVisualizadorImg_2" data-id="corpPrincipalVisualizadorImg_2"
+				class=" p-col-12 box boxVisualizar horizontal vertical boxRiseze ativoDuasVisualizacao espacoLeft1"
+				*ngIf="qtdeVisualizadores == 2 && !exibindoChecklistFase">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag2" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag2')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="2" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="2"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagensComparar]="listDocumentosImagensComparar"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+		</div>
+		<div *ngIf="!ocultarChecklist"
+			[ngClass]="{'p-col-6': !showPortal,'p-col-12': showPortal, 'boxResize_right':true }">
+			<div id="checklist" data-id="checklist" class=" p-col-12 box  vertical  ">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-check-square-o"></i>
+						<span>Verificação do Documento</span>
+					</h4>
+					<a id="collapsar1" class="minimizarComponente" title="Minimizar" (click)="collapse('collapsar1')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<check-list [showPortal]="showPortal"
+					[dossieProduto]="dossieProduto" [processoGerador]="processoGerador" [listaChekList]="listaChekList"
+					(listaCheklistChanged)="handleChangeListaChekList($event)"
+					[processoFaseCheckList]="processoFaseCheckList" [idCheckListAtivado]="idCheckListAtivado"
+					[listDocumentosImagens]="listDocumentosImagens" [alturaMaxheigtChek]="alturaMaxheigtChek"
+					(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+					(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+					(alertMessagesErrorChanged)="handlleMessagesError($event)"
+					(ocultarCheckListChanged)="handleOcultarCheckList($event)"
+					(msg_checkListChanged)="handleMsgCheckList($event)">
+				</check-list>
+			</div>
+		</div>
+	</div>
+</ng-template>
+<!-- Layout Vertical B -->
+<ng-template [ngIf]="layoutVerticalB && !exibindoChecklistFase">
+	<div class="p-grid">
+		<div *ngIf="!ocultarChecklist"
+			[ngClass]="{'p-col-6': !showPortal, 'p-col-12': showPortal, 'layoutVertical': true, 'boxResize_left':true }">
+			<div id="checklist" data-id="checklist" class=" p-col-12 box boxRiseze vertical boxCheklist">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-check-square-o"></i>
+						<span>Verificação do Documento</span>
+					</h4>
+					<a id="collapsar2" class="minimizarComponente" title="Minimizar" (click)="collapse('collapsar2')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<check-list [showPortal]="showPortal" [processoGerador]="processoGerador"
+					[dossieProduto]="dossieProduto"
+					[listaChekList]="listaChekList" (listaCheklistChanged)="handleChangeListaChekList($event)"
+					[processoFaseCheckList]="processoFaseCheckList" [idCheckListAtivado]="idCheckListAtivado"
+					[listDocumentosImagens]="listDocumentosImagens" [alturaMaxheigtChek]="alturaMaxheigtChek"
+					(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+					(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+					(alertMessagesErrorChanged)="handlleMessagesError($event)"
+					(ocultarCheckListChanged)="handleOcultarCheckList($event)"
+					(msg_checkListChanged)="handleMsgCheckList($event)">
+				</check-list>
+			</div>
+		</div>
+		<div [hidden]="showPortal"
+			[ngClass]="{'p-col-6': true,  'layoutVertical': true, 'boxResize_right': true, 'showPortal': showPortal, 'naoExisteChekList': ocultarChecklist}">
+			<div id="corpPrincipalVisualizadorImg_1" data-id="corpPrincipalVisualizadorImg_1"
+				class=" p-col-12 box boxVisualizar horizontal vertical ">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="1" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="1"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagens]="listDocumentosImagens"
+					(listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[layoutVerticalA]="layoutVerticalA"
+					[layoutVerticalB]="layoutVerticalB"
+					[showPortal]="showPortal" 
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+			<div id="corpPrincipalVisualizadorImg_2" data-id="corpPrincipalVisualizadorImg_2"
+				class=" p-col-12 box boxVisualizar horizontal vertical boxRiseze ativoDuasVisualizacao espacoLeft1"
+				*ngIf="qtdeVisualizadores == 2 && !exibindoChecklistFase">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag2" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag2')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="2" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="2"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagensComparar]="listDocumentosImagensComparar"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+		</div>
+	</div>
+</ng-template>
+
+<!-- Layout Horizontal A -->
+<ng-template [ngIf]="layoutHorizontalA && !exibindoChecklistFase">
+	<div class="p-grid">
+		<div
+			[ngClass]="{'p-col-12': true,  'boxResize_top': true, 'boxGeral': true, 'corpBoxVizualizador': true, 'showPortal': showPortal}">
+			<div id="corpPrincipalVisualizadorImg_1" data-id="corpPrincipalVisualizadorImg_1"
+				[ngClass]="{ 'p-col-12 box boxVisualizar horizontal': true}">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="1" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="1"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagens]="listDocumentosImagens"
+					(listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+			<div id="corpPrincipalVisualizadorImg_2" data-id="corpPrincipalVisualizadorImg_2"
+				class=" p-col-12 box boxVisualizar horizontal ativoDuasVisualizacao espacoLeft1"
+				*ngIf="qtdeVisualizadores == 2 && !exibindoChecklistFase">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag2" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag2')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="2" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="2"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagensComparar]="listDocumentosImagensComparar"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+		</div>
+		<div *ngIf="!ocultarChecklist" id="checklist" data-id="checklist"
+			class=" p-col-12 box boxResize_bottom boxGeral">
+			<nav class="box-header ui-sortable-handle cursoMove">
+				<h4>
+					<i class="fa fa-check-square-o"></i>
+					<span>Verificação do Documento</span>
+				</h4>
+				<a id="collapsar3" class="minimizarComponente" title="Minimizar" (click)="collapse('collapsar3')">
+					<i class="fa fa-chevron-circle-down"></i>
+				</a>
+			</nav>
+			<check-list [showPortal]="showPortal"
+				[dossieProduto]="dossieProduto" [processoGerador]="processoGerador" [listaChekList]="listaChekList"
+				(listaCheklistChanged)="handleChangeListaChekList($event)"
+				[processoFaseCheckList]="processoFaseCheckList" [idCheckListAtivado]="idCheckListAtivado"
+				[listDocumentosImagens]="listDocumentosImagens" [alturaMaxheigtChek]="alturaMaxheigtChek"
+				(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+				(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+				(alertMessagesErrorChanged)="handlleMessagesError($event)"
+				(ocultarCheckListChanged)="handleOcultarCheckList($event)"
+				(msg_checkListChanged)="handleMsgCheckList($event)">
+			</check-list>
+		</div>
+	</div>
+</ng-template>
+
+<!-- Layout Horizontal B -->
+<ng-template [ngIf]="layoutHorizontalB && !exibindoChecklistFase">
+	<div class="p-grid">
+		<div *ngIf="!ocultarChecklist" id="checklist" data-id="checklist"
+			class=" p-col-12 box boxCheklist boxResize_left boxGeral">
+			<nav class="box-header ui-sortable-handle cursoMove">
+				<h4>
+					<i class="fa fa-check-square-o"></i>
+					<span>Verificação do Documento</span>
+				</h4>
+				<a id="collapsar4" class="minimizarComponente" title="Minimizar" (click)="collapse('collapsar4')">
+					<i class="fa fa-chevron-circle-down"></i>
+				</a>
+			</nav>
+			<check-list [showPortal]="showPortal"
+				[dossieProduto]="dossieProduto" [processoGerador]="processoGerador" [listaChekList]="listaChekList"
+				(listaCheklistChanged)="handleChangeListaChekList($event)"
+				[processoFaseCheckList]="processoFaseCheckList" [idCheckListAtivado]="idCheckListAtivado"
+				[listDocumentosImagens]="listDocumentosImagens" [alturaMaxheigtChek]="alturaMaxheigtChek"
+				(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+				(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+				(alertMessagesErrorChanged)="handlleMessagesError($event)"
+				(ocultarCheckListChanged)="handleOcultarCheckList($event)"
+				(msg_checkListChanged)="handleMsgCheckList($event)">
+			</check-list>
+		</div>
+		<div [hidden]="showPortal"
+			[ngClass]="{'p-col-12': true,  'boxResize_bottom': true, 'boxGeral': true, 'corpBoxVizualizador': true, 'showPortal': showPortal}">
+			<div id="corpPrincipalVisualizadorImg_1" data-id="corpPrincipalVisualizadorImg_1"
+				[ngClass]="{ 'p-col-12 box boxVisualizar horizontal': true}">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="1" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="1"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagens]="listDocumentosImagens"
+					(listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg" 
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+			<div id="corpPrincipalVisualizadorImg_2" data-id="corpPrincipalVisualizadorImg_2"
+				class=" p-col-12 box boxVisualizar horizontal ativoDuasVisualizacao espacoLeft1"
+				*ngIf="qtdeVisualizadores == 2 && !exibindoChecklistFase">
+				<nav class="box-header ui-sortable-handle cursoMove">
+					<h4>
+						<i class="fa fa-folder-open-o"></i>
+						<span>Visualizar Documento</span>
+					</h4>
+					<a id="visualizarDrag2" class="minimizarComponente" title="Minimizar"
+						(click)="collapse('visualizarDrag2')">
+						<i class="fa fa-chevron-circle-down"></i>
+					</a>
+				</nav>
+				<tela-visualizador-documento [idCombo]="2" class="componentVisualizar"
+					[dossieProduto]="dossieProduto" [hasMapListaCombo]="hasMapListaCombo" [idVisualizar]="2"
+					[visualizadorDois]="visualizadorDois" [listaDocumentacao]="listaDocumentacao"
+					[listDocumentosImagensComparar]="listDocumentosImagensComparar"
+					[alutraMaxHeigthImg]="alutraMaxHeigthImg"
+					[showPortal]="showPortal"
+					(showPortalChanged)="handleChangeshowPortal($event)">
+				</tela-visualizador-documento>
+			</div>
+		</div>
+	</div>
+</ng-template>

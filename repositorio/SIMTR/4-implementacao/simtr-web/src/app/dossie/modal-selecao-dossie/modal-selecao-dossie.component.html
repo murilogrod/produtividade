@@ -1,0 +1,79 @@
+<div class="modal-dialog"  *ngIf="habilitaOpcoes">
+  <div class="modal-content">
+    <div class="modal-body text-center">
+      Existe(m) dossiê(s) produto(s) em andamento. Deseja acessar o(s) dossiê(s) existente(s) ou criar um novo dossiê produto?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="confirm('NOVO', null)">Criar Dossiê</button>
+      <button type="button" class="btn btn-primary" (click)="confirm('LISTAR', null)">Consultar Dossiê</button>
+      <button type="button" class="btn btn-primary" (click)="confirm('CANCELAR', null)">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div class="modal-dialog col-md-12" style="width: auto !important"  *ngIf="habilitaLista">
+    <div class="modal-content  col-md-12">
+      <div class="modal-header">
+        Lista de Dossiês Produto
+      </div>
+      <div class="modal-body text-center">
+      <p-dataTable [value]="dossiesProduto" [immutable]="false" scrollable="true" scrollHeight="200%">
+        <ng-template pTemplate="emptymessage">
+          Nenhum registro encontrado
+        </ng-template>
+        <p-header>Dossiês</p-header>
+        <p-column header="Identificador" [style]="{ 'width': '10%' }">
+            <ng-template let-item="rowData" pTemplate="body">
+              {{item.id_dossie_produto}}
+            </ng-template>
+          </p-column>
+        <p-column header="Produto">
+          <ng-template let-item="rowData" pTemplate="body" styleClass="text-center">
+            <div *ngFor="let prod of item.produtos_contratados">
+              {{prod.nome}}
+            </div> 
+          </ng-template>
+        </p-column>
+        <p-column header="Etapa Processo" [style]="{ 'width': '15%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.processo_fase.id}} - {{item.processo_fase.nome}}
+          </ng-template>
+        </p-column>
+        <p-column header="Unidade Origem" [style]="{ 'width': '6%' }" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.unidade_criacao}}
+          </ng-template>
+        </p-column>
+        <p-column header="Situação Atual" [style]="{ 'width': '12%' }" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.situacao_atual}}
+          </ng-template>
+        </p-column>
+        <p-column header="Matrícula" [style]="{ 'width': '7%' }" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            
+          </ng-template>
+        </p-column>
+        <p-column header="Data Situação" [style]="{ 'width': '12%' }" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.data_hora_situacao}}
+          </ng-template>
+        </p-column>
+        <p-column header="Unidade Situação" [style]="{ 'width': '6%' }" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            
+          </ng-template>
+        </p-column>
+        <p-column header="Ações" styleClass="text-center" [style]="{ 'width': '5%' }" styleClass="text-center">
+          <ng-template let-item="rowData" let-idx="rowIndex" pTemplate="body">
+            <span class="fa fa-fw fa-search" title="Consultar Dossiê" style="cursor: pointer" (click)="confirm('CONSULTAR', item)" *ngIf="item.situacao_atual !== 'Rascunho'"></span> 
+            <span class="fa fa-fw fa-edit" title="Manter Dossiê" style="cursor: pointer" (click)="confirm('MANTER', item)" *ngIf="item.situacao_atual === 'Rascunho'"></span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="confirm('CANCELAR')">Cancelar</button>
+    </div>
+  </div>
+</div>

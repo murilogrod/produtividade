@@ -1,0 +1,34 @@
+<div class="modal-dialog">
+    <div class="modal-content" *ngIf="!modalDescricao">
+      <div class="modal-header">
+        <h4 class="modal-title">Orientação Apontamento</h4>
+      </div>
+      <div id="body-justificativa" class="modal-body">
+        <div>
+            <textarea class="texto-justificativa" 
+                      kzCountCharacters="300"
+                      maxlength="300"
+                      [(ngModel)]="textareaJustificativaApontamento" 
+                      (ngModelChange)="justificativaApontamento($event)"> 
+            </textarea>
+        </div>    
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" *ngIf="exibeBotaoSalvar" (click)="confirm()">Salvar</button>
+            <button type="button" class="btn btn-default pull-right" (click)="cancel()">Cancelar</button>
+        </div>        
+      </div>  
+    </div>
+    <div class="modal-content" *ngIf="modalDescricao">      
+      <div class="modal-header">
+        <h4 class="modal-title">{{descricaoItem.titulo}}</h4>
+      </div>
+      <div>        
+        <p class="textoDescricao">
+          {{descricaoItem.descricao}}
+        </p> 
+      </div> 
+      <div class="modal-footer">
+          <button type="button" [ngClass]="{'btn pull-right': true,'btn-default ': !modalDescricao, 'btn-primary': modalDescricao}" class="btn btn-default pull-right" (click)="cancel()">{{modalDescricao ? 'Sair' : 'Cancelar'}}</button>
+      </div> 
+    </div>
+</div>

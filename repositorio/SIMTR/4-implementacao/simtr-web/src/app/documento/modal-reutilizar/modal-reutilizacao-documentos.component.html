@@ -1,0 +1,47 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="box-body">
+                <div class="modal-header-inline">
+                    <span class="fa fa-paste icon-reuso-doc-modal"></span>
+                    <h4 class="modal-title modal-color-title">Reutilizar Documento - {{tipoDocumentoClassificar}}</h4>
+                </div>
+                
+                <p-dataTable [value]="documentos" [immutable]="false">
+                    <ng-template pTemplate="emptymessage">
+                        Nenhum registro encontrado
+                    </ng-template>
+                    <p-column header="Selecione" styleClass="modal-table-column" [style]="{'width': '10%'}">
+                        <ng-template let-item="rowData" let-i="rowIndex" pTemplate="body">
+                            <label class="containerChek">
+                                <input type="checkbox" [checked]="checkboxControllArray[i]" 
+                                    [(ngModel)]="checkboxControllArray[i]" 
+                                        (change)="separaDocSelecionado(item, i)" class="checkbox-documento">
+                                <span class="checkmark-modal-reutilizacao"></span>
+                            </label>
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Data" styleClass="modal-table-column" [style]="{ 'width': '30%' }">
+                        <ng-template let-item="rowData" pTemplate="body">
+                            {{separaDataDaHora(item.data_hora_captura)}}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Hora" styleClass="modal-table-column" [style]="{ 'width': '15%' }">
+                        <ng-template let-item="rowData" pTemplate="body">
+                            {{separaHoraDaData(item.data_hora_captura)}}
+                        </ng-template>
+                    </p-column>
+                    <p-column header="Matrícula" styleClass="modal-table-column" [style]="{ 'width': '25%' }">
+                        <ng-template let-item="rowData" pTemplate="body">
+                            {{item.matricula_captura}}
+                        </ng-template>
+                    </p-column>
+                </p-dataTable>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="cancel()">CANCELAR</button>
+                <button type="button" class="btn btn-primary" (click)="confirm()">REUTILIZAR</button>
+            </div>          
+        </div>    
+    </div>
+</div>

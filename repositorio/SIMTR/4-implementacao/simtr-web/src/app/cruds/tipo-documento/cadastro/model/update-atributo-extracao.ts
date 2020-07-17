@@ -1,0 +1,31 @@
+export class UpdateAtributoExtracao {
+    nome_atributo_negocial: string;
+    nome_atributo_documento: string;
+    nome_atributo_retorno: string;
+    tipo_campo: string;
+    tipo_atributo_geral: string;
+    indicador_obrigatorio: boolean;
+    ativo: boolean;
+    nome_atributo_siecm: string;
+    tipo_atributo_siecm: string;
+    indicador_obrigatorio_siecm: boolean;
+    nome_atributo_sicli: string;
+    nome_objeto_sicli: string;
+    tipo_atributo_sicli: string;
+    nome_sicod: string;
+    tipo_atributo_sicod: string;
+    indicador_campo_comparacao_receita: string;
+    indicador_modo_comparacao_receita: string;
+    indicador_calculo_data_validade: boolean;
+    indicador_identificador_pessoa: boolean;
+    valor_padrao: string;
+    indicador_presente_documento: boolean;
+    orientacao_preenchimento: string;
+    grupo_atributo: number;
+    ordem_apresentacao: number;
+    expressao_interface: string;
+    indicador_modo_partilha: string;
+    identificador_atributo_partilha: number;
+    indicador_estrategia_partilha: string;
+    percentual_alteracao_permitido: number;
+}

@@ -1,0 +1,111 @@
+<div id="div-alert-consulta-seletivo-dossie-produto" class="box-body" style="margin: 50px 0px -20px 5px">
+    <cx-alert-message id="div-alert-consulta-seletivo-dossie-produto" [messagesInfo]="messagesInfo"
+        [messagesSuccess]="messagesSuccess" [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+        (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+        [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+    </cx-alert-message>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="input-group pull-right" style="width: 30%">
+        <input pInputText type="text" class="form-control"
+            (input)="realizarFiltroProdutos($event.target.value, dataProdutos);" placeholder="Pesquisar...">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </span>
+    </div>
+</nav>
+<p-table #dataProdutos [columns]="produtoListaComponentPresenter.produtoLista.configTableColsProdutos" [value]="lista"
+    (sortFunction)="realizarOrdenacao($event)" [customSort]="true" class="produtos-table" [paginator]="true" [rows]="10"
+    [globalFilterFields]="['id_dossie_produto','produtos','processo_fase.nome','tipo_relacionamento.nome', 'unidade_criacao', 'situacao_atual', 'data_hora_situacao', 'unidade_situacao']"
+    [rowsPerPageOptions]="[10, 20, 30, 40]" [responsive]="true" scrollable="true" scrollHeight="300px">
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                Nenhum produto encontrado
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <ng-template ngFor let-col [ngForOf]="columns">
+                <ng-container [ngSwitch]="col.field">
+                    <ng-container *ngSwitchCase="'acoes'">
+                        <th>
+                            {{col.header}}
+                        </th>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <th class="{{col.class}}" *ngIf="col.tooltip && col.field !== 'acoes'" tooltipPosition="top"
+                            pTooltip="{{col.msg}}" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                        <th class="{{col.class}}" *ngIf="!col.tooltip && col.field !== 'acoes'"
+                            [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                    </ng-container>
+                </ng-container>
+            </ng-template>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                <div *ngSwitchCase="'produtos_contratados'">
+                    <div *ngIf="rowData.produtos_contratados.length > 0">
+                        <input #produtos type="hidden" value="{{formatarHintProdutos(rowData.produtos_contratados)}}">
+                        <div class="produto capitalize" tooltipPosition="top" pTooltip="{{produtos.value}}">
+                            {{produtos.value}}
+                        </div>
+                    </div>
+                    <div *ngIf="rowData.produtos_contratados.length == 0">
+                        -
+                    </div>
+                </div>
+                <div *ngSwitchCase="'processo_fase'" class="produto capitalize" tooltipPosition="top"
+                    pTooltip="{{rowData.processo_fase ? rowData.processo_fase.id : ''}} - {{rowData.processo_fase ? rowData.processo_fase.nome : ''}}">
+                    <input #etapaProcesso type="hidden"
+                        value="{{rowData.processo_fase ? rowData.processo_fase.id : ''}} - {{rowData.processo_fase ? rowData.processo_fase.nome : ''}}">
+                    {{etapaProcesso.value}}
+                </div>
+                <div *ngSwitchCase="'tipo_relacionamento'" class="produto capitalize" tooltipPosition="top"
+                    pTooltip="{{rowData.tipo_relacionamento.nome ? rowData.tipo_relacionamento.nome : ''}}">
+                    {{rowData.tipo_relacionamento.nome ? rowData.tipo_relacionamento.nome : '-'}}
+                </div>
+                <div *ngSwitchCase="'situacao_atual'" class="produto capitalize" tooltipPosition="top"
+                    pTooltip="{{rowData[col.field]}}">
+                    {{rowData[col.field]}}
+                </div>
+                <div *ngSwitchCase="'data_hora_situacao'" tooltipPosition="top" pTooltip="{{rowData[col.field]}}">
+                    <input #dataHoraSituacao type="hidden" value="{{rowData[col.field]}}">
+                    {{formatarData(dataHoraSituacao.value)}}
+                </div>
+                <div *ngSwitchCase="'acoes'">
+                    <ng-container
+                        *ngIf="verificarUnidadeAutorizada(rowData); then habilitarBotao else desabilitarBotao">
+                    </ng-container>
+                    <ng-template #desabilitarBotao>
+                        <i class="fa fa-fw fa-edit consultaDossie" tooltipPosition="top" *ngIf="rowData.situacao_atual === 'Rascunho'"
+                            pTooltip="Sua unidade não está autorizada a manipular dossiês neste processo."></i>
+                    </ng-template>
+                    <ng-template #habilitarBotao>
+                        <span class="fa fa-fw fa-edit" title="Manter Dossiê" style="cursor: pointer"
+                            *ngIf="rowData.situacao_atual === 'Rascunho'"
+                            (click)="goProduto(rowData.id_dossie_produto, 'MANTER')"></span>
+                    </ng-template>
+                    <span class="fa fa-fw fa-search" title="Mostrar Detalhes" style="cursor: pointer"
+                        (click)="goProduto(rowData.id_dossie_produto, 'CONSULTAR')"></span>
+
+                    <span *ngIf="habilitaBotaoParaTratamento(rowData)" class="fa fa-medkit" title="Efetuar Tratamento"
+                        style="cursor: pointer; color: #005a9c"
+                        (click)="selecionaDossieProduto(rowData.id_dossie_produto)"></span>
+                </div>
+                <ng-container *ngSwitchDefault>
+                    {{rowData[col.field] ? rowData[col.field] : '-'}}
+                </ng-container>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,25 @@
+            
+<div *ngIf="abaProdutoComponentPresenter.abaProduto.processosPatriarca && abaProdutoComponentPresenter.abaProduto.processosPatriarca.length > 1" class="tamanhoCorpToogleExpandir mesmaLinha">
+    <label class="switch">
+        <input class="toggle" type="checkbox" [(ngModel)]="abaProdutoComponentPresenter.abaProduto.expandirListaProduto" (click)="expandirAllTr()">
+        <span class="slider round"></span>
+    </label>
+    <span class="tamanhoIcone fa fa-plus-square-o espaco corTexto"></span>
+    <label class="corTexto espaco">Expandir todos</label>
+</div>
+
+<p-accordion [multiple]="true">
+
+  <p-accordionTab id="aba-produto-cliente-{{item.id}}" *ngFor="let item of abaProdutoComponentPresenter.abaProduto.processosPatriarca; let indexPai = index" [selected]="expTodosOuPrimeiro(indexPai)">
+      <p-header style="float: left;">
+        <span *ngIf="mostraIconeJuridco(item.nome)" class="fa fa-gavel" style="margin-right: 7px;"></span>
+        <span *ngIf="mostraIconeFisica(item.nome)" class="fa fa-user" style="margin-right: 7px;"></span>
+        {{item.nome}}
+      </p-header>          
+    <p-accordionTab class="subArccodion" [selected] = "expTodosOuPrimeiro(indexPai)" header="{{ itemDossie.nome }}" *ngFor="let itemDossie of item.processosDossie; let idxFilho = index">
+      <div *ngIf="itemDossie.dossiesProduto.length > 0" class="box-body">
+        <produto-lista class="listaProduto" [lista]="itemDossie.dossiesProduto"></produto-lista>
+      </div>
+    </p-accordionTab>    
+  </p-accordionTab>
+</p-accordion>

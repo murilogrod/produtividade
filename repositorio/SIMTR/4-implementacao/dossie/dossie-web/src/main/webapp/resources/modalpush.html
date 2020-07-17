@@ -1,0 +1,22 @@
+﻿<!-- Modal Alert -->
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="dismissDialog()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">{{message.title}}
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="text-center text-primary">
+		    <h4 id="AlertMessage" class="text-center">{{message.content}}</h4>
+        <img ng-src="{{message.image}}" ng-show="message.image" class="img-thumbnail img-thumbnail-limited ng-hide text-center nopadding maxbadge noborder"/>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type='button' class='btn btn-default ng-hide' data-dismiss="modal" ng-click="closeDialog()" ng-show="message.url">
+        <i class='fa fa-check'></i>&nbsp;{{ 'label.abrir' | translate}}
+    </button>
+    <button type='button' class='btn btn-primary' data-dismiss="modal" ng-click="dismissDialog()">
+        <i class='fa fa-times'></i>&nbsp;{{ 'label.fechar' | translate}}
+    </button>
+</div>

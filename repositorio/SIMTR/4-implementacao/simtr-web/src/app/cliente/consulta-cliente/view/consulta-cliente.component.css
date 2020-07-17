@@ -1,0 +1,105 @@
+#cpfCnpjError.col-md-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px; 
+    padding-left: 0px;
+    margin-top: 5px;
+}
+
+#div-box-body-corpo-identificador .colunaDivisorDossieClientePessoaFisica {
+    width: 32%;
+}
+
+#div-box-body-corpo-identificador .colunaDivisorDossieClientePessoaJuridica {
+    width: 46%;
+}
+
+.alinhamento {
+    margin: 0px;
+    font-size: 19px;
+    margin-left: 5%;
+}
+
+.ssoGreen {
+    color: green;
+    font-size: 15px;
+} 
+
+.ssoRed {
+    color: red;
+    font-size: 15px;
+} 
+
+.corApresentacao {
+    color: #015da9;
+}
+
+.bordaRightAzul {
+    border-right: 1px solid #97cffd;
+}
+
+.box.box-primary {
+    border-top-color: transparent;
+}
+
+.form-inline .form-control {
+    width: 100% !important;
+}
+
+.texto {
+    text-align: center;
+}
+
+.divInput{
+    background-color: #f7f9fb;
+    border-radius: 5px; 
+}
+
+#div-form-inline{
+    margin-top: 4.5%;
+}
+
+.spanDossieCliente {
+    font-weight: bold; 
+    font-size: 1.3vw;
+    opacity: 0.8;
+}
+
+.divInnerInput {
+    width: 50%;
+    padding-left: 5% !important;
+}
+
+@media(max-width: 1110px)  {
+    .spanDossieCliente {
+        font-size: 1vw;
+    }
+}
+
+@media(max-width: 1330px) {
+    .spanDossieCliente {
+        font-size: 1.1vw;
+    }
+}
+
+@media(min-width: 1330px) {
+    .spanDossieCliente {
+        font-size: 1.4vw;
+    }
+    
+    .divInnerInput {
+        width: 60%;
+    }
+}
+
+@media(min-width: 1600px) {
+    .divInput{
+        margin-top: 1%;
+    }
+}
+
+@media(min-width: 1900px) {
+    .divInput{
+        margin-top: 1.5%;
+    }
+}

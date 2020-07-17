@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RespostaGravaDocumento>
+    <codigoRetorno>2</codigoRetorno>
+    <mensagem>FALHA AO GRAVAR DOCUMENTO - ERRO INTERNO DO SIECM</mensagem>
+</RespostaGravaDocumento>

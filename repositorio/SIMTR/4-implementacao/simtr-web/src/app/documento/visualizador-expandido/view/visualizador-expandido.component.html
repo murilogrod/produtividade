@@ -1,0 +1,20 @@
+<span *ngIf="this.manterPdfEmMiniatura && listaVisualizar.length > 1 && incluirImagem" class="iconsLeft corpoNexTPrev">
+    <a (click)="primeiraImg()">
+        <i class="fa fa-fw fa-backward"></i>
+    </a>
+    <a (click)="buscarProximoOuAnterior(false)">
+        <i class="fa fa-fw fa-play girandoImg180"></i>
+    </a>
+    <a>
+        <i class="fontUnset">{{imgAtual+1}} / {{listaVisualizar.length}}</i>
+    </a>
+    <a (click)="buscarProximoOuAnterior(true)">
+        <i class="fa fa-fw fa-play"></i>
+    </a>
+    <a (click)="ultimaImg()">
+        <i class="fa fa-fw fa-forward"></i>
+    </a>
+</span>
+<section id="corpoVisualidadorExpandido">
+    <canvas id="canvasVisualizadorExpandido" (click)="onClickImageToShowInModal()"></canvas>
+</section>

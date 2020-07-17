@@ -1,0 +1,137 @@
+<fieldset class="crud-card-fieldset">
+  <legend class="crud-card-title">Opções de Atributo Objetivo
+    <span class="fa fa-fw fa-info-circle" tooltipPosition="top" pTooltip="{{toolTipFieldSetOpcao}}" style="cursor: pointer"></span>
+  </legend>
+    
+    <div class="panel panel-default crud-align margem">
+      <div class="panel-heading crud-style">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="input-group pull-left" style="width: 30%">
+            <input pInputText type="text" class="form-control" #globalFilterOpcaoAtributo
+            (input)="dataOpcoesAtributos.filterGlobal($event.target.value, 'contains')" placeholder="Filtro Global">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </span>
+          </div>
+        </nav>
+      </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+          <p-table #dataOpcoesAtributos [columns]="configuracaoTableColunasOpcao.configTableColsOpcoes" class="crud-table"  
+          (onFilter)="onFilter($event, globalFilterOpcaoAtributo)"
+          [paginator]="true" [rows]="10" [responsive]="true" (sortFunction)="realizarOrdenacaoOpcao($event)"
+          [rowsPerPageOptions]="rowsPerPageOptions" [responsive]="true" 
+          scrollable="true" scrollHeight="500px" [customSort]="true" [value]="listaOpcoes">
+
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+              <ng-template ngFor let-col [ngForOf]="columns">
+                <ng-container [ngSwitch]="col.field">  
+                  <ng-container *ngSwitchCase="'acoes'">
+                    <th class="{{col.class}}" style="text-align: center;">
+                      {{col.header}}
+                    </th>                       
+                  </ng-container> 
+                  <ng-container *ngSwitchCase="'id'">
+                    <th class="{{col.class}}" style="text-align: center;" [pSortableColumn]="'id'">
+                      {{col.header}}
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>                      
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'chave'">
+                    <th class="{{col.class}}" style="text-align: center;" [pSortableColumn]="'chave'">
+                      {{col.header}}
+                      <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipOpcaoLabel}}"
+                          style="cursor: pointer">
+                      </span>
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>                      
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'valor'">
+                    <th class="{{col.class}}" style="text-align: center;" [pSortableColumn]="'valor'">
+                      {{col.header}}
+                      <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipOpcaoValue}}"
+                          style="cursor: pointer">
+                      </span>
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                    </th>                      
+                  </ng-container>
+                </ng-container>
+              </ng-template> 
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-opcao let-columns="columns" let-index="rowIndex">
+              <tr>
+                <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                 
+                  <ng-container *ngSwitchCase="'acoes'">
+
+                    <span class="fa fa-fw fa-trash" 
+                      tooltipPosition="top" 
+                      (click)="removerOpcao(index, opcao);"
+                      pTooltip="Remover Opção"
+                      style="cursor: pointer">
+                    </span> 
+                  </ng-container>
+
+                  <ng-container *ngSwitchCase="'id'">
+                    <div class="opcao capitalize" tooltipPosition="top" pTooltip="{{opcao[col.field]}}">
+                    {{opcao[col.field]}}
+                    </div>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'chave'">
+                    <div class="opcao capitalize" tooltipPosition="top" pTooltip="{{opcao[col.field]}}">
+                    {{opcao.valor}}
+                    </div>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="'valor'">
+                    <div class="opcao capitalize" tooltipPosition="top" pTooltip="{{opcao[col.field]}}">
+                    {{opcao.chave}}
+                    </div>
+                  </ng-container>
+
+                </td>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+              <tr>
+                <td style="width: 10% !important;">
+                  <span>-</span>
+                </td>
+                <td style="width: 35% !important;">
+                  <input class="form-control" id="opcaoValor" name="opcaoValor" [(ngModel)]="opcaoValor" maxlength="255" placeholder="Label">
+                </td>
+                <td style="width: 35% !important;">
+                  <input class="form-control" id="opcaoChave" name="opcaoChave" [(ngModel)]="opcaoChave" maxlength="50" placeholder="Value">
+                </td>
+                <td style="width: 20% !important;">
+                    <span class="fa fa-plus" 
+                      tooltipPosition="top" 
+                      (click)="adicionarNovaLinhaNaGridOpcao();"
+                      pTooltip="Adicionar Nova Opção"
+                      style="cursor: pointer">
+                   </span>
+                </td>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="summary">
+              <ng-container *ngIf="filteredRecords == 0">
+                Total: {{listaOpcoes.length}} opcao(s).
+              </ng-container>
+              <ng-container *ngIf="filteredRecords > 0">
+                Total: {{filteredRecords}} de {{listaOpcoes.length}}.
+              </ng-container>                            
+            </ng-template>
+
+          </p-table>
+        </div>
+    </div>
+	  
+</fieldset>  

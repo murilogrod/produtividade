@@ -1,0 +1,12 @@
+            <secure-deployment name="simtr-api.war">
+                <realm>intranet</realm>
+                <resource>cli-ser-mtr</resource>
+                <bearer-only>true</bearer-only>
+                <auth-server-url>https://login.des.caixa/auth</auth-server-url>
+                <ssl-required>EXTERNAL</ssl-required>
+                <allow-any-hostname>true</allow-any-hostname>
+                <disable-trust-manager>true</disable-trust-manager>
+                <enable-cors>true</enable-cors>
+                <cors-allowed-headers>Origin, X-Requested-With, X-XSRF-TOKEN, Content-Type, Accept, Authorization, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Integracao</cors-allowed-headers>
+                <cors-allowed-methods>GET, POST, DELETE, PUT, OPTIONS, PATCH</cors-allowed-methods>
+            </secure-deployment>

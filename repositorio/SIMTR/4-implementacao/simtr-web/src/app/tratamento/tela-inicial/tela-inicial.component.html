@@ -1,0 +1,16 @@
+<cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+    (onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+    (onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+    (onCloseMessageWarning)="onCloseMessageWarning()"></cx-alert-message>
+<section class="col-md-12 corpoFilaTratamento" analytics-page>
+    <aside class="assideLeft">
+        <span *ngFor="let item of macroProcessosOrdPar">
+            <app-box-macroprocesso [macroProcesso]="item"></app-box-macroprocesso>
+        </span>
+    </aside>
+    <aside class="assideRigth">
+        <span *ngFor="let item of macroProcessosOrdImp">
+            <app-box-macroprocesso [macroProcesso]="item"></app-box-macroprocesso>
+        </span>
+    </aside>
+</section>

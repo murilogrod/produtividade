@@ -1,0 +1,38 @@
+<form #formProduto="ngForm" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Vincular Produto</h4>
+        </div>
+        
+        <div class="col-md-12" >
+          
+          <label for="fundacao">Operação:</label>
+          <select class="form-control" id="nome" name="nome" [(ngModel)]="idProdutoSelecionado" (change)="changeProduto()"
+            #nome="ngModel"> 
+            <option value = "" selected>Selecione</option>
+            <option value="{{item.id}}" *ngFor="let item of produtosVinculados">{{item.codigo_operacao}}.{{item.codigo_modalidade}}-{{item.nome}}</option>
+          </select>
+          
+        </div>
+
+        <div class="col-md-12">
+        <formulario-generico [tipoFormulario]="tipoFormulario" [habilitaAlteracao]="true"
+        [hasClienteValido]="true" [campoFormulario]="campoFormulario" [legenda]="'Dados Adicionais'" 
+        [habilitarMenssagem]="habilitarMenssagem"
+        [messageFormularioVazio]="messageFormularioVazio"
+        (formValidacaoChanged)="handleChangeFormValidacao($event)" (camposFormularioChanged)="handleChangeCampoFormulario($event)"></formulario-generico>
+        </div>
+        
+        <div class="modal-footer">
+          <div class="col-md-12" style="padding-top: 15px;">
+              <button id="salvar-vinculo-produto" type="button" class="btn btn-primary" [disabled]="!formDinamicoValido" (click)="confirm()">Salvar</button>
+              <button id="cancelar-vinculo-produto" type="button" class="btn btn-default pull-right" (click)="cancel()">Cancelar</button>
+          </div>
+        </div>
+      
+      
+    </div>
+    </div>
+  </form>
+    

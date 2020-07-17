@@ -1,0 +1,95 @@
+<div ng-controller="ParametrizacaoNivelDocumentalController" style = "margin-left : -30px"
+	analytics-page="Página de Parametrização Nível Documental">
+	
+	<caixa-alert error="error" show="showError" on-close="hideAlert();"></caixa-alert>
+
+     <table  class="col-xs-12 table table-hover table-condensed" id="parametrizacoes" style="margin-top: 12px;"
+     	st-table="listaNiveisParametrizados" st-safe-src="listaSafe">
+         <thead class="dttable" >
+      	  <tr class="theme-main-table-head-row">
+           <th class="text-left">
+             Lista de Níveis Documentais Parametrizados
+           </th>
+           <th>
+             Excluir
+           </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in listaNiveisParametrizados">
+            <td class="text-left" ng-click="carregarRegrasFuncoesDocumentos(item.id);" >{{item.nome}}</td>
+            <td class="text-center" ng-click="apresentarModalExcluirParametrizacao(item.id);"><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+          </tr>
+          <tfoot>
+                 <tr>
+                     <td colspan="3" class="text-center">
+                         <div st-pagination="" st-items-by-page="5" st-displayed-pages="7"></div>
+                     </td>
+                 </tr>
+          </tfoot>
+        </tbody>
+    </table>
+    
+    <div class="dttable col-xs-12">
+   		<i class="glyphicon glyphicon-duplicated"></i>
+        <label>Parametrizar Nível Documental</label>
+    </div>
+     
+    <div class="col-md-12 nome-parametrizacao">
+	    <div class="col-md-12">
+	  		<label class="label-nome-parametrizacao" style="margin-top: 16px;">Nível Documental</label>
+		</div> 
+	
+	
+	   <div class="col-md-12 input-group cmbFuncao">
+
+		     <div angucomplete-alt id="cmbFuncao"
+				 placeholder="Pesquisar Nível Documental"	  							
+				 pause="100"
+				 focus-out="iniciarModalSalvar(this.value)"
+				 selected-object="nomeParametrizacao"
+				 local-data="listaNiveis"
+				 search-fields="nome"
+				 title-field="nome"
+				 minlength="0"
+				 input-class="form-control"
+				 match-class="angucomplete-highlight" >
+			</div>
+    	</div>
+	
+	</div>
+         
+	<div class="col-md-12" style="margin-top: 20px;">
+  		<i class="glyphicon glyphicon-check"></i> 
+  		<span>Selecione as Funções Documentais</span>
+	</div>
+	
+     <div class="theme-main-line-rule" >
+         <hr style="margin-top: 1px;"/>
+     </div>
+
+	<div class="col-md-12">
+		<div class="col-md-6">
+			<label>
+				Funções disponíveis
+			</label>
+		</div>
+		
+		<div class="col-md-6" style="padding-left: 80px">
+			<label>
+				Funções vinculados
+			</label>
+		</div>
+	</div>
+	
+	<div class="col-md-12">
+		<picklist size="5" data-pick-model="listaFuncoesVinculadas" data-pick-options="item.nome for item in listaDocumentosDisponiveis"/>
+	</div> 
+	
+	<div class="col-md-12">
+		<button type='button' ng-click="apresentarModalSalvarParametrizacao()" class='btn btn-primary pull-right' style="margin-top: 20px; margin-bottom: 105px;">Salvar</button>
+		<button type='button' ng-click="limparDados()" class='btn btn-primary pull-right' style="margin-top: 20px; margin-bottom: 105px;">Limpar</button>
+   	 </div>
+	
+</div>
+

@@ -1,0 +1,33 @@
+fieldset {
+    margin-top: 5px !important;
+}
+
+legend {
+    font-size: 15px !important;
+}
+
+.btn-reclassificar, .btn-categorizar {
+    margin-bottom: 10px;
+}
+
+.filtro-global{
+    margin-right: 0px;
+}
+
+
+div.ui-tabview.ui-widget.ui-widget-content.ui-corner-all.ui-tabview-top {
+    margin-right: 20px;
+}
+
+.btn-filtro-apenso-contrato {
+    background-color: #f6822a !important;
+    width: 180px !important;
+    margin-right: 42px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 14px;
+    
+}
+
+
+

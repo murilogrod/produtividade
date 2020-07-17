@@ -1,0 +1,188 @@
+<cx-alert-message id="component-alert-aba-administrar-dossie" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+    [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+    (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+    [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+</cx-alert-message>
+<p-fieldset class="corpoVisualizacaDossieProduto" legend="Vincular Pessoa" [toggleable]="true" *ngIf="exibeVincularPessoa">
+    <app-loader-relativo [ativo]="abaVinculoPresenter.loadingAbaVinculo.countPessoa < clienteLista.length" [posicao]="abaVinculoPresenter.loadingAbaVinculo.countPessoa" [qtdComponent]="clienteLista.length"></app-loader-relativo>
+    <app-loader-relativo 
+      [ativo]="abaVinculoPresenter.loadingAbaVinculo.possuiNovosSocios" 
+      [posicao]="abaVinculoPresenter.loadingAbaVinculo.countSocio" 
+      [qtdComponent]="abaVinculoPresenter.abaVinculo.selectedSociosReceitaFederal.length">
+    </app-loader-relativo>
+    <div class="box-body">
+      <button 
+        id="btn-dossie-cliente-incluir-pessoa" 
+        class="pull-right btn btn-success" 
+        (click)="showModalPessoa(true, null)" 
+        *ngIf="habilitaAlteracao">
+        Incluir Pessoa
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>
+    <div class="box-body">
+      <p-dataTable id="table-pessoa" [value]="clienteLista" [immutable]="false">
+        <span style="display: none;">{{realizarLoad('PESSOA')}}</span>
+        <ng-template pTemplate="emptymessage">
+          Nenhum registro encontrado
+        </ng-template>
+        <p-header>PESSOAS</p-header>
+        <p-column header="Identificador" styleClass="text-center" [style]="{ 'width': '14%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            <a id="a-click-link-dossie-cliente" (click)="linkDossieCliente(item.cpf)" title="Retornar ao dossiê do cliente" *ngIf="item.tipo_pessoa === 'F'">{{item.cpf | kzCpfCnpj}}</a>
+            <a id="a-click-link-dossie-pj" (click)="linkDossieCliente(item.cnpj)" title="Retornar ao dossiê do cliente" *ngIf="item.tipo_pessoa === 'J'">{{item.cnpj | kzCpfCnpj}}</a>
+          </ng-template>
+        </p-column>
+        <p-column header="Nome/Razão Social" styleClass="text-center" [style]="{ 'width': '30%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.nome}}
+          </ng-template>
+        </p-column>
+        <p-column header="Tipo Relacionamento" styleClass="text-center" [style]="{ 'width': '25%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{decideTipoRelacionamento(item.ic_tipo_relacionamento)}}
+          </ng-template>
+        </p-column>
+        <p-column header="Relacionado" styleClass="text-center" [style]="{ 'width': '15%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+              {{mascaraCnpjCpf(item.relacionado)}}
+          </ng-template>
+        </p-column>
+        <p-column header="Sequência" styleClass="text-center" [style]="{ 'width': '10%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.sequencia_titularidade}}
+          </ng-template>
+        </p-column>
+        <p-column header="Ações" styleClass="text-center" [style]="{ 'width': '15%' }">
+          <ng-template let-item="rowData" let-idx="rowIndex" pTemplate="body">
+              <span id="span-apresentar-modal-simtr" class="fa fa-fw fa-search" title="Pesquisar no SIMTR" style="cursor: pointer" (click)="showModalSIMTR(item)"></span>
+              <span id="span-apresentar-modal-sicli" class="fa fa-fw fa-search-plus" title="Pesquisar no SICLI" style="cursor: pointer" (click)="showModalSICLI(item)"></span>
+              <span id="span-apresentar-modal-pessoa" class="fa fa-fw fa-edit" title="Editar vínculo pessoa" *ngIf="(!habilitarBtns(item) && habilitaAlteracao) || naoExisteVinculoPessoaPrincipal" style="cursor: pointer" (click)="showModalPessoa(false, item)"></span>
+              <span id="span-remover-pessoa" class="fa fa-fw fa-trash-o" title="Excluir vínculo pessoa" *ngIf="(!habilitarBtns(item) && habilitaAlteracao)" style="cursor: pointer" (click)="removePessoa(idx,item.cnpj,item.cpf,item.tipo_relacionamento)"></span>
+              <span id="span-declarar-dados" class="fa fa-fw fa-file-text-o" title="Atualizar Dados Declarados" style="cursor: pointer" (click)="showModalDadosDeclarados(item)"></span>
+              <span 
+                id="btn-socios"
+                title="Adcionar Sócios"
+                class="fa icon-receita"
+                (click)="consultarSociosReceitaFederal(item);"
+                *ngIf="item.tipo_pessoa == 'J'">
+              </span>         
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </p-fieldset>
+  
+  <div>
+    <br />
+  </div>
+  <p-fieldset class="corpoVisualizacaDossieProduto" legend="Vincular Produto" [toggleable]="true">
+    <app-loader-relativo [ativo]="abaVinculoPresenter.loadingAbaVinculo.countProduto < abaVinculoPresenter.abaVinculo.produtoLista.length" [posicao]="abaVinculoPresenter.loadingAbaVinculo.countProduto" [qtdComponent]="abaVinculoPresenter.abaVinculo.produtoLista.length"></app-loader-relativo>
+    <div class="box-body">
+      <button 
+        *ngIf="habilitaAlteracao"
+        id="btn-dossie-cliente-incluir-produto" 
+        class="pull-right btn btn-success" 
+        (click)="showModalProduto()"
+        [disabled]="!existeProdutosVisualizacao()"
+        data-toggle="tooltip" 
+        data-placement="top" 
+        [attr.title]="!existeProdutosVisualizacao() ? 'Não existe parametrização de produtos para este processo!' : ''"> 
+        Incluir Produto
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>    
+    <div class="box-body">
+      <p-dataTable id="table-produto" [value]="abaVinculoPresenter.abaVinculo.produtoLista" [immutable]="false">
+        <span style="display: none;">{{realizarLoad('PRODUTO')}}</span>
+        <ng-template pTemplate="emptymessage">
+          Nenhum registro encontrado
+        </ng-template>
+        <p-header>PRODUTOS</p-header>
+        <p-column header="Operação" styleClass="text-center">
+          <ng-template let-p="rowData" pTemplate="body">
+            {{p.codigo_operacao}}
+          </ng-template>
+        </p-column>
+        <p-column header="Modalidade" styleClass="text-center">
+          <ng-template let-p="rowData" pTemplate="body">
+            {{p.codigo_modalidade}}
+          </ng-template>
+        </p-column>
+        <p-column header="Produto" styleClass="text-center">
+          <ng-template let-p="rowData" pTemplate="body">
+            {{p.nome}}
+          </ng-template>
+        </p-column>
+        <p-column header="Ações" styleClass="text-center">
+          <ng-template let-item="rowData" let-idx="rowIndex" pTemplate="body">
+            <span id="span-apresentar-modal-produto" class="fa fa-fw fa-search" title="Mostrar Produto Vínculado" style="cursor: pointer" (click)="showModalProdutoVisualizacao(item)"></span>
+            <span id="span-excluir-vinculo-produto" class="fa fa-fw fa-trash-o" title="Excluir vínculo produto" style="cursor: pointer" (click)="removeProduto(idx, item)" *ngIf="habilitaAlteracao"></span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </p-fieldset>
+  <div>
+    <br />
+  </div>
+  <p-fieldset class="corpoVisualizacaDossieProduto" legend="Vincular Garantia" [toggleable]="true">
+    <app-loader-relativo [ativo]="abaVinculoPresenter.loadingAbaVinculo.countGarantia < abaVinculoPresenter.abaVinculo.garantias.length" [posicao]="abaVinculoPresenter.loadingAbaVinculo.countGarantia" [qtdComponent]="abaVinculoPresenter.abaVinculo.garantias.length"></app-loader-relativo>
+    <div class="box-body">
+      <button
+        *ngIf="habilitaAlteracao"
+        id="btn-vinculo-incluir-garantia" 
+        class="pull-right btn btn-success" 
+        (click)="showModalGarantia()"
+        [disabled]="!existeGarantiasVisualizacao()"
+        data-toggle="tooltip" 
+        data-placement="top" 
+        [attr.title]="!existeGarantiasVisualizacao() ? 'Não existe parametrização de garantias para este processo!' : ''"> 
+        Incluir Garantia
+        <span class="fa fa-plus"></span>
+      </button>
+    </div>    
+    <div class="box-body">
+      <p-dataTable id="table-garantia" [value]="abaVinculoPresenter.abaVinculo.garantias" [immutable]="false">
+        <span style="display: none;">{{realizarLoad('GARANTIA')}}</span>
+        <ng-template pTemplate="emptymessage">
+          Nenhum registro encontrado
+        </ng-template>
+        <p-header>GARANTIAS</p-header>      
+        <p-column header="Código Garantia" styleClass="text-center" [style]="{ 'width': '13%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.codigo_bacen}}
+          </ng-template>
+        </p-column>   
+        <p-column header="Código Produto" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.operacao}}-{{item.produto_modalidade}}-{{item.produto_nome}}
+          </ng-template>
+        </p-column>
+        <p-column header="Nome" styleClass="text-center">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.nome}}
+          </ng-template>
+        
+        </p-column>
+  
+        <p-column header="Pessoa">
+          <ng-template let-item="rowData" pTemplate="body">
+            {{item.relacionado}}
+          </ng-template>      
+        </p-column>
+  
+        <p-column header="Valor" styleClass="text-center" [style]="{ 'width': '15%' }">
+          <ng-template let-item="rowData" pTemplate="body">
+            R$: {{formatValor(item.valor_garantia)}}
+          </ng-template>
+        </p-column>
+        <p-column header="Ações" styleClass="text-center" [style]="{ 'width': '8%' }">
+          <ng-template let-item="rowData" let-idx="rowIndex" pTemplate="body">
+            <span id="span-apresentar-modal-garantia" class="fa fa-fw fa-search" title="Mostrar Garantia Vínculada" style="cursor: pointer" (click)="showModalGarantiaVisualizacao(item)"></span>
+            <span id="span-vinculo-excluir-garantia" class="fa fa-fw fa-trash-o" title="Excluir ví­nculo garantia" style="cursor: pointer" (click)="removeGarantia(idx)" *ngIf="habilitaAlteracao"></span>
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </p-fieldset>

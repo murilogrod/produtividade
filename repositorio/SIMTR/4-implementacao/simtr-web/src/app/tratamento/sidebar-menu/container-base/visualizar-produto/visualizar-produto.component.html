@@ -1,0 +1,18 @@
+<p-fieldset  class="cabecalho-dossie" [collapsed]="collapsed" [toggleable]="true">
+    <p-header>
+        <div class="titulo-container" pTooltip="{{produtoVinculado.nome}}">{{produtoVinculado.nome}}</div>
+    </p-header>
+    <ul class="list-group">
+      <li class="list-group-item">
+          <span class="label-visualizacao">Código do Produto</span><br/>
+          <span class="conteudo-visualizacao">{{produtoVinculado.codigo_operacao}}</span>
+      </li>
+      <li class="list-group-item">
+        <formulario-resposta-generico
+          [respostasCampoFormulario]="respostaCampoFormulario"
+          [titulo]="'Dados Adicionais'"
+          [dossieProduto]="dossieProduto">
+      </formulario-resposta-generico>
+      </li>
+    </ul>    
+  </p-fieldset>

@@ -1,0 +1,212 @@
+
+<!--
+					Aqui são definidos o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas armazenadas na pasta pages										
+					-->
+<div class="theme-main"
+	ng-controller="DigitalizacaocomprendafechadoController"
+	analytics-page="Página digitalização com Renda Fechado" ng-init = "validaCamposObrigatorios();">
+
+	<!-- 
+		<doc-modal titulo="Visualizar">
+			<img src="data:{{currentDocument.mimeType}};base64,{{currentDocument.image}}" alt="Comprovante de Renda" style="max-width: 700px;">	
+		</doc-modal>  	
+     -->
+
+    <bread-crumb activeurl="activeurl" breadcrumb="breadcrumb"></bread-crumb>
+
+	<!-- titulo -->
+	<div class="dttable">
+		<div class="dttitle">
+			{{ 'label.resultado.da.digitalizao.de.documentos' | translate}} <span
+				class="pull-right"> <span
+				class="glyphicon glyphicon-credit-card"></span> {{
+				'label.documento.de.renda' | translate}}
+			</span>
+		</div>
+	</div>
+
+	<div class="dtblock">
+		<a ng-click="openPDF()" data-toggle="collapse" data-target="#renda"
+			class="iconenable">{{ 'label.documento.de.renda' | translate}}</a> <span
+			class="pull-right"> <a ng-click="openPDF()"
+			data-toggle="collapse" data-target="#renda" class="iconenable"> <span
+				class="glyphicon glyphicon-pushpin"></span> {{
+				'label.exibir.documento' | translate}}
+		</a>
+		</span>
+	</div>
+
+	<div id="renda" class="collapse">
+		<img
+			ng-src = "{{imgRenda}}"
+			alt="Comprovante de Renda" style="max-width: 700px;">
+	</div>
+
+	<caixa-alert error="error" show="showError" on-close="hideAlert();"></caixa-alert>
+
+	<form novalidate name="formComprovanteRenda" ng-submit="updateData()" class = "was-validated" >
+		<div class="col-sm-6 theme-main-input-{{item.key}} {{item.key}} {{getClasseValidacaoOnLoad(item)}}" ng-repeat="item in container">
+			<div class="form-group">
+				<label class="label-{{item.key}}" ng-if = "!item.hidden && item.tooltip">{{item.name}}</label> 
+				<label class="label-{{item.key}}" ng-if = "!item.hidden && !item.tooltip">{{item.name}}</label> 
+				
+			    <div class="input-group" style="width : 100%">
+			    
+					<input id="input-{{item.key}}" type="text" ng-if="item.data && item.key != 'descricao_ocupacao' && !item.hidden && item.tooltip" onkeypress="mascaraData(this);" ng-change="validarPercentualMudanca(this, $index);"
+						ng-blur = "checkField(this, true);" ng-model="item.value" class="form-control text-box single-line valid" title="{{ 'label.informe.o.nome.da.cidade' | translate}}"
+							name='{"data": {{item.data | json}}, "name": {{item.key | json}}, "error": {{item.error | json}}, "msgdata": {{item.msgdata | json}}, "alteracaolimite": {{item.alteracaolimite | json}}}'
+								required /> 
+					<input id="input-{{item.key}}" type="text" ng-if="!item.data && item.key != 'descricao_ocupacao' && !item.hidden && item.tooltip" ng-disabled = "isDesabilitar(item)"	
+						ng-blur = "checkField(this, false);" ng-change="validarPercentualMudanca(this, $index)"
+							ng-model="item.value" class="form-control text-box single-line valid" title="{{ 'label.informe.o.nome.da.cidade' | translate}}"
+								name='{"data": {{item.data | json}}, "name": {{item.key | json}}, "error": {{item.error | json}}, "alteracaolimite": {{item.alteracaolimite | json}}}'
+									required />
+									
+					<input id="input-{{item.key}}" type="text" ng-if="item.data && item.key != 'descricao_ocupacao' && !item.hidden && !item.tooltip" onkeypress="mascaraData(this);"
+						ng-change="validarPercentualMudanca(this, $index);" ng-blur = "checkField(this, true);"
+							ng-model="item.value" class="form-control" title="{{ 'label.informe.o.nome.da.cidade' | translate}}"
+								name='{"data": {{item.data | json}}, "name": {{item.key | json}}, "error": {{item.error | json}}, "msgdata": {{item.msgdata | json}}, "alteracaolimite": {{item.alteracaolimite | json}}}'
+									required /> 
+					
+					<input id="input-{{item.key}}" type="text" ng-if="!item.data && item.key != 'descricao_ocupacao' && !item.hidden && !item.tooltip"
+						ng-disabled = "isDesabilitar(item)"	ng-blur = "checkField(this, false);"	ng-change="validarPercentualMudanca(this, $index)"
+							ng-model="item.value" class="form-control"	title="{{ 'label.informe.o.nome.da.cidade' | translate}}"
+							name='{"data": {{item.data | json}}, "name": {{item.key | json}}, "error": {{item.error | json}}, "alteracaolimite": {{item.alteracaolimite | json}}}'
+								required />									
+				    	
+  			        <div id="input-{{item.key}}" angucomplete-alt id="ex1" 
+  			         ng-if = "item.key == 'descricao_ocupacao' && !item.hidden && item.tooltip"
+					 placeholder="Pesquisar Ocupações"	  							
+					 pause="100"
+					 selected-object="ocupacaoSelected"
+					 initial-value = "ocupacaoEncontrada"
+					 local-data="listaProfissoes"
+					 search-fields="nome"
+					 title-field="nome"
+					 minlength="0"
+					 disable-input = "isDisableOcupacao"
+					 input-changed="setOcupacao(ocupacaoSelected)" 
+					 input-class="form-control campoOcupacao"
+					 match-class="angucomplete-highlight" />
+					 
+					
+	   			    <div id="input-{{item.key}}" angucomplete-alt id="ex1"
+	 			     ng-if = "item.key == 'descricao_ocupacao' && !item.hidden && !item.tooltip"
+					 placeholder="Pesquisar Ocupações"	  							
+					 pause="100"
+					 selected-object="ocupacaoSelected"
+					 initial-value = "ocupacaoEncontrada"
+					 local-data="listaProfissoes"
+					 search-fields="nome"
+					 title-field="nome"
+					 minlength="0"
+					 disable-input = "isDisableOcupacao"
+					 input-changed="setOcupacao(ocupacaoSelected)" 
+					 input-class="form-control campoOcupacao"
+					 match-class="angucomplete-highlight" />					 
+					 
+				    <div id="div-tooltip-{{item.key}}" class="input-group-btn" ng-if="item.data && item.key != 'descricao_ocupacao' && !item.hidden && item.tooltip">
+				        <button id="btn-tooltip-{{item.key}}" class="btn btn-default" style="height: 34px;"
+				        	type="button" data-placement="top" title="{{item.dica}}" onmouseenter="$(this).tooltip('show')">
+				        	<i class="glyphicon glyphicon-question-sign"></i>
+				        </button>
+				    </div>
+				    
+				    <div id="div-tooltip-{{item.key}}" class="input-group-btn" ng-if="!item.data && item.key != 'descricao_ocupacao' && !item.hidden && item.tooltip">
+				        <button id="btn-tooltip-{{item.key}}" class="btn btn-default" style="height: 34px;"
+				        	type="button" data-placement="top" title="{{item.dica}}" onmouseenter="$(this).tooltip('show')">
+				        	<i class="glyphicon glyphicon-question-sign"></i>
+				        </button>
+				    </div>	
+				    
+			        <div id="div-tooltip-{{item.key}}" class="input-group-btn" ng-if="item.data && item.key == 'descricao_ocupacao' && !item.hidden && item.tooltip">
+				        <button id="btn-tooltip-{{item.key}}" class="btn btn-default" style="height: 34px;"
+				        	type="button" data-placement="top" title="{{item.dica}}" onmouseenter="$(this).tooltip('show')">
+				        	<i class="glyphicon glyphicon-question-sign"></i>
+				        </button>
+			        </div>	
+			        
+			        <div id="div-tooltip-{{item.key}}" class="input-group-btn" ng-if="!item.data && item.key == 'descricao_ocupacao' && !item.hidden && item.tooltip">
+				        <button id="btn-tooltip-{{item.key}}" class="btn btn-default" style="height: 34px;"
+				        	type="button" data-placement="top" title="{{item.dica}}" onmouseenter="$(this).tooltip('show')">
+				        	<i class="glyphicon glyphicon-question-sign"></i>
+				        </button>
+			        </div>						 
+					 				    
+			    </div>
+				<input type = "hidden" ng-if = "item.hidden" name='{"data": {{item.data | json}}, "name": {{item.key | json}}, "error": {{item.error | json}}, "msgdata": {{item.msgdata | json}}, "alteracaolimite": {{item.alteracaolimite | json}}}'>													    
+			</div>
+		</div>
+			
+			<!-- id:rule - name:Separador (hr) -->
+			<div
+				ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impress�o","icon":"fa fa-print","id":"printer","check":true}])'>
+				<!-- elemento Separador -->
+				<div class="theme-main-line-rule">
+					&nbsp;
+					<hr />
+				</div>
+			</div>
+
+			<div class="row">
+				<button id="btnContinuar" type="submit"
+					class="btn btn-blue pull-right" ng-disabled="!isContinuar();"
+					loading="{{'label.processando' | translate}}"
+					placeholder="{{ 'label.clique.aqui.para.continuar' | translate}}"
+					title="{{ 'label.clique.aqui.para.continuar' | translate}}">
+					{{'label.continuar' | translate}}</button>
+				<button type="button" class="btn btn-blue pull-right"
+					ng-click="apresentarModalCancelarAtendimento();"
+					loading="{{'label.processando' | translate}}"
+					placeholder="{{ 'label.clique.aqui.para.cancelar.atendimento' | translate}}"
+					title="{{ 'label.clique.aqui.para.cancelar.atendimento' | translate}}">
+					{{'label.cancelar.atendimento' | translate}}</button>
+				<button type="button" class="btn btn-orange pull-right"
+					ng-click="goBack()" loading="{{'label.processando' | translate}}"
+					placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}"
+					title="{{ 'label.clique.aqui.para.voltar' | translate}}">
+					{{'label.voltar' | translate}}</button>
+			</div>
+
+		<div class="coluna-direita col-xs-12 col-sm-2 col-md-2" />
+		<br>&nbsp; <br>&nbsp;
+	</form>
+</div>
+
+<div id="modalCancelar"  ng-controller="DigitalizacaocomprendafechadoController" class="modal fade" role="dialog" style="padding-left: 17px">
+	 <div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+			    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="dismissDialog()">
+			        <span aria-hidden="true">&times;</span>
+			    </button>
+			    <h4 class="modal-title">{{ 'titulo.cancelar.atendimento' | translate}}
+			    </h4>
+			</div>
+			<div class="modal-body" style="text-align: center;">
+				<label>{{ 'label.deseja.cancelar.atendimento' |	translate}}</label>
+	
+			</div>
+			<div class="modal-footer">
+				<button type='button' class='btn btn-danger' data-dismiss="modal" ng-click="cancelarAtend()">
+			        <i class='fa fa-close'></i>&nbsp;Cancelar Atendimento
+			    </button>
+			    <button type='button' class='btn btn-primary' data-dismiss="modal" ng-click="closeDialog()">
+			        <i class='fa fa-check'></i>&nbsp;Fechar
+			    </button>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<script>
+$('.wizard li').click(function() {
+	 $(this).prevAll().addClass("completed");
+	  $(this).nextAll().removeClass("completed")
+
+	});
+</script>

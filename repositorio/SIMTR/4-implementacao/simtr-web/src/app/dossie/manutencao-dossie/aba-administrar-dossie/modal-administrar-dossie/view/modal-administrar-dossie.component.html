@@ -1,0 +1,53 @@
+<div class="modal-dialog">
+  <div class="modal-content destaque">
+      <div class="form-group">
+          <label class="col-sm-11 control-label espaco-top-3 fonte-title">{{administrarDossieComponentPresenter.abaAdministrarDossie.title}}</label>
+          <div class="col-sm-1 espaco-top-2">
+              <button type="button" class="close" (click)="fechar();">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      </div>   
+      <div class="panel panel-default">
+          <div class="panel-body">
+              <label>{{administrarDossieComponentPresenter.abaAdministrarDossie.details}}</label>
+              <br *ngIf="administrarDossieComponentPresenter.abaAdministrarDossie.viewSituations"/>
+              <label *ngIf="administrarDossieComponentPresenter.abaAdministrarDossie.viewSituations">
+                  {{administrarDossieComponentPresenter.abaAdministrarDossie.situations}}
+              </label>
+              <div *ngIf="dossieProduto.tipoAdministracaoDossie == 'NOVA_SITUACAO'">
+                  <div class="form-group" [class.has-error]="!razaoInclusao.valid && razaoInclusao.touched">
+                    <textarea #razaoInclusao="ngModel"
+                        class="textoNovaInclusao"
+                        (ngModelChange)="disabledConfirmButton($event)"
+                        required 
+                        maxlength="300" 
+                        [(ngModel)]="administrarDossieComponentPresenter.abaAdministrarDossie.razaoInclusaoSituacao"
+                        kzCountCharacters="300">
+                    </textarea>
+                  </div>
+                  <div *ngIf="!razaoInclusao.valid && razaoInclusao.touched" class="error">
+                      É necessário informar uma observação
+                  </div>
+              </div>              
+          </div>
+          <div class="panel-footer">
+            <button *ngIf="dossieProduto.tipoAdministracaoDossie == 'NOVA_SITUACAO'" type="button"
+                [disabled]="administrarDossieComponentPresenter.abaAdministrarDossie.viewConfirmButton"
+                (click)="confirmarRequisicao();"
+                class="btn btn-primary pull-right">Confirmar
+                <span class="fa fa-check"></span>
+            </button>  
+            <button *ngIf="dossieProduto.tipoAdministracaoDossie !== 'NOVA_SITUACAO'" type="button"
+                (click)="confirmarRequisicao();"
+                class="btn btn-primary pull-right">Confirmar
+                <span class="fa fa-check"></span>
+            </button>              
+            <button type="button" (click)="fechar();"
+                class="btn btn-secondary button-gray pull-right">Cancelar
+                <span class="fa fa-times"></span>
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

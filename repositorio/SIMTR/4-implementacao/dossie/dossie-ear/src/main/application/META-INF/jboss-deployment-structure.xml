@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.1">
+	<ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+	<sub-deployment name="dossie-ejb.jar">
+		<dependencies>
+		    <module name="org.json" />
+		    <module name="javax.ws.rs.api" />
+		    <module name="org.jboss.resteasy.resteasy-jaxrs" />
+		    <module name="org.jboss.ws.api" />
+		    <module name="javax.ws.rs.api" />
+		</dependencies>
+	</sub-deployment>	
+	<sub-deployment name="dossie-web.war">
+		<dependencies>
+			<module name="org.json" />
+			<module name="javax.ws.rs.api" />
+			<module name="org.jboss.resteasy.resteasy-jaxrs" />
+		    <module name="org.jboss.ws.api" />
+		    <module name="javax.ws.rs.api" />
+		</dependencies>
+	</sub-deployment>
+</jboss-deployment-structure>

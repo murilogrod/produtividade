@@ -1,0 +1,121 @@
+<div class="panel panel-default crud-align margem">
+  <div class="panel-heading crud-style">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="input-group pull-left" style="width: 30%">
+            <input pInputText type="text" class="form-control" #globalFilter
+              (input)="dataApontamentos.filterGlobal($event.target.value, 'contains')" placeholder="Filtro Global">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </span>
+        </div> 
+        <div class="pull-right">
+          <button type="button" class="btn btn-primary" [disabled]="disabledApontamentos"
+            (click)="abrirModalApontamento(-1, undefined);">Novo Apontamento
+              <span class="fa fa-plus"></span>
+          </button>
+        </div>
+    </nav> 
+  </div>
+</div> 
+<div class="row">
+  <div class="col-md-12">
+      <p-table #dataApontamentos [columns]="apontamentosPresenter.apontamentos.configTableColsApontamentos" class="crud-table"  (onFilter)="onFilter($event, globalFilter)"
+      [paginator]="true" [rows]="15" [responsive]="true" (sortFunction)="realizarOrdenacao($event)" (onRowReorder)=reordenarApontamentos($event) 
+        [reorderableColumns]="true" [rowsPerPageOptions]="apontamentosPresenter.apontamentos.rowsPerPageOptions" [responsive]="true" 
+          scrollable="true" scrollHeight="500px" [customSort]="true" [value]="apontamentosPresenter.apontamentos.apontamentos">
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+              <td [attr.colspan]="columns.length">
+                  Nenhum apontamento encontrado
+              </td>
+          </tr>
+        </ng-template>   
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <ng-template ngFor let-col [ngForOf]="columns">
+                <ng-container [ngSwitch]="col.field">
+                  <ng-container *ngSwitchCase="'acoes'">
+                      <th class="{{col.class}}">
+                          {{col.header}}
+                      </th>                       
+                  </ng-container>  
+                  <ng-container *ngSwitchCase="'reorder'">
+                      <th class="{{col.class}}">
+                          <i class="fa fa-bars" 
+                            pReorderableRowHandle 
+                            tooltipPosition="top" 
+                            pTooltip="A ordem dos apontamentos pode ser alterado usando o recurso de arrastar e soltar.">
+                          </i>
+                      </th>                       
+                  </ng-container>                                                            
+                  <ng-container *ngSwitchDefault>
+                      <th class="{{col.class}}" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+                      </th>                      
+                  </ng-container>
+                </ng-container>
+            </ng-template> 
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-apontamento let-columns="columns" let-index="rowIndex">
+            <tr [pReorderableRow]="index">
+                <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                    <ng-container *ngSwitchCase="'reorder'">
+                        <i class="fa fa-bars" pReorderableRowHandle></i>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'acoes'">
+                        <span 
+                            *ngIf="!disabledApontamentos"
+                            class="fa fa-fw fa-edit" 
+                            tooltipPosition="top" 
+                            pTooltip="Editar Apontamento"
+                            (click)="abrirModalApontamento(index, apontamento);"
+                            style="cursor: pointer">
+                        </span>
+                        <span 
+                            *ngIf="disabledApontamentos"
+                            style="opacity: 0.8;"
+                            class="fa fa-fw fa-edit">
+                        </span>                        
+                        <span 
+                            *ngIf="!disabledApontamentos"
+                            class="fa fa-fw fa-trash" 
+                            tooltipPosition="top" 
+                            (click)="removerApontamento(index, apontamento);"
+                            pTooltip="Remover Apontamento"
+                            style="cursor: pointer">
+                        </span> 
+                        <span 
+                            *ngIf="disabledApontamentos"
+                            style="opacity: 0.8;"
+                            class="fa fa-fw fa-trash">
+                        </span>                                                                          
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'nome'">
+                      <div class="apontamento capitalize" tooltipPosition="top" pTooltip="{{apontamento[col.field]}}">
+                        {{apontamento[col.field] != undefined ? apontamento[col.field] : '-'}}
+                      </div>
+                    </ng-container>                                                   
+                    <ng-container *ngSwitchDefault>
+                      <ng-container *ngIf="col.boolean">
+                        {{apontamento[col.field] ? 'Sim' : 'Não'}}
+                      </ng-container>
+                      <ng-container *ngIf="!col.boolean">
+                        {{apontamento[col.field] != undefined ? apontamento[col.field] : '-'}}
+                      </ng-container>
+                    </ng-container>                          
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <ng-container *ngIf="apontamentosPresenter.apontamentos.filteredRecords == 0">
+                Total: {{apontamentosPresenter.apontamentos.apontamentos.length}} apontamento(s).
+            </ng-container>
+            <ng-container *ngIf="apontamentosPresenter.apontamentos.filteredRecords > 0">
+                Total: {{apontamentosPresenter.apontamentos.filteredRecords}} de {{apontamentosPresenter.apontamentos.apontamentos.length}}.
+          </ng-container>                            
+        </ng-template>
+      </p-table>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+  <div class="modal-dialog">
+    <div class="modal-content destaque">
+        <div class="form-group">
+            <label class="col-sm-11 control-label espaco-top-3 fonte-title">Cadastramento de Senha do SSO (Single Sign ON)</label>
+            <div class="col-sm-1 espaco-top-2">
+                <button type="button" class="close" (click)="fechar();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>   
+      <form #ssoUserForm="ngForm">            
+        <div class="panel panel-default">
+            <div class="panel-heading">Senha SSO (Autenticação a sistemas externos)</div>
+            <div class="panel-body">
+                <div class="form-group has-error" *ngIf="!userSSOComponentPresenter.emptyDataNascimento()">
+                    <div class="error">
+                        Para criar um usuário no SSO é obrigatório o preenchimento da data de nascimento.
+                    </div>            
+                </div>                
+                <div class="form-group" [class.has-error]="((!email.valid && email.touched) || (email.errors && email.errors.email))">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" #email="ngModel" required email
+                        [disabled]="!userSSOComponentPresenter.emptyDataNascimento()"
+                            placeholder="email@provedor.com" [(ngModel)]="userSSOComponentPresenter.userSSOModel.email">
+                    <div *ngIf="email.touched && email.errors && email.errors.required" class="error">
+                        Email obrigatório.
+                    </div>  
+                    <div *ngIf="email.errors && email.errors.email" class="error">
+                        Email inválido.
+                    </div>                     
+                </div> 
+                <div class="form-group">
+                    <label class="pull-right">Senha deve conter somente números: [0-9]</label> 
+                </div>                               
+                <div class="form-group" [class.has-error]="!password.valid && password.touched">
+                    <label for="password">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" #password="ngModel" required
+                    [disabled]="!userSSOComponentPresenter.emptyDataNascimento()"
+                      [(ngModel)]="userSSOComponentPresenter.userSSOModel.password" minlength="4" maxlength="6" pKeyFilter="int">
+                      <div *ngIf="password.touched && password.errors && password.errors.required" class="error">
+                          Senha obrigatória.
+                      </div>
+                      <div *ngIf="password.touched && password.errors && password.errors.minlength" class="error">
+                          Sua senha deve conter no mínimo 4 numeros e no maximo 6 números.
+                      </div>                                               
+                  </div>
+                  <div class="form-group" [class.has-error]="!confirmpassword.valid && confirmpassword.touched">
+                      <label for="confirma-senha">Confirma Senha</label>
+                      <input type="password" class="form-control" id="confirma-senha" minlength="4" maxlength="6"
+                      [disabled]="!userSSOComponentPresenter.emptyDataNascimento()"
+                        name="confirmaSenha" #confirmpassword="ngModel" required pattern="{{password.value}}" pKeyFilter="int"
+                          [(ngModel)]="userSSOComponentPresenter.userSSOModel.confirmpassword">
+                      <div *ngIf="confirmpassword.touched && confirmpassword.errors && confirmpassword.errors.required" class="error">
+                          Confirma a senha é obrigatório.
+                      </div>    
+                      <div *ngIf="confirmpassword.touched && confirmpassword.errors && confirmpassword.errors.pattern" class="error"> 
+                          Senha e confirma senha não concidem.
+                      </div>                                                                    
+                  </div>
+            </div>
+            <div class="panel-footer">
+              <button id="modal-sso-user-btn-enviar" type="button" [disabled]="!ssoUserForm.valid || !userSSOComponentPresenter.emptyDataNascimento()"
+                  class="btn btn-primary pull-right" (click)="enviarDados()">Enviar</button>  
+              <button id="modal-sso-user-btn-enviar" type="button" (click)="fechar();"
+                  class="btn btn-secondary button-gray pull-right">Cancelar</button>
+            </div>
+        </div>
+      </form>     
+    </div>
+  </div>

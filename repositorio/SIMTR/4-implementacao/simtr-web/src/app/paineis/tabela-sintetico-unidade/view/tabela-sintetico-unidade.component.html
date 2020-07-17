@@ -1,0 +1,75 @@
+<div id="analitico">
+    <div class="panel panel-default crud-align">
+        <div class="panel-heading crud-style">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="input-group pull-rigth" style="width: 30%">
+                    <input pInputText type="text" class="form-control" placeholder="Filtro Global" #globalFilter
+                        (input)="filtroSinteticoPorUnidade($event.target.value, dataSinteticoUnidade);">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </span>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p-table #dataSinteticoUnidade [columns]="tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.columns"
+            (onFilter)="onFilter($event, globalFilter)" class="crud-table" [paginator]="true" [rows]="15"
+            [responsive]="true" (sortFunction)="realizarOrdenacao($event)" scrollHeight="500px" [customSort]="true"
+            [rowsPerPageOptions]="tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.rowsPerPageOptions"
+            scrollable="true" [value]="tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.falhaJBPMs">
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td [attr.colspan]="columns.length">
+                        Nenhuma falha jBPM encontrado por unidade
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <ng-template ngFor let-col [ngForOf]="columns">
+                        <ng-container [ngSwitch]="col.field">
+                            <ng-container *ngSwitchCase="'acoes'">
+                                <th class="{{col.class}}">
+                                    {{col.header}}
+                                </th>
+                            </ng-container>
+                            <ng-container *ngSwitchDefault>
+                                <th class="{{col.class}}" *ngIf="col.tooltip" tooltipPosition="top"
+                                    pTooltip="{{col.msg}}" [pSortableColumn]="col.field">
+                                    {{col.header}}
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                </th>
+                                <th class="{{col.class}}" *ngIf="!col.tooltip" [pSortableColumn]="col.field">
+                                    {{col.header}}
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                </th>
+                            </ng-container>
+                        </ng-container>
+                    </ng-template>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-sinteticoUnidade let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                        <ng-container *ngSwitchDefault>
+                            {{sinteticoUnidade[col.field] ? sinteticoUnidade[col.field] : '-'}}
+                        </ng-container>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <ng-container
+                    *ngIf="tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.falhaJBPMs.length > 0 && tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.filteredRecords == 0
+                                 && tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.totalRecords == tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.falhaJBPMs.length">
+                    Total: {{tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.falhaJBPMs.length}} Unidade
+                </ng-container>
+                <ng-container
+                    *ngIf="tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.falhaJBPMs.length > 0 && tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.filteredRecords > 0">
+                    Total: {{tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.filteredRecords}} de
+                    {{tabelaSinteticoUnidadeComponentPresenter.tabelaSinteticoUnidade.totalRecords}}.
+                </ng-container>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

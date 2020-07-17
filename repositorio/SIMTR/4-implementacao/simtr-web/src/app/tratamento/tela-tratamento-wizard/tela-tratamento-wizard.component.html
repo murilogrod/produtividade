@@ -1,0 +1,12 @@
+<div id="corpWizard" class="col-md-12 corpWizard">
+    <div class="wizardcrumb flat">
+        <div class="wizardcrumb flat">
+            <a *ngFor="let lst of listaFase; let idx = index" (click)="selecionaEtapa(lst.id)" id="etapa{{lst.id}}" name ="position_{{idx}}" href="javascript:void(0)" [ngClass]="{'classAtiva' : (processoAtivo == lst.id), 'active': (idProcessoFase == lst.id), 'faseConsulta' : (processoAtivo != lst.id && idx < posicaoFase), 'ativoSeta': (processoAnterior == lst.id)}" [ngStyle]="{'width': larguraWizard}">
+                <div class="internoWirzard">
+                    <label class="centralizador"></label>
+                    <label>{{lst.nome}}</label>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

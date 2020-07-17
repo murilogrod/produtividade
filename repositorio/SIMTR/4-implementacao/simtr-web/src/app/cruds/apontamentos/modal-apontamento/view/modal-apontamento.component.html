@@ -1,0 +1,111 @@
+<div class="modal-dialog modal-lg">
+  <p-growl></p-growl>
+  <div class="modal-content">
+    <div class="form-group">
+      <div class="col-sm-1 pull-right">
+        <button type="button" class="close" (click)="fechar();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading label-title-header-modal">Apontamento</div>
+      <div class="panel-body">
+        <div class="crud-container">
+          <form #apontamentoForm="ngForm">
+            <div class="row">
+              <div class="form-group col-md-12" [class.has-error]="validarNomeApontamento(nome, modalApontamentoPresenter.modalApontamento.ocorrenciaApontamento)">
+                <label for="nome" class="crud-label-title-form">Nome *</label>
+                <input class="form-control" id="nome" name="nome" (change)="validarOcorrenciaNomeApontamento()"
+                  [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.nome" required autofocus
+                  placeholder="Nome do Apontamento" required #nome="ngModel">
+                <validation-form-message 
+                  [control]="nome" 
+                  error="required" 
+                  text="Nome é obrigatório">
+                </validation-form-message>
+                <div *ngIf="modalApontamentoPresenter.modalApontamento.ocorrenciaApontamento" class="error">
+                  Apontamento já adicionado
+                </div>               
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="orientacao_operador" class="crud-label-title-form">Orientação Operador</label>
+                <div id="div-orientacao_operador">
+                  <textarea id="orientacao_operador" name="orientacao_operador" style="width: 100%;"
+                    [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.orientacao_operador"
+                    #orientacao_operador="ngModel" rows="4" cols="59" maxlength="500" kzCountCharacters="500">
+                    </textarea>
+                </div>
+              </div>
+            </div>            
+            <div class="row">
+              <div class="form-group col-md-12"
+                [class.has-error]="(unidade.dirty && unidade.errors && unidade.errors.required)">
+                <label for="descricao" class="crud-label-title-form">Orientação Unidade *</label>
+                <div id="div-descricao">
+                  <textarea id="unidade" name="unidade" style="width: 100%;" required
+                    [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.descricao" #unidade="ngModel"
+                    rows="4" cols="59" maxlength="500" kzCountCharacters="500">
+                    </textarea>
+                </div>
+                <validation-form-message [control]="unidade" error="required" text="Descrição da unidade é obrigatório">
+                </validation-form-message>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="informacao" class="crud-label-title-form">Informação</label>
+                <div>
+                  <label class="switch">
+                    <input class="contato-select form-control" name="informacao" type="checkbox" (change)="validarPendenciaInformacao();"
+                      [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.pendencia_informacao">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="rejeicao" class="crud-label-title-form">Rejeição</label>
+                <div>
+                  <label class="switch">
+                    <input class="contato-select form-control" name="rejeicao" type="checkbox"
+                      [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.rejeicao_documento">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="seguranca" class="crud-label-title-form">Segurança</label>
+                <div>
+                  <label class="switch">
+                    <input class="contato-select form-control" name="seguranca" type="checkbox" (change)="validarPendenciaSeguranca();"
+                      [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.pendencia_seguranca">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="ordem" class="crud-label-title-form">Ordem</label>
+                <p-spinner id="ordem" name="ordem"
+                  [(ngModel)]="modalApontamentoPresenter.modalApontamento.apontamento.sequencia_apresentacao"
+                  pKeyFilter="int" [min]="1" [max]="300">
+                </p-spinner>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="panel-footer" style="height: 55px;">
+        <button id="clonar" type="button"
+          class="btn btn-secondary pull-left" (click)="fechar()">Cancelar
+          <span class="fa fa-close"></span>
+        </button>          
+        <button id="clonar" type="button" (click)="adicionarApontamento();" [disabled]="!apontamentoForm.valid || modalApontamentoPresenter.modalApontamento.pendenciaInformacaoSeguranca"
+          class="btn btn-primary pull-right">{{modalApontamentoPresenter.modalApontamento.editar ? 'Modificar' : 'Adicionar'}}
+          <span class="fa fa-plus"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

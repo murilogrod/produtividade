@@ -1,0 +1,15 @@
+.label-crud-header-title-form {
+    font-size: 20px;
+    font-family: 'Source Sans Pro' ,sans-serif;
+    color: #0c4477;
+}
+
+.label-crud-header-value-form {
+    font-size: 20px;
+    font-family: 'Source Sans Pro' ,sans-serif;
+    color: gray;
+}
+
+.dark-blue {
+    color: #0c4477;
+}

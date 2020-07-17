@@ -1,0 +1,58 @@
+<p-fieldset *ngIf="(listCheckListPrevioApresentacao.length > 0 || singleExpandAllDocuments);" [ngClass]="{'cabecalho-doc': true , destaqueAmarelo: verificarCkelistFasePrevia(listaDocumentoObrigatorio)}" [toggleable]="true">
+    <p-header>
+        <div class="titulo-container">Checklist Previa</div>
+    </p-header>
+    <div id="corpoVisualizadorChecklist">
+        <div *ngFor="let currentCheck of listCheckListPrevioApresentacao; let idx = index">
+            <div class = "panel panel-default">
+                <div class = "panel-check-list-fase"></div>
+                <ul class = "list-group">
+                    <li class = "list-item-inline" [ngSwitch]="existeIncomformidadeDoc(currentCheck)">
+                        <a *ngSwitchCase="3" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="2" class="doc-nao-tratado" title="Não verificado"  (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="1" class="doc-rejeitado" title="Rejeitado"  (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="0" class="doc-conforme" title="Conforme" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div *ngIf="listCheckListPrevioApresentacao.length == 0 && singleExpandAllDocuments">
+            <ul class = "list-group">
+                <li class = "list-item-inline panel-title">
+                    Não houve associação de documento
+                </li>
+            </ul>              
+        </div>        
+    </div>
+</p-fieldset>
+<p-fieldset *ngIf="((showCheckListFase() && listCheckListApresentacao.length > 0) || singleExpandAllDocuments);" [ngClass]="{'epacamentoTop' : true,'cabecalho-doc': true , destaqueAmarelo: verificarCkelistFase(listaDocumentoObrigatorio)}" [toggleable]="true">
+    <p-header>
+        <div class="titulo-container">Checklist da Fase</div>
+    </p-header>
+    <div style="text-transform: uppercase; font-weight: bold;">
+        <div *ngFor="let currentCheck of listCheckListApresentacao; let idx = index">
+            <div class = "panel panel-default">
+                <div class = "panel-check-list-fase"></div>
+                <ul class = "list-group">
+                    <li class = "list-item-inline" [ngSwitch]="existeIncomformidadeDoc(currentCheck)">
+                        <a *ngSwitchCase="3" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="2" class="doc-nao-tratado" title="Não verificado" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="1" class="doc-rejeitado" title="Rejeitado" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <a *ngSwitchCase="0" class="doc-conforme" title="Conforme" (click)="habilitaAnaliseCheckList(currentCheck)">{{currentCheck.nome}}</a>
+                        <label class="switch" *ngIf="!currentCheck.verificacao_previa" title="Desabilitar/Habilitar Checklist da Fase">
+                            <input class="toggle" type="checkbox" [(ngModel)]="currentCheck.habilitaVerificacao" (click)="desabilitarChecklist(currentCheck)" [checked]="currentCheck.habilitaVerificacao">
+                            <span class="slider round"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div *ngIf="listCheckListApresentacao.length == 0 && singleExpandAllDocuments">
+            <ul class = "list-group">
+                <li class = "list-item-inline panel-title">
+                    Não houve associação de documento
+                </li>
+            </ul>              
+        </div>        
+    </div>
+</p-fieldset>

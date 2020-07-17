@@ -1,0 +1,184 @@
+<div class="box-body no-padding">
+  <cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+    (onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+    (onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+    (onCloseMessageWarning)="onCloseMessageWarning()">
+  </cx-alert-message>
+  <div *ngIf="sucessoConsulta" class="row info-apenso-processo">
+    <div class="row">
+      <div class="col-md-4">
+          <i class="fa fa-file-text-o"></i>
+          <label class="control-label">Tipo:</label>
+          {{apensoSelecionado.tipo_apenso.descricao}}
+      </div>
+      <div class="col-md-4" *ngIf="exibirSiclg">
+        <i class="fa fa-file-text-o"></i>
+        <label class="control-label">Protocolo SICLG</label>
+        {{entidade.protocolo_siclg}}
+      </div>
+      <div class="col-md-4" *ngIf = "!apensoAnexo">
+          <i class="fa fa-list-alt"></i>
+          <label class="control-label">CPF/CNPJ Fornecedor:</label>
+          {{entidade.cnpj_fornecedor | formataCpfCnpj}}
+      </div>
+    </div>
+    <div class="row" *ngIf = "!apensoAnexo">
+      <div class="col-md-12">
+          <i class="fa fa-comments-o"></i>
+          <label class="control-label">Descrição:</label>
+          {{entidade.descricao_apenso}}
+      </div>
+    </div>
+    <div class="row" *ngIf = "apensoAnexo">
+      <div class="col-md-12">
+          <i class="fa fa-comments-o"></i>
+          <label class="control-label">Descrição:</label>
+          {{entidade.titulo_apenso}}
+      </div>
+    </div>
+  </div>
+  <a *ngIf="perfilExporta && sucessoConsulta" name="btn-refresh" class="btn btn-link download" 
+        title="Exportar Apenso em PDF" rel="tooltip" data-placement="top" (click)="exportarPdf()">
+        <span class="fa fa-download "></span>Download
+  </a>
+  
+  <div *ngIf="mostrarApensos" class="col-md-12" >
+      <div class="row">
+        <div class="pull-right" >
+            <button   name="btn-ocultar-filtro" class="btn btn-warning btn-filtro-apenso-processo" (click)="ocultarFiltro()"
+            title="Adicionar Contrato" rel="tooltip" data-placement="top" >{{ labelFiltro }}</button>
+        </div>
+    </div>
+     
+
+    <div *ngIf="perfilLeitura">
+      
+      <div class="row filtro-global-apenso" [style.display]="exibirFiltro">
+        <input  type="text" pInputText size="50" placeholder="Filtro Global" #gb>
+        <i class="fa fa-search" style="margin:10px 10px 10px 10px"></i>
+        <button *ngIf="exibirBotao && perfilEscrita"  name="btn-add-apenso" class="btn btn-primary btn-novo" (click)="novoApenso()"
+                  title="Adicionar Apenso de Contrato" rel="tooltip" data-placement="top">NOVO APENSO</button>
+      </div>
+    
+      <p-dataTable *ngIf="perfilLeitura" [style.display]="exibirFiltro" [value] = "processo.apensos" (onRowSelect)="onRowSelect($event)" styleClass="row"
+        selectionMode="single" [(selection)]="apensoSelecionado" emptyMessage="Não existem dados cadastrados" (onPage)="paginar($event)"
+        sortField="id" sortOrder="1"
+        [globalFilter]="gb"  [rowsPerPageOptions]="[5,10,15,20]" #dt [(rows)]="itensDisplay" [paginator]="true" >
+        <p-column field="protocolo_siclg" header="PROTOCOLO SICLG" [style]="{'width':'18%'}" sortable="true"></p-column>  
+        <p-column  *ngIf="true" field="id" header="ID" [style]="{'width':'10%'}" sortable="true"></p-column>
+        <p-column  *ngIf="false" field="cnpj_fornecedor" header="CNPJ" sortable="true"></p-column>
+        <p-column *ngIf="true" field="tipo_apenso.descricao" [style]="{'text-align':'left'}" header="TIPO" sortable="true"></p-column>
+        <p-column  *ngIf="true" field="descricao_apenso" [style]="{'text-align':'left'}" header="DESCRIÇÃO/TÍTULO" sortable="true"></p-column>
+        <p-footer *ngIf="processo.apensos != null && processo.apensos.length > 0">
+          {{infoRegistros}}
+        </p-footer>
+      </p-dataTable>
+    </div>  
+  </div>
+
+  <div >
+    <p-tabView styleClass="col-md-12" #tbv (onChange)="mudouAba($event)">
+  
+      <p-tabPanel header="Dados do Apenso">
+        <div class="box-body">
+            <div class="container ">
+                <div *ngIf="atualizou" class="alert alert-{{tipoRetorno}} col-md-12" role="alert">
+                    {{mensagem}}
+                </div>
+                <!--
+                <div *ngIf="!perfilEscrita" class="alert alert-danger col-md-12" role="alert">
+                  Você não tem perfil para Criar/Alterar Apensos de Processo
+                </div>
+                -->
+                <form #f="ngForm" class="form-horizontal col-md-12" id="FrmCadApenso" name="FrmCadApenso">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="label-form">Tipo Apenso</label>
+                    </div>
+                    <div *ngIf="apensoAnexo" class="col-md-6">
+                      <label class="label-form">Titulo</label>
+                    </div>
+                    <div *ngIf="!apensoAnexo && exibirSiclg" class="col-md-6">
+                        <label class="label-form">Número Protocolo SICLG</label>&nbsp;
+                        <label *ngIf="mensSiclg" class="label-form" style="text-align: top;font-size: x-small;color: red">* Protocolo SICLG Penalidade</label>
+                    </div>
+                    <div class="col-md-6" *ngIf="!apensoAnexo && !exibirSiclg">
+                        <label class="label-form">CPF/CNPJ do fornecedor</label>
+                      </div>
+                  </div>  
+                  
+                  <div class="row campos">
+                    <div class="col-md-6">
+                      <p-dropdown id="tipoApenso" name="tipoApenso" (onChange)="mudouTipoApenso()" [style]="{'width':'100%'}"  [options]="tipoApensos" [(ngModel)]="tipoApensoSelecionado">
+                      
+                      </p-dropdown>
+                    </div>
+                    <div class="col-md-6" *ngIf="apensoAnexo">
+                      <input class="form-control" id="titulo" (ngModelChange)="alterouTitulo($event)" [ngModel]="entidade.titulo_apenso | formataTituloApenso" name="titulo" 
+                        placeholder="Título" required #titulo minlength="5" maxlength="20">
+                      <div *ngIf="!f.pristine && !titulo.valid && titulo.touched" class="alert alert-danger">
+                          Título não tem no mínimo 5 caracteres!
+                      </div>
+                    </div>
+                    <div *ngIf="!apensoAnexo && exibirSiclg" class="col-md-6">
+                      <input type="number" pattern=".{5,8}" class="form-control" id="nrProtocolo" [(ngModel)]="entidade.protocolo_siclg" name="nrProtocolo" 
+                        placeholder="Número Protocolo SICLG" #nrProtocolo="ngModel" min="1" minlength="5" maxlength="8">
+                      <div *ngIf="!f.pristine && !nrProtocolo.valid && nrProtocolo.touched" class="alert alert-danger">
+                        Número do Protocolo SICLG não tem entre 5 e 8 dígitos!
+                      </div>
+                      
+                    </div>
+                    <div  *ngIf="!apensoAnexo && !exibirSiclg" class="col-md-6">
+                        <input class="form-control" id="cpfCnpj" (ngModelChange)="alterouCpfCnpj($event)" [ngModel]="cpf_cnpj | formataCpfCnpj" name="cpfCnpj" 
+                          placeholder="CPF/CNPJ do Fornecedor" required #cpfCnpj minlength="11" maxlength="18">
+                        <div *ngIf="!f.pristine && !cpfCnpj.valid && cpfCnpj.touched" class="alert alert-danger">
+                            Número do CPF/CNPJ do Fornecedor não tem no mínimo 11 caracteres!
+                        </div>
+                      </div>
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-md-6" *ngIf="!apensoAnexo && exibirSiclg">
+                      <label class="label-form">CPF/CNPJ do fornecedor</label>
+                    </div>
+                  </div>  
+                  <div class="row campos" *ngIf="!apensoAnexo && exibirSiclg" >
+                    <div class="col-md-6">
+                      <input class="form-control" id="cpfCnpj" (ngModelChange)="alterouCpfCnpj($event)" [ngModel]="cpf_cnpj | formataCpfCnpj" name="cpfCnpj" 
+                        placeholder="CPF/CNPJ do Fornecedor" required #cpfCnpj minlength="11" maxlength="18">
+                      <div *ngIf="!f.pristine && !cpfCnpj.valid && cpfCnpj.touched" class="alert alert-danger">
+                          Número do CPF/CNPJ do Fornecedor não tem no mínimo 11 caracteres!
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row" *ngIf="!apensoAnexo">
+                    <div class="col-md-12">
+                      <label class="label-form">Descrição</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row campos" *ngIf="!apensoAnexo">
+                    <div class="col-md-12">
+                        <textarea pInputTextarea autoResize="false" rows="5" cols="30" class="form-control" id="descricao" [(ngModel)]="entidade.descricao_apenso" name="descricao" 
+                          placeholder="Descrição" style='min-height: 8em' minlength="10" required #descricao="ngModel"></textarea>
+                        <div *ngIf="!f.pristine && !descricao.valid && descricao.touched" class="alert alert-danger">
+                            Descrição não informada ou não tem no mínimo 10 caracteres!
+                        </div>
+                    </div>
+                  </div>
+                  <div class="text-right" *ngIf="perfilEscrita">
+                    <button type="button" name="btnCancelar" (click)="cancelarOperacao(f)" class="btn btn-warning btn-cancelar">CANCELAR</button>
+                    <button type="button" name="btnAlterarApenso" [disabled]="!f.valid || processo.numero_processo == null" class="btn btn-primary btn-incluir" (click)="salvarApenso(f)">{{labelIncAlt}}</button>
+                  </div>
+                    
+                </form>
+            </div> 
+          </div>    
+      </p-tabPanel>
+      <p-tabPanel header="Documentos do Apenso"  [disabled]="!sucessoConsulta">
+        <pae-docs [(docPara)]="docPara" [(processo)]="processo" [(objeto)]="apensoSelecionado"></pae-docs>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

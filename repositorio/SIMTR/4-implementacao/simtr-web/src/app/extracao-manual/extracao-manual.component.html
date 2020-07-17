@@ -1,0 +1,119 @@
+<div class="cx-page box box-primary" analytics-page> 
+  <div class="box-body">
+      <div class="col-md-12" *ngIf="!visualizar">
+              <div class="box caixa-box">
+                  <div class="cab-box-extracao">
+                    <h5 class="box-title">Tipos de Documentos</h5>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <div *ngIf="exibirMensagem" class="alert alert-{{tipoMensagem}} alert-dismissible col-md-10">
+                      <h4><i class="fa fa-{{tipoIcone}}"></i>&nbsp;&nbsp;Atenção!</h4>
+                          {{ mensagem }}
+                    </div>     
+    
+                        <div class="row caixa-topic" >
+                          <div *ngFor="let item of resumo_situacao" >
+                              <div class="col-lg-3 col-xs-6">
+                                  <!-- small box -->
+                                  <div class="small-box" [style.background-color]="pegaCor(item.id_tipo_documento)">
+                                  <div class="inner">
+                                      <h3>{{item.quantidade}}</h3>
+                          
+                                      <p id="divSituacao">{{ item.nome_tipo_documento }}</p>
+                                  </div>
+                                  <div class="icon">
+                                      <i class="{{ pegaIcone(item.id_tipo_documento) }}"></i>
+                                  </div>
+                                  <a (click)="getDocFila(item.id_tipo_documento)" class="small-box-footer pointer">Tratar o próximo <i class="fa fa-arrow-circle-right"></i></a>
+                                  </div>
+                              </div>
+                              <!-- ./col -->
+                          </div>
+                          
+                      </div> <!-- Box-->
+                  </div>
+              </div>
+      </div>
+      <div class="col-md-12 no-padding" [style.display]="display" #formBox>
+        <div class="col-md-4 no-padding" *ngIf="diminuiu" >
+          <div class="box caixa-box">
+            <div class="cab-box-extracao">
+                <h5 class="box-title">Extração - Documento - {{ codigo_controle }}</h5>
+            </div>
+            <div id="espaco-tipo-doc">
+              <label for="tipoDoc">Tipo Documento:</label>
+              <p-dropdown id="tipoDoc" [disabled]="habilitaComboTipoDoc"  (onChange)="mudouTipoDocumento($event)" name="tipoDoc"  id="tipoDoc" [style]="{'width':'400px'}"  [options]="tiposDocCombo" [(ngModel)]="tipoDocSelecionado">
+              </p-dropdown>
+            </div>
+            <form-extracao-manual 
+                [(documentoPost)]="documentoPost" 
+                [(exibeTodos)]="exibeTodos"
+                (erro)="ocorreuErroForm($event)" 
+                (statusForm) = "alterouStatusForm($event)" 
+                (preencheuCampos)="preencheuCampos($event)"
+                [(rejeitarForm)] = "rejeitarForm"
+                [(cancelarForm)] = "cancelarForm"
+                (cancelamentoCompleto) = "cancelouForm($event)"
+                [(salvarForm)] = "salvarForm">
+            </form-extracao-manual>
+           
+            <div class="botoes no-padding text-center">
+              <button  class="btn btn-warning btn-xs" (click)="voltar()">Voltar</button>
+              <button  class="btn btn-primary btn-xs" [disabled]="!statusForm" *ngIf="exibeSalvar" (click)="salvarSair()">Salvar e Voltar</button>
+              <button  class="btn btn-primary btn-xs" [disabled]="!statusForm" *ngIf="exibeSalvar" (click)="salvarEProximo()">Salvar e Próximo</button>
+              <button class="btn btn-danger btn-xs"  data-toggle="modal" (click)="voltaMenu()" data-target="#rejeitar">Rejeitar e Voltar</button>
+              <button class="btn btn-danger btn-xs"  data-toggle="modal" (click)="proximoDaFila()" data-target="#rejeitar">Rejeitar e Próximo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 espaco-caixa-direita">
+            <div class="box caixa-box">
+                <div class="cab-box-extracao">
+                  <h5 class="box-title">Visualização Documento</h5>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <visualizador-documento
+                    [binario]="binario" 
+                    [mimeType]="mimetype"
+                    [comprimentoMaximo]="comprimentoVisualizador"
+                    [alturaMaxima] = "alturaVisualizador"
+                    (erro)="exibeErro($event)">
+                    
+                  </visualizador-documento>
+                   
+                </div>
+            </div>
+        </div>
+      </div>
+
+    <div class="modal fade" id="rejeitar" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Rejeitar Documento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <form #fRejeitar="ngForm" class="form-vertical">
+                            <div class="form-group">
+                                <div>
+                                    <label class="col-md-3" for="rejeicao">Motivo Rejeição:</label>
+                                    <p-dropdown class="combo"  [style]="{'width':'250px'}"  name="rejeicao" [options]="tiposRejeicao" [(ngModel)]="rejeicaoSelecionada"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancelar</button>
+                                    <button class="btn btn-danger btn-xs" type="button" name="submitModal" (click)="rejeitar()" [disabled]="!fRejeitar.valid">Rejeitar</button>
+                                </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>	
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div id="corpoCheckList">
+    <p-dataTable  id="checKlistVisualizar" [value]="this.checkListPresenter.checkListVisualizacao.apontamentos" [immutable]="false" [scrollable]="true">
+        <ng-template pTemplate="emptymessage">
+            Nenhum registro encontrado.
+        </ng-template>
+    
+        <p-column styleClass="checklist-table-column" [style]="{ 'width': '80%' }">
+            <ng-template pTemplate="header">
+                <div class="css-tooltip">{{checkListPresenter.checkListVisualizacao.nomeChecklistTitle}}
+                    <i class="fa fa-question iconInterrogacao" *ngIf="checkListPresenter.checkListVisualizacao.orientacaoChecklist"
+                        (click)="modalDescricaoHeaderCheckList()" title="Clique aqui para visualizar mais detalhes do CheckList Previo."
+                        style="cursor: pointer;"></i></div>
+            </ng-template>
+            <ng-template let-item="rowData" pTemplate="body">  
+                <div class="css-tooltip">{{item.titulo}} <i class="fa fa-question iconInterrogacao" *ngIf="item.descricao" (click)="modalDescricao(item)" title="Clique aqui para visualizar mais detalhes do apontamento." style="cursor: pointer;"></i></div>     
+            </ng-template>
+        </p-column>
+    
+        <p-column header="" styleClass="checklist-table-column-check-message" [style]="{'width': '10%'}">
+            <ng-template let-item="rowData" let-i="rowIndex" pTemplate="body">
+                <label class="switch">
+                    <input class="toggle toggle-checklist" type="checkbox" (click)="invalidaValidaItemDocumento(i)" [(ngModel)]="this.checkListPresenter.checkListVisualizacao.listApontamentosCheckados[i]" [disabled]="this.checkListPresenter.checkListVisualizacao.habilitarDesabilitarTratamento">
+                    <span class="slider round" id="check{{i}}"></span>
+                </label>
+            </ng-template>
+        </p-column>
+        <p-column header="" styleClass="checklist-table-column-check-message" [style]="{'width': '10%'}">
+            <ng-template let-item="rowData" let-i="rowIndex" pTemplate="body">
+                <span class="fa fa-comments item-fa-comments balaoJustificativa" id="balao{{i}}" title="Orientação Apontamento" (click)="abreModalJustificativa(i)"></span>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+
+
+    <div class="checklist-footer">
+        <i class="paragrafo-icone fa fa-hand-peace-o"></i>
+        <a class="link-validar-nao-selecionados" (click)="conformizarTodosNaoAnalisados()" pTooltip="Validar todos os itens não sinalizados (Ctrl+Q)" tooltipPosition="bottom">Validar itens não sinalizados. <i class="fa fa-question iconInterrogacao" title="Ao clicar no botão, apenas os itens não sinalizados serão marcados como válidos"></i></a>
+    </div>
+    <div *ngIf="this.checkListPresenter.checkListVisualizacao.existeApontamentoAnterior" class="checklist-footer footerRecarregarCheckListVerificado">
+        <i class="paragrafo-icone fa fa-history"></i>
+        <a class="link-validar-nao-selecionados" (click)="carregarApontamentoCheckListAnterior()">Resultado Última Verificação. <i class="fa fa-question iconInterrogacao" title="Ao clicar no botão, apenas os itens não sinalizados serão marcados como validos"></i></a>
+    </div>
+</div>

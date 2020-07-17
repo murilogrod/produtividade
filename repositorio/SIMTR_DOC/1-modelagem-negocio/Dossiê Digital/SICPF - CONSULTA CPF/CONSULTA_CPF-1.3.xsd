@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://caixa.gov.br/sibar/consulta_cpf" xmlns:consultacpf="http://caixa.gov.br/sibar/consulta_cpf" xmlns:sibar_base="http://caixa.gov.br/sibar" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import namespace="http://caixa.gov.br/sibar" schemaLocation="../MensagensBarramento.xsd"/>
+    <xsd:complexType name="SERVICO_ENTRADA_TYPE">
+    <xsd:complexContent>
+      <xsd:extension base="sibar_base:SERVICO_ENTRADA_TYPE">
+        <xsd:sequence>
+          <xsd:element name="DADOS" type="consultacpf:DADOS_ENTRADA_TYPE"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SERVICO_SAIDA_TYPE">
+    <xsd:complexContent>
+      <xsd:extension base="sibar_base:SERVICO_SAIDA_TYPE">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="DADOS" type="consultacpf:DADOS_SAIDA_TYPE"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DADOS_ENTRADA_TYPE">
+    <xsd:sequence>
+      <xsd:element name="CPF">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="99999999999"/>
+            <xsd:totalDigits value="11"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DADOS_SAIDA_TYPE">
+    <xsd:sequence>
+      <xsd:element name="NOME_CONTRIBUINTE">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="70"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="DATA_NASCIMENTO">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="TITULO_ELEITOR">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="9999999999999"/>
+            <xsd:totalDigits value="13"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="NOME_MAE">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="70"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="SITUACAO">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:decimal">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="99"/>
+            <xsd:totalDigits value="2"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+            <xsd:element minOccurs="0" name="EXCECAO">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="3000"/>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+        </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SERVICO_ENTRADA" type="consultacpf:SERVICO_ENTRADA_TYPE">
+  </xsd:element>
+  <xsd:element name="SERVICO_SAIDA" type="consultacpf:SERVICO_SAIDA_TYPE">
+  </xsd:element>
+</xsd:schema>

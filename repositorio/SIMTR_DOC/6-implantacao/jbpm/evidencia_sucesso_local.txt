@@ -1,0 +1,28 @@
+<response type="SUCCESS" msg="Kie Server info">
+<script/>
+<kie-server-info>
+<capabilities>KieServer</capabilities>
+<capabilities>BRM</capabilities>
+<capabilities>BPM</capabilities>
+<capabilities>CaseMgmt</capabilities>
+<capabilities>BPM-UI</capabilities>
+<capabilities>BRP</capabilities>
+<capabilities>DMN</capabilities>
+<capabilities>Swagger</capabilities>
+<capabilities>Prometheus</capabilities>
+<location>
+http://localhost:8080/kie-server/services/rest/server
+</location>
+<messages>
+<content>
+Server KieServerInfo{serverId='simtr-bpm-server', version='7.23.0.Final', name='simtr-bpm-server', location='http://localhost:8080/kie-server/services/rest/server', capabilities=[KieServer, BRM, BPM, CaseMgmt, BPM-UI, BRP, DMN, Swagger, Prometheus]', messages=null', mode=DEVELOPMENT}started successfully at Mon Jul 29 19:26:36 UTC 2019
+</content>
+<severity>INFO</severity>
+<timestamp>2019-07-29T19:26:36.077Z</timestamp>
+</messages>
+<mode>DEVELOPMENT</mode>
+<name>simtr-bpm-server</name>
+<id>simtr-bpm-server</id>
+<version>7.23.0.Final</version>
+</kie-server-info>
+</response>

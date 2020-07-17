@@ -1,0 +1,12 @@
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid red
+}
+
+.painel, ng-trigger-panelContent {
+    margin: 0 auto;
+}
+
+.botao {
+    
+    margin-top: 10px;
+}

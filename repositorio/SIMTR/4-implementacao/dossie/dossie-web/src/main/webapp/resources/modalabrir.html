@@ -1,0 +1,31 @@
+﻿<!-- Modal Abrir Projeto -->
+<div class="modal-header bg-primary">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="dismissDialog()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Abrir Projetos
+    </h4>
+</div>
+<div class="modal-body">
+    <div class="form-group col-xs-12">
+        <label>Projetos</label>
+
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-pencil-square-o"></i>
+            </span>
+            <select ng-model="selectedapp" class="form-control" help-message="Selecione o projeto"
+                    ng-options="project as project.name for project in projects track by $index">
+            </select>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type='button' class='btn btn-primary' data-dismiss="modal" ng-click="closeDialog()">
+        <i class='fa fa-check'></i>&nbsp;Ok
+    </button>
+    <button type='button' class='btn btn-default' data-dismiss="modal" ng-click="dismissDialog()">
+        <i class='fa fa-times'></i>&nbsp;Cancelar
+    </button>
+</div>

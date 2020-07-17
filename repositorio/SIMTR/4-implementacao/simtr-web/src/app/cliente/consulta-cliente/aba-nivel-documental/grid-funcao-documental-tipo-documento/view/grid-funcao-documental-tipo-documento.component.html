@@ -1,0 +1,23 @@
+<p-fieldset id="fieldset-funcao-doc" class="fieldsetDocumentos">
+    <p-header id="header-funcao-doc">
+        <div id="div-titulo-func-doc" class="titulo-grid">Função Documental x Tipo Documento</div>
+    </p-header>
+    <div id="div-col-md12" class="col-md-12" style="display: inline-flex; padding: 0;">
+        <select id="select-func-doc" class="col-md-12" class="select-funcao-doc" (change)="onChangeFuncaoDoc($event.target.value)">
+            <option id="option-func-doc" value="Selecione" selected class="option-select">Selecione</option>
+            <option id="option-select{{idx}}" class="option-select" *ngFor="let funcao of gridFuncaoTipoDocPresenter.conjuntoFuncTipoDoc.funcoesDocumentaisPorTipoPessoa; let idx = index" value="{{idx}}">{{funcao.nome}}</option>
+        </select>
+    </div>
+</p-fieldset>
+
+<p-dataTable [value]="gridFuncaoTipoDocPresenter.conjuntoFuncTipoDoc.tiposfuncaoDocEsolhida" id="table-tipo-doc" class="p-data-table">
+    <span style="display: none;">{{countRowToProgressBar()}}</span>
+    <ng-template pTemplate="emptymessage" id="column-msg-tabela-func-doc">
+        Nenhum registro encontrado
+    </ng-template>
+    <p-column header="Tipo Documento" id="column-tipo-documento" styleClass="modal-table-column" [style]="{ 'width': '100%' }">
+        <ng-template let-item="rowData" pTemplate="body">
+            {{item.nome}}
+        </ng-template> 
+    </p-column>
+</p-dataTable>

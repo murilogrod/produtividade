@@ -1,0 +1,20 @@
+
+{%- if many_level %}
+    <ul class="subnav">
+{%- endif %}
+
+{%- for item in nav_item.toc %}
+<li class="toctree-l{{ navlevel}}">
+    <a class="" href="{% if not nav_item == page %}{{ nav_item.url|url }}{% endif %}{{ item.url }}">{{ item.title }}</a>
+</li>
+{%- endfor %}
+{%- set toc_item = nav_item.toc.items[0] %}
+{%- for toc_item in toc_item.children %}
+    <li class="toctree-l{{ navlevel}}">
+        <a class="" href="{% if not nav_item == page %}{{ nav_item.url|url }}{% endif %}{{ toc_item.url }}">{{ toc_item.title }}</a>
+    </li>
+{%- endfor %}
+
+{%- if many_level %}
+    </ul>
+{%- endif %}

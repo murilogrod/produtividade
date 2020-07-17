@@ -1,0 +1,205 @@
+{
+    "alteracao": false,
+    "id": 780,
+    "unidade_criacao": "9999",
+    "canal_caixa": "AGE",
+    "data_hora_finalizacao": null,
+    "unidades_tratamento": [],
+    "situacao_atual": "Rascunho",
+    "data_hora_situacao": "05/08/2019 11:19:51",
+    "historico_situacoes": [
+        {
+            "nome": "Rascunho",
+            "data_hora_inclusao": "05/08/2019 11:19:51",
+            "data_hora_saida": null,
+            "unidade": "9999",
+            "observacao": null
+        }
+    ],
+    "processo_dossie": {
+        "id": 37,
+        "nome": "DESBLOQUEIO DE AVALOP PJ COMITÃŠ AGÃŠNCIA"
+    },
+    "processo_fase": {
+        "id": 40,
+        "nome": "CAPTURA E VERIFICAÃ‡ÃƒO"
+    },
+    "produtos_contratados": [
+        {
+            "id": 50,
+            "codigo_operacao": "7630",
+            "codigo_modalidade": "0000",
+            "nome": "CRED ESP EMP   PARC   PRE   FORN GDES CO \r\n",
+            "valor_contrato": 0.00,
+            "taxa_juros": 0.00,
+            "periodo_juros": "M",
+            "prazo_contrato": 0,
+            "prazo_carencia": 0,
+            "liquidacao": false,
+            "numero_contrato": null,
+            "instancias_documento": []
+        }
+    ],
+    "vinculos_pessoas": [
+        {
+            "id": 578,
+            "tipo_relacionamento": "TOMADOR",
+            "dossie_cliente": {
+                "tipo_pessoa": "J",
+                "id": 12,
+                "nome": "PLATH - P REGIONAL DE NEGOCIOS DE HABITACAO GOIANIA GO",
+                "telefone": "632806974",
+                "cnpj": "00360305540214",
+                "razao_social": "CAIXA ECONOMICA FEDERAL",
+                "data_fundacao": "07/11/2014",
+                "segmento": "CORP",
+                "valor_faturamento": null
+            },
+            "dossie_cliente_relacionado": null,
+            "sequencia_titularidade": null,
+            "instancias_documento": [
+                {
+                    "id": 898,
+                    "id_elemento_conteudo": null,
+                    "id_garantia_informada": null,
+                    "id_dossie_cliente_produto": 578,
+                    "documento": {
+                        "id": 946,
+                        "tipo_documento": {
+                            "id": 4,
+                            "nome": "ESTATUTO SOCIAL",
+                            "avatar": "glyphicon glyphicon-picture",
+                            "cor_fundo": "#FFCC00"
+                        },
+                        "canal_captura": {
+                            "sigla_canal": "SIMTRWEB",
+                            "descricao_canal": "Cliente Web do SIMTR na Intranet",
+                            "canal_caixa": "AGE"
+                        },
+                        "codigo_ged": null,
+                        "data_hora_captura": "05/08/2019 11:18:17",
+                        "matricula_captura": "c090347",
+                        "data_hora_validade": null,
+                        "dossie_digital": false,
+                        "origem_documento": "O"
+                    },
+                    "historico_situacoes": [
+                        {
+                            "nome": "Criado",
+                            "motivo": null,
+                            "data_hora_inclusao": "05/08/2019 11:19:51",
+                            "unidade": "9999"
+                        }
+                    ]
+                },
+                {
+                    "id": 899,
+                    "id_elemento_conteudo": null,
+                    "id_garantia_informada": null,
+                    "id_dossie_cliente_produto": 578,
+                    "documento": {
+                        "id": 947,
+                        "tipo_documento": {
+                            "id": 8,
+                            "nome": "DASN SIMEI - DECLARAÃ‡ÃƒO ANUAL DO SIMPLES NACIONAL",
+                            "avatar": "glyphicon glyphicon-picture",
+                            "cor_fundo": "#FFCC00"
+                        },
+                        "canal_captura": {
+                            "sigla_canal": "SIMTRWEB",
+                            "descricao_canal": "Cliente Web do SIMTR na Intranet",
+                            "canal_caixa": "AGE"
+                        },
+                        "codigo_ged": null,
+                        "data_hora_captura": "05/08/2019 11:18:17",
+                        "matricula_captura": "c090347",
+                        "data_hora_validade": null,
+                        "dossie_digital": false,
+                        "origem_documento": "O"
+                    },
+                    "historico_situacoes": [
+                        {
+                            "nome": "Criado",
+                            "motivo": null,
+                            "data_hora_inclusao": "05/08/2019 11:19:51",
+                            "unidade": "9999"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "garantias_informadas": [],
+    "instancias_documento": [
+        {
+            "id": 898,
+            "id_elemento_conteudo": null,
+            "id_garantia_informada": null,
+            "id_dossie_cliente_produto": 578,
+            "documento": {
+                "id": 946,
+                "tipo_documento": {
+                    "id": 4,
+                    "nome": "ESTATUTO SOCIAL",
+                    "avatar": "glyphicon glyphicon-picture",
+                    "cor_fundo": "#FFCC00"
+                },
+                "canal_captura": {
+                    "sigla_canal": "SIMTRWEB",
+                    "descricao_canal": "Cliente Web do SIMTR na Intranet",
+                    "canal_caixa": "AGE"
+                },
+                "codigo_ged": null,
+                "data_hora_captura": "05/08/2019 11:18:17",
+                "matricula_captura": "c090347",
+                "data_hora_validade": null,
+                "dossie_digital": false,
+                "origem_documento": "O"
+            },
+            "historico_situacoes": [
+                {
+                    "nome": "Criado",
+                    "motivo": null,
+                    "data_hora_inclusao": "05/08/2019 11:19:51",
+                    "unidade": "9999"
+                }
+            ]
+        },
+        {
+            "id": 899,
+            "id_elemento_conteudo": null,
+            "id_garantia_informada": null,
+            "id_dossie_cliente_produto": 578,
+            "documento": {
+                "id": 947,
+                "tipo_documento": {
+                    "id": 8,
+                    "nome": "DASN SIMEI - DECLARAÃ‡ÃƒO ANUAL DO SIMPLES NACIONAL",
+                    "avatar": "glyphicon glyphicon-picture",
+                    "cor_fundo": "#FFCC00"
+                },
+                "canal_captura": {
+                    "sigla_canal": "SIMTRWEB",
+                    "descricao_canal": "Cliente Web do SIMTR na Intranet",
+                    "canal_caixa": "AGE"
+                },
+                "codigo_ged": null,
+                "data_hora_captura": "05/08/2019 11:18:17",
+                "matricula_captura": "c090347",
+                "data_hora_validade": null,
+                "dossie_digital": false,
+                "origem_documento": "O"
+            },
+            "historico_situacoes": [
+                {
+                    "nome": "Criado",
+                    "motivo": null,
+                    "data_hora_inclusao": "05/08/2019 11:19:51",
+                    "unidade": "9999"
+                }
+            ]
+        }
+    ],
+    "respostas_formulario": [],
+    "verificacoes": null
+}

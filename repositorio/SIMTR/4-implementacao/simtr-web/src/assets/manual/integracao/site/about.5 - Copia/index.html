@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Caixa Econômica Federal">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Sustentação Digital ao Negócio – Serviços Básicos - SIMTR</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Sustenta\u00e7\u00e3o Digital ao Neg\u00f3cio \u2013 Servi\u00e7os B\u00e1sicos";
+    var mkdocs_page_input_path = "about.5 - Copia.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../../../js/redirect.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav" style="height: 100% ; overflow: auto !important">
+        <div style="background-color:#2980b9;text-align: center;padding: 10px;"><img src="../img/caixa.png"
+          alt="Caixa Econômica" /></div>
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> SIMTR</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar" title="Digite algo para pesquisa" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+              <li class="toctree-l1">
+    <a class="" href="..">Início</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.1/">Objetivo</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.2/">Acesso</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.3/">Estrutura da Integração</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.4/">Cadastro Canal</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <span class="caption-text">Sustentação Digital ao Negócio - Serviços Básicos</span>
+<ul class="subnav">
+            <li class="">
+                <a class="" href="../about.5/">Dossiê de Cliente</a>
+            </li>
+            <li class="">
+                <a class="" href="../about.6/">Documentos de Clientes</a>
+            </li>
+            <li class="">
+                <a class="" href="../about.7/">Dossiê de Produto (Operação)</a>
+            </li>
+    
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.8/">Glossário</a>
+<ul class="subnav">
+</ul>
+              </li>
+              <li class="toctree-l1">
+    <a class="" href="../about.9/">Anexo I</a>
+<ul class="subnav">
+</ul>
+              </li>
+          </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">SIMTR</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Arquivos</a> &raquo;</li>
+    
+      
+    
+    <li>Sustentação Digital ao Negócio – Serviços Básicos</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sustentacao-digital-ao-negocio-servicos-basicos">Sustentação Digital ao Negócio – Serviços Básicos</h1>
+<p>Nesta sessão serão descritos os serviços básicos necessários a comunicação primaria com o SIMTR para consulta de dados de clientes e criação e consulta das operações (dossiê de produto) bem como envio de atualizações e documentos.</p>
+<h2 id="dossie-de-cliente">Dossiê de Cliente</h2>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>GET /negocio/v1/dossie-cliente/{id}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Captura o dossiê de cliente baseado no identificador único do SIMTR.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>documentos</strong>: Lista de metainformações dos documentos vinculados ao cliente. Nesta consulta não será retornado o binário de nenhum documento neste momento. As informações que destacamos para este objeto são as seguintes:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>codigo_ged</strong>: Identificador do documento junto ao GED (SIECM) que deverá ser utilizado para capturar o binário</p>
+</li>
+<li>
+<p><strong>data_hora_validade</strong>: Data e Hora definidas para viabilizar o reuso do documento. Caso não estea definida, ou seja, superior ao momento atual, o documento possui validade para utilização em novos negócios. Caso contrario, este documento não poderá mais ser reutilizado, e deverá ser capturado outro documento, caso não exista nenhum de mesma tipologia com validade vinculado ao dossiê do cliente.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p><strong>produtos_habilitados</strong>: Esta informação trata da lista de produtos que estão previamente habilitados no modelo do dossiê digital para o cliente consultado</p>
+</li>
+<li>
+<p><strong>dossies_produto</strong>: Contemplam as operações (produtos ou serviços) relacionadas ao cliente consultado que foram transitadas pelo SIMTR. Importante observar que não se trata dos produtos constrados pelo cliente junto a CAIXA, essas informações, caso desejadas, deverão ser obtidas junto aos sistemas comerciais</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>GET /negocio/v1/dossie-cliente/cpf/{cpf}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Captura o dossiê de cliente baseado no CPF do mesmo.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno: O retorno deste serviço é o mesmo apresentado na consulta por ID</p>
+</li>
+</ul>
+</blockquote>
+<p>GET /negocio/v1/dossie-cliente/cnpj/{cnpj}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Captura o dossiê de cliente baseado no CNPJ do mesmo.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno: O retorno deste serviço é o mesmo apresentado na consulta por ID</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="documentos-de-clientes">Documentos de Clientes</h2>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>GET /cadastro/v1/tipo-documento</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Obter a lista de tipologia documental utilizada nas operações de sustentação digital ao negócio. Apesar de tender a uma estabilização, o retorno deste serviço pode sofrer alterações para adequar as necessidades de tipologia que são definidas pela área de gestão arquivistivca da CAIXA ou pela necessidade das operações de conformidade.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>identificador_tipo_documento</strong>: Código a ser utilizado no envio de novos documentos para correta identificação da tipologia.</p>
+</li>
+<li>
+<p><strong>nome_tipo_documento</strong>: Nome de identificação negocial do tipo de documento.</p>
+</li>
+<li>
+<p><strong>atributos_extracao</strong>: Caso existam definidos dados esperados para o documento, esta lista apresenta quais informações são esperadas, quais são obrigatórias e quais fazem parte de um mesmo grupo de dados, ou seja, caso seja enviado um elemento do grupo, todos os demais elementos deverão ser enviandos também, mesmo que não tenham cunho obrigatório. Para sistemas internos da CAIXA, no caso de envio de atributos do documento, o valor a ser utilizado como “chave” deverá ser o indicado no campo “nome_documento”.</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<p>POST /negocio/v1/dossie-cliente/{id}/documento</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Inclui um documento encaminhados para armazenamento em um Dossiê de Cliente identificado pelo identificador único do mesmo junto ao SIMTR. Importante observar que se já existir um documento valido para novos negócios. </p>
+</li>
+<li>
+<p>Corpo da Mensagem: </p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>codigo_integracao</strong>: Informação fornecida pela GEBAN utilizada para identificar o canal de comunicação (informação depreciada pois o canal será identificado pelo seu clienteID do SSO</p>
+</li>
+<li>
+<p><strong>tipo_documento</strong>: Identificador do tipo de documento, podendo ser obtido através do consumo do serviço: GET /cadastro/v1/tipo-documento</p>
+</li>
+<li>
+<p><strong>origem_documento</strong>: De forma a atender necessidades definidas no AD238 é necessario identificar a origem da midia em que o documento foi obtido podendo assumir:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>A = Cópia Autenticada Adminstrativamente</p>
+</li>
+<li>
+<p>C = Cópia Autenticada em Cartório</p>
+</li>
+<li>
+<p>O = Original (Documento NatuDigital)</p>
+</li>
+<li>
+<p>S = Cópia Simples</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>mimetype</strong>: Indicação do tipo de binario encaminhado utilizado para realizer o armazenamento de forma mais otimizada e viabilizar a manipulação do mesmo de forma adequada. Pode assumir um dos valores a seguir:</li>
+</ul>
+<blockquote>
+<ul>
+<li>image/jpg, image/jpeg, application/pdf, image/png</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>binario</strong>: Conteudo do documento propriamente dito Deve ser enviada uma String no formato Base64.</li>
+</ul>
+</blockquote>
+<ul>
+<li>Retorno:</li>
+</ul>
+<blockquote>
+<ul>
+<li>o   Caso a inclusão seja bem suceida, será retornado um código HTTP 204 (No Content) indicando que o documento foi armazenado e vinculado ao dossiê do cliente com sucesso.</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="dossie-de-produto-operacao">Dossiê de Produto (Operação)</h2>
+<p>O dossiê de produto é objeto que representa uma operação transitada pelo SIMTR.</p>
+<p>Em anexo é possível visualizar o ciclo de vida possível em uma operação e destacamos abaixo a descrição das principais situações que podem ser associadas ao dossiê de produto:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li>
+<p><strong> RASCUNHO</strong> - O dossiê foi criado de forma parcial, mas ainda não foi submetido para inicio das tratativas. Pode ser utilizado para criar a operação mesmo que ainda possui pendência de alguma informação ou documento obrigatório, mas nessa situação a operação ainda não foi iniciado e apenas a unidade do criador poderá manipula-lo.</p>
+</li>
+<li>
+<p><strong> AGUARDANDO TRATAMENTO</strong> - O dossiê encontra-se numa etapa do processo que esta aguardando a avaliação por algum operador da área de conformeidade. Nesta situação os dossiês são capturados em regra seguindo sequencia de atendimento em formato de fila (primeiro a chegar, primeiro a ser avaliado).</p>
+</li>
+<li>
+<p><strong> EM TRATAMENTO</strong> - O dossiê esta sendo avaliado por algum operador da área de conformidade.</p>
+</li>
+<li>
+<p><strong> PENDENTE DE INFORMAÇÃO</strong> - O dossiê foi avaliado pelo operador da área de conformidade que encontrou alguma pendência que precisa ser regularizada. Em regra, geralmente a operação retorna para a última unidade responsável pela alimentação do dossiê, porém isso pode variar conforme a definição de cada processo.</p>
+</li>
+<li>
+<p><strong> AGUARDANDO ALIMENTAÇÃO</strong> - O dossiê cumpriu uma determinada etapa do processo e no momento esta aguardando alimentação por alguma unidade para dar prosseguimento a fluxo. Esta situação indica que é necessária uma nova alimentação do dossiê devido a uma necessidade de nova informação ou documento, mas não se trata de uma pendência identificada na avaliação da área de conformidade.</p>
+</li>
+<li>
+<p><strong> EM ALIMENTAÇÃO</strong> - O dossiê esta sendo alimentado por algum usuário e por isso não pode ser manipulado por outra pessoa, evitando o conflito de recursos. Nessa situação, caso seja enviado uma alteração para o dossiê, será retornado um código de erro 400 indicando falha na requisição, uma vez que foi solicitada uma alteração para um dossiê que não se encontra em estado de alteração.</p>
+</li>
+<li>
+<p><strong> AGUARDANDO COMPLEMENTAÇÃO</strong> - O dossiê cumpriu uma determinada etapa do processo e no momento esta aguardando alimentação de complementação de dados por alguma unidade para dar prosseguimento a fluxo. A diferença desta situação é que neste caso as operações são capturadas em formato de fila e na situação “Aguardando Alimentação”, o dossiê deverá ser selecionado pela área responsável.</p>
+</li>
+<li>
+<p><strong> EM COMPLEMENTAÇÃO</strong> - Esta situação indica que o dossiê esta sendo alimentado por algum usuário e difere da situação “Em Alimentação” pois a captura para alimentação do dossiê originou-se a partir de uma fila.</p>
+</li>
+<li>
+<p><strong> FINALIZADO</strong> - O fluxo definido para o processo foi finalizado e a ultima etapa anterior a finalização, não dependeu de nunhuma avaliação de conformidade.</p>
+</li>
+<li>
+<p><strong>FINALIZADO CONFORME</strong> - O fluxo definido para o processo foi finalizado e a ultima etapa anterior a finalização foi uma avaliação de conformidade bem suscedida.</p>
+</li>
+<li>
+<p><strong>FINALIZADO INCONFORME</strong> - O fluxo definido para o processo que após uma determinada operação de avaliação de conformidade a operação não foi bem suscedida, mas não pode ser continuada. Exemplos de situação previstos, são casos em que um processo determine que em caso de 3 recorrências de avaliação mal suscedida a operação não deve ser prossegur, ou a identificação de fraudes, mas depende de cada definição de processo.</p>
+</li>
+<li>
+<p><strong>CANCELADO</strong> - O dossiê foi finalizado, mas por cancelamento. Essa ação só pode ser realizada pela unidade que inicializou o dossiê de produto ou por execução de comando administrativo.</p>
+</li>
+</ul>
+</blockquote>
+<p>GET /negocio/v1/dossie-produto/{id}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Realizar a consulta de um dossiê de produto com base no seu identificador. A obtenção do identificador acontece em outro serviço dedicado a inclusão da operação. Por este serviço o valor indicado para permissão de alteração de dados desse dossiê será retornado sempre como “false” indicando que não será permitida alteração de informação ou inclusão de documento no mesmo.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>Id</strong>: Identificador único do dossiê de produto utilizado na consulta e definido após sua criação.</p>
+</li>
+<li>
+<p><strong>alteracao</strong>: Atributo utilizado para indicar se o dossiê de produto foi capturado em modo de alteração.</p>
+</li>
+<li>
+<p><strong>data_hora_finalizacao</strong>: Representa a data e hora que o dossiê foi finalizado, caso a operação ainda esteja em andamento este valor será retornado como null.</p>
+</li>
+<li>
+<p><strong>situacao_atual</strong>: Representa a atual situação em que o dossiê se encontra perante o ciclo de vida deste conforme definição acima.</p>
+</li>
+<li>
+<p><strong>data_hora_situacao_atual</strong>: Indica a data e hora de atribuição da situação atual</p>
+</li>
+<li>
+<p><strong>processo_dossie</strong>: Objeto que representa o processo indicado na geração do dossiê, e nele estão definidos os documentos referentes ao processo (através das instancias de documentos) e as todas as respostas de formulários que foram indicadas durante a manipulação do dossiê.</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>instancias_documento</strong>: Apresenta a lista de vínculos dos documentos esperados pela própria definição do processo com o dossiê de produto</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Apresenta a lista de respostas de formuláio apresentados que estão vinculadas ao processo. </p>
+</li>
+</ul>
+<p><em>OBS: Para a estrutura de processo que define a estrutura da operação, não são associados campos de formulário, apenas para a estrutura de processo que representa a fase da operação. Logo essa lista será sempre vazia neste momento.</em></p>
+</blockquote>
+<ul>
+<li><strong>processo_fase</strong>: Objeto que representa o processo definido na fase atual da operação, e nele estão definidos os documentos referentes a captura determinada pela etapa da operação (através das instancias de documentos) e as todas as respostas de formulários que foram indicadas durante a manipulação do dossiê.</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>instancias_documento</strong>: Apresenta a lista de vínculos dos documentos esperados pela própria definição do processo com o dossiê de produto.</p>
+</li>
+<li>
+<p><strong>Resposta_formulario</strong>: Apresenta a lista de respostas de formuláio apresentados que estão vinculadas a esta etapa do processo.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p><strong>unidades_tratamento</strong>: e elemento representa a lista de unidades que estão definidas para realizar a manipulação/tratamento do dossi~e no momento atual. Se a lotação física ou administrativa do usuário que tentar executar alteração de informação no dossiê não estiver presente nesta lista, a ação será impedida causando um retorno sob código 403 que indica a proibição da ação.</p>
+</li>
+<li>
+<p><strong>historico_situacoes</strong>: Este elemento representa a lista de situações atribuídas ao dossiê durante o seu ciclo de vida. Cada elemento representa uma situação atribuída com indicação da unidade responsável e data/hora da ação.</p>
+</li>
+<li>
+<p><strong>produtos_contratados</strong>: Este bloco apresenta a lista de produtos associados ao dossiê (se houver) e as infomações vinculadas baseado no seu formulário específico (se houver) e os documentos associados (se houver)</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>instancias_documento</strong>: Apresenta a lista de vínculos dos documentos apresentados/reutilizados e esperados pela relação de um produto CAIXA com o dossiê de produto.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Apresenta a lista de respostas de formuláio esperadas que estão vinculadas a esta associação de produto CAIXA.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>vinculos_pessoas</strong>: Este bloco apresenta a lista de pessoas (físicas ou jurídicas) associados ao dossiê (necessário ao mínimo 1 pessoa,com exceção do dossiê salvo em situação de rascunho) e as infomações vinculadas baseado no seu formulário específico (se houver) e os documentos associados (se houver)</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>instancias_documento</strong>: Apresenta a lista de vínculos dos documentos apresentados/reutilizados e esperados pela associação de uma pessoa sob um determinado tipo de vinculo (forma de relacionamento com esta operação junto ao SIMTR).</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Apresenta a lista de respostas de formuláio esperados pela associação de uma pessoa sob um determinado tipo de vinculo.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>garantias_informadas</strong>: Este bloco representa a lista de garantias associadas ao dossiê (se houver) e as informações vinculadas baseada no seu formulário específico (se houver) e os documentos associados (se houver)</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>instancias_documento</strong>: Apresenta a lista de vínculos dos documentos apresentados/reutilizados e esperados pela associação de uma garantia junto ao SIMTR.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Apresenta a lista de respostas de formuláio esperados pela associação de uma garantia com a operação junto ao SIMTR.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>instancias_documentos</strong>: O dossiê de produto permite a associação de documentos associadas as seguintes estruturas de uma operação:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>Estrutura global do processo;</p>
+</li>
+<li>
+<p>Fases da operação;</p>
+</li>
+<li>
+<p>Vinculo de Produto;</p>
+</li>
+<li>
+<p>Vinculo de Produto;</p>
+</li>
+<li>
+<p>Vinculo de Garantias;</p>
+</li>
+</ul>
+<p>Este bloco apresenta de forma global a lista de todos os documentos utilizados no dossiê até o momento. Apesar deste bloco, cada uma das estruturas acima apresenta um bloco instancias de documentos que contém apenas os documentos apresentados a seu próprio contexto.</p>
+<p><em>OBS: Este bloco existe, pois, essas estruturas também estão presentes nas fases do processo, e o dossiê retorna apenas a fase atual, não apresentando as estruturas passadas e futuras.</em></p>
+</blockquote>
+<ul>
+<li><strong>respostas_formulario</strong>: O dossiê de produto permite a associação de perguntas dinâmicas associadas as seguintes estruturas de uma operação:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>Fases da operação;</p>
+</li>
+<li>
+<p>Vinculo de Pessoas;</p>
+</li>
+<li>
+<p>Vinculo de Produto;</p>
+</li>
+<li>
+<p>Vinculo de Garantias;</p>
+</li>
+</ul>
+<p>Este bloco apresenta de forma global a lista de todas as respostas apresentadas no dossiê até o momento. Apesar deste bloco, cada uma das estruturas acima apresenta um bloco de respostas de formulário que contem apenas as respostas apresentadas a seu próprio contexto.</p>
+<p>OBS: Este bloco existe, pois, essas estruturas também estão presentes nas fases do processo, e o dossiê retorna apenas a fase atual, não apresentando as estruturas passadas e futuras.</p>
+</blockquote>
+<ul>
+<li>**verificacoes: Este bloco a lista de verificações (avaliações de conformidade) realizadas no dossiê, indicando:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>A fase em que a verficiação foi realizada;</p>
+</li>
+<li>
+<p>A instância do documento que foi avaliada;</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>Caso seja uma avaliação “não documental” este elemento não será apresentado;</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>A data/hora de verificação</p>
+</li>
+<li>
+<p>A unidade responsável pela análise;</p>
+</li>
+<li>
+<p>A indicação de análise realizada</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>Alguns documentos podem não ser alvo de verificação;</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>Indicação de aprovação na verificação</p>
+</li>
+<li>
+<p>Lista de pareceres sobre cada apontamento analisado na verificação. Sob cada elemento existe a indicação de aprovação ou não daquele apontamento a orientação padrão sob a ação que deve ser realizada para correção e comentário apresentado pelo analista sob a situação.</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>POST /negocio/v1/dossie-produto/{id}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Realizar a consulta de um dossiê de produto com base no seu identificador. A obtenção do identificador acontece em outro serviço dedicado a inclusão da operação. Por este serviço é realizada uma com a tentativa de captura para manipulação de dados e deverá ser observado o valor indicado para permissão de alteração de dados desse dossiê que só poderá ocorrer se a operação for retornada como “true” indicando que não será permitida alteração de informação ou inclusão de documento pela mesma matricula responsável pela captura.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: Não se aplica</p>
+</li>
+<li>
+<p>Retorno: Mesmo retorno apresentado no serviço de consulta da operação descrito no item acima com possibilidade de apresentar o atributo “alteracao” com o valor “true”.</p>
+</li>
+</ul>
+</blockquote>
+<p>POST /negocio/v1/dossie-produto</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Realizar a inclusão de um dossiê de produto de acordo a definição do processo que rege a operação. Após a inclusão da operação o objeto descrito no item acima será retornado para o solicitante com a indicação do identificador gerado para a operação.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: </p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>rascunho</strong>: O sistema permite realizar a inclusão de uma operação ainda que todas as informações obrigatórias não estejam definidas. Isso permite que as informações sejam incluídas parcialmente e posteriormente complementadas para dar início as tratativas. </li>
+</ul>
+<p>Para criar um dossiê em situação de rascunho enviar “true” para criar o dossiê já iniciando as tratativas da operação enviar “false”.</p>
+<p><u>IMPORTANTE</u>: Um dossiê de produto criado em modo rascunho não notifica nenhuma área e não inicia as contagens de SLA assim como não dispara a execução do processo junto a ferramento de BPM que realizará o acompanhamento do ciclo de vida da operação.</p>
+<ul>
+<li>
+<p><strong>processo_origem</strong>: Identificador do processo responsável por definir toda a estrutura da operação. Esse identificador deverá ser obtido com a equipe de gestão do SIMTR, assim como toda a estrutura deste, como elementos de documentação obrigatórios, tipos de vínculos possíveis para pessoas, respostas necessárias a formulários, etc.</p>
+</li>
+<li>
+<p><strong>elementos_conteudo</strong>: Representa a lista de documentos definidos para a operação que são esperados de acordo com o processo definido. Necessario enviar cada documento com a respectiva identificação de qual elemento de conteúdo esta sendo atendido que pode ser referente ao processo global ou a etapa da operação. Além disso, o serviço realizará uma validação se a tipologia indicada no documento, é condizente com a definida para o elemento indicado.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Representa a lista de respostas esperadas para formulários definidos já na primeira fase do processo. Cada resposta deverá ser informada junto com o identificador do campo de formulário indicado.</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>resposta</strong>: Deve ser preenchido apenas quando o campo de formulário estiver definido para uma resposta subjetiva. Esta resposta deve ser enviada apenas como um único texto.</p>
+</li>
+<li>
+<p><strong>opcoes_selecionadas</strong>: Deve ser preenchido apenas quando o campo de formulário estiver definido para uma resposta objetiva. Esta resposta deve ser enviada como uma lista de opções, cada uma representada por um texto. A lista de opções pode ser obtida com a equipe de gestão do SIMTR.</p>
+</li>
+</ul>
+</blockquote>
+<p><u>IMPORTANTE</u>: Apenas uma das opções de resposta deve ser utilizada, nunca as duas, ou seja, ou envia o atributo, ou envia o atributo opções_selecionadas.</p>
+<ul>
+<li><strong>produtos_contratados</strong>: Representa a lista de produtos que estão sendo vinculados a esta operação e para cada produto deverá ser informado os elementos abaixo:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>id</strong>: Deve ser informado o identificador do produto junto ao SIMTR. Caso esse campo seja informado ele terá prioridade frente ao par de atributos operacao/modalidade que não deverão ser informados.</p>
+</li>
+<li>
+<p><strong>operação</strong>: Deverá ser informado juntamente com o atributo modalidade e apenas se o atributo id não for informado. Representa a código principal do produto CAIXA.</p>
+</li>
+<li>
+<p><strong>modalidade</strong>: Deverá ser informado juntamente com o atributo operacao e apenas se o atributo id não for informado. Representa a código o códigop de subproduto do produto CAIXA, a exemplo dos produtos BCD (opeacao 149) e modalidade de acordo com a linha de produtos (computadores, eletrodomésticos, etc) as operações que não possuem subprodutos, seão preenchidas com 0 mas devem ser confirmadas com a equipe de gestão do SIMTR.</p>
+</li>
+<li>
+<p><strong>elementos_conteudo</strong>: Representa a lista de documentos definidos para o produto indicado que são esperados de acordo com o processo definido. Necessario enviar cada documento com a respectiva identificação de qual elemento de conteúdo esta sendo atendido. Além disso, o serviço realizará uma validação se a tipologia indicada no documento, é condizente com a definida para o elemento indicado.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Representa a lista de respostas esperadas para formulários definidos para o produto indicado. Cada resposta deverá ser informada junto com o identificador do campo de formulário indicado e segue as mesmas regras que as definidas no bloco de respostas_formulario do processo.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>vinculos_pessoas</strong>: Representa a lista de vínculos de pessoas associados com a operação. Todo dossiê deverá ter ao menos um vinculo de pessoa definido que será o dito vinculo principal da operação e seu tipo de relacionamento deverá respeitar essa indicação. Os atributos deverão ser preenchidos conforme abaixo:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>dossie_cliente</strong>: Identificador do dossiê de cliente a ser associado com a operação. O identificador do cliente pode ser obtido consumindo o serviço de consulta de dossiês de cliente já definido neste documento.</p>
+</li>
+<li>
+<p><strong>dossie_cliente_relacionado</strong>: Alguns tipo de relacionamento indicam relacionamento entre as pessoas (ex: Socio, este cliente é sócio de quem?). Este atributo deve conter o identificador do dossiê cliente ao qual o identificador informado no atributo “dossie_cliente” esta relacionado.</p>
+</li>
+</ul>
+<p>Por exemplo, este identificador pode conter o código da pessoa jurídica ao qual o dossiê_cliente esta sendo vinculado como sócio.</p>
+<p><u>IMPORTANTE</u>: Os identificadores informados neste campo deverão ter seu próprio registro vinculado a operação para que possam ser referenciados neste campo.</p>
+<ul>
+<li><strong>sequencia_titularidade</strong>: Alguns tipos de relacionamento permitem associação de mais de uma pessoa com o mesmo tipo indicando sua sequencia (ex: Titular, este registro é o primeiro titular) Este atributo deve conter a indicação da sequencia ocupada pela pessoa informada no atributo “dossie_cliente”.</li>
+</ul>
+<p><u>IMPORTANTE</u>: Todos os registros que indicarem sequencia não poderam ter ausências na lista sequencial inicando de 1, por exemplo, três registros com indicação de sequencial devem ser os valores 1, 2, 3 respectivamente.</p>
+<ul>
+<li>
+<p><strong>tipo_relacionamento</strong>: Aqui deverá ser informado o tipo de relacionamento que o dossiê de cliente tem com esta operação. Os tipos de relacionamento são variáveis conforme cada processo e deve ser identificado junto aos gestores do SIMTR de acordo com o processo que será utilizado. O tipo de relacionamento indicado, também poderá definir respostas de formulário que serão necessárias assim como a lista de documentos esperados.</p>
+</li>
+<li>
+<p><strong>documentos_utilizados</strong>: Quando o cliente indicado já possui documentos na base a serem reutilizados, é possível indica-los para reuso e essa indicação é realizada passando a lista de identificadores dos documentos junto ao SIMTR que estão associados ao cliente indicado.</p>
+</li>
+<li>
+<p><strong>documentos_novos</strong>: Lista de documentos informados para operação que são previstos pelo tipo de relacionamento informado no processo mas não estão sendo reutilizados, seja porque ainda não existem associado ao dossiê do cliente, seja porque tratam-se de documentos efetivamente novos que estão sendo enviados. A lista de atributos segue as mesmas regras de submissão de documentos já definidos para outras estruturas.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Representa a lista de respostas esperadas para formulários definidos para o tipo de vinculo indicado. Cada resposta deverá ser informada junto com o identificador do campo de formulário indicado e segue as mesmas regras que as definidas no bloco de respostas_formulario do processo.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>garantias_informadas</strong>: Representa a lista de garantias que estão sendo vinculados a esta operação e para cada garantia deverá ser informado os elementos abaixo:</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p><strong>identificador_garantia</strong>: Deve ser informado o identificador da garantia junto ao SIMTR que esta sendo ofertada na operação.</p>
+</li>
+<li>
+<p><strong>identificador_produto</strong>: Deve ser informado o identificador do produto junto ao SIMTR que compõe essa operação e que a garantia esta cobrindo.</p>
+</li>
+<li>
+<p><strong>valor_garantia</strong>: Deverá ser indicado o valor da garantia na operação em construção. O valor deverá ser defindo um numero decimal, não deve ser utilizado separador de milhares e deverá ser utilizado o ponto como separador de centavos.</p>
+</li>
+<li>
+<p><strong>clientes_avalistas</strong>: Lista de identificadores de dossiês de clientes associados a garantia informada. Esse atributo é utilizado no caso de garantias fidejussórias que dependem do vinculo de uma pessoa associada. O identificador do cliente pode ser obtido consumindo o serviço de consulta de dossiês de cliente já definido neste documento.</p>
+</li>
+<li>
+<p><strong>documentos_utilizados</strong>: Quando o atributo clientes_avalistas é preenchido e existem documentos a serem reutilizados que já fazem parte da base de dados do SIMTR, é possível indica-los para reuso e essa indicação é realizada passando a lista de identificadores dos documentos junto ao SIMTR que estão associados aos clientes informados.</p>
+</li>
+<li>
+<p><strong>documentos_novos</strong>: Lista de documentos informados para associação a garantia que são previstos, mas não estão sendo reutilizados, seja porque ainda não existem associados aos dossiês de clientes, seja porque tratam-se de documentos efetivamente novos que estão sendo enviados. A lista de atributos segue as mesmas regras de submissão de documentos já definidos para outras estruturas.</p>
+</li>
+<li>
+<p><strong>respostas_formulario</strong>: Representa a lista de respostas esperadas para formulários definidos para a garantia indicada. Cada resposta deverá ser informada junto com o identificador do campo de formulário indicado e segue as mesmas regras que as definidas no bloco de respostas_formulario do processo.</p>
+</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>Retorno: Mesmo retorno apresentado no serviço de consulta da operação descrito no item acima.</li>
+</ul>
+</blockquote>
+<p>PATCH /negocio/v1/dossie-produto/{id}</p>
+<blockquote>
+<ul>
+<li>
+<p>Finalidade: Realizar a alteração de um dossiê de produto criado baseado no identificador do mesmo. Após a inclusão da operação o objeto descrito no item acima será retornado para o solicitante com a indicação do identificador gerado para a operação e todas as modificações encaminhadas a operação serão realizadas por meio deste serviço.</p>
+</li>
+<li>
+<p>Corpo da Mensagem: O corpo da mensagem prevê todas as possibilidades de alteração neste mesmo serviço, e devido a utilização do verbo PATCH é possível realizar alterações parciais no recurso do dossiê, e nesse caso é possível enviar a mensagem preenchendo apenas os blocos que devem ser alterados.</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><strong>cancelamento</strong>: Atributo que representa a indicação de revogação do dossiê de produto, incluindo uma situação e “CANCELADO” no seu ciclo de vida e finalizando qualquer tipo de operação junto ao mesmo em definitivo. Para realizar a revogação da operação deve ser enviado o valor “true” e somente poderá ser feito quando o mesmo estiver com a situação atual “EM ALIMENTACAO” e por usuário vinculado a mesma unidade de criação.</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>false - Indica continuidade da operação; (padrão)</p>
+</li>
+<li>
+<p>true: Realiza a revogação da operação;</p>
+</li>
+</ul>
+</blockquote>
+<p><u> IMPORTANTE </u>: Sempre que uma indicação de cancelamento for enviada, será necessário informar uma justificativa no atributo próprio definido mais abaixo.</p>
+<ul>
+<li><strong>finalizacao</strong>: Atributo utilizado para indicar que a alimentação daquela etapa foi finalizada. Quando o dossiê esta na situação “RASCUNHO” outras alterações podem ser realizadas junto ao mesmo e ainda manter essa situação, criando um novo registro de RASCUNHO em seu ciclo de vida. Para concluir a ação de alimentatação e dar prosseguimento a operação este atributo deve ser enviado como “true”. Após o inicio do ciclo de vida do dossiê, este campo deve sempre ser enviado com o valor “true” ara que seja indicado finalização da atuação junto ao dossiê, seja devidamente apurado os SLA’s cabíveis e haja prosseguimento no ciclo de vida da operação.</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>false - Mantém a operação em RASCUNHO quando o dossiê encontra-se nesta situação.</p>
+</li>
+<li>
+<p>true: Finaliza a alimentação do dossiê e da prosseguimento ao ciclo de vida definido no processo.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>retorno</strong>: Atributo utilizado para indicar se houve desistência da ação e o dossiê deverá retornar para situação anterior. Só pode ser utilizado se o dossiê estiver nas opções "Em Alimentação", ou "Análise Segurança". Para “retornar” a situação sem perder o histórico das ocorrências, é realizada inclusão de uma nova situação igual a anterior ao estado de “Em Alimentação”.</li>
+</ul>
+<blockquote>
+<ul>
+<li>
+<p>false - Indica prosseguimento da alteração aplicada.</p>
+</li>
+<li>
+<p>true: Indica desistência da alteração do dossiê e retorna o dossiê para situação anterior do seu ciclo de vida.</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p><strong>justificativa</strong>: Atributo destinado a viabilizar o envio de uma justificatiova nos casos de revogação da operação por meio da utilização do atributo “cancelamento” com o valor true.</p>
+</li>
+<li>
+<p><strong>elemento_conteudo</strong>: Representa a lista de documentos definidos para o produto indicado que são esperados de acordo com o processo definido. Necessario enviar cada documento com a respectiva identificação de qual elemento de conteúdo esta sendo atendido. Além disso, o serviço realizará uma validação se a tipologia indicada no documento, é condizente com a definida para o elemento indicado. Caso já exista uma instância associada ao elemento informado, uma nova instância de documento será criada realizando um novo vinculo entre o novo registro de documento e o dossiê de produto.</p>
+</li>
+<li>
+<p><strong>produtos_contratados</strong>: O registros de produtos contratados, seguem a mesma estrutura do seviço de criação, com a diferença o registro pode ser excluído.</p>
+</li>
+</ul>
+<p>Se o atributo “exclusao” estiver definido com o valor “false”, as alterações indicadas serão aplicadas ao vinculo de produto indicado. </p>
+<p>As alterações possíveis de serem realizadas são:</p>
+<ul>
+<li>
+<p>Associação de documentos;</p>
+</li>
+<li>
+<p>Inclusão ou alteração de respostas de formulários</p>
+</li>
+</ul>
+<p>Devido as regras de validação e avaliação de formulários e documentos necessários que acontecem na inclusão do vinculo, não é possível realizar alteração no produto selecionado e caso seja necessário modificar devido a uma vinculação indevida, será necessário realizar a exclusão do mesmo e a inclusão do novo.</p>
+<p><u> IMPORTANTE </u>: Ao excluir um vinculo de produto as instâncias de documentos a ele vinculados e as respostas de formulário referentes ao produto serão também excluídas do dossiê de produto, mas é preciso ressaltar que <strong>a exclusão não poderá ser realizada se alguma avaliação de conformidade já tiver sido executada</strong>.</p>
+<ul>
+<li><strong>vinculos_pessoas</strong>: O registros de vínculos de pessoas, seguem a mesma estrutura do seviço de criação, com a diferença o registro pode ser excluído, ou alterado.</li>
+</ul>
+<p>Se o atributo “exclusao” estiver definido com o valor “false”, as alterações indicadas serão aplicadas ao dossiê de cliente indicado. </p>
+<p>As alterações possíveis de serem realizadas são:</p>
+<blockquote>
+<ul>
+<li>
+<p>Alteração de dossiê cliente relacionado;</p>
+</li>
+<li>
+<p>Alteração de sequencia de titularidade;</p>
+</li>
+<li>
+<p>Associação de documentos;</p>
+</li>
+<li>
+<p>Inclusão ou alteração de de respostas de formulários</p>
+</li>
+</ul>
+</blockquote>
+<p>Devido as regras de validação que acontecem na inclusão não é possível realizar alterações no tipo de relacionamento do vinculo de pessoas e caso seja necessário modificar um vinculo criado, será necessário realizar a exclusão do mesmo e a inclusão do novo.</p>
+<p><u>IMPORTANTE</u>: Ao excluir um vinculo de pessoa as instâncias de documentos a ele vinculados e as respostas de formulário referentes aquele vinculo serão também excluídas do dossiê de produto, mas é preciso ressaltar que <strong>a exclusão não poderá ser realizada se alguma avaliação de conformidade já tiver sido executada</strong>.</p>
+<ul>
+<li><strong>garantias_informadas</strong>: O registros de garantias ofertadas, seguem a mesma estrutura do seviço de criação, com a diferença o registro pode ser excluído.</li>
+</ul>
+<p>Se o atributo “exclusao” estiver definido com o valor “false”, as alterações indicadas serão aplicadas ao vinculo de produto indicado. </p>
+<p>As alterações possíveis de serem realizadas são:</p>
+<blockquote>
+<ul>
+<li>
+<p>Associação de documentos;</p>
+</li>
+<li>
+<p>Inclusão ou alteração de respostas de formulários</p>
+</li>
+</ul>
+</blockquote>
+<p>Devido as regras de validação e avaliação de formulários e documentos necessários que acontecem na inclusão do vinculo, não é possível realizar alteração na garantia selecionada e caso seja necessário modificar devido a uma vinculação indevida, será necessário realizar a exclusão da mesma e a inclusão da nova.</p>
+<p><u>IMPORTANTE</u>: Ao excluir um vinculo de garantia as instâncias de documentos a ela vinculados e as respostas de formulário referentes a garantia serão também excluídas do dossiê de produto, mas é preciso ressaltar que a exclusão não poderá ser realizada se alguma avaliação de conformidade já tiver sido executada.</p>
+<ul>
+<li><strong>respostas_formulario</strong>: As respostas de formulário seguem a mesma estrutura do serviço de criação, porém é importante salientar que no caso de não haver resposta para o campo de formulário indicado, esta será criada, e caso já exista, a mesma será sobreposta.</li>
+</ul>
+</blockquote>
+<p>OBS: <u>Não é possível realizar exclusões de documentos da operação uma vez que na plataforma os documentos possuem um ciclo de vida próprio, incluindo ações automatizadas de extração de dados por exemplo. Sendo assim, mesmo nos casos de remoção de instâncias, os registros de documentos não são excluídos. Existe uma rotina própria de exclusão que considera a possibilidade de reuso destes documentos em outras operações.</u></p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo" style="text-align:right">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019 Caixa Econômica Federal.</p>
+    
+  </div>
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script type="text/javascript" defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

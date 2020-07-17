@@ -1,0 +1,8 @@
+.wrapper {
+    font-family: 'IBM Plex Sans';
+}
+
+.main-sidebar {
+    box-shadow: 9px 2px 22px -6px rgba(0,0,0,0.62);
+    width: 220px;
+}

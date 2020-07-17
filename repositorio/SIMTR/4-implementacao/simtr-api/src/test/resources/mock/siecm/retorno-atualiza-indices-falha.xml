@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resposta>
+    <operacao>ATUALIZA_INDICES_DOCUMENTO</operacao>
+    <codigoRetorno>2</codigoRetorno>
+    <mensagem>FALHA AO ATUALIZAR INDICES DO DOCUMENTO - ERRO INTERNO DO SIECM</mensagem>
+</Resposta>

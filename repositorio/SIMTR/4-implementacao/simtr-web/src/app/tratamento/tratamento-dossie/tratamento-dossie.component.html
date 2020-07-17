@@ -1,0 +1,154 @@
+<div class="cx-page">
+    <div class="box-body alertTratamento">
+        <cx-alert-message 
+            [messagesInfo]="messagesInfo" 
+            [messagesSuccess]="messagesSuccess" 
+            [messagesError]="messagesError" 
+            (onCloseMessageInfo)="onCloseMessageInfo()"
+            (onCloseMessageError)="onCloseMessageError()" 
+            (onCloseMessageSuccess)="onCloseMessageSuccess()" 
+            [messagesWarning]="messagesWarning"
+            (onCloseMessageWarning)="onCloseMessageWarning()">
+        </cx-alert-message>
+        <section id="collapse-sidebar-menu" class="col-lg-3 corpSide">                
+            <div class="icon-collapse">
+                <a class="fa fa-chevron-left" (click)="changeCollapseSidebar()" data-toggle="toggle" data-target="#collapse-sidebar-menu"> 
+                </a>
+            </div>
+            <sidebar-menu class="col-lg-3 asideTratamento" 
+                [processoDossieReFerenciaPatriarca]="processoDossieReFerenciaPatriarca" 
+                [dossieProduto]="dossieProduto" 
+                [listaChekList]="listaChekList" 
+                [listaDocumentoObrigatorio]="listaDocumentoObrigatorio"
+                [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" 
+                (listaCheklistChanged)="handleChangeListaChekList($event)" 
+                (listDocumentosImagemChanged)="handleChangeListDocumentos($event)" 
+                (idCheckListAtivadoChanged)="handlleChangeEventCheckList($event)">
+            </sidebar-menu>
+        </section>
+        <section class="col-lg-9 corpWizardDivisor">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <label class="labelId">Dossiê Produto: {{(dossieProduto && dossieProduto.id) ? dossieProduto.id : ''}}</label>
+                </div>
+                
+                <!-- SESSÃO -->
+                <div class="col-md-6 corpo-temporizador" *ngIf="habilitarTemporizador">
+                    <div class="box-temporizador box-temporizador-left">
+                        <span><i class="fa fa-fw fa-clock-o" style="font-size: 30px; text-align: left !important;"></i></span>
+                    </div>
+                    <div class="box-temporizador box-temporizador-rigth">
+                        <div class="box-temporizador cronometro"> 
+                            <label style="color: #f08f1d;">{{minutoFormatado}}:{{segundoFormatado}}</label>                  
+                            <span id="temporizador-tratamento">
+                                <p-slider [(ngModel)]="sessaoTemporizador" disabled="true"></p-slider>
+                            </span>
+                        </div>
+                        <div class="row classe-renovar-tempo">
+                            <p><a (click)="renovarTempoSessao()" pTooltip="Renovar tempo de sessão (Ctrl+R)">Renovar Sessão</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIM SESÃO-->
+            </div>
+            
+            <div class="row">
+                <div class="wizard">
+                    <tela-wizard [dossieProduto]="dossieProduto" (idFaseSelecionada)="onChangeFaseSelecionada($event)"></tela-wizard>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="acoesWizard">
+                    <div class="col-md-6">
+
+                        <a (click)="abrirPopup()"                             
+                            class="icon-acao-abrir-poup"
+                            pTooltip="{{toolTipAbrirPopup}}">
+                            <i class="fa fa-fw fa-share-square" style="font-size: 26px !important; vertical-align: middle !important;"></i>
+                        </a>
+                        
+                        <span class="centralizarHeight"></span>
+                        <a class="incoAddVisualizar" (click)="habilitarDuasVisualizacaoImg()" pTooltip="Visualizar dois documentos (Ctrl+D)">
+                            <i class="fa fa-fw fa-columns horizontal"></i>
+                        </a>
+
+                        <label for="layout" class="labelLeft">Layout</label>
+                        <select id="layout"  class="form-control select2" name="layout" [disabled]="exibindoChecklistFase">
+                            <option value="VERTICAL_A" >Vertical A</option>
+                            <option value="VERTICAL_B" >Vertical B</option>
+                            <option value="HORIZONTAL_A" >Horizontal A</option>
+                            <option value="HORIZONTAL_B" >Horizontal B</option>
+                        </select>
+
+                        <a (click)="op.show($event, actualTarget)" id="help-icon" pTooltip="Legenda de significado de cores.">
+                            <i class="fa fa-question iconInterrogacao"></i>
+                        </a>
+
+                        <label for="popup" style="margin-left: 30px;">Popup</label>
+                        <label class="switch" style="margin-left: 10px;" pTooltip="Sempre apresentar imagem em nova janela" tooltipPosition="top">
+                            <input class="form-control"
+                            name="documentoEmNovaJanela" 
+                            type="checkbox"
+                            [(ngModel)]="isDocumentoEmNovaJanela" 
+                            (change)="atualizarPropriedadeAbrirDocumento()">
+                            <span class="slider round"></span>
+                        </label>    
+
+                        <div #actualTarget></div>
+                            <p-overlayPanel id="help" #op [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [dismissable]="true" [showCloseIcon]="true">
+                                <div class="help-descricao-doc">
+                                    <label id="help-label-doc-azul">Documento na cor azul:</label><p>Documento novo.</p>
+                                </div>
+                                <br/>
+                                <div class="help-descricao-doc">
+                                    <label id="help-label-doc-amarelo">Documento na cor amarela:</label><p>Documento não verificado.</p>
+                                </div>
+                                <br/>
+                                <div class="help-descricao-doc">
+                                    <label id="help-label-doc-vermelho">Documento na cor vermelha:</label><p>Documento rejeitado pela verificação.</p>
+                                </div>
+                                <br/>
+                                <div class="help-descricao-doc">
+                                    <label id="help-label-doc-verde">Documento na cor verde:</label><p>Documento aprovado pela verificação.</p>
+                                </div>
+                            </p-overlayPanel>
+                    </div>
+
+                    <div class="col-md-6">
+                        <span class="spanBtn">
+                            <button class="btn btn-success btnRigth" (click)="cancelaTratamento()" pTooltip="Cancelar tratamento (Ctrl+6)" tooltipPosition="bottom">CANCELAR</button>
+                            <button class="btn btn-info btnRigth" (click)="validarChecklist(true)" pTooltip="Validar tratamento (Ctrl+7)" tooltipPosition="bottom">VALIDAR</button>
+                            <button class="btn btn-primary btnRigth" (click) = "finalizarTratamento(true)" [disabled]="habilitar" pTooltip="Finalizar tratamento (Ctrl+8)" tooltipPosition="bottom">FINALIZAR</button>
+                            <button class="btn btn-primary btnRigth" (click) = "buscarProximoDocumentoParaTratar()" [disabled]="habilitar" pTooltip="Finalizar este e tratar próximo (Ctrl+9)" tooltipPosition="bottom">FINALIZAR / PRÓXIMO</button>
+                        </span>
+                    </div>
+                                            
+                </div>
+            </div>
+           
+            <tela-dragDrop 
+                *ngIf="mostrarTelaDragDrop" 
+                [processoFaseCheckList]="processoFaseCheckList" 
+                [hasMapListaCombo]="hasMapListaCombo"
+                [idCheckListAtivado]="idCheckListAtivado"
+                [processoGerador]="processoGerador"
+                [listaChekList]="listaChekList" 
+                [dossieProduto]="dossieProduto" 
+                [listDocumentosImagens]="listDocumentosImagens"
+                [listaDocumentacao]="listaDocumentacao" 
+                [qtdeVisualizadores]="qtdeVisualizadores"
+                (listaCheklistChanged)="handleChangeListaChekList($event)" 
+                (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+                [layoutHorizontalA]="layoutHorizontalA" 
+                [layoutHorizontalB]="layoutHorizontalB" 
+                [layoutVerticalA]="layoutVerticalA" 
+                [layoutVerticalB]="layoutVerticalB"
+                (alertMessagesSucessChanged)="handlleMessagesSucess($event)" 
+                (alertMessagesInfoChanged)="handlleMessagesInfo($event)" 
+                (alertMessagesErrorChanged)="handlleMessagesError($event)">
+            </tela-dragDrop>
+        </section>
+    </div>
+</div>

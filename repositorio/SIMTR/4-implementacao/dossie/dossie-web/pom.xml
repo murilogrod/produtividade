@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>dossie</artifactId>
+		<groupId>br.gov.caixa</groupId>
+		<version>1.1.0</version>
+	</parent>
+
+	<artifactId>dossie-web</artifactId>
+	<packaging>war</packaging>
+
+	<name>dossie Web module</name>
+
+	<dependencies>
+
+		<!-- Dependency on the EJB module so we can use it's services if needed -->
+		<dependency>
+			<groupId>br.gov.caixa</groupId>
+			<artifactId>dossie-ejb</artifactId>
+			<type>ejb</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+			in JBoss AS 7 -->
+
+		<!-- Import the CDI API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>[2.3.7.Final,3.0.16.Final)</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Import the JPA API, we use provided scope as the API is included in 
+			JBoss AS 7 -->
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>test</scope>
+			<version>5.14.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<scope>test</scope>
+			<version>2.44.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports-fonts</artifactId>
+		    <version>5.6.1</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<filters>
+			<filter>src/main/resources/filter.properties</filter>
+		</filters>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<!-- Java EE 6 doesn't require web.xml, Maven needs to catch up! -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<archive>
+						<manifestEntries>
+							<Logging-Profile>dossie-logger</Logging-Profile>
+						</manifestEntries>
+					</archive>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>js/*.js</include>
+								<include>*.json</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<systemPropertyVariables>
+						<habilita.sisgr>false</habilita.sisgr>
+						<url.projeto>http://localhost:8080/app/dossie/#/principal</url.projeto>
+						<url.sisgr>${url.sisgr}</url.sisgr>
+						<usr.sisgr>${usr.sisgr}</usr.sisgr>
+						<pwd.sisgr>${pwd.sisgr}</pwd.sisgr>
+					</systemPropertyVariables>
+					<suiteXmlFiles>
+						<!-- Suite file injection parameter from command line -->
+						<suiteXmlFile>src\test\resources\testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<properties>
+						<property>
+							<name>usedefaultlisteners</name>
+							<value>false</value> <!-- disabling default listeners is optional -->
+						</property>
+						<property>
+							<name>listener</name>
+							<value>br.gov.caixa.dossie.generic.GeradorDoRelatorio</value>
+						</property>
+						<property>
+							<name>reporter</name>
+							<value>listenReport.Reporter</value>
+						</property>
+					</properties>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.sebastian-daschner</groupId>
+				<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+				<version>0.15</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.sebastian-daschner</groupId>
+						<artifactId>jaxrs-analyzer</artifactId>
+						<version>0.15</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>analyze-jaxrs</goal>
+						</goals>
+						<configuration>
+							<backend>swagger</backend>
+							<deployedDomain>siogp.des.corerj.caixa</deployedDomain>
+							<renderSwaggerTags>true</renderSwaggerTags>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>loc</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<url.simtr.api>${url.simtr.api.loc}</url.simtr.api>
+				<url.sso.auth>${url.sso.auth.loc}</url.sso.auth>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<url.simtr.api>${url.simtr.api.dev}</url.simtr.api>
+				<url.sso.auth>${url.sso.auth.dev}</url.sso.auth>
+			</properties>
+		</profile>
+		<profile>
+			<id>tst</id>
+			<properties>
+				<url.simtr.api>${url.simtr.api.tst}</url.simtr.api>
+				<url.sso.auth>${url.sso.auth.tst}</url.sso.auth>
+			</properties>
+		</profile>
+		<profile>
+			<id>hmp</id>
+			<properties>
+				<url.simtr.api>${url.simtr.api.hmp}</url.simtr.api>
+				<url.sso.auth>${url.sso.auth.hmp}</url.sso.auth>
+			</properties>
+		</profile>
+		<profile>
+			<id>prd</id>
+			<properties>
+				<url.simtr.api>${url.simtr.api.prd}</url.simtr.api>
+				<url.sso.auth>${url.sso.auth.prd}</url.sso.auth>
+			</properties>
+		</profile>
+	</profiles>
+</project>

@@ -1,0 +1,89 @@
+.cabecalho-dossie  {
+    margin-top: 5px !important;
+    padding: 0 !important;
+    border: none !important;
+}
+  
+.cabecalho-dossie .ui-widget-content{
+    border: none !important;
+    padding: 0 !important;
+}
+  
+.ui-fieldset-toggleable .ui-fieldset-legend {
+    border: none !important;
+    background: rgb(234, 240, 243) !important;
+    color: rgb(0, 90, 156) !important;
+    border-bottom: 3px solid rgb(0, 90, 156) !important;
+    font-weight: bold !important;
+    margin: 0px !important;
+}
+  
+.ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover {
+    border-color: rgb(234, 240, 243) !important;
+    background-color: rgb(0, 90, 156) !important;
+    color: rgb(255, 255, 255) !important;
+}
+  
+.ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover a {
+    color: rgb(255, 255, 255) !important;
+}
+  
+.cabecalho-dossie legend a .ui-fieldset-toggler {
+    float: right;
+    padding: 4px 0px;
+    position: relative;
+}
+            
+.cabecalho-dossie legend a .pi {
+    font: normal normal normal 14px/1 FontAwesome !important;
+}
+  
+.cabecalho-dossie legend a .pi-minus:before {
+    content: "\f139" !important;
+
+}  
+
+.cabecalho-dossie legend a .pi-plus:before {
+    content: "\f13a" !important;
+}
+  
+.tamanhoCorpToogleExpandir {
+    margin-left: 5%;
+}
+  
+.cabecalho-dossie legend{
+    white-space: normal !important;
+    text-align: justify;
+}
+  
+.cabecalho-dossie .ui-fieldset-toggleable .ui-fieldset-legend a{
+    padding: 10px 10px 10px 10px !important;
+    cursor: pointer !important;
+    white-space: normal !important;
+    display: block !important;
+}
+  
+.titulo-container{
+    font-size: 13px !important;
+    text-align: left !important;
+}
+
+.list-group{
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.list-group-item{
+    border-radius: 0px !important;
+}
+
+.label-visualizacao{
+    color: rgb(0, 90, 156);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.conteudo-visualizacao{
+    color: rgb(0, 90, 156);
+    font-size: 12px;
+}

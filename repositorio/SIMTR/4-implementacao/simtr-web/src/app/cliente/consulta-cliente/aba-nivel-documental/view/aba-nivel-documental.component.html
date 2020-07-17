@@ -1,0 +1,48 @@
+<div id="div-box-body-nivel-documental" class="box-body col-md-12">
+    <div id="div-grid-produtos-contratados" class="col-md-7">
+        <app-loader-relativo 
+                            [ativo]="loadingModel.documentacaoValida" 
+                            [bloco]="true" 
+                            [posicao]="loadingModel.countDocumentacaoValida" 
+                            [qtdComponent]="loadingModel.countTotalDocumentoValidacao">
+        </app-loader-relativo>
+        <grid-produtos-documentacao-valida 
+            id="component-produtos-contratados" 
+            [vinculoCliente]="vinculoCliente" 
+            (changeContadorListaDocumentacaoValida)="handleChangeContadorListaDocumentacaoValida($event)"
+            (changeCloseLoadingToDocumentacaoValida)="handleChangeCloseLoadingToDocumentacaoValida($event)"
+            (changeQtdComponentToDocumentacaoValida)="handleChangeQtdComponentToDocumentacaoValida($event)" >
+        </grid-produtos-documentacao-valida>    
+    </div>
+    <div id="div-grid-consulta-produtos" class="col-md-5 margin-top-component-produtos-doc-pendente">
+        <app-loader-relativo 
+                            [ativo]="loadingModel.documentacaoPendente" 
+                            [bloco]="true"
+                            [posicao]="loadingModel.countDocumentacaoPendente" 
+                            [qtdComponent]="loadingModel.countTotalDocumentoPendente">
+        </app-loader-relativo>
+        <grid-produtos-documentacao-pendente 
+            id="component-produtos-doc-pendentes"
+            [vinculoCliente]="vinculoCliente"
+            (changeContadorListaDocumentacaoPendente)="handleChangeContadorListaDocumentacaoPendente($event)"
+            (changeCloseLoadingToDocumentoPendente)="handleChangeCloseLoadingToDocumentoPendente($event)"
+            (changeQtdComponentToDocumentoPendente)="handleChangeQtdComponentToDocumentoPendente($event)">
+        </grid-produtos-documentacao-pendente>    
+    </div>
+    <div class="col-md-7"></div>
+    <div id="div-grid-funcao-documental-tipo-documento" class="col-md-5 margin-top-componente-func-tipo-doc">
+        <app-loader-relativo 
+                        [ativo]="loadingModel.documentacaoTipoDocumento" 
+                        [bloco]="true"
+                        [posicao]="loadingModel.countDocumentacaoTipoDocumento" 
+                        [qtdComponent]="loadingModel.countTotalDocumentoTipoDocumento">
+        </app-loader-relativo>
+        <grid-funcao-documental-tipo-documento 
+            id="component-funcao-tipo-doc"
+            [vinculoCliente]="vinculoCliente"
+            (changeContadorListaDocumentacaoTipoDocumento)="handleChangeContadorListaDocumentacaoTipoDocumento($event)"
+            (changeCloseLoadingToDocumentacaoTipoDocumento)="handleChangeCloseLoadingToDocumentoTipoDocumento($event)"
+            (changeQtdComponentToDocumentacaoTipoDocumento)="handleChangeQtdComponentToDocumentoTipoDocumento($event)">
+        </grid-funcao-documental-tipo-documento>    
+    </div> 
+</div>

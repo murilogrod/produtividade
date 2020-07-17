@@ -1,0 +1,765 @@
+					<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+				
+<div class="theme-main" ng-controller="DeclaracaodedadosController" analytics-page="Página Declaração de Dados">
+        <caixa-alert error="error" show="showError" on-close="hideAlert();"></caixa-alert>
+
+		<form novalidate name="formDeclaracaoDados"  class = "was-validated" >
+   			<div class="row">
+   					<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+    					
+                        <bread-crumb activeurl="activeurl" breadcrumb="breadcrumb"></bread-crumb>
+                        <!-- id:h4 - name:Título -->
+                        
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                             <div class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px;">
+                                 <label style="margin-top: 5px;">{{ 'label.dados.pessoais' | translate}}</label>
+                             </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                               <div class="form-group col-xs-6">
+                                   <label>{{ 'label.nome.social' | translate}}</label>
+								<input id="txtNomeSocial" type="text" ng-model="fields['nome_social']" class="form-control" placeholder="{{ 'label.informe.o.nome.social' | translate}}" title="{{ 'label.informe.o.nome.social' | translate}}" ng-readonly="!true" maxlength="250"/>
+                               </div>
+                        </div>
+                        
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                               <div class="form-group col-xs-6 theme-main-input-grauInstrucao">
+                                    <label class="label-grauInstrucao">{{ 'label.grau.de.instruo' | translate}}</label>
+                                    <select id="cmbGraudeinstrucao" ng-model="fields['grau_instrucao']" name="grauInstrucao" required ng-change="checkField(fields['grau_instrucao'], 'grauInstrucao');" class="form-control" 
+                                     		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                     		data-ng-options="item.codigo as item.name for item in listaGrauInstrucao" >
+                                    </select>
+                               </div>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-sexo">
+                                    <label class="label-sexo">{{ 'label.sexo' | translate}}</label>
+                                    <select id="cmbSexo2" ng-model="fields['sexo']" class="form-control" required ng-change="checkField(fields['sexo'], 'sexo');"  name="sexo" 
+                                    		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                    		data-ng-options="item.codigo as item.name for item in listaSexo" >
+                                    </select>
+                                </div>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+							
+                           	<div class="form-group col-xs-6" >
+                           		<label class="label-profissao">{{ 'label.profissao' | translate}}</label>
+	      			        	<div angucomplete-alt id="cmbProfissoes"
+		  							 placeholder="Pesquisar Ocupações"	 
+		  							 ng-if="!documentos.declararSemRenda"					
+		  							 pause="100"
+		  							 selected-object="fields['profissao']"
+		  							 initial-value = "profissaoCadastrada"		  						
+		  							 local-data="listaProfissoes"
+		  							 search-fields="nome"
+		  							 title-field="nome"		  							 
+		  							 minlength="0"
+		  							 input-class="form-control campoOcupacao"
+		  							 match-class="angucomplete-highlight" >
+		  					      </div>
+								 <input id="profissao-sem-ocupacao" value="SEM OCUPAÇÃO" ng-if="documentos.declararSemRenda" type="text" 
+								 	class="form-control campoOcupacao ng-touched" disabled="disabled" style="font-size: 14px;">								 	
+	    		 			</div>
+	    		 			<div class="input-group col-xs-6" ></div>
+                        </div>
+                       
+                        
+                         <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-estadoCivil">
+                                    <label>{{ 'label.estado.civil' | translate}}</label>
+                                    <select id="cmbEstadocivil2" ng-model="fields['estado_civil']" class="form-control" required name="estadoCivil"
+                                    		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                    		data-ng-options="item.codigo as item.nome for item in listaEstadoCivil" >
+                                    </select>
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                               <div class="form-group col-xs-6 theme-main-input-naturalidadeUf">
+                                   <label class="label-naturalidadeUf">{{ 'label.naturalidade.uf' | translate}}</label>
+                                    <select id="cmbNaturalidadeUf" ng-model="fields['naturalidade_uf']" ng-selected="fields['naturalidade_uf']" name="naturalidadeUf" required ng-change="carregarMunicipios(fields['naturalidade_uf']);" class="form-control" 
+                                     		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                     		data-ng-options="item.sigla as item.sigla for item in listaNaturalidadeUf" >
+                                    </select>
+                               </div>
+                        </div>
+                        
+						<!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                               <div class="col-xs-12 form-group">
+                                   <label class="label-naturalidadeMunicipio">{{ 'label.naturalidade.municipio' | translate}}</label>
+                                   <div class="input-group col-xs-6 theme-main-input-naturalidadeMunicipio">
+	                                    <div angucomplete-alt id="natMunicipio"
+				  							 placeholder="Pesquisar Municipio"	  							
+				  							 pause="100"
+				  							 selected-object="fields['naturalidade']"
+				  							 initial-value = "naturalidadeCadastrada"
+				  							 local-data="listaNaturalidadeMunicipio"
+				  							 search-fields="name"
+				  							 title-field="name"
+				  							 minlength="0"
+				  							 input-class="form-control"
+				  							 input-name = "naturalidadeMunicipio"
+				  							 match-class="angucomplete-highlight" 
+				  							 field-required="true">
+				  					      </div>
+			  					      </div>
+                                    <!-- <select id="cmbNaturalidadeMunicipio" ng-model="fields['naturalidade']" name="naturalidadeMunicipio" required ng-change="checkField(fields['naturalidade'], 'naturalidadeMunicipio');" class="form-control" 
+                                     		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                     		data-ng-options="item.name as item.name for item in listaNaturalidadeMunicipio" >
+                                    </select> -->
+                               </div>
+                        </div>
+                        
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            <div ng-if="fields['estado_civil'] && fields['estado_civil']=='2'" class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px;">
+                                <label style="margin-top: 5px;">{{ 'label.dados.conjuge' | translate}}</label>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- id:input-number-cpf - name:Entrada de CPF -->
+                        <div ng-if="fields['estado_civil'] && fields['estado_civil']=='2'" ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-numCpfdoconjuge">
+                                    <label class="label-numCpfdoconjuge">{{ 'label.cpf.do.cnjuge' | translate}}</label>
+									<div id="cpf-group" >
+										<div class="input-group">
+												<input id="numCpfdoconjuge" name="numCpfdoconjuge" required ng-change="validarCPF(this);"  type="cpf" ui-mask="999.999.999-99" ng-model="fields['conjuge_cpf']" class="form-control" title="{{ 'label.informe.o.cpf.do.cnjuge' | translate}}"/>
+												<div class="input-group-btn">
+													 <button class="btn btn-primary" id="btnSearchCpfConjuge" type="button" data-toggle="tooltip" title="Buscar CPF no SICPF"  ng-click="consultaCpf(this)">
+								        				<i class="glyphicon glyphicon-search"></i>
+								        			</button>
+							        			</div>
+										</div>
+										<span id="cpf-help" class="help-block hide">CPF invalido</span>
+									</div>
+                                </div>
+                        </div>
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-if="fields['estado_civil'] && fields['estado_civil']=='2'" ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-conjugeNome">
+                                    <label class="label-conjugeNome">{{ 'label.nome.do.cnjuge' | translate}}</label>
+									<input id="txtNomedoconjuge" type="text" required ng-readonly="true" ng-change="checkField(fields['conjuge_nome'], 'conjugeNome');" name="conjugeNome" ng-model="fields['conjuge_nome']" class="form-control" placeholder="{{ 'label.informe.o.nome' | translate}}" title="{{ 'label.informe.o.nome' | translate}}" maxlength="250"/>
+                                </div>
+                        </div>
+                        <div ng-if="fields['estado_civil'] && fields['estado_civil']=='2'" ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-dataNascimento">
+                                    <label class="label-dataNascimento">{{ 'label.data.de.nascimento.do.cnjuge' | translate}}</label>
+                                    <input id="dtDatadenascimentodoconjuge" ng-readonly="true" required name="dataNascimento" ng-model="fields['conjuge_nascimento']" type="date" class="form-control" placeholder="{{ 'label.selecione.a.data.de.nascimento.do.cnjuge' | translate}}" title="{{ 'label.selecione.a.data.de.nascimento.do.cnjuge' | translate}}" >
+                                </div>
+                        </div>
+                        
+                        <div ng-if="documentos.declararEndereco">
+                        
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px;">
+		                                <label style="margin-top: 5px;">{{ 'label.endereco.residencial' | translate}}</label>
+	                                </div>
+	                        </div>
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+							<div class="form-group">
+							  <div class="form-group col-xs-6 theme-main-input-cepResidencial">
+							    <label class="label-cepResidencial" for="txtCepResidencial">{{ 'label.cep' | translate}}</label>
+							    <div class="input-group">
+							      <input name="cepResidencial" class="form-control text-box single-line valid" id="txtCepResidencial" required ng-change="checkField(fields['cep_residencial'], 'cepResidencial');"
+							      		aria-invalid="false" type="cep" ng-model="fields['cep_residencial']" title="{{ 'label.informe.o.cep.comercial' | translate}}" ui-mask="99999-999" ng-blur="buscarCep('RESIDENCIAL');">
+							      <div class="input-group-btn">
+							        <button class="btn btn-primary" id="btn-buscar-cep-residencial" type="button" data-toggle="tooltip" data-placement="top" 
+											title="{{'tooltip.dados.declarados.cep' | translate}}" onmouseenter="$(this).tooltip('show')" ng-click="buscarCep('RESIDENCIAL');">
+							        	<i class="glyphicon glyphicon-search"></i>
+							        </button>							        
+							      </div>
+							    </div>
+							  </div>
+							</div> 
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-tipoLogradouroResidencial" >
+	                                    <label class="label-tipoLogradouroResidencial">{{ 'label.tipo.de.logradouro' | translate}}</label>
+	                                    <div class="input-group label-tipoLogradouroResidencial">
+											<input id="txtTipoLogradouroResidencial" name="tipoLogradouroResidencial" type="text" required ng-change="checkField(fields['tipo_logradouro_residencial'], 'tipoLogradouroResidencial');" ng-model="fields['tipo_logradouro_residencial']" class="form-control" placeholder="{{ 'label.informe.o.logradouro.residencial' | translate}}" title="{{ 'label.informe.o.logradouro.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+										    <div class="input-group-btn">
+										        <button class="btn btn-default" id="btn-tooltip-tipo-logradouro-residencial" data-placement="top" 
+										        	title="{{'tooltip.dados.declarados.tipo.logradouro' | translate}}" onmouseenter="$(this).tooltip('show')">
+										        	<i class="glyphicon glyphicon-question-sign"></i>
+										        </button>
+										    </div>	  										
+	                                    </div>
+	                                </div>
+	                        </div>	                                         
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-logradouroResidencial">
+         								<label class="label-logradouroResidencial">{{ 'label.logradouro' | translate}}</label>
+	                                    <div class="input-group">
+											<input id="txtLogradouroResidencial" required ng-change="checkField(fields['logradouro_residencial'], 'logradouroResidencial');" name="logradouroResidencial" type="text" ng-model="fields['logradouro_residencial']" class="form-control" placeholder="{{ 'label.informe.o.logradouro.residencial' | translate}}" title="{{ 'label.informe.o.logradouro.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+										    <div class="input-group-btn">
+										        <button class="btn btn-default" id="btn-tooltip-logradouro-residencial" data-placement="top" 
+										        	title="{{'tooltip.dados.declarados.logradouro' | translate}}" onmouseenter="$(this).tooltip('show')">
+										        	<i class="glyphicon glyphicon-question-sign"></i>
+										        </button>
+										    </div>	  										
+	                                    </div>
+	                                </div>
+	                        </div>	
+	                        
+	                            <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-numeroResidencial">
+	                                    <label class="label-numeroResidencial">{{ 'label.numero' | translate}}</label>
+										<input id="txtNumeroResidencial" name="numeroResidencial" type="text" required ng-change="checkField(fields['numero_residencial'], 'numeroResidencial');"  ng-model="fields['numero_residencial']" class="form-control" placeholder="{{ 'label.informe.o.numero.residencial' | translate}}" title="{{ 'label.informe.o.numero.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+	                                </div>
+	                        </div>
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-complementoResidencial">
+	                                    <label class="label-complementoResidencial">{{ 'label.complemento' | translate}}</label>
+										<input id="txtComplementoResidencial" name="complementoResidencial" type="text" required ng-change="checkField(fields['complemento_residencial'], 'complementoResidencial');" ng-model="fields['complemento_residencial']" class="form-control" placeholder="{{ 'label.informe.o.complemento.residencial' | translate}}" title="{{ 'label.informe.o.complemento.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+	                                </div>
+	                        </div>
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-bairroResidencial">
+	                                    <label class="label-bairroResidencial">{{ 'label.bairro' | translate}}</label>
+										<input id="txtBairroResidencial" type="text" name="bairroResidencial" required ng-change="checkField(fields['bairro_residencial'], 'bairroResidencial');" ng-model="fields['bairro_residencial']" class="form-control" placeholder="{{ 'label.informe.o.bairro.residencial' | translate}}" title="{{ 'label.informe.o.bairro.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+	                                </div>
+	                        </div>
+
+	                        
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                                <div class="form-group col-xs-6 theme-main-input-cidadeResidencial">
+	                                    <label class="label-cidadeResidencial">{{ 'label.cidade' | translate}}</label>
+										<input id="txtCidadeResidencial" type="text" name="cidadeResidencial" required ng-change="checkField(fields['cidade_residencial'], 'cidadeResidencial');" ng-model="fields['cidade_residencial']" class="form-control" placeholder="{{ 'label.informe.o.cidade.residencial' | translate}}" title="{{ 'label.informe.o.cidade.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+	                                </div>
+	                        </div>
+	                        
+	                        <!-- id:input-text - name:Entrada de Texto -->
+	                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                               <div class="form-group col-xs-6 theme-main-input-ufResidencial">
+          						   <label class="label-ufResidencial">{{ 'label.uf' | translate}}</label>
+                                   <div class="input-group">
+									<input id="txtUfResidencial" type="text" name="ufResidencial"  required ng-change="checkField(fields['uf_residencial'], 'ufResidencial');" ng-model="fields['uf_residencial']" class="form-control" placeholder="{{ 'label.informe.o.uf.residencial' | translate}}" title="{{ 'label.informe.o.uf.residencial' | translate}}" ng-readonly="!true" maxlength="250"/>
+								    <div class="input-group-btn">
+								        <button class="btn btn-default" id="btn-tooltip-uf-residencial" data-placement="top" 
+								        	title="{{'tooltip.dados.declarados.uf' | translate}}" onmouseenter="$(this).tooltip('show')">
+								        	<i class="glyphicon glyphicon-question-sign"></i>
+								        </button>
+								    </div>	                                    
+                                   </div>                                    
+                               </div>
+	                        </div>	
+	                        
+	                    <!-- id:rule - name:Separador (hr) -->
+                        </div>
+                         
+						<div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                             <div class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px;">
+                                 <label style="margin-top: 5px;">{{ 'label.endereco.comercial' | translate}}</label>
+                             </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+						<div class="form-group">
+						  <div class="form-group col-xs-6 theme-main-input-text">
+						    <label for="txtCepComercial">{{ 'label.cep' | translate}}</label>
+						    <div class="input-group">
+						      <input id="input-cep-comercial" name="cepComercial" class="form-control text-box single-line valid"  
+						      		aria-invalid="false" type="cep" ng-model="fields['cep_comercial']" title="{{ 'label.informe.o.cep.comercial' | translate}}" ui-mask="99999-999" ng-blur="buscarCep('COMERCIAL');" >
+						      <div class="input-group-btn">
+						        <button class="btn btn-primary" id="btn-buscar-cep-comercial" type="button" data-toggle="tooltip" data-placement="top" 
+										title="{{'tooltip.dados.declarados.cep' | translate}}" onmouseenter="$(this).tooltip('show')" ng-click="buscarCep('COMERCIAL');">
+						        	<i class="glyphicon glyphicon-search"></i>
+						        </button>
+						      </div>
+						    </div>
+						  </div>
+						</div> 
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.tipo.de.logradouro' | translate}}</label>
+                                    <div class="input-group">
+										<input id="input-tipo-logradouro-comercial" type="text" ng-model="fields['tipo_logradouro_comercial']" class="form-control" 
+											placeholder="{{ 'label.informe.o.tipo.logradouro.comercial' | translate}}" title="{{ 'label.informe.o.tipo.logradouro.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+									    <div class="input-group-btn">
+									        <button class="btn btn-default" id="btn-tooltip-tipo-logradouro-comercial" data-placement="top" 
+									        	title="{{'tooltip.dados.declarados.tipo.logradouro' | translate}}" onmouseenter="$(this).tooltip('show')">
+									        	<i class="glyphicon glyphicon-question-sign"></i>
+									        </button>
+									    </div>	  										
+                                    </div>
+                                </div>
+                        </div>
+                        
+                          <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.logradouro' | translate}}</label>
+                                    <div class="input-group">
+										<input id="input-logradouro-comercial" type="text" ng-model="fields['logradouro_comercial']" class="form-control" placeholder="{{ 'label.informe.o.logradouro.comercial' | translate}}" title="{{ 'label.informe.o.logradouro.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+									    <div class="input-group-btn">
+									        <button class="btn btn-default" id="btn-tooltip-logradouro-comercial" data-placement="top" 
+									        	title="{{'tooltip.dados.declarados.logradouro' | translate}}" onmouseenter="$(this).tooltip('show')">
+									        	<i class="glyphicon glyphicon-question-sign"></i>
+									        </button>
+									    </div>	                                    
+                                    </div>
+                                </div>
+                        </div>
+                        
+                            <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.numero' | translate}}</label>
+									<input id="txtNumeroComercial" type="text" ng-model="fields['numero_comercial']" class="form-control" placeholder="{{ 'label.informe.o.numero.comercial' | translate}}" title="{{ 'label.informe.o.numero.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.complemento' | translate}}</label>
+									<input id="txtComplementoComercial" type="text" ng-model="fields['complemento_comercial']" class="form-control" placeholder="{{ 'label.informe.o.complemento.comercial' | translate}}" title="{{ 'label.informe.o.complemento.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.bairro' | translate}}</label>
+									<input id="txtBairroComercial" type="text" ng-model="fields['bairro_comercial']" class="form-control" placeholder="{{ 'label.informe.o.numero.comercial' | translate}}" title="{{ 'label.informe.o.numero.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.cidade' | translate}}</label>
+									<input id="txtCidadeComercial" type="text" ng-model="fields['cidade_comercial']" class="form-control" placeholder="{{ 'label.informe.o.cidade.comercial' | translate}}" title="{{ 'label.informe.o.cidade.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-text">
+                                    <label>{{ 'label.uf' | translate}}</label>
+                                    <div class="input-group">
+										<input id="input-uf-comercial" type="text" ng-model="fields['uf_comercial']" class="form-control" placeholder="{{ 'label.informe.o.uf.comercial' | translate}}" title="{{ 'label.informe.o.uf.comercial' | translate}}" ng-readonly="!true" maxlength="250"/>
+									    <div class="input-group-btn">
+									        <button class="btn btn-default" id="btn-tooltip-uf-comercial" data-placement="top" 
+									        	title="{{'tooltip.dados.declarados.uf' | translate}}" onmouseenter="$(this).tooltip('show')">
+									        	<i class="glyphicon glyphicon-question-sign"></i>
+									        </button>
+									    </div>	                                    
+                                    </div>                                    
+                                </div>
+                        </div>
+                        
+                     
+                       	<div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                             <div class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px; margin-bottom: 25px;">
+                                 <label style="margin-top: 5px;">{{ 'label.meios.de.comunicao' | translate}}</label>
+                             </div>
+                        </div>
+                        
+                         <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-4 theme-main-input-select">
+                                    <label>{{ 'label.tipo' | translate}}</label>
+                                       <select id="cmbMeiosdecomunicacao" ng-model="meioComunicacao.type" class="form-control" ng-change="changeMeioComunicacao()" 
+                                       		placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}"
+                                       		data-ng-options="item.id as item.value for item in meioComunicacaoCombo" >
+                                       </select>
+                                </div>
+                        </div>
+                        <div ng-show="showDDD" ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-4 theme-main-input">
+                                    <label class = "label-celular">{{ 'label.ddd.e.nmero' | translate}}</label>
+									<div id="telefone-group" class="form-group">
+										<input id="numDddenumero1" type="tel" ui-mask="(99) 9?9999-9999" name="numDddenumero1" ng-model="meioComunicacao.value" class="form-control" title="{{ 'label.informe.o.telefone' | translate}}" />
+									</div>
+                                </div>
+                        </div>
+                        <div ng-show="showEmail" ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-4 theme-main-input">
+                                    <label>{{ 'label.email' | translate}}</label>
+                                    <div class="form-group">
+										<input id="numDddenumero2" type="email"  ng-model="meioComunicacao.value" name="numDddenumero2" class="form-control"  title="{{ 'label.informe.o.telefone' | translate}}" ng-readonly="!true" ng-required="false"/>
+									</div>
+                                </div>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+	                        <div class="col-xs-4 form-group">
+	                        	<label class="col-xs-12">&nbsp;</label>
+	                        	<button id="btnIncluir2" ng-disabled="meioComunicacao.value == '' || meioComunicacao.value == null" ng-click="includeMeioComunicacao()" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.aqui.para.incluir' | translate}}" title="{{ 'label.clique.aqui.para.incluir' | translate}}" class="btn btn-blue col-xs-6">
+			                            <span style="font-size: 14px;">{{ 'label.incluir' | translate}}</span>
+			                    </button>
+	                        </div>
+                        </div>
+            
+                        
+                        <!-- id:label - name:Texto -->
+                        <table class="table table-striped" ng-if="meioComunicacaoList.length > 0" style="margin-left: 15px;">
+							<tbody>
+			                        <tr class="dtline" ng-repeat="item in meioComunicacaoList">
+										<td  class="col-xs-4">
+			                                <span ng-show="item.type == 1" class="pull-left" title="Texto">
+			                                    {{ 'label.telefoneFixo' | translate}}
+			                                </span>
+			                                <span ng-show="item.type == 4" class="pull-left" title="Texto">
+			                                    {{ 'label.celular' | translate}} 
+			                                </span>
+			                                <span ng-show="item.type == 3" class="pull-left" title="Texto">
+			                                    {{ 'label.email' | translate}}
+			                                </span>
+			                            </td>
+			                            <td  class="col-xs-5" ><span class="label text-primary theme-main-label pull-left" title="Texto">{{item.value | telefoneFilter}}</span></td>
+			                            <td  class="col-xs-12">
+			                                <span ng-if="item.value != fields['email']" ng-click="removeMeioComunicacao(item);" novalidate style="cursor: pointer"><span class="glyphicon glyphicon-trash pull-left"></span></span>
+			                            </td>
+			                        </tr>
+		                        
+	                        </tbody>
+                        </table>
+                        
+                        <!-- 
+                        	Bloco referente a adesão ao serviço de SMS incluindo os indicadores.
+                         -->                        
+<!--                                     id:rule - name:Separador (hr) -->
+<!--                         <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'> -->
+<!--                             		elemento Separador -->
+<!--                                 <div class="theme-main-line-rule"> -->
+<!--                                     &nbsp; -->
+<!--                                     <hr/> -->
+<!--                                 </div> -->
+<!--                         </div> -->
+                       
+
+<!--                         <div class="form-group col-xs-12 theme-main-input-check"> -->
+<!--                             <div class="input-group"> -->
+<!--                                  <label class="switch"> -->
+<!--                                      <input id="chkSelecioneasopces2" type="checkbox"  -->
+<!--                                      ng-model="fields['bloco_sms']"  -->
+<!--                                      placeholder="{{ 'label.selecione.as.opes' | translate}}" title="{{ 'label.selecione.as.opes' | translate}}"  ng-required="false"></input> -->
+<!--                                      <span class="slider round"></span> -->
+<!--                                  </label> -->
+<!--                                   <label style="margin-left: 10px;"> -->
+<!-- 									 Contratar serviços de mensagens via celular -->
+<!--                                  </label> -->
+<!--                             </div> -->
+                           
+<!--                         </div> -->
+                        
+<!-- 					   <div class="col-xs-12" ng-if="fields['bloco_sms']"> -->
+                        
+<!-- 	                        <div class="form-group col-xs-12"> -->
+<!-- 	                        	<div class="form-group col-xs-4"> -->
+<!-- 	                        		<label>{{ 'label.selecione.celular' | translate}}</label> -->
+<!-- 	                        	</div> -->
+	                        	
+<!-- 	                        	<div class="form-group col-xs-4"> -->
+<!-- 	                        		<label>{{ 'label.saques,.transferncias,.pagamentos,.agendamentos.a.partir.de' | translate}}</label> -->
+<!-- 	                        	</div> -->
+	                        	
+<!-- 	                        	<div class="form-group col-xs-4"> -->
+<!-- 	                        		<label>{{ 'label.compras.com.carto.de.dbito.a.partir.de' | translate}}</label> -->
+<!-- 	                        	</div> -->
+	                            
+	                                
+<!-- 	                        </div> -->
+	                        
+<!-- 	                        <div class="form-group col-xs-4 theme-main-input-select"> -->
+<!-- 	                        		<select id="cmbCelularServicoSms" ng-model="meioComunicaoCelularSelected" ng-change="validarCelularSelecionado(this);"  class="form-control" -->
+<!-- 	                                		title="{{ 'label.selecione.o.item' | translate}}" -->
+<!-- 	                                		data-ng-options="item.pos as item.value | telefoneFilter for item in meioComunicacaoCelular"> -->
+<!-- 	                                </select> -->
+<!--                             </div> -->
+	                        
+<!-- 	                        id:input-select - name:Entrada de Combo -->
+<!--                             <div class="form-group col-xs-4 theme-main-input-select"> -->
+                                
+<!--                                  <select id="cmbSaquestransfernciaspagamentosagendamentosapartirde" ng-model="fields['sms_valor_saque_trans']" class="form-control"  -->
+<!--                                  		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}" -->
+<!--                                  		data-ng-options="item as item for item in container.cmbsaquestransfernciaspagamentosagendamentosapartirdeContent" > -->
+<!--                                  </select> -->
+
+<!-- 	                        </div> -->
+<!-- 	                        id:input-select - name:Entrada de Combo -->
+<!--                            <div class="form-group col-xs-4 theme-main-input-select"> -->
+                               
+<!--                                <select id="cmbComprascomcartaodedbitoapartirde" ng-model="fields['sms_valor_cartao']" class="form-control"  -->
+<!--                                		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" title="{{ 'label.selecione.o.item' | translate}}" -->
+<!--                                		data-ng-options="item as item for item in container.cmbcomprascomcartaodedbitoapartirdeContent" > -->
+<!--                                </select> -->
+<!--                            </div> -->
+
+                        
+                        
+<!--                         <div class="form-group col-xs-12 theme-main-input-check"> -->
+<!--                             <div class="input-group"> -->
+<!--                                  <label class="switch"> -->
+<!--                                      <input id="cmbDesejareceberinformacesdocartaodecrditocaixa2" type="checkbox" ng-model="fields['sms_cartao_credito']"></input> -->
+<!--                                      <span class="slider round"></span> -->
+<!--                                  </label> -->
+<!--                                  <label style="margin-left: 10px;">{{ 'label.deseja.receber.informaes.do.carto.de.crdito.caixa?' | translate}}</label> -->
+<!--                             </div> -->
+                           
+<!--                         </div> -->
+                        
+<!--                          <div class="form-group col-xs-12 theme-main-input-check"> -->
+<!--                             <div class="input-group"> -->
+<!--                                  <label class="switch"> -->
+<!--                                      <input id="cmbAutorizaoenviodeinformacesdofgts" type="checkbox" ng-model="fields['sms_fgts']"></input> -->
+<!--                                      <span class="slider round"></span> -->
+<!--                                  </label> -->
+<!--                                  <label style="margin-left: 10px;">{{ 'label.autoriza.o.envio.de.informaes.do.fgts?' | translate}}</label> -->
+<!--                             </div> -->
+                           
+<!--                         </div> -->
+                        
+<!--                         <div class="form-group col-xs-12 theme-main-input-check"> -->
+<!--                             <div class="input-group"> -->
+<!--                                  <label class="switch"> -->
+<!--                                      <input id="cmbGostariaderecebermaisinformacessobreprodutoseservicosdacaixa2" type="checkbox" ng-model="fields['sms_produtos_servicos']"></input> -->
+<!--                                      <span class="slider round"></span> -->
+<!--                                  </label> -->
+<!--                                  <label style="margin-left: 10px;">{{ 'label.gostaria.de.receber.mais.informaes.sobre.produtos.e.servios.da.caixa?' | translate}}</label> -->
+<!--                             </div> -->
+                           
+<!--                         </div> -->
+                        </div>
+                      
+                       	<div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                             <div class="dttable col-xs-12" align="left" style="margin-top: 25px; margin-left: 15px;">
+                                 <label style="margin-top: 5px;">{{ 'label.declaracoes' | translate}}</label>
+                             </div>
+                        </div>
+                        
+                        
+                        <div class="form-group col-xs-8 theme-main-input-check">
+                             <label class="switch">
+                                 <input id="cmbGostariaderecebermaisinformacessobreprodutoseservicosdacaixa3" type="checkbox" ng-model="isInformarPatrimonio"></input>
+                                 <span class="slider round"></span>
+                             </label>
+                             <label style="margin-left: 10px;"> Patrimônio Consolidado</label>
+                        </div>
+                        
+                        <div class="form-group col-xs-4 theme-main-input-text theme-main-input-valorTotalPatrimonio"  ng-if="isInformarPatrimonio">
+                            <label class = "label-valorTotalPatrimonio">{{ 'label.informe.o.patrimonio' | translate}}</label>
+							<div class="input-group col-xs-12">
+								<input id="input-valor-total-patrimonio" onfocus="mascaraMoeda(this)" name="valorTotalPatrimonio"  
+									required ng-change="checkField(fields['valor_total_patrimonio'], 'valorTotalPatrimonio');" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=","  type="text" ng-model="fields['valor_total_patrimonio']" class="form-control" placeholder="{{ 'label.informe.o.valor.expresso' | translate}}" title="{{ 'label.informe.o.valor.expresso' | translate}}" maxlength="250"/>
+							    <div class="input-group-btn">
+							        <button class="btn btn-default" id="btn-tooltip-valor-patrimonio" style="height: 34px;"
+							        	type="button" data-placement="top" title="{{'tooltip.dados.declarados.valor.total.patrimonio' | translate}}" onmouseenter="$(this).tooltip('show')">
+							        	<i class="glyphicon glyphicon-question-sign"></i>
+							        </button>
+							    </div>										
+							</div>
+                        </div>
+
+                        <!-- id:rule - name:Separador (hr) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        <!-- id:input-radio - name:Entrada de Opções (radio) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="input-group-disabled col-xs-4 theme-main-input-radio">
+	                                  <div class="input-group">
+		                                 <label class="switch">
+		                                     <input id="cmbGostariaderecebermaisinformacessobreprodutoseservicosdacaixa4" type="checkbox" ng-model="fields['declaracao_fatca_crs']"></input>
+		                                     <span class="slider round"></span>
+		                                 </label>
+		                                 <label style="margin-left: 10px;">{{ 'label.declarao.fatca/crs' | translate}}</label>
+	                          		  </div>
+                                </div>
+                        </div>
+                        
+                        <div class="input-group-disabled col-xs-4 theme-main-input-radio" ng-if="fields['declaracao_fatca_crs']">
+								<label style="margin-right: 15px"> <input type="radio" required name="declaracaoFatcaCrs"
+									ng-model="fields['declaracao']"
+									style="margin-right: 5px" value="FATCA">{{'label.fatca' |
+									translate}}
+								</label> <label style="margin-right: 15px"> <input type="radio"
+									ng-model="fields['declaracao']"
+									style="margin-right: 5px" value="CRS">{{'label.crs' |
+									translate}}
+								</label>
+							</div>
+                        
+                        <!-- id:input-number - name:Entrada de Número -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="input-group-disabled col-xs-4 theme-main-input-radio theme-main-input-numeroTin"  ng-if="fields['declaracao_fatca_crs'] && fields['declaracao'] == 'FATCA'">
+                                    <label class = "label-numeroTin">{{ 'label.nmero.tin' | translate}}</label>
+									<div class="form-group">
+										<div class="input-group col-xs-12">
+											<input id="numNumerotin2" name = "numeroTin" type="numero" ng-model="fields['n_tin']" class="form-control" placeholder="{{ 'label.informe.o.nmero.tin' | translate}}" title="{{ 'label.informe.o.nmero.tin' | translate}}" ng-readonly="!true" maxlength="100" input-restrictor-number required/>
+											<label class="label-mobilidade label-numeroTin" ng-if="contextEditable" ng-model="container.numnumerotin2" contenteditable="{{contextEditable}}"></label>
+											<label class="label-mobilidade label-numeroTin" ng-if="!contextEditable">{{ 'label.nmero.tin' | translate}}</label>
+										</div>
+									</div>	
+                                </div>
+                        </div>
+                        
+                        <!-- id:input-number - name:Entrada de Número -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="input-group-disabled col-xs-4 theme-main-input-radio theme-main-input-declaracaoCrs"  ng-if="fields['declaracao_fatca_crs'] && fields['declaracao'] == 'CRS'">
+                                    <label class = "label-declaracaoCrs">{{ 'label.codigo.tipo.situacao' | translate}}</label>
+	                                <select id="cmbCrs" ng-model="fields['pais_crs']" class="form-control" name="declaracaoCrs"
+	                                		title="{{ 'label.selecione.o.item' | translate}}"
+	                                		data-ng-options="item as item for item in container.cmbDeclaracaoCrs" required>
+	                                </select>	
+                                </div>
+                        </div>
+                        
+                        <!-- id:rule - name:Separador (hr) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-5 theme-main-input-select">
+                                    <label class = "label-declaracaoProposito">{{ 'label.declarao.de.propsitos.e.da.natureza.da.conta.depsito' | translate}}</label>
+                                    
+                                </div>
+                        </div>
+                        
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                              <div class="form-group col-xs-7 theme-main-input-select theme-main-input-declaracaoProposito">
+                                  <select id="cmbDeclaracaodepropsitosedanaturezadacontadepsito2" multiple  ng-model="fields['declaracao_proposito']" class="form-control" 
+                                  		data-ng-options="item as item for item in container.cmbdeclaracaodepropsitosedanaturezadacontadepsito2Content" >
+                                  </select>
+                              </div>
+                        </div>
+                        
+                        <div class="form-group col-xs-11 theme-main-input-text align-middle alert alert-warning pull-center" role="alert" style="margin-left: 5%;">
+                        	<label class="text-center col-xs-12"><span style="font-size: 16px;">{{ 'label.termo.de.declarao' | translate}}</span></label>
+                        	<span style="font-size: 14px; color: #8a6d3b; text-align: justify; white-space: normal;" class="label padding text-primary col-xs-12 theme-main-label" title="Texto">
+                                    {{ 'label.termo' | translate}}
+                            </span>
+                        	<label class="text-center col-xs-12"><span style="font-size: 16px;">    </span></label>
+                        </div>
+                        
+                        <!-- id:label - name:Texto -->
+                         <div class="col-xs-6">
+                         	<div class="form-group col-xs-12">
+                         		<label>&nbsp;</label>
+                         	</div>
+                             <div class="col-xs-7" style="margin-top: 3px"> 
+                             	<input id="txtCidadeAssinatura" type="text" ng-model="fields['cidade_assinatura']" class="form-control col-xs-6" placeholder="{{ 'label.brasiliaDF' | translate}}" title="{{ 'label.brasiliaDF' | translate}}" maxlength="250"/>
+                             </div>
+                             <div class="col-xs-5" style="margin-top: 13px">
+             					<label class="label col-xs-12 theme-main-label" style="font-size: 14px">
+                         			{{getCurrentDate()}}
+                   				</label>
+                   			</div>
+                           	
+                        </div>
+
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                                <div class="form-group col-xs-6 theme-main-input-date align-middle">
+                                    <label class="label col-xs-12 theme-main-label" style="font-size: 14px">{{ 'label.prezado.cliente.insira.assinatura' | translate}}</label>
+                                    <div class="input-group">
+	                                    <input id="input-senha-eletronica" type="password" ng-model="password" class="form-control" placeholder="{{ 'label.informe.a.assinatura.do.cliente' | translate}}" 
+	                                        		title="{{ 'label.informe.a.assinatura.do.cliente' | translate}}" ng-readonly="!true" maxlength="70" />
+									    <div class="input-group-btn">
+									        <button class="btn btn-default" id="btn-tooltip-senha-eletronica" style="height: 34px;"
+									        	type="button" data-placement="top" title="{{ 'tooltip.dados.declarados.senha.eletronica' | translate}}" onmouseenter="$(this).tooltip('show')">
+									        	<i class="glyphicon glyphicon-question-sign"></i>
+									        </button>
+									    </div>		                                        		
+                                    </div>
+                                    
+                                </div>
+                        </div>
+
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                            		<!-- elemento Separador -->
+                                <div class="theme-main-line-rule">
+                                    &nbsp;
+                                    <hr/>
+                                </div>
+                        </div>
+                        
+                        
+					<button type="button" class="btn btn-blue pull-right"
+						loading="{{'label.processando' | translate}}"
+						ng-click="continuar()" 
+						placeholder="{{ 'label.clique.aqui.para.continuar' | translate}}"
+						title="{{ 'label.clique.aqui.para.continuar' | translate}}">
+						{{'label.continuar' | translate}}</button>
+					<button type="button" class="btn btn-blue pull-right"
+						ng-click="apresentarModalCancelarAtendimento();"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.cancelar.atendimento' | translate}}"
+						title="{{ 'label.clique.aqui.para.finalizarAtendimento' | translate}}">
+						{{'label.cancelar.atendimento' | translate}}</button>
+					<button type="button" class="btn btn-orange pull-right"
+						ng-click="goBack()" loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						title="{{ 'label.clique.aqui.para.voltar' | translate}}">
+						{{'label.voltar' | translate}}</button>
+                        
+                <div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+				</div>
+                <br>&nbsp;
+                <br>&nbsp;
+    	</div>
+    </form>
+</div>
+
+
+<div id="modalCancelar"  ng-controller="DeclaracaodedadosController" class="modal fade" role="dialog" style="padding-left: 17px">
+	 <div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+			    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="dismissDialog()">
+			        <span aria-hidden="true">&times;</span>
+			    </button>
+			    <h4 class="modal-title">{{ 'titulo.cancelar.atendimento' | translate}}
+			    </h4>
+			</div>
+			<div class="modal-body" style="text-align: center;">
+				<label>{{ 'label.deseja.cancelar.atendimento' |	translate}}</label>
+	
+			</div>
+			<div class="modal-footer">
+				<button type='button' class='btn btn-danger' data-dismiss="modal" ng-click="cancelarAtend()">
+			        <i class='fa fa-close'></i>&nbsp;Cancelar Atendimento
+			    </button>
+			    <button type='button' class='btn btn-primary' data-dismiss="modal" ng-click="closeDialog()">
+			        <i class='fa fa-check'></i>&nbsp;Fechar
+			    </button>
+			</div>
+		</div>
+	</div>
+</div>	

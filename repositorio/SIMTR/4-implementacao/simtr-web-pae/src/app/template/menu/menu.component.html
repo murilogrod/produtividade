@@ -1,0 +1,50 @@
+<!-- sidebar: style can be found in sidebar.less -->
+<section class="sidebar">
+
+	<!-- search form (Optional) -->
+	<form class="sidebar-form" *ngIf="showMenuSearch()">
+		<div class="input-group">
+			<input type="text" name="q" class="form-control" [(ngModel)]="filtromenu"
+				placeholder="{{app.menusearch}}"> <span class="input-group-btn">
+				<button type="submit" name="search" id="search-btn"
+					class="btn btn-flat">
+					<i class="fa fa-search"></i>
+				</button>
+			</span>
+		</div>
+	</form>
+	<!-- /.search form -->
+	
+	<!-- Sidebar Menu -->
+	<ul class="sidebar-menu">
+		<!-- Optionally, you can add icons to the links -->
+		
+		<li [ngClass]="{'active': currentview.id === menu.target && !menu.submenu}" *ngFor="let menu of app.menus | menuFilter:filtromenu" >
+				<!-- [hidden]="!menu.credencial || !hasCredential(menu.credencial)" --> 
+			<a *ngIf="!menu.submenu" (click)="goLink(menu.target)" style="cursor: pointer">
+				<i class="fa {{menu.icon}}"></i> 
+				<span>{{menu.title}}</span>
+			</a>
+			<a (click)="toggleSubMenu(menu.target)" *ngIf="menu.submenu" style="cursor: pointer" > 
+				<i class="fa {{menu.icon}}" ></i> 
+				<span>{{menu.title}}</span>
+				<i class="fa fa-caret-down"></i>
+			</a>
+			<ul class="sidebar-menu collapse" style="white-space: normal;" *ngIf="menu.submenu" id="{{menu.target}}">
+				<li style= "margin-left: 15px;padding:0;margin-top:5px" [ngClass]="{'active': currentview.id === submenu.target}" *ngFor="let submenu of menu.submenus">
+					<!--a *ngIf="!submenu.credencial || !hasCredential(submenu.credencial)"--> 
+					<a style="cursor: pointer" (click)="goLink(submenu.target)"> 
+						<i class="fa {{submenu.icon}}"></i> 
+						<span>{{submenu.title}}</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<!-- /.sidebar-menu -->
+
+</section>
+<!-- /.sidebar -->
+
+
+		

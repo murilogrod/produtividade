@@ -1,0 +1,896 @@
+{
+	"menus": [
+		{
+			"icon": "developer_board",
+			"title": "Dashboard",
+			"description": "SIMTR - Dashboard",
+			"target": "dashboard",
+			"credencial": "uma_authorization",
+			"submenu": false,
+			"locked": false
+		},
+		{
+			"icon": "person",
+			"title": "Dossiê Cliente",
+			"description": "Tela Dossiê Cliente",
+			"target": "principal",
+			"credencial": "MTRADM,MTRTEC,MTRAUD,MTRSDNOPE,MTRSDNMTZ",
+			"locked": true,
+			"submenu": false
+		},
+		{
+			"icon": "work",
+			"title": "Dossiê Produto",
+			"description": "Tela Dossiê Produto",
+			"target": "dossieProduto",
+			"credencial": "MTRADM,MTRTEC,MTRAUD,MTRSDNOPE,MTRSDNMTZ",
+			"locked": true,
+			"submenu": false
+		},
+		{
+			"icon": "insert_chart",
+			"title": "Complementação",
+			"description": "Tela de Complementação",
+			"target": "complementacao",
+			"credencial": "MTRADM,MTRSDNTTG,MTRSDNTTO",
+			"locked": true,
+			"submenu": false
+		},
+		{
+			"icon": "description",
+			"title": "Tratamento",
+			"description": "Tela de Tratamento",
+			"target": "tratamento",
+			"credencial": "MTRADM,MTRSDNTTO,MTRSDNTTG",
+			"locked": true,
+			"submenu": false
+		},
+		{
+			"icon": "get_app",
+			"title": "Extração Manual",
+			"description": "Extração Manual",
+			"target": "extracaoManual",
+			"credencial": "MTRADM,MTRSDNEXT",
+			"locked": true,
+			"submenu": false
+		},
+		{
+			"icon": "dynamic_feed",
+			"title": "Painéis",
+			"target": "paineis",
+			"submenu": true,
+			"credencial": "MTRADM",
+			"locked": false,
+			"submenus": [
+				{
+					"icon": "",
+					"title": "Comunicação jBPM",
+					"target": "comunicacaoJBPM",
+					"credencial": "MTRADM"
+				}				
+			]
+		},
+		{
+			"icon": "post_add",
+			"title": "Cadastros",
+			"target": "cadastro",
+			"submenu": true,
+			"credencial": "MTRADM,MTRTEC",
+			"locked": false,
+			"submenus": [
+				{
+					"icon": "",
+					"title": "Canal",
+					"target": "cadastro/canal",
+					"credencial": "MTRADM,MTRTEC"
+				},
+				{
+					"icon": "",
+					"title": "Checklist",
+					"target": "cadastro/checklist",
+					"credencial": "MTRADM,MTRTEC"
+				},				
+				{
+					"icon": "",
+					"title": "Composição Documental",
+					"target": "cadastroComposicaoDocumental",
+					"credencial": "MTRADM,MTRTEC"
+				},
+				{
+					"icon": "",
+					"title": "Função Documental",
+					"target": "cadastroFuncaoDocumental",
+					"credencial": "MTRADM,MTRTEC"
+				},
+				{
+					"icon": "",
+					"title": "Produto",
+					"target": "cadastroProduto",
+					"credencial": "MTRADM,MTRTEC"
+				},				
+				{
+					"icon": "",
+					"title": "Tipo de Documento",
+					"target": "cadastro/tipo-documento",
+					"credencial": "MTRADM,MTRTEC"
+				},
+				{
+					"icon": "",
+					"title": "Tipo de Relacionamento",
+					"target": "cadastro/tipo-relacionamento",
+					"credencial": "MTRADM,MTRTEC"
+				}				
+			]
+		}
+	],
+	"version": "1.14.0",
+	"id": "SIMTR",
+	"description": "Manutenção Tratamento e Reuso de Dados e Imagens",
+	"name": "Manutenção Tratamento e Reuso de Dados e Imagens",
+	"company": "Caixa Econômica Federal",
+	"icon": "fa-envelope-square",
+	"menu": true,
+	"menuheader": "Navegação principal",
+	"menusearch": "Pesquisar menu...",
+	"hideacessibilidade" : true,
+	"userImage": "/usuario/foto_perfil?matricula=",
+	"userImagePadrao": "assets/img/layout/icon_profile.png",
+	"header": {
+		"help": "SIMTR - Manutenção Tratamento e Reuso de Dados e Imagens",
+		"title": "SIMTR",
+		"togglenavigation": "Alternar navegação",
+		"search": "Pesquisar...",
+		"notificationprefix": "Você possui",
+		"notificationsufix": "notificações!",
+		"nonotification": "Você não possui notificações!",
+		"viewall": "Visualizar todas",
+		"userimage": "Imagem do usuário",
+		"nopicture": "Edite seu perfil para inserir uma foto",
+		"profile": "Perfil",
+		"signout": "Sair",
+		"subtitle": "v1.0",
+		"filters": "FILTROS",
+		"errosGlobalVazio": "Não existem erros!"
+	},
+	"variables": [
+		{
+			"name": "PROJETO",
+			"value": "project"
+		},
+		{
+			"name": "ID",
+			"value": "project.id"
+		},
+		{
+			"name": "NOME",
+			"value": "project.name"
+		},
+		{
+			"name": "VERSAO",
+			"value": "project.version"
+		},
+		{
+			"name": "ICONE",
+			"value": "project.icon"
+		},
+		{
+			"name": "DESCRICAO",
+			"value": "project.description"
+		},
+		{
+			"name": "PROPRIEDADE",
+			"value": "project.owner"
+		},
+		{
+			"name": "TELA",
+			"value": "current"
+		},
+		{
+			"name": "TELATITULO",
+			"value": "current.title"
+		},
+		{
+			"name": "TELADESCRICAO",
+			"value": "current.description"
+		},
+		{
+			"name": "TELAICONE",
+			"value": "current.icon"
+		}
+	],
+	"footer": {
+		"left": "Caixa Econômica Federal",
+		"right": "29-09-2016",
+		"instance": "Instância"
+	},
+	"new": false,
+	"login": {
+		"boxmsg": "Informe sua matrícula e senha para entrar",
+		"user": "Matrícula",
+		"password": "Senha",
+		"signin": "Entrar",
+		"tooltipsignin": "Clique para entrar"
+	},
+	"breadcrumb": {
+		"home": "Meu Painel"
+	},
+	"views": [
+		{
+			"id": "login",
+			"icon": "fa-sign-in",
+			"title": "Login",
+			"description": "Tela de Login",
+			"menu": false,
+			"credencial": "",
+			"locked": false,
+			"hideSearchBar": true
+		},
+		{
+			"id": "inicio",
+			"icon": "fa-home",
+			"title": "Início",
+			"description": "Tratamento de Dossiês",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false
+		},
+		{
+			"id": "principal",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": true
+				},
+				{
+					"id": "listaCertificadoWidget"
+				}
+			]
+		},
+		{
+			"id": "manutencaoDossie",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				},
+				{
+					"id": "listaCertificadoWidget"
+				}
+			]
+		},
+		{
+			"id": "cadastroCanal",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Canal",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "cadastroMacroProcesso",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Macro Processos",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "cadastroComposicaoDocumental",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Composicão Documental",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "cadastroFuncaoDocumental",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Função Documental",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "cadastroTipoDocumento",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Tipo de Documento",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "dashboard",
+			"icon": "fa-bar-chart",
+			"title": "Dashboard",
+			"description": "SIMTR - Dashboard",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "cadastroProduto",
+			"icon": "fa-home",
+			"title": "Painel",
+			"description": "Cadastro de Produto",
+			"locked": true,
+			"hideWidgetSidebar": true,
+			"hideSearchBar": false,
+			"widgets": [
+				{
+					"id": "chartDonut",
+					"parent": false
+				}
+			]
+		},
+		{
+			"id": "logImportacao",
+			"icon": "fa-list-alt",
+			"title": "Log de Importação",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"widgets": [
+				{
+					"id": "listaLogImportacaoWidget"
+				}
+			]
+		},
+		{
+			"id": "parametro",
+			"icon": "fa-list-alt",
+			"title": "Prazos de Monitoramento",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"widgets": [
+				{
+					"id": "parametroWidget"
+				}
+			]
+		},
+		{
+			"id": "parametro_alerta",
+			"icon": "fa-list-alt",
+			"title": "Alerta de Vencimento",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"widgets": [
+				{
+					"id": "parametroAlertaWidget"
+				}
+			]
+		},
+		{
+			"id": "alerta_vencimento",
+			"icon": "fa-list-alt",
+			"title": "Alerta via E-mail",
+			"description": "Integrações disponíveis para enviar mensagens de teste",
+			"locked": true,
+			"widgets": [
+				{
+					"id": "alertaVencimentoWidget"
+				}
+			]
+		}
+	],
+	"authorization": {
+		"title": "Erro de permissões",
+		"message": "Você não possui permissão para acessar este recurso."
+	},
+	"models": {},
+	"buttons": {
+		"save": {
+			"label": "Salvar",
+			"icon": "fa-check"
+		},
+		"clean": {
+			"label": "Limpar",
+			"icon": "fa-eraser"
+		},
+		"search": {
+			"label": "Pesquisar",
+			"icon": "fa-search"
+		},
+		"add": {
+			"label": "Adicionar",
+			"icon": "fa-plus"
+		},
+		"close": {
+			"label": "Fechar",
+			"icon": "fa-close"
+		},
+		"help": {
+			"label": "Ajuda",
+			"icon": ""
+		}
+	},
+	"tables": {
+		"empty": "Nenhum item encontrado.",
+		"total": "Total de itens encontrados:"
+	},
+	"selects": {
+		"choose": "Selecione..."
+	},
+	"widgets": {
+		"inicio": {
+			"id": "inicio",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Tratamento de Dossiê",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"principal": {
+			"id": "principal",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Consulta Dossiê Cliente",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"dossieProduto": {
+			"id": "dossieProduto",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Consulta Dossiê Produto",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"manutencaoDossie": {
+			"id": "manutencaoDossie",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Manutenção Dossiê",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"tratamentoDossie": {
+			"id": "tratamentoDossie",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Tratamento de Dossiê",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"cadastroCanal": {
+			"id": "cadastroCanal",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Cadastro de Canal",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"cadastroComposicaoDocumental": {
+			"id": "cadastroComposicaoDocumental",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Cadastro de Composição Documental",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"cadastroFuncaoDocumental": {
+			"id": "cadastroFuncaoDocumental",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Cadastro de Função Documental",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"cadastroTipoDocumento": {
+			"id": "cadastroTipoDocumento",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Cadastro de Tipo de Documento",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"cadastroProduto": {
+			"id": "cadastroProduto",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Cadastro de Produto",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"paeContratacao": {
+			"id": "paeContratacao",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "PAE - Cadastro de Processo Administrativo Eletrônico",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"logImportacao": {
+			"id": "logImportacao",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Consulta de cliente",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "Certificados alerta vermelho",
+				"alertaAmarelo": "Certificados alerta amarelo",
+				"alertaVerde": "Certificados alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		},
+		"pae": {
+			"id": "pae",
+			"url": "/pages/widgets/chartDonut.html",
+			"configs": {
+				"iniciarminimizado": {
+					"title": "Iniciar minimizado",
+					"value": "false"
+				}
+			},
+			"singleton": false,
+			"header": {
+				"icon": "",
+				"boxtitle": "Processo Administrativo Eletrônico",
+				"minimizavel": true,
+				"ajuda": true,
+				"configuravel": true,
+				"fechavel": true
+			},
+			"labels": {
+				"alertaVermelho": "PAE alerta vermelho",
+				"alertaAmarelo": "PAE alerta amarelo",
+				"alertaVerde": "PAE alerta verde",
+				"ajuda": "Legenda"
+			},
+			"footer": {
+				"atualizado": "Atualizado em "
+			}
+		}
+	},
+	"controlsidebar": {
+		"widgets": {
+			"title": "Widgets",
+			"nowidgets": "Não existem widgets configurados para está página."
+		},
+		"configs": {
+			"title": "Configurações"
+		}
+	},
+	"messages": {
+		"login": {
+			"invaliduser": "Usuário e/ou senha inválidos.",
+			"expireduser": "Sua sessão expirou. Por favor realize o login novamente.",
+			"expiredusertitle": "Sessão expirada"
+		},
+		"listaCertificado": {
+			"mudarSituacaoConfirm": "Deseja realmente alterar a situação do certificado?",
+			"reverterSituacaoConfirm": "Deseja realmente reverter a situação do certificado?",
+			"certificadoJaExistente": "Certificado já existente.",
+			"arquivoFormatoInvalido": "O arquivo não possui um formato válido.",
+			"operacaoRealizadaSucesso": "Operação realizada com sucesso.",
+			"operacaoUploadCertificadoInstalado": "Certificado está instalado?",
+			"erroEnvioCertificado": "Ocorreu um erro ao enviar o certificado."
+		},
+		"parametro": {
+			"operacaoRealizadaSucesso": "Operação realizada com sucesso."
+		},
+		"titleerror": "Atenção - Ocorreu um erro",
+		"remove": "Excluir",
+		"success": "Sucesso",
+		"edit": "Alterar situação do certificado"
+	},
+	"owner": "Caixa Econômica Federal",
+	"ownershort": "Caixa",
+	"modalHistoricoCertificado": {
+		"id": "modalHistoricoCertificado",
+		"url": "./pages/modals/modalHistoricoCertificado.html",
+		"tabelaHistoricocertificado": {
+			"dataAtualizacao": "Data atualização",
+			"situacao": "Situação",
+			"matricula": "Matrícula",
+			"responsavelAlteracao": "Responsável",
+			"unidade": "Unidade",
+			"acao": "Ação"
+		}
+	},
+	"modalUploadCertificado": {
+		"id": "modalUploadCertificado",
+		"url": "./pages/modals/modalUploadCertificado.html",
+		"label": {
+			"upload": "Upload"
+		}
+	},
+	"modalCertificadosDescartados": {
+		"id": "modalCertificadosDescartados",
+		"url": "./pages/modals/modalCertificadosDescartados.html",
+		"titulo": "Certificados Descartados",
+		"tabelaCertificadosDescartados": {
+			"nomeArquivo": "Nome arquivo",
+			"url": "URL",
+			"tsEmissao": "Data Emissão",
+			"tsExpiracao": "Data Expiração",
+			"unidade": "Unidade",
+			"responsavel": "Responsável",
+			"autoridade": "A/C",
+			"situacao": "Situação",
+			"tipoCertificado": "Tipo Certificado",
+			"motivoDescarte": "Motivo Descarte"
+		}
+	}
+}

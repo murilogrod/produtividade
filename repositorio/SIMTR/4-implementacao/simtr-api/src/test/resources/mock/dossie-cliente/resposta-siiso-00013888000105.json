@@ -1,0 +1,90 @@
+{
+    "estabelecimento": {
+        "pesnu": "1230440003123",
+        "cnpj": "00013888000105",
+        "data-abertura": "15.09.1966",
+        "razao-social": "CENTELHA ELETRICA COMERCIAL LTDA",
+        "nome-fantasia": "CENTELHA ELETRICA",
+        "capital-social": "0.00",
+        "tipo-estabelecimento": "1",
+        "natureza-juridica": "2062",
+        "descricao-njur": "SOCIEDADE EMPRESÁRIA LIMITADA",
+        "cnae-principal": "4744005",
+        "descricao-cnae-principal": "Comércio varejista de materiais de construção não especificados anteriormente",
+        "tipo-porte": "3",
+        "descricao-porte": "EMPRESA DE PEQUENO PORTE",
+        "identificador-opcao-simples": "1",
+        "opcao-simples": "S",
+        "data-inicio-simples": "01.01.2017",
+        "data-fim-simples": "",
+        "descricao-situacao-cadastral": "SEM MOTIVO",
+        "motivo-situacao-cadastral": "0",
+        "cpf-responsavel-legal": "17932645115",
+        "nome-responsavel-legal": "JOSE EMANUEL PONTE DE VASCONCELOS",
+        "descricao-qualificacao-responsavel": "SOCIO-ADMINISTRADOR",
+        "cnae-secundario": []
+    },
+    "endereco_contato": {
+        "cep": "70361-515",
+        "municipio": "BRASILIA",
+        "bairro": "ASA SUL",
+        "tipo-logradouro": "",
+        "nome-logradouro": "CRS 512 BL A",
+        "sigla-posicao-determinante": "",
+        "posicao-determinante": "23",
+        "complemento-posicao-determinante": "",
+        "uf": "DF",
+        "pais": "",
+        "e-mail": "",
+        "telefone-principal": "006133466200",
+        "telefone-secundario": "",
+        "telefone-fax": "006133466200"
+    },
+    "socios": [
+        {
+            "nome-socio": "FRANCISCO ROGERIO CAVALCANTE DA PONTE",
+            "codigo-qualificacao": "49",
+            "descricao-qualificacao": "SOCIO-ADMINISTRADOR",
+            "cpf-cnpj": "00002423235100",
+            "pc-capital-social": "25.00",
+            "data-inicio": "16.12.1969",
+            "cpf-representante": "",
+            "nome-representante": "",
+            "vinculo-pendente": "Sim"
+        },
+        {
+            "nome-socio": "JOSE SAMUEL PONTE DE VASCONCELOS",
+            "codigo-qualificacao": "49",
+            "descricao-qualificacao": "SOCIO-ADMINISTRADOR",
+            "cpf-cnpj": "00014943760163",
+            "pc-capital-social": "25.00",
+            "data-inicio": "29.07.1982",
+            "cpf-representante": "",
+            "nome-representante": "",
+            "vinculo-pendente": "Sim"
+        },
+        {
+            "nome-socio": "JOSE EMANUEL PONTE DE VASCONCELOS",
+            "codigo-qualificacao": "49",
+            "descricao-qualificacao": "SOCIO-ADMINISTRADOR",
+            "cpf-cnpj": "00017932645115",
+            "pc-capital-social": "25.00",
+            "data-inicio": "29.07.1982",
+            "cpf-representante": "",
+            "nome-representante": "",
+            "vinculo-pendente": "Sim"
+        },
+        {
+            "nome-socio": "JOSE COELHO DE VASCONCELOS FILHO",
+            "codigo-qualificacao": "49",
+            "descricao-qualificacao": "SOCIO-ADMINISTRADOR",
+            "cpf-cnpj": "00018218423168",
+            "pc-capital-social": "25.00",
+            "data-inicio": "29.07.1982",
+            "cpf-representante": "",
+            "nome-representante": "",
+            "vinculo-pendente": "Sim"
+        }
+    ],
+    "sucessao": []
+}

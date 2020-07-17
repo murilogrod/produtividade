@@ -1,0 +1,163 @@
+<div id="div-box-primary" class=" box box-primary" analytics-page>
+		<div id="div-box" class="box-body">
+			<div id="div-box-form" class="box-body col-md-12" *ngIf="!consultaClientePresenter.consultaCliente.searchDone || !consultaClientePresenter.consultaCliente.userFound">
+				<div class="col-md-4 bordaRightAzul" >
+
+					<img class="col-md-5" src="assets/img/layout/card.png">
+					<div class="col-md-7 texto">
+						<span class="corApresentacao col-md-12" style="font-weight: bold; font-size: 2vw;">Consulta</span>
+						<span  class="corApresentacao col-md-12 spanDossieCliente">Dossiê Cliente</span>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-5 divInput">
+					<form id="form-pesquisa" [formGroup]="consultaClientePresenter.consultaCliente.formulario">
+						<div id="div-form-inline" class="form-inline">
+							<div id="div-form-group-input" class="form-group pull-left divInnerInput">
+								<input id="consulta-cpfCnpj" formControlName="cpfCnpj" class="form-control" type="text" placeholder="Por favor digite CPF ou CNPJ"
+									[(ngModel)]="consultaClientePresenter.consultaCliente.cpfCnpj" (input)="maskCPfCnpj()" maxlength="18" 
+									style="border-radius: 5px;"/>
+							</div>
+							<div id="div-form-group-button" class="form-group pull-left">
+								<button id="button-submit" type="submit" name="submit" (click)="chamaConsulta()" style="background-color: #015da9;"
+									[disabled]="verifyCpfCnpj()" class="btn btn-default" analytics-page>
+									<i class="fa fa-search" style="color: white"></i>
+								</button>
+							</div>
+							<button id="link-novo-dossie" class="btn btn-primary" (click)="insertUser()"
+								*ngIf="!consultaClientePresenter.consultaCliente.userFound && consultaClientePresenter.consultaCliente.searchDone && consultaClientePresenter.consultaCliente.verBotaoCriaDossie">Novo
+								Dossiê</button>
+						</div>
+					</form>
+					<div id="cpfCnpjError" class="col-md-12 divInnerInput" *ngIf="verifyCpfCnpj()" style="color: red">
+						<label id="label-error-consulta">{{consultaClientePresenter.consultaCliente.tipoConsulta}}</label>
+					</div>
+				</div>
+			</div>
+			<div id="div-box-body-buttons" class="box-body pull-right"
+				*ngIf="consultaClientePresenter.consultaCliente.searching && !consultaClientePresenter.consultaCliente.inserting">
+				<a id="link-nova-consulta" class="btn btn-primary espacoRigth" (click)="goNewSearch()">Nova Consulta</a>
+				<a id="link-novo-dossieproduto" class="btn btn-primary" (click)="goLink()" *ngIf="consultaClientePresenter.consultaCliente.habilitaNovoProduto">Novo
+					Dossiê Produto</a>
+			</div>
+	
+			<div id="div-box-body-message-info" *ngIf="!consultaClientePresenter.consultaCliente.userFound && consultaClientePresenter.consultaCliente.searchDone"
+				class="box-body">
+				<h4 id="header-message-info" class="text-light-blue" style="text-align: center;">{{consultaClientePresenter.consultaCliente.msgConsultaDossie}}</h4>
+			</div>
+			<div id="div-box-body-identificador" *ngIf="consultaClientePresenter.consultaCliente.userFound && consultaClientePresenter.consultaCliente.searchDone"
+				class="box-body">
+				<div id="div-box-body-corpo-identificador" class="corpoIndentificador box-body box-title pull-left"
+					*ngIf="consultaClientePresenter.consultaCliente.cliente && (consultaClientePresenter.consultaCliente.cliente.nome || consultaClientePresenter.consultaCliente.cliente.razao_social)">
+					<div id="div-identificador" class="divIdentificador">
+						<span id="span-icon-user" class="fa fa-user espaco"></span>
+						<div id="div-coluna-divisora" class="mesmaLinha" [ngClass]="(consultaClientePresenter.consultaCliente.dossiePessoaFisica) ? 'colunaDivisorDossieClientePessoaFisica' : 'colunaDivisorDossieClientePessoaJuridica'">
+							<span id="span-cliente-nome"
+								*ngIf="consultaClientePresenter.consultaCliente.cliente && consultaClientePresenter.consultaCliente.cliente.nome && !consultaClientePresenter.consultaCliente.cliente.cnpj">
+								<label id="label-cliente-nome" class="tituloApresentacao">NOME:&nbsp;</label>
+								<label id="label-cliente-nome-valor">{{consultaClientePresenter.consultaCliente.cliente.nome}}</label>
+							</span>
+							<span id="span-cliente-razaosocial"
+								*ngIf="consultaClientePresenter.consultaCliente.cliente && consultaClientePresenter.consultaCliente.cliente.razao_social">
+								<label id="label-cliente-razaosocial" class="tituloApresentacao">RAZÃO SOCIAL:&nbsp;</label>
+								<label id="label-cliente-razaosocial-valor">{{consultaClientePresenter.consultaCliente.cliente.razao_social}}</label>
+							</span>
+						</div>
+						<div id="div-coluna-divisora2" class="mesmaLinha pull-left" [ngClass]="(consultaClientePresenter.consultaCliente.dossiePessoaFisica) ? 'colunaDivisorDossieClientePessoaFisica' : 'colunaDivisorDossieClientePessoaJuridica'">
+							<span id="span-icon-fredit-card" class="fa fa-credit-card espaco"></span>
+							<span id="span-cliente-cpf"
+								*ngIf="consultaClientePresenter.consultaCliente.cliente && consultaClientePresenter.consultaCliente.cliente.cpf">
+								<label id="label-cliente-cpf" class="tituloApresentacao">CPF:&nbsp;</label>
+								<label id="label-cliente-cpf-valor">{{consultaClientePresenter.consultaCliente.cpfCnpj}}</label>
+							</span>
+							<span id="span-cliente-cnpj"
+								*ngIf="consultaClientePresenter.consultaCliente.cliente && consultaClientePresenter.consultaCliente.cliente.cnpj">
+								<label id="label-cliente-cnpj" class="tituloApresentacao">CNPJ:&nbsp;</label>
+								<label id="label-cliente-cnpj-valor">{{consultaClientePresenter.consultaCliente.cpfCnpj}}</label>
+							</span>
+						</div>
+						<div id="div-coluna-user-sso" class="mesmaLinha  pull-right" [ngClass]="(consultaClientePresenter.consultaCliente.dossiePessoaFisica) ? 'colunaDivisorDossieClientePessoaFisica' : 'colunaDivisorDossieClientePessoaJuridica'"
+							*ngIf="consultaClientePresenter.consultaCliente.dossiePessoaFisica">
+							<span class="fa fa-user-secret espaco"></span>
+							<span id="span-user-sso">
+								<label id="label-user-sso" class="tituloApresentacao">Senha SSO Cadastrada: &nbsp;</label>
+								<label id="check-user-sso" [ngClass]="(consultaClientePresenter.consultaCliente.userSSO) ? 'ssoGreen' : 'ssoRed'">{{consultaClientePresenter.consultaCliente.userSSO ? 'SIM' : 'NÃO'}}</label>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div id="div-alert-consulta-cliente" class="box-body" style="margin: 50px 0px -20px 5px">
+					<cx-alert-message id="component-alert-consulta-cliente" [messagesInfo]="messagesInfo"
+						[messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+						(onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+						(onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+						(onCloseMessageWarning)="onCloseMessageWarning()">
+					</cx-alert-message>
+				</div>
+	
+				<p-tabView id="aba-identificacao" [activeIndex]="consultaClientePresenter.consultaCliente.indexAba" (onChange)="handleChange($event)">
+					<div id="div-aba-identificacao">
+						<p-tabPanel id="painel-aba-identificacao" header="Identificação">
+							<aba-identificacao-cliente 
+								id="component-aba-identificacao"
+								[cliente]="consultaClientePresenter.consultaCliente.cliente" 
+								[inserting]="consultaClientePresenter.consultaCliente.inserting"
+								(onCancel)="onCancel($event)" 
+								[cpfCnpj]="consultaClientePresenter.consultaCliente.cpfCnpj"
+								[insertingSicli]="!consultaClientePresenter.consultaCliente.sicliError"
+								[sicliInformation]="consultaClientePresenter.consultaCliente.sicliInformation"
+								[updateClienteForm]="consultaClientePresenter.consultaCliente.updateClienteForm" 
+								[selectedRadio]="selectedRadio"
+								(afterInsertUser)="afterInsertUser($event)" 
+								(onClienteInicado)="onClienteInicado($event)"
+								[production]="consultaClientePresenter.consultaCliente.productionEnvironment" 
+								[userSSO]="consultaClientePresenter.consultaCliente.userSSO"
+								(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+								(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+								(alertMessagesErrorChanged)="handlleMessagesError($event)"
+								(userCreateSucessSSO)="handleUserCreateSucessSSO($event)"
+								[userExiste]="consultaClientePresenter.consultaCliente.userExiste"
+								[dossiePessoaFisica]="consultaClientePresenter.consultaCliente.dossiePessoaFisica">
+							</aba-identificacao-cliente>
+						</p-tabPanel>
+					</div>
+					<div id="div-aba-documentos">
+						<p-tabPanel id="painel-aba-documentos" header="Documentos">
+							<aba-documentos id="component-aba-documentos" 
+								[listaVinculoArvore]="consultaClientePresenter.consultaCliente.listaVinculoArvore"
+								[cliente]="consultaClientePresenter.consultaCliente.cliente"
+								[idUltimoDossieProdutoCadastrado]="consultaClientePresenter.consultaCliente.idUltimoDossieProdutoCadastrado"
+								[userExiste]="consultaClientePresenter.consultaCliente.userExiste"
+								[docFound]="consultaClientePresenter.consultaCliente.docFound" 
+								[docEmpty]="consultaClientePresenter.consultaCliente.docEmpty"
+								[docFoundIna]="consultaClientePresenter.consultaCliente.docFoundIna" 
+								[cpfCnpj]="consultaClientePresenter.consultaCliente.cpfCnpj"
+								[selectedRadio]="selectedRadio"
+								(insertDocumentosChange)="handleChangeInsertDocumentos($event)"
+								(alertMessagesSucessChanged)="handlleMessagesSucess($event)"
+								(alertMessagesInfoChanged)="handlleMessagesInfo($event)"
+								(alertMessagesWarningChanged)="handlleMessagesWarning($event)"
+								(alertMessagesErrorChanged)="handlleMessagesError($event)"
+								[dossieCliente]="true"
+								[dossiePessoaFisica]="consultaClientePresenter.consultaCliente.dossiePessoaFisica">
+							</aba-documentos>
+						</p-tabPanel>
+					</div>
+					<div id="div-aba-produtos">
+						<p-tabPanel id="painel-aba-produtos" header="Produtos">
+							<aba-produtos id="component-aba-produtos" [produtos]="consultaClientePresenter.consultaCliente.listaProdutos"
+								[cliente]="consultaClientePresenter.consultaCliente.cliente">
+							</aba-produtos>
+						</p-tabPanel>
+					</div>
+					<div id="div-aba-nivel-documental" *ngIf="hasCredentialNivelDocumental()">
+						<p-tabPanel id="painel-aba-nivel-documental" header="Nível Documental">
+							<aba-nivel-documental id="component-aba-nivel-documental"
+								[vinculoCliente]="consultaClientePresenter.consultaCliente.cliente">
+							</aba-nivel-documental>
+						</p-tabPanel>
+					</div>
+				</p-tabView>
+			</div>
+		</div>
+	</div>	

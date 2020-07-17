@@ -1,0 +1,125 @@
+<p-tabView>
+  <div>
+    <p-tabPanel header="Formulário">
+      <div class="col-md-12" *ngIf="garantias != null && garantias.length > 0">
+        <div class="box-body">
+          <p-dataTable [value]="garantias" [rows]="5" [paginator]="garantias != null && garantias.length > 5 ? true : false">
+            <ng-template pTemplate="emptymessage">
+              Nenhum registro encontrado
+            </ng-template>
+            <p-header>Garantias</p-header>
+            <p-column field="codigo_garantia" header="Código Garantia"></p-column>
+            <p-column field="forma_garantia" header="Forma Garantia"></p-column>
+            <p-column field="nome_garantia" header="Nome Garantia"></p-column>
+            <p-column [style]="{ 'text-align': 'right' }" field="percentual_garantia" header="Percentual Garantia">
+              <ng-template let-col let-data="rowData" pTemplate="body">
+                {{ data.percentual_garantia + ' %' }}
+              </ng-template>
+            </p-column>
+            <p-column [style]="{ 'text-align': 'right' }" field="valor_garantia" header="Valor Garantia">
+              <ng-template class="valor" let-col let-data="rowData" pTemplate="body">
+                {{data.valor_garantia | currency: 'BRL' : true }}
+              </ng-template>
+            </p-column>
+            <p-column field="produto_vinculado.nome" header="Produto Vinculado"></p-column>
+          </p-dataTable>
+
+        </div>
+        <br />
+      </div>
+
+      <div class="col-md-12" *ngIf="pessoasProduto != null && pessoasProduto.length > 0">
+        <div class="box-body">
+          <p-dataTable [value]="pessoasProduto" [rows]="5" [paginator]="pessoasProduto != null && pessoasProduto.length > 5 ? true : false">
+            <ng-template pTemplate="emptymessage">
+              Nenhum registro encontrado
+            </ng-template>
+            <p-header>Pessoas</p-header>
+            <p-column field="codigo_garantia" header="Identificador">
+              <ng-template pTemplate="body" let-col let-data="rowData">
+                {{data.cpf | kzCpfCnpj}}
+                {{data.cnpj | kzCpfCnpj}}
+              </ng-template>
+            </p-column>
+            <p-column field="nome" header="Nome/Razão Social"></p-column>
+            <p-column header="Tipo Relacionamento">
+              <ng-template pTemplate="body" let-data="rowData">
+                {{data.tipo_relacionamento}}
+              </ng-template>
+            </p-column>
+          </p-dataTable>
+        </div>
+      </div>
+      <div class="box-body">
+        <a class="btn btn-primary pull-right" (click)="onBack()">Voltar</a>
+      </div>
+    </p-tabPanel>
+  </div>
+  <div>
+    <p-tabPanel header="Documentos">
+      <div class="col-md-12">
+        <div *ngIf="!docFoundProduto" class="row">
+          <h4 class="text-light-blue">Nenhum documento capturado para o Produto.</h4>
+        </div>
+        <br />
+      </div>
+      <div *ngIf="docFoundProduto" class="row">
+        <section class="content">
+          <div class="col-md-4">
+            <div class="row">
+              <div *ngIf="docFoundProduto" class="box-body">
+                <p-tree [value]="documentosProdutos" selectionMode="single" [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)"></p-tree>
+                <div class="box-footer" style="padding-top:10px" *ngIf="!isExpandedAllProdutos && showButtonsExpandOrCollapse()">
+                  <button type="button" class="btn btn-primary" (click)="expandAllProdutos()">Expandir Todos</button>
+                </div>
+                <div class="box-footer" style="padding-top:10px" *ngIf="isExpandedAllProdutos && showButtonsExpandOrCollapse()">
+                  <button type="button" class="btn btn-primary" (click)="collapseAllProdutos()">Fechar Todos</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-7 documento">
+            <div class="form-horizontal">
+              <div class="conteudo" *ngIf="showBtnProdutos">
+                <div class="btn-group" role="group" aria-label="..." style="text-align:center">
+                  <button type="button" class="btn btn-default" (click)="aumentarProdutos()" title="Zoom+" rel="tooltip">
+                    <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="diminuirProdutos()" title="Zoom-" rel="tooltip">
+                    <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="girarDireitaProdutos()" title="Girar Direita" rel="tooltip">
+                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="girarEsquerdaProdutos()" title="Girar Esquerda" rel="tooltip">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default" (click)="mostrarPadraoProdutos()" title="Mostrar Padrão" rel="tooltip">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </div>
+              <br />
+            </div>
+            <div class="container">
+              <canvas id='canvasProdutos'></canvas>
+            </div>
+            <br />
+            <div class="row" *ngIf="showDetalheDoc">
+              {{dataCaptura}}
+              <br /> {{matricula}}
+              <br /> {{dataValidade}}
+              <br /> {{origemDoc}}
+            </div>
+          </div>
+
+        </section>
+      </div>
+      <div class="box-body">
+        <a class="btn btn-primary pull-right" (click)="onBack()">Voltar</a>
+      </div>
+
+    </p-tabPanel>
+  </div>
+</p-tabView>

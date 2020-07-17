@@ -1,0 +1,94 @@
+{
+    "id": 116,
+    "versao": 2,
+    "processo": {
+        "id": 0,
+        "nome": "Processo Concessao Comercial",
+        "ativo": true,
+        "avatar": "glyphcon glyphcon-processo",
+        "controlaValidade": true,
+        "tipoPessoa": "F",
+        "indicadorGeracaoDossie": true,
+        "nomeProcessoBPM": "processo-bpm",
+        "nomeContainerBPM": "container-bpm",
+        "dataHoraUltimaAlteracao": 1554819752109,
+        "produtos": [],
+        "relacoesProcessoVinculoPai": [],
+        "relacoesProcessoVinculoFilho": [],
+        "unidadesAutorizadas": [],
+        "elementosConteudo": [],
+        "processoDocumentos": [],
+        "documentosGarantia": [],
+        "vinculacoesChecklists": [],
+        "vinculacoesChecklistsFase": [],
+        "checklistsAssociados": []
+    },
+    "processoFase": {
+        "id": 0,
+        "nome": "",
+        "ativo": true,
+        "avatar": "",
+        "controlaValidade": true,
+        "tipoPessoa": "F",
+        "indicadorGeracaoDossie": true,
+        "nomeProcessoBPM": "",
+        "nomeContainerBPM": "",
+        "dataHoraUltimaAlteracao": 1554819752109,
+        "produtos": [],
+        "dossiesProduto": [],
+        "dossiesProdutoFase": [],
+        "unidadesAutorizadas": [],
+        "camposFormulario": [],
+        "elementosConteudo": [],
+        "vinculacoesChecklistsFase": [],
+        "checklistsAssociados": []
+    },
+    "unidadeCriacao": 9999,
+    "unidadePriorizado": null,
+    "matriculaPriorizado": null,
+    "pesoPrioridade": null,
+    "dataHoraFinalizacao": null,
+    "canalCaixa": "AGE",
+    "idInstanciaProcessoBPM": null,
+    "instanciasDocumento": [],
+    "dossiesClienteProduto": [],
+    "produtosDossie": [],
+    "situacoesDossie": [
+        {
+            "id": 46,
+            "tipoSituacaoDossie": {
+                "id": 1,
+                "nome": "Rascunho",
+                "tipoInicial": true,
+                "tipoFinal": false,
+                "dataHoraUltimaAlteracao": 1554819752109
+            },
+            "dataHoraInclusao": 1554819752109,
+            "dataHoraSaida": 1554819752109,
+            "responsavel": "c102030",
+            "unidade": 1010,
+            "observacao": null
+        },
+        {
+            "id": 58,
+            "tipoSituacaoDossie": {
+                "id": 2,
+                "nome": "Criado",
+                "tipoInicial": true,
+                "tipoFinal": false,
+                "dataHoraUltimaAlteracao": 1554819752109
+            },
+            "dataHoraInclusao": 1554819752109,
+            "dataHoraSaida": 1554819752109,
+            "responsavel": "c102030",
+            "unidade": 1010,
+            "observacao": null
+        }
+    ],
+    "respostasDossie": [],
+    "unidadesTratamento": [],
+    "garantiasInformadas": [],
+    "checklistsAssociados": []
+}
+
+

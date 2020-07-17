@@ -1,0 +1,52 @@
+.ui-accordion .ui-accordion-header, .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover {
+    background: transparent;
+    border: none;
+    margin-bottom: 4px;
+}
+    .ui-accordion .ui-accordion-header a, .ui-accordion .ui-accordion-header:not(.ui-state-active):not(.ui-state-disabled):hover a {
+        color: rgb(0, 90, 156);
+        font-weight: 900; 
+    }
+    .pi-fw{
+        font-size: 18px;
+        left: -10px;
+        position: relative;
+    }
+    .subArccodion .ui-accordion-header a {
+        text-align: center;
+    }
+    .subArccodion div a {
+        background: rgb(60, 141, 188);
+        color: rgb( 255, 255, 255) !important;
+    }
+        .subArccodion .ui-accordion-header a .ui-accordion-toggle-icon {
+            float: right;
+        }
+        .subArccodion .ui-accordion-header a .pi {
+            font: normal normal normal 14px/1 FontAwesome !important;
+        }
+        .subArccodion .ui-accordion-header a .pi-caret-right:before {
+            content: "\f13a" !important;
+        }
+        .subArccodion .ui-accordion-header a .pi-caret-down:before {
+            content: "\f139" !important;
+        }
+        .subArccodion .ui-accordion .ui-accordion-content, .subArccodion div .ui-accordion-content, .subArccodion div div .box-body {
+            padding: 0 !important;
+        }
+        .subArccodion div a span.ui-accordion-header-text {
+            text-align: center;
+            width: 98%;
+        }
+            .listaProduto .ui-datatable table thead tr th {
+                background: rgb(206, 235, 248);
+                font-size: 13px;
+                font-weight: 900;
+                color: rgb(0, 90, 156);
+                border: none;
+                border-bottom: 3px solid rgb(0, 90, 156);
+            }
+            .listaProduto .ui-datatable tbody > tr.ui-widget-content {
+                border-color: snow;
+                color: rgb(0, 90, 156);
+            }

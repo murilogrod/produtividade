@@ -1,0 +1,5 @@
+<section *ngIf="alertMenssagemPresenter.modalAlert.openMensagem" id="corpAlertInformativo">
+    <label [hidden]="alertMenssagemPresenter.modalAlert.apresentarTitulo">{{tituloMsg}}</label>
+    <a  [hidden]="ocultarBtnFechar" class="xCloseAlertInformativo" (click)="onCloseMensagem()"><i class="fa  fa-close "></i></a>
+    <p>{{msgOrientacao}}</p>
+</section>

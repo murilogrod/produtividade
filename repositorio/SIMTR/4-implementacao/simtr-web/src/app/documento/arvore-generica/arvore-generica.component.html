@@ -1,0 +1,88 @@
+<cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+(onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+(onCloseMessageWarning)="onCloseMessageWarning()"></cx-alert-message>
+<div *ngIf="!ocultarArvore" class="col-md-12 espacoSearch" style="display: inline-flex; padding: 0;">
+    <input #filtroField name="filtroField" type="text" [(ngModel)]="filtro" (input)="onInputFiltro(filtroField)" 
+        placeholder="Filtrar" class="input-filtro"/>
+    <button name="submit" (click)="onInputFiltro(filtroField)" class="btn btn-primary btn-flat button-filtro">
+        <i class="fa fa-search"></i>
+    </button>
+</div>
+<div class="clearfix"></div>
+<app-loader-relativo [ativo]="posicaoAtual < listaNosVisualizacao.length" [posicao]="posicaoAtual" [qtdComponent]="listaNosVisualizacao.length"></app-loader-relativo>
+<div *ngIf="!ocultarArvore" class="box-header-arvore">
+    <div class="tamanhoCorpToogle ">
+        <label class="switch">
+            <input class="toggle" type="checkbox" [disabled] = "verificarArvoreNova()"  [(ngModel)]="habilitarExclusao">
+            <span class="slider round"></span>
+        </label>
+        <span class="tamanhoIcone fa fa-trash-o espaco corTexto"></span>
+        <label class="corTexto espaco">Habilitar exclusão</label>
+    </div>
+    <div class="tamanhoCorpToogle">          
+        <label class="switch">
+            <input class="toggle" type="checkbox" [(ngModel)]="exibirInativos" (change)="showAtivosInativos()">
+            <span class="slider round"></span>
+        </label>
+        <span class="tamanhoIcone fa fa-file-text-o espaco corTexto"></span>
+        <label class="corTexto espaco">Inativos</label>
+    </div>
+    <div *ngIf="arovrePermiteReuso && habilitaBotoesSalvar" class="tamanhoCorpToogle">
+        <label class="switch">
+            <input class="toggle" type="checkbox" [(ngModel)]="habilitarReuso" (change)="habilitarReusoDocumentos()">
+            <span class="slider round"></span>
+        </label>
+        <span class="tamanhoIcone fa fa-plus-square-o espaco corTexto"></span>
+        <label class="corTexto espaco">Reuso de Documentos</label>
+    </div>
+    <div class="tamanhoCorpToogle">
+        <label class="switch">
+            <input class="toggle" type="checkbox" [(ngModel)]="expandirTodos" (change)="expandAll()">
+            <span class="slider round"></span>
+        </label>
+        <span class="tamanhoIcone fa fa-plus-square-o espaco corTexto"></span>
+        <label class="corTexto espaco">Expandir todos</label>
+    </div>
+</div>
+<div id="corpo-arvore" class="corpArvore" *ngIf="treeEditable && !ocultarArvore">
+    <p-tree id="tree{{indiceArvoreAtual}}" [value]="listaNosVisualizacao" selectionMode="single" [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event, indiceArvoreAtual)" >
+        <ng-template let-node  pTemplate="default" let-i="index">
+            <span style="display: none;">{{posicaoAtualNode()}}</span>
+            <div class="corpoLabel" *ngIf="node.parent == undefined"> 
+                <span [ngClass]="{'labelDesc': true, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro, 'labelBold': node.labelBold}" *ngIf="(node.obrigatorio && node.quantidade_obrigatorio != 0) || (node.quantidade_obrigatorio && node.quantidade_obrigatorio > 0)" data-toggle="tooltip" data-placement="top" title="Mínimo Obrigatório : {{node.quantidade_obrigatorio}}">{{node.label}}</span>
+                <span [ngClass]="{'labelDesc': true, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro, 'labelBold': node.labelBold}" *ngIf="(node.obrigatorio && node.quantidade_obrigatorio == 0) || (node.quantidade_obrigatorio && node.quantidade_obrigatorio == 0)" data-toggle="tooltip" data-placement="top" title="Documento Obrigatório">{{node.label}}</span>
+                <span [ngClass]="{'labelDesc': true, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro, 'labelBold': node.labelBold}" *ngIf="node.obrigatorio && !node.quantidade_obrigatorio && node.quantidade_maxima_obrigatoria > 0" data-toggle="tooltip" data-placement="top" title="Máximo Obrigatório : {{node.quantidade_maxima_obrigatoria}}">{{node.label}}</span>
+                <span [ngClass]="{'labelDesc': true, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro, 'labelBold': node.labelBold}" *ngIf="!node.obrigatorio && ((!node.quantidade_obrigatorio && node.quantidade_obrigatorio == 0) &&  (!node.quantidade_maxima_obrigatoria || node.quantidade_maxima_obrigatoria == 0))">{{node.label}}</span>
+                <span [ngClass]="{'labelDesc': true, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro, 'labelBold': node.labelBold}" *ngIf="(node.obrigatorio && node.quantidade_obrigatorio) || (node.obrigatorio && !node.quantidade_obrigatorio && node.quantidade_maxima_obrigatoria > 0) || (node.obrigatorio && !node.quantidade_obrigatorio && !node.quantidade_maxima_obrigatoria)" class="asteriscoObrigatorio">*</span>
+                <span class="fa fa-paste icon-reuso-doc" *ngIf="node.existeDocumentoReuso"></span>
+                <span class="link-reuso-doc" *ngIf="node.existeDocumentoReuso" (click)="aplicaReusoDocumento(node)">Reutilizar</span>
+
+            </div>
+            <div class="corpLabeItemDoc" *ngIf="node.parent != undefined && !node.leaf">
+                <span [ngClass]="{'labelItemDoc': true, 'labelBold': node.labelBold, 'labelVerdeEscuro': node.labelVerdeEscuro, 'labelLaranjaEscuro': node.labelLaranjaEscuro, 'labelVermelhoEscuro': node.labelVermelhoEscuro}">{{node.label}}</span>
+                <span class="_ngcontent-c21 arvore-tipo-documento-tamanho">&nbsp;{{lengthNodeChildren(node.children)}}&nbsp;</span><span class="asteriscoObrigatorio"  *ngIf="node.obrigatorio">*</span>
+                <span class="fa fa-paste icon-reuso-doc" *ngIf="node.existeDocumentoReuso"></span>
+                <span class="link-reuso-doc" *ngIf="node.existeDocumentoReuso" (click)="aplicaReusoDocumento(node)">Reutilizar</span>
+            </div>
+            <div class="teste4" *ngIf="node.leaf && !node.removido_arvore" (click)="onSelect(node, indiceArvoreAtual)">
+                <label class="containerChek" *ngIf="habilitarExclusao">
+                    <input type="checkbox" [(ngModel)]="node.selectable" (change)="addDocumentoExclusao()" class="checkbox-documento">
+                    <span class="checkmark"></span>
+                </label>
+                <span>{{node.label}}</span>
+                <input #nodePage type="hidden" value="{{encontrarNodePage(node)}}">
+                <span *ngIf="nodePage.value > 0" class="arvore-documento-tamanho"> &nbsp;{{nodePage.value}}&nbsp;</span>
+            </div>
+            <div class="teste5" *ngIf="node.leaf && node.removido_arvore" (click)="onSelect(node, indiceArvoreAtual)">
+                <span ngClass="{{node.removido_arvore}}">{{node.label}}</span> <span class="arvore-documento-tamanho">&nbsp;{{node.documentoArvore.quantidade_conteudos ? node.documentoArvore.quantidade_conteudos  : '  '}}&nbsp;</span>
+            </div>
+        </ng-template>
+    </p-tree>
+</div>
+<div *ngIf="!treeEditable && !ocultarArvore">
+    <p-tree [value]="listaNosVisualizacao" id="tree{{indiceArvoreAtual}}" selectionMode="single" [(selection)]="selectedFile" 
+        (onNodeSelect)="nodeSelect($event, indiceArvoreAtual)"></p-tree>
+</div>
+<div *ngIf="treeEditable && !ocultarArvore" class="div-button-excluir">
+    <button name="excluir" (click)="excluiDocumentos()" *ngIf="habilitarExclusao" class="btn btn-primary btn-flat button-excluir">Excluir Selecionados</button>
+</div>

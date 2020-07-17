@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Motivo Rejeição Documento</h4>
+    </div>
+    <div class="modal-body">
+      Selecione o motivo
+      <!--
+      <div class="box-body col-md-12">
+        <div class="col-md-6" >
+          <select class="form-control" id="{{idx}}" name="{{idx}}" [(ngModel)]="situacaoRejeicao" (change)="selecionaSituacao($event.target.value)">
+            <option [ngValue] = "Selecione" selected>Selecione</option>
+            <option value="{{item.id}}" *ngFor="let item of listaSituacao">{{item.nome}}</option>
+          </select>
+        </div>
+      </div>
+      -->
+      <div class="box-body col-md-12" *ngIf="exibeComboMotivo">
+        <div class="col-md-6" >
+          <select class="form-control" id="{{idx}}" name="{{idx}}" [(ngModel)]="motivoRejeicao" (change)="selecionaMotivo($event.target.value)">
+            <option [ngValue] = "Selecione" selected>Selecione</option>
+            <option value="{{item.id}}" *ngFor="let item of listaMotivo">{{item.nome}}</option>
+          </select>
+        </div>
+      </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" *ngIf="exibeBotaoSalvar" (click)="confirm()">Salvar</button>
+            <button type="button" class="btn btn-default pull-right" (click)="cancel()">Cancelar</button>
+        </div>
+      
+    </div>
+
+  </div>
+</div>

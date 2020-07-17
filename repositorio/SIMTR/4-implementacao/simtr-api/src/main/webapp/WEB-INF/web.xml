@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <display-name>SIMTR</display-name>
+
+    <description>SIMTR: Manutenção Tratamento e Reuso de Dados e Imagens</description>
+
+    <module-name>simtr-api</module-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <security-constraint>
+        <display-name>SSO</display-name>
+        <web-resource-collection>
+            <web-resource-name>SSO</web-resource-name>
+            <url-pattern>/rest/administracao/*</url-pattern>
+            <url-pattern>/rest/api-manager/*</url-pattern>
+            <url-pattern>/rest/cadastro/*</url-pattern>
+            <url-pattern>/rest/dossie-digital/*</url-pattern>
+            <url-pattern>/rest/negocio/*</url-pattern>
+            <url-pattern>/rest/processoadministrativo/*</url-pattern>
+            <url-pattern>/rest/retaguarda/*</url-pattern>
+            <url-pattern>/rest/v1/*</url-pattern>
+            <url-pattern>/rest/informacao/*</url-pattern>
+            <url-pattern>/rest/portal-empreendedor/*</url-pattern>
+            <url-pattern>/rest/keycloak/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>uma_authorization</role-name>
+            <role-name>MTRADM</role-name>
+            <role-name>MTRTEC</role-name>
+            <role-name>MTRAUD</role-name>
+            <role-name>MTRSDNOPE</role-name>
+            <role-name>MTRSDNTTO</role-name>
+            <role-name>MTRSDNTTG</role-name>
+            <role-name>MTRSDNMTZ</role-name>
+            <role-name>MTRSDNSEG</role-name>
+            <role-name>MTRSDNEXT</role-name>
+            <role-name>MTRSDNINT</role-name>
+            <role-name>MTRBPMANP</role-name>
+            <role-name>MTRBPMDEV</role-name>
+            <role-name>MTRBPMUSU</role-name>
+            <role-name>MTRBPMAPV</role-name>
+            <role-name>MTRBPMADM</role-name>
+            <role-name>MTRDOSOPE</role-name>
+            <role-name>MTRDOSMTZ</role-name>
+            <role-name>MTRDOSINT</role-name>
+            <role-name>MTRPAEOPE</role-name>
+            <role-name>MTRPAESIG</role-name>
+            <role-name>MTRPAEMTZ</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>KEYCLOAK</auth-method>
+    </login-config>
+
+    <filter>
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+        <init-param>
+            <param-name>cors.supportedMethods</param-name>
+            <param-value>GET, POST, DELETE, PUT, OPTIONS, PATCH</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/rest/servidor/information</url-pattern>
+        <url-pattern>/rest/doc/*</url-pattern>
+    </filter-mapping>
+</web-app>

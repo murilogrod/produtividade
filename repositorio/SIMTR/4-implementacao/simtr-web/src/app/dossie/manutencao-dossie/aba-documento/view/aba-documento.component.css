@@ -1,0 +1,99 @@
+fieldset {
+    margin-top: 5px;
+    padding: 0 !important;
+    border: none !important;
+}
+    .fieldsetDocumentos .titleArvore {
+        max-width: 90%;
+        white-space: pre-wrap;
+        text-align: left;
+    }
+    .ui-fieldset-toggleable .ui-fieldset-legend {
+        border: none;
+        background: rgb(206, 235, 248);
+        color: rgb(0, 90, 156);
+        border-bottom: 3px solid rgb(0, 90, 156);
+        font-weight: bold;
+    }
+        .ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover {
+            border-color: rgb(206, 235, 248);
+            background-color: rgb(0, 90, 156);
+            color: rgb(255, 255, 255);
+        }
+        .ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover a {
+            color: rgb(255, 255, 255);
+        }
+        .ui-fieldset.ui-fieldset-toggleable .ui-fieldset-legend:hover #span-declarar-dados {
+            color: rgb(255, 255, 255) !important;
+        }
+            fieldset legend a .ui-fieldset-toggler {
+                float: right;
+                padding: 4px 0px;
+                position: relative;
+            }
+            fieldset legend a .pi {
+                font: normal normal normal 14px/1 FontAwesome !important;
+            }
+            fieldset legend a .pi-minus:before {
+                content: "\f139" !important;
+            }
+            fieldset legend a .pi-plus:before {
+                content: "\f13a" !important;
+            }
+            .scrollDossieProduto {
+                height: 100%;
+                overflow: auto;
+            }
+                .scrollDossieProduto .fieldsetDocumentos .ng-trigger{
+                    position: relative;
+                }
+                .scrollDossieProduto .corpoLoadingRelativo {
+                    top: 0;
+                }
+    .tamanhoCorpToogleExpandir {
+        margin-left: 5%;
+    }
+    .novoDocumento {
+        margin-right: 0%;
+    }
+.btn-reclassificar  {
+    margin-bottom: 10px;
+}
+
+.fieldsetDocumentos legend{
+    white-space: normal !important;
+    text-align: justify;
+}
+
+.fieldsetDocumentos .cnpjFieldset{
+    margin-left: 0px;
+    margin-top: 3px;
+    margin-right: 5px;
+    float: left;
+}
+
+.campoObrigatorioArvore .ui-fieldset-toggleable .ui-fieldset-legend {
+    background: rgb(208, 27, 27) !important;
+    border: 3px solid rgb( 255, 255, 255);
+}
+
+.campoObrigatorioArvore .ui-widget-content a{
+    color: rgb( 255, 255, 255)
+}
+
+.espacoPadding4px {
+    font-weight: 900;
+    padding: 4px;
+    margin-left: 1px;
+}
+
+
+@media (max-height : 1024px ) {
+    .mx-auto .modal-body{
+        max-height: 700px !important;
+    }
+}
+
+#div-switch-miniatura{
+    margin: 0px 15px 0px 0px;
+}

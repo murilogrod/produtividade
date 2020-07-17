@@ -1,0 +1,597 @@
+<div class="modal-dialog modal-lg" style="width: 83vw !important; height: 50vh !important;">
+    <p-growl></p-growl>
+    <div class="modal-content">
+      <div class="form-group">
+
+        <div class="col-sm-1 pull-right">
+          <button type="button" class="close" (click)="fechar();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading label-title-header-modal">Atributo</div>
+        <div class="panel-body">
+          <div class="crud-container">
+
+            <form #atributoForm="ngForm" >
+              <div style="position: relative; max-height: 75vh; overflow: auto;">
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Dados Básicos</legend>
+
+                    <div class="row">
+
+                      <div class="form-group col-md-4" [class.has-error]="validarFormulario(nomeAtributoNegocial)">
+                        <label for="nomeAtributoNegocial" class="crud-label-title-form">Nome Negocial *</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeNegocial}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoNegocial" name="nomeAtributoNegocial" (blur)="validarNomeNegocialDuplicado()"
+                            [(ngModel)]="atributo.nome_atributo_negocial" required autofocus maxlength="100"
+                            placeholder="Nome Negocial" required #nomeAtributoNegocial="ngModel">
+                        <validation-form-message 
+                            [control]="nomeAtributoNegocial" 
+                            error="required" 
+                            text="Nome Negocial é obrigatório">
+                        </validation-form-message>
+                        <div *ngIf="isNomeNegocialDuplicado" class="error">
+                            Nome Negocial já existe!
+                        </div>               
+                      </div>
+
+                      <div class="form-group col-md-4" [class.has-error]="validarFormulario(nomeAtributoDocumento)">
+                        <label for="nomeAtributoDocumento" class="crud-label-title-form">Nome Documento *</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeDocumento}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoDocumento" name="nomeAtributoDocumento" 
+                            (blur)="validarNomeDocumentolDuplicado();" 
+                            (keyup)="validarEntradaKeyup($event)"
+                            [(ngModel)]="atributo.nome_atributo_documento" required maxlength="100"
+                            placeholder="Nome Documento" required #nomeAtributoDocumento="ngModel">
+                        <validation-form-message 
+                            [control]="nomeAtributoDocumento" 
+                            error="required" 
+                            text="Nome Documento é obrigatório">
+                        </validation-form-message>
+                        <div *ngIf="isNomeDcumentoDuplicado" class="error">
+                          Nome Documento já existe!
+                        </div> 
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="nomeAtributoRetorno" class="crud-label-title-form">Nome Retorno Extração</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeRetorno}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoRetorno" name="nomeAtributoRetorno" 
+                            (blur)="validarNomeAtributoRetornolDuplicado();"
+                            (keyup)="validarEntradaKeyup($event)"
+                            [(ngModel)]="atributo.nome_atributo_retorno" maxlength="100"
+                            placeholder="Nome Retorno Extração" #nomeAtributoRetorno="ngModel">
+                        <div *ngIf="isNomeAtributoRetornoDuplicado" class="error">
+                          Nome Retorno Extração já existe!
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+
+                      <div class="form-group col-md-3" [class.has-error]="validarFormulario(tipoCampo)">
+                        <label for="tipoCampo" class="crud-label-title-form">Tipo Campo *</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipTipoCampo}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="tipoCampo" name="tipoCampo" 
+                          [options]="tipoCampoSelectItem" 
+                          filter="true"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.tipo_campo" #tipoCampo="ngModel"
+                          placeholder="Selecione" [showClear]="true" [required]="true">
+                        </p-dropdown>
+                        <validation-form-message 
+                            [control]="tipoCampo" 
+                            error="required" 
+                            text="Tipo Campo é obrigatório">
+                        </validation-form-message>
+                      </div>
+
+                      <div class="form-group col-md-3" [class.has-error]="validarFormulario(tipoAtributoGeral)">
+                        <label for="tipoAtributoGeral" class="crud-label-title-form">Tipo Atributo Geral *</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipTipoAtributoGeral}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="tipoAtributoGeral" name="tipoAtributoGeral" 
+                          [options]="tipoAtributoGeralSelectItem" 
+                          filter="true"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.tipo_atributo_geral" #tipoAtributoGeral="ngModel"
+                          placeholder="Selecione" [showClear]="true" [required]="true">
+                        </p-dropdown>
+                        <validation-form-message 
+                            [control]="tipoAtributoGeral" 
+                            error="required" 
+                            text="Tipo Atributo Geral é obrigatório">
+                        </validation-form-message>
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="ordermApresentacao" class="crud-label-title-form"> Ordem * </label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipOrdem}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-spinner id="ordermApresentacao" name="ordermApresentacao"
+                          [(ngModel)]="atributo.ordem_apresentacao"
+                          pKeyFilter="int" [min]="1" [max]="limiteOrdem">
+                        </p-spinner>
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="grupoAtributo" class="crud-label-title-form"> Grupo </label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipGrupo}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-spinner id="grupoAtributo" name="grupoAtributo" 
+                          [(ngModel)]="atributo.grupo_atributo" 
+                          pKeyFilter="int" [max]="300">
+                        </p-spinner>
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="valorPadrao" class="crud-label-title-form">Valor Padrão</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipValorPadrao}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="valorPadrao" name="valorPadrao"
+                            [(ngModel)]="atributo.valor_padrao" maxlength="30"
+                            placeholder="Valor Padrão" #valorPadrao="ngModel">
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-md-12">
+
+                        <label for="orientaaoPreenchimento" class="crud-label-title-form">Orientação Operador</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipOrientacaoOperador}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div id="orientaaoPreenchimento">
+                          <textarea 
+                              id="orientaaoPreenchimento" 
+                              name="orientaaoPreenchimento" 
+                              style="width: 100%;"
+                              contadorCaracteres="255"
+                              [(ngModel)]="atributo.orientacao_preenchimento"
+                              #orientaaoPreenchimento="ngModel" 
+                              maxlength="255"
+                              rows="4" 
+                              cols="59">
+                          </textarea>    
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="row">
+
+                      <div class="form-group col-md-2">
+                        <label class="crud-label-title-form">Ativo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipAtivo}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="ativo" type="checkbox" [(ngModel)]="atributo.ativo" *ngIf="atributo.id == undefined" [disabled]="true">
+                            <input class="contato-select form-control" name="ativo" type="checkbox" [(ngModel)]="atributo.ativo" *ngIf="atributo.id">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label class="crud-label-title-form">Obrigatório</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipObrigatorio}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="indicadorObrigatorio" type="checkbox" [(ngModel)]="atributo.indicador_obrigatorio">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div>  
+
+                      <div class="form-group col-md-2">
+                        <label class="crud-label-title-form">Identificador Pessoa</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipIdentificadorPessoa}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="indicadorIdentificadorPessoa" type="checkbox" 
+                              [(ngModel)]="atributo.indicador_identificador_pessoa"
+                              (change)="validarIdentificadorPessoaDuplicado()">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div *ngIf="isIdentificadorPessoaDuplicado" class="error">
+                          Já existe Atributo com Identificador Pessoa para este Tipo de Documento.
+                        </div>
+                      </div>
+                      
+                      <div class="form-group col-md-3">
+                        <label class="crud-label-title-form">Cálculo Data Validade</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipCalculoDataValidade}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="indicadorCalculoDataValidade" type="checkbox" 
+                              [(ngModel)]="atributo.indicador_calculo_data_validade"
+                              (change)="validarCalculoDadaValidadeDuplicado()">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                        <div *ngIf="isCalculoDataValidadeDupllicado" class="error">
+                          Já existe Atributo com Cálculo Data Validade para este Tipo de Documento.
+                        </div>
+                      </div> 
+
+                      <div class="form-group col-md-3">
+                        <label class="crud-label-title-form">Atributo Presente no Documento</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipAtributoPresenteNoDocumento}}"
+                          style="cursor: pointer">
+                        </span>
+                        <div>
+                          <label class="switch">
+                            <input class="contato-select form-control" name="indicadorPresenteDocumento" type="checkbox" [(ngModel)]="atributo.indicador_presente_documento">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div> 
+
+                    </div>
+                </fieldset>
+                
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Cadastro Receita</legend>
+                  
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="indicadorCampoComparacaoReceita" class="crud-label-title-form">Campo Comparação</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipCampoComparacao}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="indicadorCampoComparacaoReceita" name="indicadorCampoComparacaoReceita" 
+                          [options]="tipoCampoComparacaoReceitaSelectItem" 
+                          filter="true"
+                          (onChange)="validarCampoComparacaoReceita()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.indicador_campo_comparacao_receita" #indicadorCampoComparacaoReceita="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="indicadorModoComparacaoReceita" class="crud-label-title-form">Modo Comparação</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipModoComparacao}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="indicadorModoComparacaoReceita" name="indicadorModoComparacaoReceita" 
+                          [options]="tipoCampoModoComparacaoReceitaSelectItem" 
+                          filter="true"
+                          (onChange)="validarCampoComparacaoReceita()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.indicador_modo_comparacao_receita" #indicadorModoComparacaoReceita="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isCampoComparacaoReceita" class="error">
+                          Modo Comparação deve ser preenchido!
+                        </div>
+                      </div>
+                  </div>
+
+                </fieldset>
+                
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">GED (SIECM)</legend>
+
+                    <div class="row">
+
+                      <div class="form-group col-md-5">
+                        <label for="nomeAtributoSiecm" class="crud-label-title-form">Nome Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeAtributoSiecm}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoSiecm" name="nomeAtributoSiecm"
+                          [(ngModel)]="atributo.nome_atributo_siecm" maxlength="100"
+                          (blur)="validarSiecm()"
+                          placeholder="Nome Atributo" #nomeAtributoSiecm="ngModel">
+                      </div>
+
+                      <div class="form-group col-md-5">
+                        <label for="tipoAtributoSiecm" class="crud-label-title-form">Tipo Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipTipoAtributoSiecm}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="tipoAtributoSiecm" name="tipoAtributoSiecm" 
+                          [options]="tipoAtributoGeralSelectItem" 
+                          filter="true"
+                          (onChange)="validarSiecm()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.tipo_atributo_siecm" #tipoAtributoSiecm="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isTipoAtributoSiecmDeveSerPreenchido" class="error">
+                          Tipo Atributo deve ser preenchido!
+                        </div> 
+                      </div>    
+
+                      <div class="form-group col-md-2">
+                        <label class="crud-label-title-form">Obrigatório GED</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipObrigatorioGed}}"
+                          style="cursor: pointer">
+                        </span>
+                          <div>
+                            <label class="switch">
+                              <input class="contato-select form-control" name="indicadorObrigatorioSiecm" type="checkbox" [(ngModel)]="atributo.indicador_obrigatorio_siecm">
+                              <span class="slider round"></span>
+                            </label>
+                          </div>
+                      </div>
+
+                    </div>    
+
+                </fieldset>
+
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Cadastro Caixa (SICLI)</legend>
+
+                    <div class="row">
+
+                      <div class="form-group col-md-4">
+                        <label for="nomeObjetoSicli" class="crud-label-title-form">Nome Objeto</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeObjetoSicli}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeObjetoSicli" name="nomeObjetoSicli" (blur)="validarNomeAtributoSicli()"
+                          [(ngModel)]="atributo.nome_objeto_sicli" maxlength="100"
+                          placeholder="Nome Objeto" #nomeObjetoSicli="ngModel">
+                        <div *ngIf="isNomeObjetoSicli" class="error">
+                          Nome Objeto deve ser preenchido!
+                        </div> 
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="nomeAtributoSicli" class="crud-label-title-form">Nome Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeAtributoSicli}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoSicli" name="nomeAtributoSicli" (blur)="validarNomeAtributoSicli()"
+                          [(ngModel)]="atributo.nome_atributo_sicli" maxlength="100"
+                          placeholder="Nome Atributo" #nomeAtributoSicli="ngModel">
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="tipoAtributoSicli" class="crud-label-title-form">Tipo Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipTipoAtributoSicli}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="tipoAtributoSicli" name="tipoAtributoSicli" 
+                          [options]="tipoAtributoGeralSelectItem" 
+                          filter="true"
+                          (onChange)="validarNomeAtributoSicli()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.tipo_atributo_sicli" #tipoAtributoSicli="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isTipoAtributoSicli" class="error">
+                          Tipo Atributo deve ser preenchido!
+                        </div>
+                      </div> 
+
+                    </div>  
+                </fieldset>
+                
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Conferência Documental (SICOD)</legend>
+
+                    <div class="row">
+                      
+                      <div class="form-group col-md-6">
+                        <label for="nomeAtributoSicod" class="crud-label-title-form">Nome Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipNomeAtributoSicod}}"
+                          style="cursor: pointer">
+                        </span>
+                        <input class="form-control" id="nomeAtributoSicod" name="nomeAtributoSicod" (blur)="validarSicod()"
+                          [(ngModel)]="atributo.nome_sicod" maxlength="100"
+                          placeholder="Nome Atributo" #nomeAtributoSicod="ngModel">
+                      </div>
+
+                      <div class="form-group col-md-6">
+                        <label for="tipoAtributoSicod" class="crud-label-title-form">Tipo Atributo</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipTipoAtributoSicod}}"
+                          style="cursor: pointer">
+                        </span>
+                        <p-dropdown id="tipoAtributoSicod" name="tipoAtributoSicod" 
+                          [options]="tipoAtributoGeralSelectItem" 
+                          filter="true"
+                          (onChange)="validarSicod()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.tipo_atributo_sicod" #tipoAtributoSicod="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isTipoAtributoSicod" class="error">
+                          Tipo Atributo deve ser preenchido!
+                        </div>
+                      </div> 
+
+                    </div>
+
+                </fieldset>
+
+                <fieldset class="crud-card-fieldset">
+                  <legend class="crud-card-title">Partilha de Dados (Split)</legend>
+
+                    <div class="row">
+                      <div class="form-group col-md-4">
+                        <label for="indicadorModoPartilha" class="crud-label-title-form">Modo Partilha</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipModoPartilha}}"
+                          style="cursor: pointer">
+                        </span>
+
+                        <p-dropdown *ngIf="!isPartilhaDisabled" id="indicadorModoPartilha" name="indicadorModoPartilha"
+                          [options]="tipoModoPartilhaSelectItem" 
+                          filter="true"
+                          (onChange)="validarPartilha()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.indicador_modo_partilha" #indicadorModoPartilha="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isModoPartilhaDeveSerPreenchido" class="error">
+                          Modo de Partilha deve ser preenchido!
+                        </div> 
+
+                        <select *ngIf="isPartilhaDisabled" class="contato-select form-control" 
+                          id="indicadorModoPartilha" #indicadorModoPartilha="ngModel"  name="indicadorModoPartilha"
+                          [(ngModel)]="atributo.indicador_modo_partilha" readonly="readonly" pTooltip="Não há atributo previamente vinculado que permita fazer partilha de dados.">
+                          <option value="" selected>Selecione</option>
+                        </select>
+
+                      </div> 
+
+                      <div class="form-group col-md-4">
+                        <label for="indicadorEstrategiaPartilha" class="crud-label-title-form">Estratégia Partilha</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipEstrategiaPartilha}}"
+                          style="cursor: pointer">
+                        </span>
+
+                        <p-dropdown *ngIf="!isPartilhaDisabled" id="indicadorEstrategiaPartilha" name="indicadorEstrategiaPartilha" 
+                          [options]="tipoEstrategiasPartilhaSelectItem" 
+                          filter="true"
+                          (onChange)="validarPartilha()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.indicador_estrategia_partilha" #indicadorEstrategiaPartilha="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+                        <div *ngIf="isEstrategiaPartilhaDeveSerPreenchido" class="error">
+                          Estratégia Partilha deve ser preenchido!
+                        </div> 
+
+                        <select *ngIf="isPartilhaDisabled" class="contato-select form-control"  
+                          id="indicadorEstrategiaPartilha" #indicadorEstrategiaPartilha="ngModel"  name="indicadorEstrategiaPartilha"
+                          [(ngModel)]="atributo.indicador_estrategia_partilha" readonly="readonly" pTooltip="Não há atributo previamente vinculado que permita fazer partilha de dados.">
+                          <option value="" selected>Selecione</option>
+                        </select>
+
+                      </div>
+
+                      <div class="form-group col-md-4">
+                        <label for="identificadorAtributoPartilha" class="crud-label-title-form">Atributo Destino</label>
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipAtributoDestinoPartilha}}"
+                          style="cursor: pointer">
+                        </span>
+
+                        <p-dropdown *ngIf="!isPartilhaDisabled" id="identificadorAtributoPartilha" name="identificadorAtributoPartilha" 
+                          [options]="atributosJaPersistidos" 
+                          filter="true"
+                          (onChange)="validarPartilha()"
+                          emptyFilterMessage = "Nenhum resultado encontrado"
+                          class="custum-dropdown-atributo-extracao"
+                          [(ngModel)]="atributo.identificador_atributo_partilha" #identificadorAtributoPartilha="ngModel"
+                          placeholder="Selecione" [showClear]="true">
+                        </p-dropdown>
+
+                        <select *ngIf="isPartilhaDisabled" class="contato-select form-control"  
+                          id="identificadorAtributoPartilha" #identificadorAtributoPartilha="ngModel"  name="identificadorAtributoPartilha"
+                          [(ngModel)]="atributo.identificador_atributo_partilha" readonly="readonly" pTooltip="Não há atributo previamente vinculado que permita fazer partilha de dados.">
+                          <option value="" selected>Selecione</option>
+                          <option *ngFor="let item of atributosJaPersistidos" [ngValue]="item.value">{{item.label}}</option>
+                        </select>
+
+                      </div>
+                    </div>
+
+                </fieldset>
+
+                <expressao-grid
+                  [expressao_interface]="atributo.expressao_interface"
+                  [listaAtributos]="atributosJaPersistidos"
+                  (expressaoInterfaceChange)="handleExpressaoInterfaceChanged($event)">
+                </expressao-grid>
+
+                <opcao-grid 
+                  [listaOpcoes]="atributo.opcoes_atributo" 
+                  [listaOpcoesExcluidas]="atributo.opcoesExcluidas"
+                  (opcoesChanged)="handleOpcoesAtributosChanged($event)"
+                  (opcoesExcluidasChanged)="handleOpcoesExcluidasAtributosChanged($event)">
+                </opcao-grid>
+           
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <div class="panel-footer" style="height: 55px;">
+          <button id="clonar" type="button"
+            class="btn btn-secondary pull-left" (click)="fechar()">Cancelar
+            <span class="fa fa-close"></span>
+          </button>
+          
+          <button id="salvar" type="button" (click)="salvar();" 
+            [disabled]="(!isNomeObjetoSicli && !isTipoAtributoSicli && 
+                        !isCampoComparacaoReceita && 
+                        !isTipoAtributoSiecmDeveSerPreenchido && 
+                        !isModoPartilhaDeveSerPreenchido && !isEstrategiaPartilhaDeveSerPreenchido &&
+                        !isTipoAtributoSicod &&
+                        !isIdentificadorPessoaDuplicado &&
+                        !isCalculoDataValidadeDupllicado &&
+                        !isNomeAtributoRetornoDuplicado && !isNomeDcumentoDuplicado && !isNomeNegocialDuplicado && 
+                        atributoForm.valid) ? false : true"
+            class="btn btn-primary pull-right">Adicionar<span class="fa fa-plus"></span>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>

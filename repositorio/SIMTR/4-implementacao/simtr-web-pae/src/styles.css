@@ -1,0 +1,430 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/bootstrap/css/bootstrap.min.css";
+@import "assets/font-awesome/font-awesome.min.css";
+@import "assets/ionicons/ionicons.min.css";
+@import "assets/adminLTE/plugins/iCheck/square/blue.css";
+@import "assets/adminLTE/css/AdminLTE.min.css";
+@import "assets/adminLTE/css/skins/skin-blue-light.min.css";
+@import "assets/css/arquitetura.css";
+@import "assets/adminLTE/plugins/daterangepicker/daterangepicker.css";
+
+
+/* Draggable*/
+
+.drag-border {
+    border: #ff525b solid 2px;
+}
+
+.drag-handle {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.drag-handle:active { 
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* Droppable */
+
+.drag-hint-border {
+    border: #3c8dbc solid 2px;
+}
+
+.drag-over-border {
+    border: #229635 solid 2px;
+}
+
+.drag-transit {
+    border: #3500FF solid 2px;
+}
+
+.ui-widget {
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+}
+
+/* Resolvendo CSS para Tab View */
+.ui-widget-header {
+    border: none;
+}
+
+div.ui-tabview-panels {
+    float: left;
+    width: 100%;
+}
+
+.box-prev.with-border{
+    border:1px solid #f4f4f4
+}
+
+.ui-widget-content div[role="tabpanel"] .pull-right.row.novoDocumento a {
+    color: #ffffff ;
+}
+
+div.ui-tabview-panels form .form-control {
+    display: block;
+    width: 100%;
+    height: 28px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+div.ui-tabview-panels form select.form-control {
+    height: 30px;
+}
+
+div.ui-tabview-panels form .form-control[disabled], 
+div.ui-tabview-panels form .form-control[readonly], 
+div.ui-tabview-panels form fieldset[disabled] .form-control {
+    background-color: #eee;
+    opacity: 1;
+}
+
+div.ui-tabview.ui-widget.ui-widget-content.ui-corner-all.ui-tabview-top{
+
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 0px !important;
+
+}
+
+ul.ui-tabview-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+    margin: 0;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    cursor: pointer;
+    float: left !important;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+    list-style: none;
+    width:100%;
+}
+
+ul > li.ui-state-default.ui-corner-top.ui-tabview-selected:first-of-type {
+    margin-left: 0;
+}
+
+.ui-state-active {
+    border-top-color: #3c8dbc !important;
+}
+
+ul > li.ui-state-default.ui-corner-top.ui-tabview-selected {
+    border-top: 3px solid transparent;
+    margin-bottom: -2px;
+    float: left;
+    position: relative;
+    display: block;
+}
+
+/** Resolvendo CSS para o conteudo das tab views */
+div.ui-tabview-panel.ui-widget-content {
+    background: #fff;
+    padding: 10px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+@media (min-width: 768px) {
+.form-horizontal .control-label {
+       padding-top: 2px;
+       margin-bottom: 0;
+       text-align: right;
+}
+
+div.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top {
+    z-index: 10000 !important;
+}
+
+.fa-check-circle-green:before{
+    content:"\f058";
+    color: #00a65a;
+}
+
+.fa-check-circle-orange:before{
+    content:"\f058";
+    color: #c26d0c;
+}
+
+.fa-check-circle-gray:before{
+    content:"\f111";
+    color: gray;
+}
+
+.fa-check-circle-red:before{
+    content:"\f058";
+    color: red;
+}
+
+.fa-circle-gray:before{
+    content:"\f111";
+    color: gray;
+}
+
+.fa-times-circle-red:before{
+    content:"\f057";
+    color: red;
+}
+
+.fa-exclamation-triangle-yellow:before{
+    content:"\f071";
+    color: yellow;
+}
+
+}
+.gray-border {
+    border: 2px solid #ddd;
+}
+
+.ui-tree {
+    width: auto !important;
+}
+
+.cor-fonte-widget-div {
+    color: #fff !important;
+}
+
+.modal-body {
+    overflow: auto;
+}
+.sublinhadoRemovido {
+    text-decoration: line-through red;
+}
+.showOpc {
+    opacity: 0.5;
+}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+fieldset {
+    margin-top: 5px !important;
+}
+
+legend {
+    font-size: 15px !important;
+}
+
+.btn-reclassificar, .btn-categorizar {
+    margin-bottom: 10px;
+}
+
+.filtro-global {
+    background-color: #f6f7f9;
+    color: #034f8a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    font-style: oblique;
+    font-family: "Open Sans";
+    font-size: 120%;
+    padding: 10px 0px 10px 20px;
+    margin-bottom: 10px;
+}
+
+.btn-novo {
+    background-color:#034f8a;
+    text-decoration-color: #ffffff;
+    color: white ;
+    width: 20%;
+    height: 30px;
+    margin-left: 10px;
+    font-style: normal;
+    font-size: 14px !important;
+    padding: 0px;
+}
+
+
+
+.caixa-header {
+    background-color: rgb(206,235,248);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+    color: #1E78A7;
+    font-weight: bold;
+    height: 35px;
+    
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td {
+    background-color: rgb(206,235,248);
+    font-size: 15px;
+    color: #337ab7;
+    font-weight: bold;
+}
+.ui-paginator a {
+    color: #ffffff;
+}
+
+.ui-state-default {
+    border: 1px solid #d6d6d6;
+    background-color: rgb(51,122,183);
+    color: #ffffff;
+}
+
+
+.ui-widget-header {
+    background: #f6f7f9 0 0 repeat-x;
+    background: linear-gradient(to bottom, #feffff 0%, #ffffff 100%);
+    background-image: linear-gradient(rgb(254, 255, 255) 0%, rgb(255, 255, 255) 100%);
+}
+
+.campos {
+    margin-bottom: 10px;
+}
+
+.box-primary {
+    border-bottom-color: #f6822a    
+}
+
+.label-form {
+    color: #337ab7;
+    font-size: 18px;
+    font-weight: 550;
+}
+
+.btn-incluir {
+    background-color:#034f8a;
+    color: white !important;
+    height: 30px;
+    margin-top: 10px;
+    width: 120px;
+}
+
+.btn-cancelar {
+    background-color: #f6822a !important;
+    color: white !important;
+    height: 30px;
+    width: 120px;
+    margin-top: 10px;
+}
+
+.btn-excluir {
+    color: white !important;
+    height: 30px;
+    margin-top: 10px;
+    width: 120px;
+}
+
+.info-contrato {
+    background-color: #f6f7f9;
+    color: #034f8a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    font-style: oblique;
+    font-family: "Open Sans";
+    font-size: 120%;
+    padding: 10px 20px 10px 20px;
+    margin: 10px 30px 10px 0px;
+    
+}
+
+.info-apenso-contrato {
+    background-color: #f6f7f9;
+    color: #034f8a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    font-style: oblique;
+    font-family: "Open Sans";
+    font-size: 117%;
+    padding: 10px 20px 10px 20px;
+    margin: 10px 0px 10px 0px;
+    
+}
+
+a.download {
+    color: #034f8a;
+    font-family: "Open Sans";
+    font-size: 120%;
+    
+}
+span.fa.fa-download {
+    margin-right: 5px;
+    
+}
+
+.btn.btn-link.download {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.ui-datatable tbody > tr.ui-widget-content.ui-datatable-odd {
+    background-color: #f7f7f7;
+    
+}
+
+.dt-head-caixa {
+    color: #034f8a;
+    background: #ceebf8;
+    border-bottom: 3px solid #034f8a !important;
+    border: none;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th {
+    background-color: #ffffff;
+    border-bottom: 1px solid #034f8a;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ui-datatable tbody > tr.ui-widget-content {
+    
+    color: #337ab7;
+    font-weight: 450;
+    font-size: 16px;
+    border-bottom: 1px solid rgb(195,195,195);
+    border-left:hidden;
+    border-right: hidden;
+    margin-top: 15px;
+
+}
+
+.ui-datatable .ui-datatable-data>tr>td {
+    border-style: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.ui-datatable .ui-datatable-data>td{
+     padding-top: 10px;
+     padding-bottom: 10px;
+}
+
+.labelNegrito {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.ui-datatable>.ui-datatable-footer {
+    font-size: 1.15em;
+}

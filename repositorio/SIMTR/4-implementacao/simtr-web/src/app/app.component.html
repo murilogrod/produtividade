@@ -1,0 +1,57 @@
+<div [ngClass]="sideBarClass()" *ngIf="!isInfoPage() && !isVisualizadorImgExternoPage()">
+	<div class="wrapper">
+		<app-global-error></app-global-error>
+		<cx-loader></cx-loader>
+		<cx-header *ngIf="existeToken"
+			id="dados-perfil-usuario" 
+			(onChangeRoleChanged)="handlleChangeRole($event)">
+		</cx-header>
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar" *ngIf="existeToken">
+			<cx-menu [changeRoles]="changeRoles"></cx-menu>
+		</aside>
+			
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="padding: 20px;">
+			<div id="alerta-geral-app" class="box-body" style="padding: 0">
+				<cx-alert-message id="component-alert-consulta-app" [messagesInfo]="messagesInfo"
+					[messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+					(onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+					(onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+					(onCloseMessageWarning)="onCloseMessageWarning()">
+				</cx-alert-message>
+			</div>
+			<!-- Content Header (Page header) -->
+			<!-- 			    <section class="content-header" *ngIf="userLogged()"> -->
+			<!-- 			      <h1> -->
+			<!-- 			        {{currentview.title}} -->
+			<!-- 			      </h1> -->
+			<!-- 			      <ol class="breadcrumb"> -->
+			<!-- 			         <li [ngClass]="{active: bread.active}" *ngFor="let bread of app.breadcrumb"> -->
+			<!-- 			       		<a href="#" (click)="goLink(bread.link)"> -->
+			<!-- 			       			<i class="fa" [className]="bread.icon"></i>{{bread.label}} -->
+			<!-- 			       		</a> -->
+			<!-- 			        </li> -->
+			<!-- 			      </ol> -->
+			<!-- 			    </section> -->
+
+			<!-- Main content -->
+			<section class="content">
+				<router-outlet></router-outlet>
+			</section>
+			<div *ngIf="ajustarLayout()"></div>
+		</div>
+		<cx-footer *ngIf="existeToken"></cx-footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-light">
+		</aside>
+		<!-- Add the sidebar's background. This div must be placed
+	       immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+</div>
+
+<div *ngIf="isInfoPage() || isVisualizadorImgExternoPage() ">
+	<router-outlet></router-outlet>
+</div>

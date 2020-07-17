@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RetornoLocalizaDocumento>
+    <codigoRetorno>2</codigoRetorno>
+    <mensagem>FALHA AO CONSULTAR DOCUMENTO</mensagem>
+    <quantidade>0</quantidade>
+</RetornoLocalizaDocumento>

@@ -1,0 +1,228 @@
+<div *ngIf="perfilLeitura && exibirConsultaContratos">
+      <div style="padding:4px 10px;border-bottom: 0 none;margin-left: 155px">
+        <input #numero type="text" [(ngModel)]="numero_contrato" (blur)="novaConsulta" pInputText size="10" placeholder="Nr. Contrato">/
+        <input #ano type="text" [(ngModel)]="ano_contrato" pInputText size="8" maxlength="4" placeholder="Ano">
+        <a name="btn-search" class="btn btn-link btn-xs" 
+          title="Consultar Contrato" rel="tooltip" data-placement="top" (click)="pesquisarContrato()">
+          <span class="fa fa-search"></span>
+        </a>
+      </div>  
+      
+</div>
+
+  <div class="cx-page box box-primary">
+      <cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+        (onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+        (onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+        (onCloseMessageWarning)="onCloseMessageWarning()">
+      </cx-alert-message>
+      <div class="box-body" >
+        <!--
+        <div *ngIf="contratoNaoLocalizado" class="col-md-12 alert alert-danger row" role="alert">
+          Contrato não localizado! 
+        </div>
+        -->
+        <br/>
+  
+          <br/>
+        <div class="col-md-12" *ngIf="!exibirConsultaContratos">    
+          <div *ngIf="sucessoConsulta" class="row info-contrato">
+              
+              <div class="row">
+                  <div class="col-md-4">
+                    <i class="fa fa-file-text-o"></i>
+                    <label class="control-label">Contrato:</label>
+                    {{entidade.numero_contrato}}/{{ entidade.ano_contrato}}
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <i class="fa fa-user"></i>
+                    <label class="control-label">Gestor Operacional:</label>
+                    {{entidade.unidade_operacional}}
+                  </div>
+                  <div class="col-md-4">
+                      <i class="fa fa-list-alt"></i>
+                      <label class="control-label">CPF/CNPJ Fornecedor:</label>
+                      {{entidade.cnpj_fornecedor | formataCpfCnpj}}
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <i class="fa fa-comments-o"></i>
+                      <label class="control-label">Descrição:</label>
+                      {{entidade.descricao_contrato}}
+                  </div>
+              </div>
+            
+          </div>
+          <div *ngIf="perfilExporta && sucessoConsulta">
+            <a  name="btn-refresh" class="btn btn-link download" 
+                          title="Exportar Contrato em PDF" rel="tooltip" data-placement="top" (click)="exportarPdf()">
+                          <span class="fa fa-download"></span>Exportar
+              </a>
+          </div>
+          <div *ngIf="mostrarContratos">
+                <div class="row">
+                  <div class="pull-right" >
+                      <button   name="btn-ocultar-filtro" class="btn btn-warning btn-filtro-contrato" (click)="ocultarFiltro()"
+                      title="Adicionar Contrato" rel="tooltip" data-placement="top" >{{ labelFiltro }}</button>
+                  </div>
+                </div>
+
+              
+                <br/>
+                
+                 
+                <div class="row col-md-12"  style="margin-bottom: 30px;">
+                  <div *ngIf="perfilLeitura">
+                    <div class="filtro-global" [style.display]="exibirFiltro">
+                      <input  type="text" size="50" placeholder="Filtro Global" #gb>
+                      <i class="fa fa-search"></i>
+                      <button *ngIf="exibirBotao && perfilEscrita"  name="btn-add-contrato" class="btn btn-primary btn-novo" (click)="novoContrato()"
+                          title="Adicionar Contrato" rel="tooltip" data-placement="top">NOVO CONTRATO</button>
+                    </div>
+                  
+                    <p-dataTable [style.display]="exibirFiltro" [globalFilter]="gb"  (onRowSelect)="onRowSelect($event)" selectionMode="single" *ngIf="perfilLeitura"
+                        [(selection)]="contratoSelecionado" [value] = "processo.contratos" (onPage)="paginar($event)"
+                        emptyMessage="Não existem dados cadastrados"  [lazy]="false"
+                        [rowsPerPageOptions]="[5,10,15,20]" #dt [rows]="itensDisplay" [paginator]="true" 
+                        sortField="numero_contrato" sortOrder="1">
+                          <p-column field="numero_contrato" header="NÚMERO DO CONTRATO" [style]="{'width':'10%','text-align':'left'}" ></p-column>  
+                          <p-column  field="ano_contrato" header="ANO DO CONTRATO" [style]="{'width':'10%'}" ></p-column>
+                          <p-column  *ngIf="true" field="descricao_contrato" [style]="{'width':'40%', 'text-align':'left'}" header="DESCRIÇÃO" ></p-column>
+                          <p-column *ngIf="false" field="id" header="ID"></p-column>
+                          <p-column *ngIf="false" field="cpf_fornecedor" header="CPF" sortable="true"></p-column>
+                          <p-column *ngIf="false" field="cnpj_fornecedor" header="CNPJ" sortable="true"></p-column>
+                          <p-footer *ngIf="processo.contratos != null && processo.contratos.length > 0">
+                            {{infoRegistros}}
+                          </p-footer>
+                    </p-dataTable>
+
+
+                      </div>
+                  
+                  
+                </div> 
+            
+          </div>
+          <div class="row col-md-12">
+              <div class="box box-primary">
+                <div class="box-header caixa-header">
+                  <h3 class="box-title label-form">DADOS DO CONTRATO</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool caixa-white" data-widget="collapse"><i class="fa fa-chevron-circle-up fa-1.5x"></i></button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                  
+                    <div *ngIf="atualizou" class="alert alert-{{tipoRetorno}} col-md-12" role="alert">
+                        {{mensagem}}
+                    </div>
+                    <!--
+                    <div *ngIf="!perfilEscrita" class="alert alert-danger col-md-12" role="alert">
+                      Você não tem perfil para Criar/Alterar Contratos
+                    </div>
+                    -->
+                    <div class="container">
+                    
+                      <form #f="ngForm" class="form-horizontal" id="FrmCadSubpasta" name="FrmCadSubpasta">
+                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label class="label-form">Número Contrato</label>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="label-form">Ano Contrato</label>
+                          </div>
+                        </div>
+                        <div class="row campos">
+                          <div class="col-md-6">
+                              <input type="number" pattern=".{1,8}" class="form-control " id="nrContrato" [(ngModel)]="entidade.numero_contrato" name="nrContrato" 
+                                placeholder="Número Contrato" required #nrContrato="ngModel" min="1" minlength="1" maxlength="8">
+                              <div *ngIf="!f.pristine && !nrContrato.valid && nrContrato.touched" class="alert alert-danger">
+                                  Número do Contrato não tem entre 1 e 8 dígitos!
+                              </div>
+                          </div>
+
+                          <div class="col-md-6">
+                              <input type="number" pattern=".{4,4}" class="form-control" id="anoContrato" [(ngModel)]="entidade.ano_contrato" name="anoContrato" 
+                                placeholder="Ano Contrato" required #anoContrato="ngModel" min="1" minlength="4" max="9999">
+                              <div *ngIf="!f.pristine && !anoContrato.valid && anoContrato.touched" class="alert alert-danger">
+                                  Ano do Contrato não tem 4 dígitos!
+                              </div>
+                          </div>
+                        </div>  
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label class="label-form" >Gestor Operacional</label>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="label-form">CPF/CNPJ do fornecedor</label>
+                          </div>
+                        </div>
+                        <div class="row campos">
+                          <div class="col-md-6">
+                              <input type="number" pattern=".{1,4}" class="form-control" id="gestorOperacional" (ngModelChange)="mudouGestorOperacional($event)" [ngModel]="entidade.unidade_operacional | zerosEsquerda:4" name="gestorOperacional" 
+                                placeholder="Gestor Operacional" required #gestorOperacional="ngModel" min="1" minlength="1" maxlength="4" max="9999">
+                              <div *ngIf="!f.pristine && !gestorOperacional.valid && gestorOperacional.touched" class="alert alert-danger">
+                                  Gestor Operacional não tem 4 dígitos!
+                              </div>
+                          </div>    
+                          
+                          <div class="col-md-6">
+                              <input class="form-control" id="cpfCnpj" (ngModelChange)="alterouCpfCnpj($event)" [ngModel]="entidade.cnpj_fornecedor | formataCpfCnpj" name="cpfCnpj" 
+                                placeholder="CPF/CNPJ do Fornecedor" required #cpfCnpj="ngModel" minlength="11" max="999999999999999999">
+                              <div *ngIf="!f.pristine && !cpfCnpj.valid && cpfCnpj.touched" class="alert alert-danger">
+                                  Número do CPF/CNPJ do Fornecedor não informado ou não tem no mínimo 11 caracteres!
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <label  class="label-form">Descrição do Objeto</label>
+                          </div>
+                        </div>
+                        <div class="row campos">
+                            <div class="col-md-12">
+                              <textarea [rows]="5" [cols]="80" class="form-control" id="descricao" [(ngModel)]="entidade.descricao_contrato" name="descricao" 
+                                placeholder="Descrição do Objeto" style='min-height: 8em' minlength="10" required #descricao="ngModel"></textarea>
+                                <div *ngIf="!f.pristine && !descricao.valid && descricao.touched" class="alert alert-danger">
+                                    Descrição não informada ou não tem no mínimo 10 caracteres!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-right no-padding" *ngIf="perfilEscrita">
+                         
+                          <button type="button" name="btnCancelar" (click)="cancelarOperacao(f)" class="btn btn-warning btn-cancelar">CANCELAR</button>
+                          <button type="button" name="btnAlterarContrato" [disabled]="!f.valid || processo.numero_processo == null" class="btn btn-primary btn-incluir" (click)="salvarContrato(f)">{{labelIncAlt}}</button> 
+                        </div>
+                      </form>
+                    </div>    
+                
+                  
+                </div>
+            </div>
+          </div> 
+          <div class="row col-md-12"><!-- [disabled]="!sucessoConsulta"> -->
+            <div class="box box-primary" id="apensos-contratos">
+              <div class="box-header caixa-header">
+                <h3 class="box-title label-form">APENSOS DO CONTRATO</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool caixa-white"   data-widget="collapse"><i class="fa fa-chevron-circle-up fa-1.5x"></i></button>
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                  <pae-apensos-contratos [(processo)]="processo" [(contrato)]="contratoSelecionado" [(limparContratos)]="limparContratos" [(exibirConsultaApensos)]="exibirConsultaApensos"></pae-apensos-contratos>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+  </div>

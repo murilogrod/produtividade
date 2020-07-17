@@ -1,0 +1,192 @@
+					<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+<div class="theme-main" ng-controller="SplashController" analytics-page="Página Splash">
+		<form id="formMain" name="formMain" tabindex="0">
+   			<div class="row">
+   				<div  class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+				</div>
+					<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+    			<span ncy-breadcrumb></span>
+                        <!-- id:img-button - name:Botão Imagem -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true}])'>
+                                   			<!-- 
+                           				tipo: Navegacao
+                           				destino:  sobre
+                           				id: btiIcon013primosiogpinvertedverysmallpng2
+                           				ajuda: {{ 'label.prototipado.no.primo,.suportado.pelo.siogp' | translate}}
+                           				título: 
+                           				alinhamento: pull-right
+                           				ativo: 
+                           				origem: /imgs/icon013_primo_siogp_inverted_verysmall.png
+                           			-->
+                              		<a href ng-click="openView('sobre')" class="btn btn-sm margin-3x btn- pull-right theme-main-img-button" title="{{ 'label.prototipado.no.primo,.suportado.pelo.siogp' | translate}}" analytics-event="img-button:sobre">
+                                  <img id="btiIcon013primosiogpinvertedverysmallpng2" ng-src="./imgs/icon013_primo_siogp_inverted_verysmall.png" class="theme-main-img-button-image img-responsive"><br/>
+                                      <span class="hidden-xs theme-main-img-button-label">{{ 'label.' | translate}}</span>
+                              </a>                            
+                        </div>
+                        <!-- id:line-break - name:Quebra de linha (br) -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- elemento Quebra de Linha -->
+                                <br class="theme-main-line-break"/>
+                        </div>
+                        <!-- id:line-break - name:Quebra de linha (br) -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- elemento Quebra de Linha -->
+                                <br class="theme-main-line-break"/>
+                        </div>
+                        <!-- id:img - name:Imagem -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- 
+                            			id: imgDossielogopng
+                            			origem: /imgs/dossie-logo.png         
+                            			estilo: col-xs-12 col-sm-12 col-md-12 col-lg-12
+                            			alinhamento: text-center col-xs-12 col-sm-12 col-md-12 col-lg-12                 		
+                            		-->
+                                <div class="padding text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-img" align="center">
+                                    <img class="img-responsive center-block" id="imgDossielogopng" ng-src="./imgs/dossie-logo.png">
+                                </div>
+                        </div>
+                        <!-- id:h4 - name:Título -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: center
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 theme-main-h4" align="center">
+                                        <i class="fa  ">&nbsp;</i>
+                                    <span>{{ 'label.dossi.digital' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:h6 - name:Sub-título -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!--  
+                            			estilo: sizeAuto
+                            			alinhamento: center
+                            		-->
+                                <h6 class="padding text-primary bold sizeAuto theme-main-h6" align="center">
+                                        <i class="fa ">&nbsp;</i>
+                                    <span>{{ 'label.v1.0' | translate}}</span>
+                                </h6>
+                        </div>
+                        <!-- id:label - name:Texto -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- 
+                            			estilo: text-primary  col-xs-12
+                            			texto: Texto
+                            		-->
+                                <span class="label padding text-primary  col-xs-12 theme-main-label" title="Texto">
+                                    {{ 'label.carregando...' | translate}}
+                                </span>
+                        </div>
+                        <!-- id:line-break - name:Quebra de linha (br) -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- elemento Quebra de Linha -->
+                                <br class="theme-main-line-break"/>
+                        </div>
+                        <!-- id:line-break - name:Quebra de linha (br) -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true}])'>
+                            		<!-- elemento Quebra de Linha -->
+                                <br class="theme-main-line-break"/>
+                        </div>
+                        <!-- id:timer - name:Timer -->
+                        <div ng-class='getPlatforms([])'>
+                            		<!-- elemento Timer 
+                            			navegar para: login
+                            			tempo de espera: 3
+                            			OBS: este elemento permite aguardar alguns segundos antes de iniciar uma navegacao. E normalmente utilizado nas telas de splash                            		
+                            		-->
+                                <div ng-init="openViewDelayed('login',3)" class="theme-main-timer">
+                                    <!-- i class="fa fa-clock-o floating-top-left padding-5x" title="ir para login em 3 segundos" ng-click="dismissOpenDelayed()"></i -->
+                                </div>
+                        </div>
+                        <!-- id:timer - name:Timer -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":false},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":false},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":false},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":false}])'>
+                            		<!-- elemento Timer 
+                            			navegar para: login
+                            			tempo de espera: 3
+                            			OBS: este elemento permite aguardar alguns segundos antes de iniciar uma navegacao. E normalmente utilizado nas telas de splash                            		
+                            		-->
+                                <div ng-init="openViewDelayed('login',3)" class="theme-main-timer">
+                                    <!-- i class="fa fa-clock-o floating-top-left padding-5x" title="ir para login em 3 segundos" ng-click="dismissOpenDelayed()"></i -->
+                                </div>
+                        </div>
+                        <!-- id:link - name:Link -->
+                        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":false},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":false},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":false},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":false}])'>
+                            		<!-- elemento Link       
+                            			id: link    
+                            			título: Clique para instalar a versão Mobile
+                            			destino: %URL_SIOGP%/app/dossie/?id=5598/DOSSIE-Mobile.apk
+                            			estilo: col-xs-12 text-center"              
+                            			ajuda: {{ 'label.clique.para.instalar.a.verso.mobile' | translate}}    			
+                            			ativo: true
+                            			ícone: fa-android
+                            		-->
+                                <div class="padding col-xs-12 text-center theme-main-link">
+					                <a id="link" href="%URL_SIOGP%/app/dossie/?id=5598/DOSSIE-Mobile.apk" target="_blank"
+					                		title="{{ 'label.clique.para.instalar.a.verso.mobile' | translate}}" ng-disabled="!true" ng-class="true?'':'disabled'">
+					                    <i class="fa" ng-class="fa-android" ng-if="fa-android">&nbsp;</i>
+					                    {{ 'label.clique.para.instalar.a.verso.mobile' | translate}}
+					                </a>
+                                </div>
+                        </div>
+                </div>
+                <div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+				</div>
+                <br>&nbsp;
+                <br>&nbsp;
+    	</div>
+    </form>
+</div>

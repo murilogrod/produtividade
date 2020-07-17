@@ -1,0 +1,11 @@
+.container-sidebar{
+  height: 869px;
+  background-color: #fff;
+  max-height: 868px;
+  overflow-y: auto; 
+}
+
+.dimensoes-container-base{
+  display: block !important;
+  padding: 6px !important;
+}

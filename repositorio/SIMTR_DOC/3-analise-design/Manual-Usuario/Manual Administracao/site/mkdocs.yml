@@ -1,0 +1,54 @@
+site_name: SIMTR
+site_description: Documentação SIMTR
+site_author: Caixa Econômica Federal
+copyright: Copyright &copy; 2019 Caixa Econômica Federal.
+
+nav:
+    - Início: index.md
+    - Objetivo: objetivo.md
+    - 'Cadastramento de Usuários': cadastro_usuario.md
+    - 'Acesso': acesso.md
+    - 'Estrutura do sistema': estrutura_sistema.md 
+    - 'Dashboard': dashboard.md
+    - 'Cadastro de Canal': cadastro_canal.md
+    - 'Cadastro de Checklist': cadastro_checklist.md
+    - 'Cadastro de Composições Documentais': cadastro_composicao.md
+    - 'Cadastro de Processos': cadastro_processo.md
+    - 'Cadastro de Produtos': cadastro_produto.md
+    - 'Cadastro de Tipologia': 
+          - 'Funções Documentais x Tipos de Documentos': cadastro_funcao_tipo.md
+          - 'Formulário Dinâmico':
+             - 'Tipo de Dados CEP ONLINE': cadastro_cep_online.md
+             - 'Expressões de exibição condicional': cadastro_campo_expressao.md
+    - 'Glossário': glossario.md
+    - 'Logout': logout.md
+  
+   
+
+theme: 
+    name: mkdocs
+    include_search_page: true
+    search_index_only: false
+    highlightjs: true
+    hljs_languages: []
+
+    include_homepage_in_sidebar: true
+    prev_next_buttons_location: bottom
+    titles_only: false
+    collapse_navigation: true 
+    navigation_depth: 4
+    custom_dir: caixa_theme/
+    
+    shortcuts:
+        help: 191    # ?
+        next: 78     # n
+        previous: 80 # p
+        search: 83   # s
+
+
+extra_css:
+    - css/extra.css
+
+plugins:
+    - search:
+        separator: '[\s\-\.]+'

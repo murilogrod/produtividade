@@ -1,0 +1,22 @@
+<div class="selectArvore" [hidden]="habilitarComboArvore">
+  <p-multiSelect 
+      *ngIf="!dossieCliente" 
+      [options]="listaArvore" 
+      [(ngModel)]="listatipoValueArvore" 
+      optionLabel="nome" 
+      defaultLabel="Selecione uma Árvore" 
+      (onChange)="preencherTipoDocumento()" 
+      [disabled]="desativaComboClassificacao">
+  </p-multiSelect>
+</div>
+<div class="selectTipoDocumento">
+  <p-dropdown 
+    *ngIf="!ocultarComboTipoDocumento" 
+    filter="true" [options]="listaTipoDocumento" 
+    [(ngModel)]="tipoValue" 
+    optionLabel="nome" 
+    placeholder="Selecione um tipo de documento" 
+    (onChange)="ativarClassificacao()"
+    [disabled]="habilitarComboTipoDocumento || desativaComboClassificacao" >
+  </p-dropdown>
+</div>

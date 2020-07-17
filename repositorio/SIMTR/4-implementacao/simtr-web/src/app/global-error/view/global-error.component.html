@@ -1,0 +1,29 @@
+<section class="corpoMsgErroGlobal" *ngIf="mostrarAlertGlobal">
+	<p-card header="Advanced Card" subheader="Subheader" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+		<p-header class="headerModal">
+			<i class="fa fa-fw fa-exclamation-triangle iconVermelhor"></i> {{erroGerado.header}}
+		</p-header>
+		<h2 class="tituloModal fornBold900">{{erroGerado.titulo}}</h2>
+		<h4 *ngIf="erroGerado.status" class="tituloModal fornBold600">{{erroGerado.status}} - {{erroGerado.message}}</h4>
+		<h4 *ngIf="!erroGerado.status" class="tituloModal fornBold600">{{erroGerado.message}}</h4>
+		
+		<span *ngIf="erroGerado.detalhe">
+			<h3 class="tituloModal fornBold600">{{erroGerado.detalhe}}</h3>
+		</span>
+
+		<label *ngIf="erroGerado.error" class="titleDetalhesOpenMais">Erros:</label>
+		<pre *ngIf="erroGerado.error" class="preJson">{{erroGerado.error | json}}</pre>
+		
+		<div class="btnMaisDetalhesErro">
+			<a (click)="mostrarMaisDetalhes()"><i [ngClass]="{'fa fa-fw' : true, 'fa-chevron-down': !openMaisDetalhes, 'fa-chevron-up': openMaisDetalhes}"></i> Mais Detalhes</a>
+		</div>
+		<div *ngIf="openMaisDetalhes">
+			<label class="titleDetalhesOpenMais">Causa:</label>
+			<textarea name="detalhesErro" id="detalhesErro" disabled>{{erroGerado.stack ? erroGerado.stack : erroGerado.message}}</textarea>
+		</div>
+		<p-footer>
+			<button class="btnModalError" pButton type="button" label="Save" icon="fa fa-close"
+				(click)="fecharModal()">FECHAR</button>
+		</p-footer>
+	</p-card>
+</section>

@@ -1,0 +1,22 @@
+{
+    "id": 1,
+    "versao": 1,
+    "sigla": "SIPAN",
+    "descricao": "SIPAN - WEB",
+    "canalCaixa": "AGE",
+    "clienteSSO": "cli-web-pan",
+    "janelaExtracaoM0": false,
+    "janelaExtracaoM30": false,
+    "janelaExtracaoM60": false,
+    "indicadorAvaliacaoAutenticidade": false,
+    "indicadorAtualizacaoDocumento": false,
+    "indicadorOutorgaDossieDigital": true,
+    "indicadorOutorgaReceita": false,
+    "indicadorOutorgaCadastroCaixa": false,
+    "dataHoraUltimaAlteracao": 1556294572984,
+	"indicadorOutorgaApimanager": null,
+	"indicadorOutorgaSiric": null,
+	"urlCallbackDocumento": null,
+	"urlCallbackDossie": null,
+    "documentos": []
+}

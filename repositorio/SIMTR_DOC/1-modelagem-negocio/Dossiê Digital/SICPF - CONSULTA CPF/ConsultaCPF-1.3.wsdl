@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions name="Consulta_CPF" targetNamespace="http://caixa.gov.br/sibar/consulta_cpf" xmlns:consultacpf="http://caixa.gov.br/sibar/consulta_cpf" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="CONSULTA_CPF.mxsd"/>
+        <binding hasEncoding="false" imported="true" name="Consulta_CPFSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://caixa.gov.br/sibar/consulta_cpf">
+		<xsd:include schemaLocation="CONSULTA_CPF.mxsd"/>
+	</xsd:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="ConsultaCPFRequest">
+    <wsdl:part element="consultacpf:SERVICO_ENTRADA" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:message name="ConsultaCPFResponse">
+    <wsdl:part element="consultacpf:SERVICO_SAIDA" name="parameters"/>
+  </wsdl:message>
+
+  <wsdl:portType name="Consulta_CPF">
+    <wsdl:operation name="CONSULTA_CPF">
+      <wsdl:input message="consultacpf:ConsultaCPFRequest"/>
+      <wsdl:output message="consultacpf:ConsultaCPFResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="Consulta_CPFSOAP" type="consultacpf:Consulta_CPF">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CONSULTA_CPF">
+      <soap:operation soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="Consulta_CPF">
+    <wsdl:port binding="consultacpf:Consulta_CPFSOAP" name="Consulta_CPFSOAP">
+      <soap:address location="http://des.barramento.caixa/sibar/ConsultaCPF"/>
+    </wsdl:port>
+  </wsdl:service>
+  
+</wsdl:definitions>

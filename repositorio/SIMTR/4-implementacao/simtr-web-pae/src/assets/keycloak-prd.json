@@ -1,0 +1,8 @@
+{
+  "realm": "intranet",
+  "auth-server-url": "https://login.prd.caixa/auth",
+  "ssl-required": "external",
+  "resource": "cli-web-mtr",
+  "public-client": true,
+  "enable-cors": true
+}

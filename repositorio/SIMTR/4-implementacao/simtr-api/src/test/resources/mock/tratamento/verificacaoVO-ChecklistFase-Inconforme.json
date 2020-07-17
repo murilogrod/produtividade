@@ -1,0 +1,74 @@
+{
+    "verificacoesRealizadas" : [
+        {
+	        "identificadorInstanciaDocumento": null,
+	        "identificadorChecklist": null,
+	        "analiseRealizada": false,
+	        "parecerApontamentosVO": []
+	    },
+	    {
+	        "identificadorInstanciaDocumento": null,
+	        "identificadorChecklist": 4,
+	        "analiseRealizada": true,
+	        "parecerApontamentosVO": [
+	            {
+	                "identificadorApontamento": 20,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 21,
+	                "aprovado": false,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 22,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 23,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 24,
+	                "aprovado": true,
+	                "comentario": null
+	            }
+	        ]
+	    },
+	    {
+	        "identificadorInstanciaDocumento": null,
+	        "identificadorChecklist": 4,
+	        "analiseRealizada": true,
+	        "parecerApontamentosVO": [
+	            {
+	                "identificadorApontamento": 20,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 21,
+	                "aprovado": false,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 22,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 23,
+	                "aprovado": true,
+	                "comentario": null
+	            },
+	            {
+	                "identificadorApontamento": 24,
+	                "aprovado": true,
+	                "comentario": null
+	            }
+	        ]
+	    }
+    ]
+}

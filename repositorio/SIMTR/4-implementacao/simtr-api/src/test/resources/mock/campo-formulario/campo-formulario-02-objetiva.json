@@ -1,0 +1,74 @@
+{
+    "id": 2,
+    "versao": 1,
+    "processo": {
+        "id": 8,
+        "nome": "Processo PJ T1",
+        "ativo": true,
+        "avatar": null,
+        "controlaValidade": true,
+        "tipoPessoa": "J",
+        "indicadorGeracaoDossie": true,
+        "nomeProcessoBPM": null,
+        "nomeContainerBPM": null,
+        "dataHoraUltimaAlteracao": 1554832026854,
+        "produtos": null,
+        "dossiesProduto": null,
+        "relacoesProcessoVinculoPai": null,
+        "relacoesProcessoVinculoFilho": null,
+        "unidadesAutorizadas": null,
+        "camposFormulario": null,
+        "elementosConteudo": null,
+        "processoDocumentos": null,
+        "documentosGarantia": null,
+        "vinculacoesChecklists": null,
+        "vinculacoesChecklistsFase": null,
+        "checklistsAssociados": null
+    },
+    "campoEntrada": {
+        "id": 15,
+        "versao": 1,
+        "tipo": "RADIO",
+        "chave": false,
+        "label": "Pergunta Objetiva:",
+        "mascara": null,
+        "placeholder": "Texto de Exemplo no campo.....",
+        "tamanhoMinimo": 0,
+        "tamanhoMaximo": null,
+        "opcoesCampo": [
+            {
+                "id": 1,
+                "versao": 1,
+                "nome": "Opção 01",
+                "value": "A",
+                "ativo": true
+            },
+            {
+                "id": 2,
+                "versao": 1,
+                "nome": "Opção 02",
+                "value": "A",
+                "ativo": true
+            },
+            {
+                "id": 3,
+                "versao": 1,
+                "nome": "Opção 03",
+                "value": "C",
+                "ativo": true
+            }
+        ]
+    },
+    "obrigatorio": true,
+    "expressaoInterface": "",
+    "ativo": true,
+    "ordemApresentacao": 1,
+    "camposApresentacao": [
+        {
+            "id": 1,
+            "versao": 1,
+            "largura": 12,
+            "tipoDispositivoEnum": "W"
+        }
+    ]
+}

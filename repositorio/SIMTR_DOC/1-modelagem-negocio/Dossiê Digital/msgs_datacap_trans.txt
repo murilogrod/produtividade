@@ -1,0 +1,70 @@
+----------------------------------------CNH--------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtrairDadosImagemDataCap>
+  <dadosRequisicao>
+    <tipoRequisicao>EXTRAIR_DADOS_IMAGEM_DATACAP</tipoRequisicao>
+    <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
+    <ipUsuarioFinal></ipUsuarioFinal>
+  </dadosRequisicao>
+  <dataCapApp>CNH_Trans</dataCapApp>
+  <informacoesImagem>
+	<tipoDeDocumento>cnh</tipoDeDocumento>
+    <nome>cnh.tif</nome>
+    <formato>tif</formato>
+    <binario></binario>
+  </informacoesImagem>
+</ExtrairDadosImagemDataCap>
+
+
+----------------------------------------RG--------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtrairDadosImagemDataCap>
+  <dadosRequisicao>
+    <tipoRequisicao>EXTRAIR_DADOS_IMAGEM_DATACAP</tipoRequisicao>
+    <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
+    <ipUsuarioFinal></ipUsuarioFinal>
+  </dadosRequisicao>
+  <dataCapApp>RG_Trans</dataCapApp>
+  <informacoesImagem>
+	<tipoDeDocumento>rg</tipoDeDocumento>
+    <nome>rg.tif</nome>
+    <formato>tif</formato>
+    <binario></binario>
+  </informacoesImagem>
+</ExtrairDadosImagemDataCap>
+
+
+----------------------------------------RENDA--------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtrairDadosImagemDataCap>
+  <dadosRequisicao>
+    <tipoRequisicao>EXTRAIR_DADOS_IMAGEM_DATACAP</tipoRequisicao>
+    <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
+    <ipUsuarioFinal></ipUsuarioFinal>
+  </dadosRequisicao>
+  <dataCapApp>COMPROVANTE_RENDA_TRANS</dataCapApp>
+  <informacoesImagem>
+	<tipoDeDocumento>COMPROVANTE_RENDA</tipoDeDocumento>
+    <nome>COMPROVANTE_RENDA.tif</nome>
+    <formato>tif</formato>
+    <binario></binario>
+  </informacoesImagem>
+</ExtrairDadosImagemDataCap>
+
+
+----------------------------------------RESIDENCIA--------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtrairDadosImagemDataCap>
+  <dadosRequisicao>
+    <tipoRequisicao>EXTRAIR_DADOS_IMAGEM_DATACAP</tipoRequisicao>
+    <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
+    <ipUsuarioFinal></ipUsuarioFinal>
+  </dadosRequisicao>
+  <dataCapApp>COMPROVANTE_RESIDENCIA_TRANS</dataCapApp>
+  <informacoesImagem>
+	<tipoDeDocumento>COMPROVANTE_RESIDENCIA</tipoDeDocumento>
+    <nome>COMPROVANTE_RESIDENCIA.tif</nome>
+    <formato>tif</formato>
+    <binario></binario>
+  </informacoesImagem>
+</ExtrairDadosImagemDataCap>

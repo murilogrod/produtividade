@@ -1,0 +1,166 @@
+<fieldset class="crud-card-fieldset">
+    <legend class="crud-card-title">Exibição Condicional
+      <span class="fa fa-fw fa-info-circle" tooltipPosition="top" pTooltip="{{toolTipFieldSetExressao}}" style="cursor: pointer"></span>
+    </legend>
+
+      <div class="row">
+          <div class="col-md-12">
+            <p-table #dataExpressoes [columns]="configuracaoTableColunasExpressao.configTableColsExpressao" class="crud-table"  
+            [paginator]="true" [rows]="10" [responsive]="true"
+            (onRowReorder)=reordenarExpressao($event)
+            [rowsPerPageOptions]="rowsPerPageOptions" [responsive]="true" 
+            scrollable="true" scrollHeight="500px" [value]="listaExpressoes">
+             
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                <ng-template ngFor let-col [ngForOf]="columns">
+                  <ng-container [ngSwitch]="col.field">  
+                    <ng-container *ngSwitchCase="'acoes'">
+                      <th class="{{col.class}}" style="text-align: center;">
+                        {{col.header}}
+                      </th>                       
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'reorder'">
+                        <th class="{{col.class}}">
+                            <i class="fa fa-bars" 
+                            pReorderableRowHandle 
+                            tooltipPosition="top" 
+                            pTooltip="A ordem das expressões pode ser alterado usando o recurso de arrastar e soltar.">
+                            </i>
+                        </th>                       
+                    </ng-container>    
+                    <ng-container *ngSwitchCase="'nome'">
+                      <th class="{{col.class}}" style="text-align: center;">
+                        {{col.header}}
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipAtributo}}"
+                          style="cursor: pointer">
+                        </span>
+                      </th>                      
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'valorResposta'">
+                      <th class="{{col.class}}" style="text-align: center;">
+                        {{col.header}}
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipValorResposta}}"
+                          style="cursor: pointer">
+                        </span>
+                      </th>                      
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'agrupamento'">
+                      <th class="{{col.class}}" style="text-align: center;">
+                        {{col.header}}
+                        <span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+                          pTooltip="{{toolTipAgrupamento}}"
+                          style="cursor: pointer">
+                        </span>
+                      </th>                      
+                    </ng-container>
+                  </ng-container>
+                </ng-template> 
+                </tr>
+              </ng-template>
+  
+              <ng-template pTemplate="body" let-expressao let-columns="columns" let-index="rowIndex">
+                <tr [pReorderableRow]="index">
+                  <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                    
+                    <ng-container *ngSwitchCase="'reorder'">
+                        <i class="fa fa-bars" pReorderableRowHandle></i>
+                    </ng-container>
+
+                    <ng-container *ngSwitchCase="'acoes'">
+  
+                      <span class="fa fa-fw fa-trash" 
+                        tooltipPosition="top" 
+                        (click)="removerExpressao(index, expressao);"
+                        pTooltip="Remover Expressão"
+                        style="cursor: pointer">
+                      </span> 
+                    </ng-container>
+  
+                    <ng-container *ngSwitchCase="'nome'">
+                      <div class="expressao capitalize" tooltipPosition="top" pTooltip="{{expressao[col.field]}}">
+                      {{expressao.nome}}
+                      </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'valorResposta'">
+                      <div class="expressao capitalize" tooltipPosition="top" pTooltip="{{expressao[col.field]}}">
+                      {{expressao.valorResposta}}
+                      </div>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'agrupamento'">
+                      <div class="expressao capitalize" tooltipPosition="top" pTooltip="{{expressao[col.field]}}">
+                      {{expressao.agrupamento}}
+                      </div>
+                    </ng-container>
+  
+                  </td>
+                </tr>  
+              </ng-template>
+
+              <ng-template pTemplate="footer">
+                <tr>
+                  <td style="width: 5% !important;">
+                    <span>-</span>
+                  </td>
+                  <td style="width: 25% !important;">
+                    
+                    <select *ngIf="!isDisabledExpressao" class="contato-select form-control"  
+                        id="expressaoGridAtributoSelect" name="expressaoGridAtributoSelect"
+                        [(ngModel)]="idAtributo">
+                        <option value="" selected>Selecione</option>
+                        <option *ngFor="let item of listaAtributos" [ngValue]="item.value">{{item.label}}</option>
+                    </select>
+
+                    <select *ngIf="isDisabledExpressao" class="contato-select form-control"  
+                      id="expressaoGridAtributoSelect" name="expressaoGridAtributoSelect" readonly pTooltip="{{toolTipSemAtributos}}">
+                      <option value="" selected>Selecione</option>
+                    </select>
+
+                  </td>
+
+                  <td style="width: 25% !important;">
+                    <input *ngIf="!isDisabledExpressao" class="form-control" id="valorResposta" name="valorResposta" [(ngModel)]="valorResposta" maxlength="255" placeholder="Valor Resposta">
+                    
+                    <div pTooltip="{{toolTipSemAtributos}}">
+                      <input *ngIf="isDisabledExpressao" class="form-control" id="valorResposta" name="valorResposta" placeholder="Valor Resposta" disabled>
+                    </div>
+                  </td>
+
+                  <td style="width: 20% !important;">
+                    <p-spinner *ngIf="!isDisabledExpressao" id="agrupamentoExpressao" name="agrupamentoExpressao" 
+                        [(ngModel)]="agrupamento"
+                         pKeyFilter="int" [min]="1" [max]="limiteAgrupamento">
+                    </p-spinner>
+
+                    <p-spinner *ngIf="isDisabledExpressao" id="agrupamentoExpressao" name="agrupamentoExpressao" [disabled]="true" pTooltip="{{toolTipSemAtributos}}"
+                        [(ngModel)]="agrupamento"
+                         pKeyFilter="int" [min]="1" [max]="limiteAgrupamento">
+                    </p-spinner>
+                  </td>
+
+                  <td style="width: 20% !important;">
+
+                      <span *ngIf="!isDisabledExpressao" class="fa fa-plus" 
+                        tooltipPosition="top" 
+                        (click)="adicionarNovaExpressaoNaGrid();"
+                        pTooltip="Adicionar Nova Expressão"
+                        style="cursor: pointer">
+                     </span>
+
+                     <span 
+                      *ngIf="isDisabledExpressao"
+                      style="opacity: 0.8;"
+                      class="fa fa-fw fa-trash">
+                    </span> 
+
+                  </td>
+                </tr>
+              </ng-template>
+  
+            </p-table>
+          </div>
+      </div>
+        
+  </fieldset>  

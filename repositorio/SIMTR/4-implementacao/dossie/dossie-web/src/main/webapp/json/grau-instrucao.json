@@ -1,0 +1,15 @@
+[
+{"name": "Não Informado", "codigo" : "0"},
+{"name": "Analfabeto", "codigo" : "1"},
+{"name": "Até 4ª série incompleta do Ensino Fundamental", "codigo" : "2"},
+{"name": "Com 4ª série completa do Ensino Fundamental", "codigo" : "3"},
+{"name": "Da 5ª a 8ª série incompleta do Ensino Fundamental", "codigo" : "4"},
+{"name": "Ensino Fundamental Completo", "codigo" : "5"},
+{"name": "Ensino Médio Incompleto", "codigo" : "6"},
+{"name": "Ensino Médio Completo", "codigo" : "7"},
+{"name": "Superior Incompleto", "codigo" : "8"},
+{"name": "Superior Completo", "codigo" : "9"},
+{"name": "Especialização/Pós Graduação", "codigo" : "10"},
+{"name": "Mestrado", "codigo" : "11"},
+{"name": "Doutorado", "codigo" : "12"}
+]

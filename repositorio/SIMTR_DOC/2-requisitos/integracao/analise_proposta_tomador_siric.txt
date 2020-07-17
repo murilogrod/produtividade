@@ -1,0 +1,221 @@
+---- Análise do serviço "Solicita a proposta de avaliação de tomador" da API Risco de Crédito ----
+
+Documentação base: [Domínios API SIRIC.xlsx] e Swagger API Risco de Crédito
+Endpoint: POST risco-credito/v2/tomadores-credito/{cpf-cnpj}/propostas-tomador
+
+Foram feitas consultas nas 5 modalidades, 3 de pessoa física e 2 de pessoa jurídica, apresentadas na documentação , tendo obtido os resultados que seguem abaixo.
+
+
+* Modalidade: Tomador PF Simples
+	- Corpo da solicitação:
+		{
+		  "codigo_ponto_atendimento": 12,
+		  "classe_consulta_sicli": 0,
+		  "relacionamentos": [],
+		  "quadros": []
+		}		
+	- Retorno recebido:
+		200 (OK)
+		{
+			"protocolo": "ccb2f115541620a5388ccdf981580fbeacff7cc320f4916abc",
+			"resultado": null,
+			"tipo_evento": "proposta.recebida"
+		}
+
+		
+* Modalidade: Tomador PF Consignação
+	- Corpo da solicitação:
+		{
+		  "codigo_ponto_atendimento": 12,
+		  "classe_consulta_sicli": 0,
+		  "relacionamentos": [
+			{
+			  "codigo_pergunta": 259,
+			  "identificador_tipo_pessoa": "1",
+			  "identificacao_pessoa": "82185719653",
+			  "identificador_tipo_pessoa_reciproco": "2",
+			  "identificacao_pessoa_reciproco": "00360305540214",
+			  "data_inicio": "20200518",
+			  "valor_relacionamento": 0,
+			  "codigo_produto": 2309,
+			  "linhas_quadro_valor": []
+			}],
+		  "quadros": []
+		}		
+	- Retorno recebido:
+		200 (OK)
+		{
+			"protocolo": "766ace3b604429b0d6b02ca25069c6a23e320ed0f33e8ca79d",
+			"resultado": null,
+			"tipo_evento": "proposta.recebida"
+		}
+
+		
+* Modalidade: Tomador PF Habitacional
+	****Observações importantes:
+		** A origem_recurso e o codigo_modalidade possuem comentário "Somente para habitacional e CIP", passei o valor zero no teste para validar, e o retorno foi de sucesso em DES, novamente acredito que não funcionará em PRD sem os valores corretos.
+	- Corpo da solicitação:
+		{
+		  "codigo_ponto_atendimento": 12,
+		  "classe_consulta_sicli": 0,
+		  "origem_recurso": 0,
+		  "codigo_modalidade": 0,
+		  "modelo_validacao_tomador": 2311,
+		  "modelo_avaliacao_tomador": 606,
+		  "relacionamentos": [],
+		  "quadros": [
+			{
+			  "identificador_tipo_pessoa": "1",
+			  "identificacao_pessoa": "82185719653",
+			  "codigo_quadro_valor": 306,
+			  "linhas_quadro_valor": [
+				0,
+				0,
+				0,
+				0,
+				0,
+				350.00,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				1800.00
+				]
+			}]
+		}	
+	- Retorno recebido:
+		200 (OK)
+		{
+			"protocolo": "aceb1d798b86d30771d56b8598a90fbf6ce43db757dd17cf77",
+			"resultado": null,
+			"tipo_evento": "proposta.recebida"
+		}
+
+		
+* Modalidade: Tomador PJ Simples
+	****Observações importantes:	
+		** A origem_recurso e o codigo_modalidade possuem comentário "Somente para habitacional e CIP", passei o valor zero no teste para validar, e o retorno foi de sucesso em DES, novamente acredito que não funcionará em PRD sem os valores corretos.
+		** Um vez solicitada com sucesso a primeira, todas as próximas solicitações para o mesmo CPF retornaram 404 (Bad Request), com mensagem "msg_erro": "Cliente (CPF/CNPJ: 82185719653) bloqueado/em processamento".
+	- Corpo da solicitação:
+		{
+		  "codigo_ponto_atendimento": 12,
+		  "classe_consulta_sicli": 0,
+		  "relacionamentos": [],
+		  "quadros": [
+			{
+			  "identificador_tipo_pessoa": "2",
+			  "identificacao_pessoa": "00360305540214",
+			  "codigo_quadro_valor": 934,
+			  "linhas_quadro_valor": [
+				13112008,
+				0,
+				4,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				2,
+				0]
+			},
+			{
+			  "identificador_tipo_pessoa": "2",
+			  "identificacao_pessoa": "00360305540214",
+			  "codigo_quadro_valor": 1264,
+			  "linhas_quadro_valor": [
+				17052020,
+				5,
+				10,
+				15,
+				10,
+				15,
+				10,
+				20,
+				10,
+				20,
+				15,
+				10,
+				0,
+				0,
+				0,
+				5,
+				10,
+				20,
+				15,
+				15,
+				10,
+				5,
+				0,
+				0,
+				0,
+				15,
+				15,
+				25,
+				20,
+				0,
+				0,
+				0,
+				20,
+				10]
+			}]
+		}
+	- Retorno recebido:
+		200 (OK)
+		{
+			"protocolo": "35013e0d3e8eb07d52c77d819d1160a54721366b1956ba04c4",
+			"resultado": null,
+			"tipo_evento": "proposta.recebida"
+		}
+
+		
+* Modalidade: Tomador PJ Microcrédito
+	- Corpo da solicitação:
+		{
+		  "codigo_ponto_atendimento": 12,
+		  "classe_consulta_sicli": 0,
+		  "relacionamentos": [],
+		  "quadros": [
+			{
+			  "identificador_tipo_pessoa": "2",
+			  "identificacao_pessoa": "00360305540214",
+			  "codigo_quadro_valor": 934,
+			  "linhas_quadro_valor": [
+				13112008,
+				0,
+				4,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				0,
+				2,
+				0]
+			},
+			{
+			  "identificador_tipo_pessoa": "2",
+			  "identificacao_pessoa": "00360305540214",
+			  "codigo_quadro_valor": 925,
+			  "linhas_quadro_valor": [
+				17052020,
+				1,
+				360305540214]
+			}]
+		}	
+	- Retorno recebido:
+		500 (Internal Server Error)
+		{
+			"msg_erro": "java.lang.RuntimeException: java.sql.SQLException: Arithmetic overflow during explicit conversion of FLOAT value '140000000000000.0' to a NUMERIC field .\n"
+		}
+		** Verifiquei que este erro é devido ao CNPJ enviado na última linha do quadro de valor 925. Quando enviei um número menor no campo obtive sucesso, mas o arquivo [Domínios API SIRIC.xlsx] orienta enviar CNPJ ali.
+		

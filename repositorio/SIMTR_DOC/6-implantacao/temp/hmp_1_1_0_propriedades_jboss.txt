@@ -1,0 +1,9 @@
+	- REMOVER:
+		<property name="url.servico.consulta.cliente.sicli" value="http://api.des.caixa:8080/cadastro/v1/clientes"/>
+		<property name="simtr_sso_client_id_servico" value="cli-ser-mtr"/>
+		<property name="simtr_sso_client_secret_servico" value="d2dc0325-c071-4f1f-897b-c3e0dec512a6"/>
+	
+	- ADICIONAR:
+		<property name="url.servico.consulta.cpf.sicli" value="http://api.des.caixa:8080/cadastro/v1/clientes"/>
+		<property name="simtr_resource_sso_filter" value="cli-ser-mtr"/>
+		<property name="simtr_sso_client_secret" value="d2dc0325-c071-4f1f-897b-c3e0dec512a6"/>

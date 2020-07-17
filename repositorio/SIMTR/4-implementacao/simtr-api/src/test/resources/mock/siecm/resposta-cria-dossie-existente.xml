@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Resposta>
+    <operacao>CRIA_DOSSIE</operacao>
+    <codigoRetorno>1</codigoRetorno>
+    <mensagem>O DOSSIE DO CLIENTE JA EXISTE</mensagem>
+</Resposta>

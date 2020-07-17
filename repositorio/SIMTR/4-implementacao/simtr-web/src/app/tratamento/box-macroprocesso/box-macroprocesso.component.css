@@ -1,0 +1,90 @@
+.cursoPoint{
+    cursor: pointer;
+}
+.corpoFilaTratamento .ui-accordion-header {
+    width: 100%;
+    border: none;
+    margin-top: 12px !important;
+}
+    .corpoFilaTratamento .ui-accordion .ui-accordion-header a {
+        background: rgb(255, 255, 255);
+        color: rgb(6, 72, 120);
+        font-weight: bold;
+    }
+    h2 {
+        margin: 0;
+        font-weight: bold;
+        font-size: 23px !important;
+    }
+    .corpoFilaTratamento .ui-accordion .ui-accordion-toggle-icon, .corpoFilaTratamento .ui-accordion .ui-accordion-header-text {
+        float: right;
+    }
+    div.boxheader {
+        display: inline-block;
+        vertical-align: middle;
+    }
+        div.boxNumearl {
+            width: 24%;
+            font-weight: bold;
+            text-align: center;
+            font-size: 3em;
+            position: relative;
+        }
+        div.boxInformativo {
+            width: 71%;;
+        }
+            div.boxheaderInterno {
+                float: left;
+            }
+                div.dezLeft{
+                    left: 7% !important;
+                }
+                article.margimTop30{
+                    margin-top: 30px;
+                }
+                div.boxNumeradorDossie {
+                    background: rgb(6, 72, 120);
+                    color: white;
+                    padding: 10px 16px;
+                    position: relative;
+                    top: -10px;
+                    border-radius: 0.6em;
+                    margin-right: 10px;
+                }
+            div.linInterno {
+                float: right;
+                margin-right: 20px;
+            }
+            div.paragrafoFase {
+                margin-left: 54px;
+            }
+            .subArccodionTratamento .ui-accordion-toggle-icon {
+                top: 3px;
+                position: relative;
+            }
+        span.subArccodionTratamento.ng-star-inserted {
+            display: block;
+            width: 100%;
+            position: relative;
+            margin: 5px 0px 4px 0px;
+            height: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(6, 72, 120);
+        }
+.oculatarExpandir  .pi {
+    display: none !important;
+}
+.corpoFilaTratamento .pi {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+    .corpoFilaTratamento .pi-caret-right:before {
+        content: "\f067";
+    }
+    .corpoFilaTratamento .pi-caret-down::before {
+        content: "\f068";
+    }

@@ -1,0 +1,567 @@
+<div class="crud-container">
+	<p-growl></p-growl>
+	<div class="panel panel-default crud-border">
+		<div class="crud-title">
+			<label>{{tipoDocumentoPresenter.tipoDocumentoModel.editar ? 'Edição de Tipo Documento' : 'Novo Tipo Documento'}}</label>
+			<hr class="crud-line-bottom-form">
+		</div>
+		<div class="row" *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.showHeader">
+			<div class="col-md-12">
+				<div class="col-md-6" *ngFor="let header of tipoDocumentoPresenter.tipoDocumentoModel.configGridHeader">
+					<crud-grid-header [width]="header.width" [classIcon]="header.classIcon"
+						[labelTitle]="header.labelTitle" [labelValue]="header.labelValue">
+					</crud-grid-header>
+				</div>
+			</div>
+		</div>
+		<div class="crud-container">
+			<form #tipoDocumentoForm="ngForm">
+				<fieldset class="crud-card-fieldset">
+					<legend class="crud-card-title">Dados Basicos</legend>
+					<div class="box-body">
+						<p-card class="no-padding col-md-12" [style]="{'margin-bottom': '10px'}">
+							<div class="row">
+								<div class="form-group" [ngClass]="tipoDocumentoPresenter.tipoDocumentoModel.editar ? 'col-md-10' : 'col-md-12'"
+									[class.has-error]="(nome.dirty && nome.errors && nome.errors.required) || tipoDocumentoPresenter.tipoDocumentoModel.hasIndicador()">
+									<label for="nome"  class="crud-label-title-form">Nome *</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.no_tipo_documento}}"
+										style="cursor: pointer"></span>
+									<input class="form-control" id="nome"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.nome" name="nome"
+										autofocus placeholder="Nome" required #nome="ngModel" minlength="3"
+										(blur)="verificarOcorrenciaNomeTipoDocumentoIndicadores()" (ngModelChange)="adaptarNomeTipoDocumento(nome);">
+									<validation-form-message [control]="nome" error="required"
+										text="Nome não informado ou não tem no mínimo 3 caracteres !">
+									</validation-form-message>
+									<div class="error" *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.nomeApoioNegocioCadastrado">
+										Já existe um tipo de Documento com o nome {{tipoDocumentoPresenter.tipoDocumentoModel.nomeTipoDocumentoJaCadastrado}} e indicador sustentação digital ao negócio já cadastrado.
+									</div>
+									<div class="error" *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.nomeDossieDigitalCadastrado">
+										Já existe um tipo de Documento com o nome {{tipoDocumentoPresenter.tipoDocumentoModel.nomeTipoDocumentoJaCadastrado}} e indicador dossiê digital já cadastrado.
+									</div>
+									<div class="error" *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.nomeProcessoAdministrativoCadastrado">
+										Já existe um tipo de Documento com o nome {{tipoDocumentoPresenter.tipoDocumentoModel.nomeTipoDocumentoJaCadastrado}} e indicador processo administrativo eletrônico (PAE) já cadastrado.
+									</div>																				
+								</div>
+								<div class="form-group col-md-2" *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.editar">
+									<label class="crud-label-title-form">Ativo</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_ativo}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="ic-ativo-tipo-documento" class="contato-select form-control"
+												name="ic-ativo-tipo-documento" type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.ativo">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>								
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="tipoPessoa" class="crud-label-title-form">Tipo Pessoa</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_tipo_pessoa}}"
+										style="cursor: pointer">
+									</span>
+									<br>
+									<p-dropdown id="dropdown-tipo-pessoa" name="dropdown-tipo-pessoa" [options]="tipoDocumentoPresenter.tipoDocumentoModel.tipoPessoas" filter="true"
+										emptyFilterMessage = "Nenhum resultado encontrado" class="custum-dropdown-tipo-documento"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumentoModel.selectedTipoPessoa" #tipoPessoa="ngModel"
+										placeholder="Selecione um tipo de pessoa" optionLabel="name" [showClear]="true">
+								  	</p-dropdown>   									
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icDossie" class="crud-label-title-form">Validade Auto Contida</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_validade_auto_contida}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icAutoContida" class="contato-select form-control"
+												name="icAutoContida" (change)="mudouValidadeAutoContida()"
+												type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_validade_autocontida">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="validade" class="crud-label-title-form">Prazo Validade (Dias) </label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.pz_validade_dias}}"
+										style="cursor: pointer"></span>
+									<div>
+										<p-spinner #validade="ngModel" id="validade" name="validade" size="60"
+											[disabled]="tipoDocumentoPresenter.tipoDocumento.indicador_validade_autocontida"
+											[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.prazo_validade_dias"
+											[disabled]="tipoDocumentoPresenter.tipoDocumento.id > 0"
+											pKeyFilter="int" [min]="1" [max]="9999" inputStyleClass="form-control">
+										</p-spinner>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="ged" class="crud-label-title-form">Nome Classe GED </label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.no_classe_siecm}}"
+										style="cursor: pointer"></span>
+									<input class="form-control" id="ged"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.classe_siecm" name="ged"
+										placeholder="Nome classe GED" #ged="ngModel" minlength="3">
+								</div>
+								<div class="form-group col-md-4"
+									[class.has-error]="(tipologia.dirty && tipologia.errors && tipologia.errors.minlength) || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaCadastrada || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaInconssistente">
+									<label for="icTipologia" class="crud-label-title-form">Código Tipologia</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.co_tipologia}}"
+										style="cursor: pointer"></span>
+									<input class="form-control" id="tipologia"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.codigo_tipologia"
+										(input)="tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaInconssistente = false"
+										(blur)="validarTipologia()" name="tipologia" placeholder="Tipologia" #tipologia="ngModel"
+										pKeyFilter="int" minlength="16" maxlength="16">
+									<validation-form-message [control]="tipologia" error="minlength"
+										text="Tipologia deve ser formada por um quarteto de números de 16 caracteres. Ex: 0001000100020007.">
+									</validation-form-message>	
+									<div class="error"
+										*ngIf="tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaCadastrada">
+										Já existe uma tipologia com este número.
+									</div>		
+									<div class="error"
+										*ngIf="tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaInconssistente">
+										Tipologia deve ser formada por um quarteto de números de 16 caracteres. Ex: 0001000100020007.
+									</div>																										
+								</div>
+								<div class="form-group col-md-4">
+									<label for="nomeMinuta" class="crud-label-title-form">Nome Arquivo Minuta </label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.no_arquivo_minuta}}"
+										style="cursor: pointer"></span>
+									<input class="form-control" id="nomeMinuta"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.arquivo_minuta"
+										name="nomeMinuta" placeholder="Nome Arquivo Minuta"
+										#nomeMinuta="ngModel">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-3">
+									<label for="tags" class="crud-label-title-form">TAGS</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.de_tags}}"
+										style="cursor: pointer"></span>
+									<input id="tags" class="form-control"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.tag_documento" name="tags"
+										placeholder="TAGS" #tgs="ngModel" minlength="5">
+								</div>
+								<div class="form-group col-md-1">
+									<div>
+										<label>&nbsp;</label>
+									</div>
+									<button type="button" class="btn btn-default"
+										[disabled]="tipoDocumentoPresenter.tipoDocumento.naoPodeIncluirTipoDocumento"
+										(click)="incluirTag()">
+										<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+									</button>
+								</div>
+								<div class="ui-fluid col-md-8">
+									<div>
+										<label>&nbsp;</label>
+									</div>
+									<p-autoComplete styleClass="autocomplete" id="tagsDoc" name="tagsDoc"
+										[readonly]="true" [multiple]="true"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.tags">
+									</p-autoComplete>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-3">
+									<label for="icones" class="crud-label-title-form">Ícone</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.no_avatar}}"
+										style="cursor: pointer"></span>
+									<p-dropdown name="icones"
+										[options]="tipoDocumentoPresenter.tipoDocumentoModel.icones"
+										emptyFilterMessage = "Nenhum resultado encontrado"
+										class="custum-dropdown-tipo-documento" [showClear]="true"
+										[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.avatar"  
+										placeholder="Selecione" filter="true">
+										<ng-template let-item pTemplate="item">
+											<div style="height: 25px;">
+												<i class="fa {{ item.label }} fa-2x"></i>
+												&nbsp;&nbsp;{{item.label}}
+											</div>
+										</ng-template>
+									</p-dropdown>
+								</div>
+								<div class="form-group col-md-1">
+									<label for="corDocumento" class="crud-label-title-form">Cor</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.co_rgb_box}}"
+										style="cursor: pointer"></span>
+									<div>
+										<p-colorPicker name="corDocumento"
+											[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.cor_box" [inline]="false">
+										</p-colorPicker>
+										{{ tipoDocumentoPresenter.tipoDocumento.cor_box }}
+									</div>
+								</div>
+								<div class="form-group col-md-7">
+									<label for="corDocumento" class="crud-label-title-form">Visualização</label>
+									<div>
+										<div class="col-lg-5 col-xs-10">
+											<!-- small box -->
+											<div class="small-box" [style.background-color]="pegaCor()">
+												<div class="inner">
+													<h3>0</h3>
+													<p id="divSituacao">
+														{{ tipoDocumentoPresenter.tipoDocumento.nome}}
+													</p>
+												</div>
+												<div class="icon">
+													<i class="fa {{ tipoDocumentoPresenter.tipoDocumento.avatar }}"></i>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</p-card>
+
+						<p-card class="no-padding col-md-12" [style]="{'margin-bottom': '10px'}">
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="icCadastral" class="crud-label-title-form">Validação Cadastral
+										SIFRC</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_validacao_cadastral}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input class="contato-select form-control" name="icCadastral"
+												type="checkbox" id="icCadastral"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_validacao_cadastral">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icDocumental" class="crud-label-title-form">Validação Documental
+										Externa</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_validacao_documental}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icDocumental" class="contato-select form-control"
+												name="icDocumental" type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_validacao_documental">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="icExterna" class="crud-label-title-form">Extração Externa</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_extracao_externa}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icExterna" class="contato-select form-control" name="icExterna"
+												type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_extracao_externa">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="icPae" class="crud-label-title-form">Processo Administrativo Eletrônico
+										(PAE)</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_processo_administrativo}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icPae" class="contato-select form-control" name="icPae"
+												type="checkbox" (change)="verificarOcorrenciaNomeProcessoAdministrativo()"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_uso_processo_administrativo">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icDossie" class="crud-label-title-form">Dossiê Digital</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_dossie_digital}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icDossie" class="contato-select form-control" name="icDossie"
+												type="checkbox" (change)="verificarOcorrenciaNomeDossieDigital()"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_uso_dossie_digital">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icNegocio" class="crud-label-title-form">Sustentação Digital ao
+										Negócio</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_apoio_negocio}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icNegocio" class="contato-select form-control" name="icNegocio"
+												type="checkbox" (change)="verificarOcorrenciaNomeApoioNegocio()"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_uso_apoio_negocio">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="icPermiteReuso" class="crud-label-title-form">Reuso</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_reuso}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icPermiteReuso" class="contato-select form-control"
+												name="icPermiteReuso" type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_reuso">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icM0" class="crud-label-title-form">Extração M0</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_extracao_m0}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icM0" class="contato-select form-control" name="icM0"
+												type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_extracao_m0">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icSicod" class="crud-label-title-form">Validação Documental
+										SICOD</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_validacao_sicod}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icSicod" class="contato-select form-control" name="icSicod"
+												type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_validacao_sicod">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label for="icPermiteMultiplos" class="crud-label-title-form">Múltiplos</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_multiplos}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icPermiteMultiplos" class="contato-select form-control"
+												name="icPermiteMultiplos" type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_multiplos">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="icGuardaBinarioOutsourcing" class="crud-label-title-form">Armazenagem
+										pré-Outsourcing</label>
+									<span class="fa fa-fw fa-info-circle" tooltipPosition="top"
+										pTooltip="{{tipoDocumentoPresenter.tipoDocumentoModel.ic_binario_outsourcing}}"
+										style="cursor: pointer"></span>
+									<div>
+										<label class="switch">
+											<input id="icGuardaBinarioOutsourcing" class="contato-select form-control"
+												name="icGuardaBinarioOutsourcing" type="checkbox"
+												[(ngModel)]="tipoDocumentoPresenter.tipoDocumento.indicador_guarda_binario_outsourcing">
+											<span class="slider round"></span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</p-card>
+					</div>
+				</fieldset>
+				<atributo 
+					[listaAtributo]="tipoDocumentoPresenter.tipoDocumento.atributos_extracao"
+					(atributosChanged)="handleChangeAtributos($event);"
+					(atributosRemovidosChanged)="handleChangeAtributosRemovidos($event);">
+				</atributo>
+				<fieldset class="crud-card-fieldset">
+					<app-loader-relativo 
+						[ativo]="tipoDocumentoPresenter.tipoDocumentoModel.countFuncaoDocumental < tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length"
+						class="custom-loading-grid-funcao-documental"
+						[posicao]="tipoDocumentoPresenter.tipoDocumentoModel.countFuncaoDocumental" 
+						[qtdComponent]="tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length">
+					</app-loader-relativo>
+					<legend class="crud-card-title">Funções Documentais</legend>
+						<div class="panel panel-default crud-align">
+							<div class="panel-heading crud-style" style="height: 98px !important;">
+							  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+								<table style="width: 100%;">
+									<tr>
+										<td>
+											<label class="control-label">Funções Documentais:</label> 
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="input-group pull-left" style="width: 40%">
+												<p-dropdown 
+													id="dropdown-funcao-documental" 
+													name="dropdown-funcao-documental"
+													class="custum-dropdown-tipo-documento"
+													[options]="tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentaisInterface" 
+													filter="true"
+													emptyFilterMessage="Nenhum resultado encontrado"
+													[(ngModel)]="tipoDocumentoPresenter.tipoDocumentoModel.selectedFuncaoDocumental"
+													placeholder="Selecione" 
+													optionLabel="name" 
+													[showClear]="true">
+													<ng-template let-item pTemplate="selectedItem"> 
+														<span 
+															style="vertical-align:middle" 
+															tooltipPosition="top" 
+															pTooltip="{{item.label}}">
+															{{item.label}}
+														</span>
+													</ng-template>                           
+												</p-dropdown>		  
+												<span [class.pointer-events]="tipoDocumentoPresenter.tipoDocumentoModel.emptyFuncoesdocumentaisInterface()" 
+													class="input-group-addon btn btn-link" (click)="adicionarFuncaoDocumental()">
+													<span [class.pointer-events-color]="tipoDocumentoPresenter.tipoDocumentoModel.emptyFuncoesdocumentaisInterface()" 
+														class="glyphicon glyphicon-arrow-down" 
+														aria-hidden="true">
+													</span>
+												</span>												
+											</div>
+										</td>
+									</tr>										
+								</table>
+							  </nav> 
+							</div>
+						</div>
+						<p-table [columns]="tipoDocumentoPresenter.tipoDocumentoModel.configTableColsFuncoesDocumentais" class="crud-table"
+							[paginator]="true" [rows]="15" [responsive]="true" (sortFunction)="realizarOrdenacao($event)" 
+						  		[reorderableColumns]="true" [rowsPerPageOptions]="tipoDocumentoPresenter.tipoDocumentoModel.rowsPerPageOptions" [responsive]="true" 
+									scrollable="true" scrollHeight="500px" [customSort]="true" [value]="tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais">
+							<ng-template pTemplate="emptymessage" let-columns>
+								<tr>
+									<td [attr.colspan]="columns.length">
+										Nenhuma função documental adicionada
+									</td>
+								</tr>
+							</ng-template>
+							<ng-template pTemplate="header" let-columns>
+								<tr>
+								  <ng-template ngFor let-col [ngForOf]="columns">
+									  <ng-container [ngSwitch]="col.field">
+										<ng-container *ngSwitchCase="'acoes'">
+											<th class="{{col.class}}">
+												{{col.header}}
+											</th>                       
+										</ng-container>
+										<ng-container *ngSwitchDefault>
+											<th class="{{col.class}}" *ngIf="col.tooltip" tooltipPosition="top" pTooltip="{{col.msg}}" [pSortableColumn]="col.field">
+												{{col.header}}
+												<p-sortIcon [field]="col.field"></p-sortIcon>
+											</th>                     
+											<th class="{{col.class}}" [pSortableColumn]="col.field" *ngIf="!col.tooltip">
+												{{col.header}}
+												<p-sortIcon [field]="col.field"></p-sortIcon>
+											</th>   												
+										</ng-container>
+									  </ng-container>
+								  </ng-template> 
+								</tr>
+							</ng-template>
+							<ng-template pTemplate="body" let-funcao let-columns="columns" let-index="rowIndex">
+								<span style="display: none;">{{realizarLoad()}}</span>
+								<tr>
+									<td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+										<ng-container *ngSwitchCase="'acoes'">
+											<span 
+											  class="fa fa-fw fa-trash" 
+											  tooltipPosition="top" 
+											  pTooltip="Remover Função Documental"
+											  (click)="removerFuncaoDocumental(funcao, index);"
+											  style="cursor: pointer">
+										  </span>                           
+										</ng-container>                                                
+										<ng-container *ngSwitchDefault>
+											<div class="funcao-documental capitalize" tooltipPosition="top" pTooltip="{{funcao[col.field]}}">
+												{{funcao[col.field] ? funcao[col.field] : '-'}}
+											</div>
+										</ng-container>                          
+									</td>
+								</tr>
+							</ng-template>
+							<ng-template pTemplate="summary">
+								<ng-container *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length == 0 || tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length == 1">
+									Total: {{tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length}} função documental
+								</ng-container>  
+								<ng-container *ngIf="tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length > 1">
+									Total: {{tipoDocumentoPresenter.tipoDocumentoModel.funcoesDocumentais.length}} funções documentais
+								</ng-container> 								           
+							</ng-template>							 
+						</p-table>						      
+				</fieldset>				
+				<div>
+					<button id="tipo-documento-finalizar-btn-salvar" type="button"
+						[disabled]="!tipoDocumentoForm.valid || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaCadastrada || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaInconssistente || tipoDocumentoPresenter.tipoDocumentoModel.hasIndicador() || tipoDocumentoPresenter.tipoDocumentoModel.hasClasseSiecm()"
+						class="btn btn-primary pull-right" (click)="salvarTipoDocumento(true);">Salvar e Finalizar
+						<span class="fa fa-save"></span>
+					</button>					
+					<button id="tipo-documento-continuar-btn-salvar" type="button"
+						[disabled]="!tipoDocumentoForm.valid || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaCadastrada || tipoDocumentoPresenter.tipoDocumentoModel.tipoLogiaInconssistente || tipoDocumentoPresenter.tipoDocumentoModel.hasIndicador() || tipoDocumentoPresenter.tipoDocumentoModel.hasClasseSiecm()"
+						class="btn btn-primary pull-right" (click)="salvarTipoDocumento(false);">Salvar e Continuar
+						<span class="fa fa-save"></span>
+					</button>
+					<button id="tipo-documento-btn-voltar" type="button" (click)="pesquisaTipoDocumento();"
+						class="btn btn-warning pull-right">Voltar
+						<span class="fa fa-arrow-left"></span>
+					</button>
+				</div>
+			</form>
+		</div>
+		<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+			<p-footer>
+				<button type="button" pButton icon="fa fa-close" label="Não" (click)="cd.reject()"></button>
+				<button type="button" pButton icon="fa fa-check" label="Sim" (click)="cd.accept()"></button>
+			</p-footer>
+		</p-confirmDialog>
+		<div class="panel-body">
+			<cx-alert-message id="component-alert-pesquisa-canal" [messagesInfo]="messagesInfo"
+				[messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+				(onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+				(onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+				(onCloseMessageWarning)="onCloseMessageWarning()">
+			</cx-alert-message>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid red
+}
+
+.painel, ng-trigger-panelContent {
+    margin: 0 auto;
+}
+
+.info-processo {
+    background-color: #f6f7f9;
+    color: #034f8a;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightblue;
+    width: 100%;
+    font-style: oblique;
+    font-family: "Open Sans";
+    font-size: 120%;
+    padding: 10px 20px 10px 10px;
+    margin-bottom: 10px;
+   
+    
+}
+
+.row {
+    margin: 3px;
+}
+
+a.span.fa.fa-download {
+    margin-top: 13px;
+} 

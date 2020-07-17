@@ -1,0 +1,36 @@
+.marginBottom12px {
+    margin-bottom: 12px;
+}
+.espacamento-entre-componentes{
+    margin-bottom: 15px !important;
+}
+fieldset {
+    border: 1px solid rgb(221, 221, 221);
+}
+    fieldset .ui-fieldset-toggler {
+        display: none !important;
+    }
+    fieldset fieldset {
+        margin: 8px;
+        padding: .3em 0.5em .75em;
+    }
+        fieldset legend {
+            font-size: 14px;
+            color: rgb(0, 90, 156);
+            font-weight: bold;
+            padding-left: 9px;
+            border: none;
+            margin-bottom: 5px;
+        }
+        fieldset fieldset.fieldsetRadio span:nth-child(n) {
+            display: block;
+            margin-bottom: 5px;
+            color: rgb(0, 90, 156);
+        }
+
+h5 {
+    font-size: 14px;
+    color: rgb(0, 90, 156);
+    font-weight: bold;
+    text-align: center;
+}

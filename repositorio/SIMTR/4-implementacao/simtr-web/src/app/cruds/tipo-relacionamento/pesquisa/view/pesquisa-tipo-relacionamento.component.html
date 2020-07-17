@@ -1,0 +1,112 @@
+<div class="crud-container">
+  <div class="panel panel-default crud-border">
+    <div class="crud-title">
+        <label>Tipos de Relacionamento</label>
+        <hr class="crud-line-bottom-grid">
+    </div>
+    <div class="panel panel-default crud-align">
+      <div class="panel-heading crud-style">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="input-group pull-left" style="width: 30%">
+                <input pInputText type="text" class="form-control" #globalFilter
+                  (input)="realizarFiltroTiposRelacionamentos($event.target.value, dataTiposRelacionamentos);" placeholder="Filtro Global">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </span>
+            </div> 
+            <div class="pull-right">
+              <button type="button" class="btn btn-primary" (click)="novoTipoRelacionamento()">Novo
+                  <span class="fa fa-plus"></span>
+              </button>
+            </div>
+        </nav> 
+      </div>
+    </div>  
+    <div class="panel-body">
+      <p-table #dataTiposRelacionamentos [columns]="pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.columns" class="crud-table"
+      [paginator]="true" [rows]="15" [responsive]="true" (sortFunction)="realizarOrdenacao($event)" (onFilter)="onFilter($event, globalFilter)"
+       [rowsPerPageOptions]="pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.rowsPerPageOptions" [responsive]="true" scrollable="true" scrollHeight="500px"
+        [customSort]="true" [value]="pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.tiposRelacionamentos">
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+              <td [attr.colspan]="columns.length">
+                  Nenhum tipo de relacionamento encontrado
+              </td>
+          </tr>
+        </ng-template>   
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <ng-template ngFor let-col [ngForOf]="columns">
+                <ng-container [ngSwitch]="col.field">
+                  <ng-container *ngSwitchCase="'acoes'">
+                      <th class="{{col.class}}">
+                          {{col.header}}
+                      </th>                       
+                  </ng-container>
+                  <ng-container *ngSwitchDefault>
+                      <th class="{{col.class}}" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+                      </th>                      
+                  </ng-container>
+                </ng-container>
+            </ng-template> 
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-tipoRelacionamento let-columns="columns">
+          <tr>
+              <td *ngFor="let col of columns" [ngSwitch]="col.field" class="{{col.class}}">
+                <ng-container *ngSwitchCase="'id'">
+                  {{tipoRelacionamento[col.field] ? tipoRelacionamento[col.field] : '-'}}
+                </ng-container>
+                <ng-container *ngSwitchCase="'tipo_pessoa'">
+                  {{tipoRelacionamento[col.field] == 'A' ? 'AMBAS' : tipoRelacionamento[col.field] == 'F' ? 'FÍSICA' : 'JURÍDICA'}}
+                </ng-container>                                     
+                <ng-container *ngSwitchCase="'nome'">
+                  {{tipoRelacionamento[col.field] ? tipoRelacionamento[col.field] : '-'}}
+                </ng-container>                    
+                <ng-container *ngSwitchCase="'acoes'">
+                      <span 
+                          class="fa fa-fw fa-edit" 
+                          tooltipPosition="top" 
+                          pTooltip="Editar Tipo de Relacionamento"
+                          (click)="editarTipoRelacionamento(tipoRelacionamento.id)"
+                          style="cursor: pointer">
+                      </span>
+                      <span 
+                        class="fa fa-fw fa-trash" 
+                        tooltipPosition="top" 
+                        pTooltip="Remover Tipo de Relacionamento"
+                        (click)="confirmarRemocao(tipoRelacionamento.id)"
+                        style="cursor: pointer">
+                    </span>                           
+                  </ng-container>    
+                  <ng-container *ngSwitchDefault>
+                    {{tipoRelacionamento[col.field] ? 'SIM' : 'NÃO'}}
+                  </ng-container>                          
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <ng-container *ngIf="pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.filteredRecords == 0">
+            Total: {{pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.tiposRelacionamentos.length}} tipo(s) de relacionamento(s).
+        </ng-container>
+        <ng-container *ngIf="pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.filteredRecords > 0">
+            Total: {{pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.filteredRecords}} de {{pesquisaTipoRelacionamentoPresenter.pesquisaTipoRelacionamento.tiposRelacionamentos.length}}.
+      </ng-container>                            
+    </ng-template>      
+      </p-table>
+      <p-confirmDialog header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+          <p-footer>
+              <button type="button" pButton icon="fa fa-close" label="Não" (click)="cd.reject()"></button>
+              <button type="button" pButton icon="fa fa-check" label="Sim" (click)="cd.accept()"></button>
+          </p-footer>
+      </p-confirmDialog>
+      <cx-alert-message id="component-alert-pesquisa-canal" [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+        [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+        (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+        [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+      </cx-alert-message>        
+    </div>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+<header class="main-header">
+	<!-- Logo -->
+	<a href="#" class="logo">
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini">
+			<img src="assets/img/logo_caixa_x.png">
+		</span>
+		<!-- logo for regular state and mobile devices -->
+		<img src="assets/img/titlefullc.png">
+	</a>
+
+	<!-- Header Navbar -->
+	<nav class="navbar navbar-static-top" role="navigation">
+		<div *ngIf="isApresentaBarraPesquisa()">
+			<!-- Sidebar toggle button-->
+			<!--
+			<a href="#" class="sidebar-toggle" data-toogle="offcanvas" role="button" title="Alternar menu lateral" data-toggle="tooltip"
+			 data-placement="auto">
+				<span class="sr-only"></span>
+			</a>
+			-->
+			<!-- Navbar Right Menu -->
+			<!-- search form (Optional) -->
+			<div class="form-group campo-pesquisa-div dropdown col-xs-7 col-md-5">
+				<div class="input-group" style="width: 100%;">
+					<input type="text" class="form-control campo-pesquisa" id="navbar-search-input" placeholder="{{app.header.search}}" [(ngModel)]="filtrosvalor.pesquisaHeader"
+					 (keydown.enter)="search();" data-toggle="tooltip" title="Insira algum valor para pesquisar" data-placement="auto">
+					<div class="input-group-btn" *ngIf="currentView.filters">
+						<button class="btn btn-default dropdown-toogle campo-pesquisa-dropdown" type="button" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right campo-pesquisa-dropdown-panel">
+							<li>
+								<div class="col-md-12">
+									<form>
+										<div class="row">
+											<h5 class="titulo-cinza">{{app.header.filters}}</h5>
+										</div>
+										<div class="row" *ngFor="let filtro of currentView.filters">
+											<div class="form-group">
+												<label for="filtro-conexao">{{filtro.label}}</label>
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="fa {{filtro.icon}}"></i>
+													</span>
+													<input type="text" class="form-control" [(ngModel)]="filtrosvalor[filtro.id]" *ngIf="filtro.type == 'text'">
+													<select class="form-control" [(ngModel)]="filtrosvalor[filtro.id]" *ngIf="filtro.type == 'select'">
+														<option value="">{{app.selects.choose}}</option>
+														<!-- 					                                <option value="{{item[filtro.itemvalue]}}" *ngFor="let item of listaOpcoesFiltro(filtro.options)"> -->
+														<!-- 					                                	{{item[filtro.itemlabel]}} -->
+														<!-- 					                                </option> -->
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="row pull-right">
+											<button (click)="clean()" class="btn btn-primary btn-flat botao-somente-icone" data-toggle="tooltip" title="{{app.buttons.clean.label}}">
+												<i class="fa {{app.buttons.clean.icon}}"></i>
+											</button>
+											<button (click)="search()" class="btn btn-primary btn-flat botao-somente-icone" data-toggle="tooltip" title="{{app.buttons.search.label}}">
+												<i class="fa {{app.buttons.search.icon}}"></i>
+											</button>
+										</div>
+									</form>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.search form -->
+		
+		<div class="navbar-custom-menu">
+			<ul class="nav navbar-nav" >
+				<li class="dropdown-toggle tag">
+					<span class="hidden-xs">CONFIDENCIAL #5</span>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav">
+				
+				
+				<!-- Notifications Menu -->
+				<li class="dropdown notifications-menu" *ngIf="isApresentaNotificacoes()">
+					<!-- Menu toggle button -->
+					
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-bell-o"></i>
+						<span class="label label-warning" *ngIf="notificacoes.length">{{notificacoes.length}}</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="header" *ngIf="notificacoes.length">{{app.header.notificationprefix}} {{notificacoes.length}} {{app.header.notificationsufix}}</li>
+						<li class="header" *ngIf="!notificacoes.length">{{app.header.nonotification}}</li>
+						<li>
+							<!-- Inner Menu: contains the notifications -->
+							<ul class="menu">
+								<li *ngFor="let notificacao of notificacoes">
+									<!-- start notification -->
+									<a href="#" (click)="notificacao.link">
+										<i class="fa {{notificacao.icone}} {{notificacao.corIcone}}">{{notificacao.descricao}}</i>
+									</a>
+								</li>
+								<!-- end notification -->
+							</ul>
+						</li>
+						<li class="footer" *ngIf="notificacoes.length">
+							<a href="#">{{app.header.viewall}}</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- User Account Menu -->
+				<li class="dropdown user user-menu" *ngIf="isAutenticado() && isApresentaPerfilUsuario()">
+					<!-- Menu Toggle Button -->
+					<a href="#" class="dropdown-toggle info-usuario" data-toggle="dropdown">
+						<span class="div-imagem-usuario">
+							<!-- The userimage in the navbar-->
+							<img [src]="getBufferUserImage()" class="user-image" *ngIf="hasImage">
+							<img [src]="userImageDefault" class="user-image" *ngIf="!hasImage">
+						</span>
+						<span class="div-info-usuario hidden-xs">
+							<!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<span class="hidden-xs">{{getDeMatriculaAndUserName()}}</span>
+							<br>
+							<span class="hidden-xs">{{getCoUnidadeAndNoUnidade()}}</span>
+							<br>
+							<span class="hidden-xs">{{getPerfil()}}</span>
+						</span>
+					</a>
+					<ul class="dropdown-menu">
+						<!-- The user image in the menu -->
+						<li class="user-header">
+							<img [src]="getBufferUserImage()" class="img-circle" *ngIf="hasImage">
+							<img [src]="userImageDefault" class="img-circle" *ngIf="!hasImage">
+							<p>
+								{{getDeMatriculaAndUserName()}}
+								<small>{{getCoUnidadeAndNoUnidade()}}</small>
+								<small>{{getPerfil()}}</small>
+							</p>
+						</li>
+						<!-- Menu Body -->
+						<li class="user-body" style="padding-top: 0px; padding-bottom: 10px">
+							
+								<div class="panel panel-default" style="margin-bottom: 0px">
+									<div class="panel-body labelNegrito">Perfis do Usuário</div>
+									<ul>
+										<li *ngFor="let perfil of perfis">
+											{{perfil}}
+										</li>
+									</ul>
+							
+							</div>
+							<!--
+							<div class="row">
+								<div class="text-center">
+									<a [href]="urlManualUsuario" target="_blank" class="link" download>{{app.buttons.help.label}}</a>
+								</div>
+							</div>
+							-->
+							<!-- /.row -->
+						</li>
+						<!-- Menu Footer-->
+						<li class="user-footer">
+							<div hidden="true" class="pull-left">
+								<a href="#" class="btn btn-default btn-flat">{{app.header.profile}}</a>
+							</div>
+							<div class="alinhar-centro">
+								<a (click)="logout()" href="#" class="btn btn-default btn-flat">{{app.header.signout}}</a>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<!-- Control Sidebar Toggle Button -->
+				<!--<li *ngIf="isApresentaWidgetSidebar()" title="Widgets disponíveis" data-toggle="tooltip" data-placement="auto">
+		        <a href="#" data-toggle='control-sidebar'><i class="fa fa-gears"></i></a>
+		      </li> -->
+			</ul>
+		</div>
+	</nav>
+	<div *ngIf="ativarToogle()"></div>
+
+</header>

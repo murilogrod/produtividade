@@ -1,0 +1,104 @@
+<form #formGarantia="ngForm">
+    <div id="corpoModalGarantia" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Vincular Garantia</h4>
+            </div>
+
+            <div class="box-body col-md-12" [class.has-error]="!operacao.valid && operacao.touched">
+                <cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError" (onCloseMessageError)="messagesError = []"
+                    (onCloseMessageInfo)="messagesInfo = []" (onCloseMessageSuccess)="messagesSuccess = []"></cx-alert-message>
+                
+                <div class="col-md-12">
+                    <div class="col-md-6 ">
+                        <label for="fundacao">Produto :</label>
+                        <p-dropdown 
+                            (onChange)="onChangeProdutos()"
+                            [options]="produtosSelectItem" 
+                            [(ngModel)]="garantiaTela.produtoVinculado" 
+                            [filter]="true" 
+                            #operacao="ngModel" 
+                            id="produtoGarantia" 
+                            name="produtoGarantia"
+                            [style]="{'width':'100%'}"
+                            [disabled]="produtosSelectItem.length == 0"
+                            emptyFilterMessage="Nenhum registro encontrado">
+                            <ng-template let-item pTemplate="selectedItem">
+                                {{item.label}}
+                            </ng-template>     
+                        </p-dropdown>
+                    </div>
+                    <div class="col-md-6">
+                            <label for="garantiaProduto">Garantia<span class="asteriscoVermelho"> *</span> :</label>
+                            <p-dropdown 
+                                (onChange)="onChangeGarantia()"
+                                [options]="garantiaSelectItem" 
+                                [(ngModel)]="garantiaTela.garantiaVinculada" 
+                                [filter]="true" 
+                                #operacao="ngModel" 
+                                id="garantiaProduto" 
+                                name="garantiaProduto"
+                                [style]="{'width':'100%'}"
+                                emptyFilterMessage="Nenhum registro encontrado">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    {{item.label}}
+                                </ng-template>     
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <br/>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label for="fundacao">Valor<span class="asteriscoVermelho"> *</span> :</label>
+                        <input class="form-control" id="valor" type="text" maxlength="15" required name="valor" [(ngModel)]="garantiaTela.valor_garantia"  (blur)="habilitarFormulario()"
+                            #valor="ngModel" kzMaskCurrency="0,00">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <br/>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="col-md-9">
+                        <label for="pessoa">Pessoa<span *ngIf="!habilitarDesabilitaComboMultiple" class="asteriscoVermelho"> *</span> :</label>
+                    </div>
+                    <div class="ui-fluid">
+                        <div class="col-md-12">
+                            <p-multiSelect
+                                [options]="clientesSelectItem"
+                                optionLabel="label"
+                                defaultLabel="Selecione uma Pessoa" 
+                                (onChange)="selecionarRelacionado($event)"
+                                [disabled]="habilitarDesabilitaComboMultiple"> 
+                            </p-multiSelect>
+                        </div>
+                    </div>
+               </div>
+               
+            </div>
+
+            <div class="col-md-12">
+                <formulario-generico 
+                    [tipoFormulario]="tipoFormulario"
+                    [legenda]="'Dados Adicionais'"
+                    [toogleFieldSet]="false" 
+                    [habilitaAlteracao]="habilitaAlteracao"
+                    [hasClienteValido]="hasClienteValido" 
+                    [campoFormulario]="campoFormulario"
+                    [messageFormularioVazio]="messageFormularioVazio"
+                    [habilitarMenssagem]="habilitarMenssagem"
+                    (formValidacaoChanged)="handleChangeFormValidacao($event)" 
+                    (camposFormularioChanged)="handleChangeCampoFormulario($event)">
+                </formulario-generico>
+            </div>
+
+            <div class="modal-footer">
+                <button id="salvar-vinculo-garantia" type="button" [disabled]="habilitar || formularioDinamico" class="btn btn-primary" (click)="confirm()">Salvar</button>
+                <button id="cancelar-vinculo-garantia" type="button" class="btn btn-default pull-right" (click)="cancel()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</form>

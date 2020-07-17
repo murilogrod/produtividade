@@ -1,0 +1,102 @@
+<canvas id="pdfcanvas{{idCombo}}" style="display: none"></canvas>
+<section class="corpoVisualizarCorpo{{idCombo}}">
+    
+    <div *ngIf="idCombo == 1" id="actualTarget{{idCombo}}" #actualTarget></div>
+    <div *ngIf="idCombo == 2" id="actualTarget{{idCombo}}" #actualTargetSegundo></div>  
+    
+    <p-overlayPanel #op [showTransitionOptions]="'300ms'" [hideTransitionOptions]="'300ms'" [appendTo]="'imgAtualCompara'" [dismissable]="true" [showCloseIcon]="true">
+        <label>Brilho:</label>
+        <p-slider [(ngModel)]="filtroBrilhoImg" [min]="0" [max]="200"></p-slider>
+        <br/><br/>
+        <label>Contraste:</label>
+        <p-slider [(ngModel)]="filtroContrasteImg" [min]="0" [max]="200"></p-slider>
+        <br/>
+        <button class="btn btn-success" (click)="resetaConfigImg()">RESETAR</button>
+    </p-overlayPanel>
+
+    <div *ngIf="idCombo == 1">
+        <div class="boxVisualizar boxCombo" [ngClass]="{'boxComboUmvisualizador' : (!visualizadorDois || !layoutVerticalA || !layoutVerticalB), 'boxCombo': (visualizadorDois || layoutVerticalA || layoutVerticalB)}" >
+            <div *ngIf="listaDocumentacao && listaDocumentacao.length > 0">            
+                <label for="documentacao">Documentação</label>
+                <select id="comboDocumentacao_{{idCombo}}" class="form-control select2ComboDocumentacao{{idCombo}}" name="comboDocumentacao_{{idCombo}}">
+                    <option value="selecione" >Selecione</option> 
+                    <option *ngFor="let item of listaDocumentacao" value="{{item.id}}|{{item.tipo}}" >{{item.descricao}}</option>
+                </select>
+            </div>
+            <div class="espacoCombo">
+                <label for="documentacao">Documento</label>
+                <select id="comboDocumento_{{idCombo}}"  class="form-control select2ComboDocumento{{idCombo}}" name="comboDocumento_{{idCombo}}">
+                    <option value="selecione" >Selecione</option> 
+                    <option *ngFor="let item of listaDocumento" value="{{item.id}}|{{item.tipo}}" >{{item.descricao}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="idCombo == 2">
+        <div class="boxVisualizar boxCombo" [ngClass]="{'boxComboUmvisualizador' : (!visualizadorDois || !layoutVerticalA || !layoutVerticalB), 'boxCombo': (visualizadorDois || layoutVerticalA || layoutVerticalB)}" >
+            <div *ngIf="listaDocumentacao2 && listaDocumentacao2.length > 0">            
+                <label for="documentacao">Documentação</label>
+                <select id="comboDocumentacao_{{idCombo}}" class="form-control select2ComboDocumentacao{{idCombo}}" name="comboDocumentacao_{{idCombo}}">
+                    <option value="selecione" >Selecione</option> 
+                    <option *ngFor="let item of listaDocumentacao2" value="{{item.id}}|{{item.tipo}}" >{{item.descricao}}</option>
+                </select>
+            </div>
+            <div class="espacoCombo">
+                <label for="documentacao">Documento</label>
+                <select id="comboDocumento_{{idCombo}}"  class="form-control select2ComboDocumento{{idCombo}}" name="comboDocumento_{{idCombo}}">
+                    <option value="selecione">Selecione</option> 
+                    <option *ngFor="let item of listaDocumento2" value="{{item.id}}|{{item.tipo}}" >{{item.descricao}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="boxVisualizar boxIconsAcao">
+        <span class="iconsLeft">
+            <a (click)="primeiraPagina()" pTooltip="Ir para a primeira página ({{textoTeclaDeAtalho}}1)">
+                <i class="fa fa-fw fa-backward"></i>
+            </a>
+            <a (click)="paginaAnterior()" pTooltip="Ir para a página anterior ({{textoTeclaDeAtalho}}2)">
+                <i class="fa fa-fw fa-play girandoImg180"></i>
+            </a>
+            <a *ngIf="idCombo == 1">
+                <i class="fontUnset">{{imgAtual+1}}/{{images.length}}</i>
+            </a>
+            <a *ngIf="idCombo == 2">
+                <i class="fontUnset">{{imgAtualCompara+1}}/{{imagesCompara.length}}</i>
+            </a>
+            <a (click)="proximaPagina()" pTooltip="Ir para a próxima página ({{textoTeclaDeAtalho}}3)">
+                <i class="fa fa-fw fa-play"></i>
+            </a>
+            <a (click)="ultimaPagina()" pTooltip="Ir para a última página ({{textoTeclaDeAtalho}}4)">
+                <i class="fa fa-fw fa-forward"></i>
+            </a>
+        </span>
+        <span class="iconsRigth"> 
+            <a *ngIf="idCombo == 1" (click)="op.show($event, actualTarget)" pTooltip="Alterar brilho ou contraste">
+                <i class="fa fa-adjust"></i>
+            </a>
+
+            <a *ngIf="idCombo == 2" (click)="op.show($event, actualTargetSegundo)" pTooltip="Alterar brilho ou contraste">
+                <i class="fa fa-adjust"></i>
+            </a>
+
+            <a (click)="girarParaEsquerda()" pTooltip="Girar imagem para a esquerda ({{textoTeclaDeAtalho}}<)">
+                <i class="fa fa-fw fa-undo"></i>
+            </a>
+            <a (click)="girarParaDireita()" pTooltip="Girar imagem para a direita ({{textoTeclaDeAtalho}}>)">
+                <i class="fa fa-fw fa-rotate-right"></i>
+            </a>
+            <a (click)="zoomMais(true)" pTooltip="Ampliar o zoom ({{textoTeclaDeAtalho}}+)">
+                <i class="fa fa-fw fa-search-plus"></i>
+            </a>
+            <a (click)="zoomMais(false)" pTooltip="Reduzir o zoom ({{textoTeclaDeAtalho}}-)">
+                <i class="fa fa-fw fa-search-minus"></i>
+            </a>
+        </span>
+    </div>
+    <div id="visualizarImagem_{{idVisualizar}}" class="boxVisualizar visualizarImagem no-select">
+        <canvas id="canvas_{{idVisualizar}}" [ngStyle]="{'filter':'brightness('+filtroBrilhoImg+'%) contrast('+filtroContrasteImg+'%)'}"></canvas>
+    </div>
+</section>

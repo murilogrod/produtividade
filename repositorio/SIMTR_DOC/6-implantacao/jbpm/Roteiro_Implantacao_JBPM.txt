@@ -1,0 +1,186 @@
+ROTEIRO DE IMPLANTAÇÃO:
+
+1) Acessar o site oficial do JBPM e baixar a versão 7.27.0.Final, link abaixo.
+	https://download.jboss.org/jbpm/release/7.27.0.Final/jbpm-server-7.27.0.Final-dist.zip
+	O mesmo arquivo estará disponível em compartilhamento de rede interno CAIXA indicado pelo PEDESGO, a partir de agora referenciado como <compartilhado>.
+	
+2) Extrair o conteúdo do arquivo baixado acima na pasta que hospedará o jboss no servidor (normalmente /opt/jbpm-server-7.27.0/).
+	A partir de agora esse diretório será referido como <jbpm_dir>.
+
+3) Obter o arquivo modules.zip no diretório <compartilhado> e descompactar seu conteúdo dentro da pasta <jbpm_dir>/modules/ no servidor.
+	Trata-se da inclusão do módulo de banco PostgreSQL.
+	
+4) Obter o arquivo configuration.zip no diretório <compartilhado> e descompactar seu conteúdo dentro da pasta <jbpm_dir>/standalone/configuration/ no servidor.
+	Trata-se da substituição dos arquivos users.properties, roles.properties e jBPMKeystore.jceks.
+
+5) Ir até o diretório <jbpm_dir>/standalone/configuration/ e alterar as properties do standalone.xml para que fiquem conforme abaixo:
+
+    <system-properties>
+        <property name="org.kie.server.id" value="simtr-bpm-server"/>
+        <property name="org.kie.server.controller" value="http://localhost:8080/business-central/rest/controller"/>
+		<property name="org.kie.server.controller.user" value="kieserver"/>
+        <property name="org.kie.server.location" value="http://localhost:8080/kie-server/services/rest/server"/>
+		<property name="org.kie.server.user" value="kieserver"/>
+		<property name="org.kie.server.persistence.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+        <property name="org.kie.server.persistence.ds" value="java:jboss/datasources/jBPMDS"/>
+        <property name="org.jbpm.casemgmt.showcase.url" value="/jbpm-casemgmt"/>
+        <property name="org.jbpm.ht.admin.group" value="admin"/>
+        <property name="org.jbpm.task.cleanup.enabled" value="false"/>
+        <property name="appformer.experimental.features" value="true"/>
+        <property name="org.kie.prometheus.server.ext.disabled" value="false"/>
+        <property name="kie.keystore.keyStoreURL" value="file:///${jboss.server.config.dir}/jBPMKeystore.jceks"/>
+        <property name="kie.keystore.keyStorePwd" value="jBPMKeyStorePassword"/>
+        <property name="kie.keystore.key.server.alias" value="jBPMAlias"/>
+        <property name="kie.keystore.key.server.pwd" value="jBPMKeyPassword"/>
+        <property name="kie.keystore.key.ctrl.alias" value="jBPMAlias"/>
+        <property name="kie.keystore.key.ctrl.pwd" value="jBPMKeyPassword"/>
+    </system-properties>
+	
+6) Ainda no standalone.xml, alterar a tag <default-bindings> para que fique conforme abaixo:
+
+			<default-bindings context-service="java:jboss/ee/concurrency/context/default" datasource="java:jboss/datasources/BusinessCentralDS" jms-connection-factory="java:jboss/DefaultJMSConnectionFactory" managed-executor-service="java:jboss/ee/concurrency/executor/default" managed-scheduled-executor-service="java:jboss/ee/concurrency/scheduler/default" managed-thread-factory="java:jboss/ee/concurrency/factory/default"/>
+	
+7) Alterar também no standalone.xml o grupo de datasources para que fique conforme abaixo.
+	ATENÇÃO para substituir os campos de servidor, usuário e senha que estão em caixa alta abaixo.
+	São 3 datasources, dois apontam para o banco do JBPM e um aponta para o banco do SIMTR.
+
+		<subsystem xmlns="urn:jboss:domain:datasources:5.0">
+            <datasources>
+                <datasource jndi-name="java:jboss/datasources/BusinessCentralDS" pool-name="BusinessCentralDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:postgresql://SERVIDOR_BD_JBPM:PORTA/SCHEMA_JBPM</connection-url>
+                    <driver>postgres</driver>
+                    <security>
+                        <user-name>USUARIO_JBPM</user-name>
+                        <password>SENHA_USUARIO_JBPM</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
+				<datasource jta="true" jndi-name="java:jboss/datasources/SIMTR-DS" pool-name="SIMTR-DS" enabled="true" use-ccm="true">
+                    <connection-url>jdbc:postgresql://SERVIDOR_BD_SIMTR:PORTA/SCHEMA_SIMTR</connection-url>
+                    <driver>postgres</driver>
+                    <security>
+                        <user-name>USUARIO_SIMTR</user-name>
+                        <password>SENHA_USUARIO_SIMTR</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <background-validation>true</background-validation>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </datasource>
+                <xa-datasource jndi-name="java:jboss/datasources/jBPMDS" pool-name="jBPMXADS">
+                    <xa-datasource-property name="ServerName">SERVIDOR_BD_JBPM</xa-datasource-property>
+                    <xa-datasource-property name="PortNumber">PORTA</xa-datasource-property>
+                    <xa-datasource-property name="DatabaseName">SCHEMA_JBPM</xa-datasource-property>
+                    <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+                    <driver>postgres</driver>
+                    <security>
+                        <user-name>USUARIO_JBPM</user-name>
+                        <password>SENHA_USUARIO_JBPM</password>
+                    </security>
+                    <validation>
+                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"/>
+                        <validate-on-match>true</validate-on-match>
+                        <background-validation>true</background-validation>
+                        <background-validation-millis>120000</background-validation-millis>
+                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"/>
+                    </validation>
+                </xa-datasource>
+                <drivers>
+                    <driver name="postgres" module="org.postgres">
+                        <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+                    </driver>
+                </drivers>
+            </datasources>
+        </subsystem>
+
+	
+8) Obter o arquivo .m2.zip no diretório <compartilhado> e descompactar seu conteúdo dentro de uma pasta ".m2", dentro da pasta do usuário que roda o jboss.
+	Normalmente o usuário é o jboss, então a pasta seria /home/jboss/.m2
+
+9) Adicionar no servidor linux a variável de ambiente M2_HOME, através dos passos abaixo:
+	9.1) Editar o arquivo /etc/environment adicionando o conteúdo abaixo (substituir o caminho pelo definido no item acima):
+		M2_HOME="/home/jboss/.m2"
+	
+	9.2) Adicionar a variável para a sessão corrente com o comando abaixo (substituir o caminho pelo definido no item acima):
+		export M2_HOME="/home/jboss/.m2"
+		
+	9.3) Testar a exibição do valor da nova variável de ambiente através do comando abaixo:
+		echo $M2_HOME
+
+10) Preparar o banco de dados para a subida do JBPM:	
+	10.1) Criar um grupo e um usuário específicos para o JBPM:
+		10.1.1) Criar o grupo (sugestão: bpm_group);
+		10.1.2) Criar o usuário, passando na configuração a variável "search_path" com o valor contendo o nome do schema de banco que será usado para o JBPM (sugestão: bpmusr);
+		10.1.3) O script SQL gerado ao final deverá ser semelhante ao que está abaixo:
+	
+		CREATE ROLE bpmusr LOGIN	
+		  ENCRYPTED PASSWORD 'md5e3e2f432c47297d95771b9a63cc1eab7'
+		  NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION;
+
+		ALTER ROLE bpmusr IN DATABASE posdes01
+		  SET search_path = bpm;
+		GRANT bpm_group TO bpmusr;
+
+		
+	10.2) No banco, criar o schema que será usado pelo JBPM (sugestão: bpm);
+		10.2.1) O Owner deverá ser o usuário criado anteriormente (bpmusr);
+		10.2.2) Na configuração "Default Privileges", atribuir ao grupo que foi criado (bpm_group) todas as permissões para Tables, Sequences, Functions e Types;
+		10.2.3) O script SQL gerado ao final deverá ser semelhante ao que está abaixo:
+	
+		CREATE SCHEMA bpm
+		AUTHORIZATION bpmusr;
+
+		GRANT ALL ON SCHEMA bpm TO bpmusr;
+		GRANT ALL ON SCHEMA bpm TO bpm_group;
+
+		ALTER DEFAULT PRIVILEGES IN SCHEMA bpm
+			GRANT INSERT, SELECT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON TABLES
+			TO bpm_group;
+
+		ALTER DEFAULT PRIVILEGES IN SCHEMA bpm
+			GRANT SELECT, UPDATE, USAGE ON SEQUENCES
+			TO bpm_group;
+
+		ALTER DEFAULT PRIVILEGES IN SCHEMA bpm
+			GRANT EXECUTE ON FUNCTIONS
+			TO bpm_group;
+
+		ALTER DEFAULT PRIVILEGES IN SCHEMA bpm
+			GRANT USAGE ON TYPES
+			TO bpm_group;
+			
+	10.3) Finalmente, incluir o IP do servidor que irá rodar o container na lista do pg_hba.conf (Se a validação de IPs do PostgreSQL estiver habilitada);
+	
+	10.4) Executar no banco de dados do JBPM a criação da estrutura, através da execução do script em <compartilhado>/DDL_JBPM_7.27.0.sql no schema criado no passo anterior;
+
+11) Instalar o servidor JBPM (<jbpm_dir>/bin/standalone.sh) como serviço no linux.
+	11.1) Criar o arquivo /etc/systemd/system/jbpm-server-7.27.0.service e preencher seu conteúdo (modelo básico apresentado abaixo, substituir caminho e usuário!!):
+	
+		[Unit]
+		Description=JBPM Server 7.27.0
+
+		[Service]
+		User=<usuario_a_executar_jboss_do_jbpm>
+		ExecStart=<caminho_para_standalone_sh_do_jbpm>
+
+		[Install]
+		WantedBy=multi-user.target
+		
+		
+		OBSERVAÇÃO: Ajustar permissão do arquivo (chmod 664 /etc/systemd/system/jbpm-server-7.27.0.service)
+	
+	11.2) Reiniciar o serviço do systemctl:
+		systemctl daemon-reload
+		
+	11.3) OPCIONAL (Depende da política da CEPTI) - Adicionar o serviço do jbpm na inicialização da máquina:
+		systemctl enable jbpm-server-7.27.0
+
+12) Iniciar o serviço do servidor JBPM
+	systemctl start jbpm-server-7.27.0
+
+	

@@ -1,0 +1,38 @@
+<!--
+	Aqui é definido o menu de seu projeto . 
+	O projeto pode ter nenhum, um ou vários menus definidos de acordo com o estado definido no App.js
+-->
+<div class="navbar-default sidebar theme-menu-container" role="navigation">
+   <div class="sidebar" ng-controller="MenuController">
+        <ul class="sidebar">
+            <li class="fix handOver" ng-click="go('principal');"><span class="glyphicon glyphicon-home gi-3x"></span> {{ 'label.principal' | translate}}</li>
+            <li ng-if = "project.customersummary.nome">
+                <span class="glyphicon glyphicon-user gi-3x"></span> <i>  {{ 'label.nome' | translate}}</i> 
+                <p>{{project.customersummary.nome}}</p>
+            </li>
+            <li ng-if = "project.customersummary.cpf">
+                <span class="glyphicon glyphicon-credit-card gi-3x"></span> <i>{{ 'label.cpf' | translate}}</i>
+                <p>{{project.customersummary.cpf}}</p>
+            </li>
+            <li ng-if = "project.customersummary.datanascimento">
+                <span class="glyphicon glyphicon-calendar gi-3x"></span> <i>{{ 'label.datanascimento' | translate}}</i>
+                <p>{{project.customersummary.datanascimento}}</p>
+            </li>
+            <li ng-if = "project.customersummary.nomemae">
+                <span class="glyphicon glyphicon-duplicate gi-3x"></span> <i>{{ 'label.nome.mae' | translate}}</i>
+                <p>{{project.customersummary.nomemae}}</p>
+            </li>
+            <li ng-if = "project.customersummary.showdevices" style="background-color: #99999973; padding: 1px;"></li>
+            <li id="item-dispositivo" ng-if = "project.customersummary.showdevices">
+            	<div id="div-dispositivo">
+	                <span id="span-dispositivo" class="glyphicon glyphicon-camera gi-3x"></span> <i>{{ 'label.dispositivo' | translate}}</i>	
+	                <select id="scan-dispositivo" name="scan-dispositivo" class="form-control" ng-model="project.customersummary.device" 
+	                	ng-change="checkDeviceValidation();" 
+	                	ng-disabled="!true" placeholder="{{ 'label.selecione.o.dispositivo' | translate}}" title="{{ 'label.selecione.o.dispositivo' | translate}}"
+	                 	data-ng-options="item.codigo as item.device for item in project.customersummary.devices">
+	                </select>			    
+            	</div>
+            </li>
+        </ul>
+   </div>	 
+</div>

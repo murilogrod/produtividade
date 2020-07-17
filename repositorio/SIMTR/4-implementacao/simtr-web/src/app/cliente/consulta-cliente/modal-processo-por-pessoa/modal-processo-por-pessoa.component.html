@@ -1,0 +1,48 @@
+<form #formProcesso="ngForm" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="cancel()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title">Novo Dossiê Produto</h4>
+      </div>
+      <div class="modal-body">
+        <div id="body-primeira-linha">
+          <div class="box-body"> 
+            Selecione o processo para criação do dossiê.
+          </div>
+          <div id="alinhamento-toogle" *ngIf="isMTRADM">
+            <span>Exibir Ocultos:</span> 
+            <label id="texto-hint" aria-label="Listar todos os processos." class="switch" style="margin-left: 5px;">
+                <input 
+                  class="toggle" 
+                  type="checkbox"
+                  [checked]="exibirProcessosOcultos"
+                  (change)="showProcessosOcultos()">
+                <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        <div class="box-body">
+          <div class="col-md-6">
+            <select id="macro-processo" class="form-control" (change)="onChangeMacroProcesso($event.target.value)">
+              <option value="Selecione" selected>Selecione</option>
+              <option *ngFor="let proc of listaMacroProcessos; let idx = index" value="{{idx}}">{{proc.nome}}</option>
+            </select>
+          </div>
+          <div class="col-md-6" *ngIf="listaProcessosGeraDossie.length > 0">
+            <select id="processo-gerar-dossie" class="form-control" (change)="onChangeProcessoGeraDossie($event.target.value)">
+              <option value="Selecione" selected>Selecione</option>
+              <option *ngFor="let proc of listaProcessosGeraDossie; let idx = index" value="{{idx}}">{{proc.nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button id="btn-confirma-criacao-dossie" type="button" class="btn btn-primary" *ngIf="exibeBotaoNovo" (click)="confirm()">OK</button>
+          <button id="btn-cancela-criacao-dossie" type="button" class="btn btn-default pull-right" (click)="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</form>

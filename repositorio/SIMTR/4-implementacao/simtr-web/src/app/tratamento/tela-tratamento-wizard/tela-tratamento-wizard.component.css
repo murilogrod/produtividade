@@ -1,0 +1,159 @@
+.corpWizard{
+    padding: 0;
+}
+.wizardcrumb {
+    padding: 0 !important;
+    overflow: 0 !important;
+    border-radius: 5px;
+    background: rgb( 255, 255, 255) !important;
+}
+
+    .wizardcrumb a {
+        position: relative;
+        padding: 1.6em 1em 1.5em 2.5em;
+        color: #ffffff;
+        height: 80px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+        .wizardcrumb a  label {
+            font-size: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .wizardcrumb .centralizador {
+            height: 100%;
+            width: 0px;
+        }
+            /*já que o primeiro link não tem um triângulo antes dele, podemos reduzir o preenchimento esquerdo para torná-lo consistente com outros links*/
+            .wizardcrumb a:first-child {
+                padding-left: 2%;
+                border-radius: 5px 0 0 5px; /*para combinar com o raio do pai*/
+            }
+    .wizardcrumb a:first-child:before {
+        left: 14px;
+    }
+    .wizardcrumb a:last-child {
+        border-radius: 0 5px 5px 0; /*isso foi para evitar falhas no foco*/
+        padding-right: 20px;
+    }
+    
+    /*adicionando as setas para as migalhas de pão usando pseudo-elementos rotacionados*/
+    .wizardcrumb a:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -32px;
+        width: 80px;
+        height: 80px;
+        -webkit-transform: scale(0.707) rotate(45deg);
+        -ms-transform: scale(0.707) rotate(45deg);
+        transform: scale(0.707) rotate(45deg);
+        z-index: 1;
+        background: #666;
+        background: linear-gradient(135deg, #fff, rgb(255, 255, 255));
+        box-shadow: 6px -6px 0 2px rgb(255, 255, 255), 3px -3px 0 2px rgba(247, 244, 244, 0.898);
+        border-radius: 0 5px 0 50px;
+    }
+    /*nós não precisamos de uma flecha depois do último link*/
+    .wizardcrumb a:last-child:after {
+        content: none;
+    }
+    /*vamos usar o elemento: before para mostrar números*/
+    .wizardcrumb a:before {
+        /*content: counter(flag);*/
+        /*some styles now*/
+        border-radius: 100%;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        margin: 8px 0;
+        position: absolute;
+        top: 0;
+        left: 30px;
+        background: #f5f5f5;
+        background: linear-gradient(#444, #222);
+        font-weight: bold;
+    }
+
+    .flat a, .flat a:after {
+        background: rgb(24, 165, 253);
+        transition: all 0.5s;
+    }
+    .flat a:before {
+        background: white;
+        box-shadow: 0 0 0 1px #ccc;
+    }
+
+    .flat a.active:after {
+        right: -36px;
+        width: 73px;
+        height: 72px;
+        box-shadow: 8px -8px 0 0px rgb(228, 131, 7), 4px -4px 0 4px rgba(232, 122, 10, 0.898);
+    }
+
+    .ativoSeta:after {    
+        height: 81px !important;
+        width: 73px !important;
+        box-shadow: 6px -6px 0 2px rgb(236, 114, 14), 3px -3px 0 2px rgb(236, 114, 14) !important;
+    }
+
+    .flat a.active,
+    .flat a.active:after{
+        color: #f5f5f5;
+    }
+
+    .internoWirzard {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        z-index: 99;
+        position: relative;
+        margin-left: 4%;
+    }
+
+    .wizardcrumb>.active {
+        border: 4px solid rgb(236, 114, 14);
+    }
+
+    .classAtiva, .classAtiva:after {
+        background: rgb(0, 166, 80) !important;
+    }
+    .faseConsulta, .faseConsulta::after {
+        background: rgb(1, 108, 160) !important;
+    }
+
+    .highlight{
+        background:#7e7e7e !important;
+        color: #f5f5f5 !important;
+    }
+
+    .wizardcrumb a.highlight{
+        background: #7e7e7e;
+    }
+    .wizardcrumb a.highlight:after {
+        background: #7e7e7e;
+    }
+
+    .wizardcrumb>.highlight{
+        color:#777;
+    }
+
+    .highlight a, .highlight a:after {
+        background: #f5f5f5;
+        color: #7e7e7e;
+        transition: all 0.5s;
+    }
+    .highlight a:before {
+        background: white;
+        box-shadow: 0 0 0 1px #ccc;
+    }
+
+    .highlight a:hover,
+    .highlight a:hover:after{
+        background: #7e7e7e;
+        color: #f5f5f5;
+    }

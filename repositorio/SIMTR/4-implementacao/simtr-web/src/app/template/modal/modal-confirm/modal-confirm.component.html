@@ -1,0 +1,14 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="modal-body text-center">
+      <p *ngFor="let item of msgs">{{item}}</p>
+    </div>
+    <div class="modal-footer">
+      <button id="btn-sim" type="button" class="btn btn-primary" (click)="confirm('S')">Sim</button>
+      <button id="btn-nao" type="button" class="btn btn-primary" (click)="confirm('N')">Não</button>
+    </div>
+  </div>
+</div>

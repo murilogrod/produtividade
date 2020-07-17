@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CriaDossie>
+    <dadosRequisicao>
+        <tipoRequisicao>CRIA_DOSSIE</tipoRequisicao>
+        <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
+        <ipUsuarioFinal>127.0.0.1</ipUsuarioFinal>
+    </dadosRequisicao>
+    <tipoCliente>PJ</tipoCliente>
+    <dadosPJ>
+        <cnpj>00000000000191</cnpj>
+    </dadosPJ>
+</CriaDossie>

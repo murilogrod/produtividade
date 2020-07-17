@@ -1,0 +1,279 @@
+
+<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+<div class="theme-main"
+	ng-controller="ConsultaavaliacesvalidasController"
+	analytics-page="Página Consulta Avaliações Válidas">
+	<form id="formMain" name="formMain" tabindex="0">
+		<div class="row">
+			<div class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+				<tr>
+					<td><b><div style="text-align: left; color: #267fb9;">{{
+								'LABEL.CONSULTA.AVALIAES.VLIDAS' | translate}}</div></b>
+						<div style="text-align: left; color: #555a6d">{{ 'label.' |
+							translate}}</div>
+						<br></td>
+				</tr>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+				<span ncy-breadcrumb></span>
+				<!-- id:h4 - name:Título -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+					<h5 class="padding text-primary bold col-xs-12 theme-main-h4"
+						align="left">
+						<i class="fa  ">&nbsp;</i> <span>{{
+							'label.abertura.de.conta.dossi.digital' | translate}}</span>
+					</h5>
+				</div>
+				<!-- id:img - name:Imagem -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                            			id: imgBarra06png
+                            			origem: /imgs/barra06.png         
+                            			estilo: col-xs-12
+                            			alinhamento: text-center col-xs-12                 		
+                            		-->
+					<div class="padding text-center col-xs-12 theme-main-img"
+						align="center">
+						<img class="img-responsive center-block" id="imgBarra06png"
+							ng-src="./imgs/barra06.png">
+					</div>
+				</div>
+				<!-- id:h4 - name:Título -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                            			estilo: col-xs-12
+                            			alinhamento: left
+                            		-->
+					<h5 class="padding text-primary bold col-xs-12 theme-main-h4"
+						align="left">
+						<i class="fa  ">&nbsp;</i> <span>{{
+							'label.avaliaes.vlidas.-.siric' | translate}}</span>
+					</h5>
+				</div>
+				<!-- id:table-filter - name:Tabela Filtro por Colunas -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- elemento Tabela com Filtro
+                            			id: tbl
+                            			estilo: col-xs-12"
+                            			colunas: container.tbl"
+                            			registros: container.tblData
+                            		-->
+					<div class="table-responsive col-xs-12 theme-main-table">
+						<table id="tbl"
+							class="table table-bordered table-hover table-striped text-black"
+							st-table="tblData" st-safe-src="fulltblData">
+							<thead class="theme-main-table-head">
+								<tr>
+									<th colspan="1"><input st-search placeholder="Filtrar ..."
+										class="form-control" type="text" /></th>
+									<th colspan="{{tblcontent.length + 1}}"><select
+										ng-options="option.name for option in pageOptions track by option.value"
+										ng-model="itemsOnPage" class="form-control"
+										style="display: inline; width: inherit;"></select> Resultados
+										por pagina</th>
+								</tr>
+								<tr class="theme-main-table-head-row">
+									<!-- para cada coluna de acordo com os elementos de $scope.container.tbl -->
+									<th ng-repeat="(key,value) in tblcontent" class="text-left"
+										st-sort="{{key}}">{{value}}</th>
+									<th class="col-xs-1 text-center"><i
+										class="fa fa-pencil-square-o" data-toggle="tooltip"
+										title="Editar Item"></i></th>
+									<th class="col-xs-1 text-center"><i class="fa fa-trash-o"
+										data-toggle="tooltip" title="Excluir Item"></i></th>
+								</tr>
+							</thead>
+							<!-- para cada linha de acordo com os elementos de $scope.container.tblData -->
+							<tr ng-repeat="row in tblData" class="theme-main-table-row">
+								<td ng-repeat="(key, value) in row"
+									class="text-left theme-main-table-col">{{value}}</td>
+								<td class="text-center theme-main-table-col">
+									<button class="btn btn-sm" data-toggle="tooltip"
+										title="Editar Item" ng-click="openViewDelayed('',3,$event)"
+										analytics-event="table:">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+								</td>
+								<td class="text-center theme-main-table-col">
+									<button class="btn btn-sm" data-toggle="tooltip"
+										title="Excluir Item" ng-click="confirmDelete()"
+										analytics-event="table:confirmDelete">
+										<i class="fa fa-trash-o"></i>
+									</button>
+								</td>
+							</tr>
+							<tfoot>
+								<tr>
+									<td colspan="{{tblcontent.length + 2}}" class="text-center">
+										<div class="pull-left">
+											<button class="btn btn-sm"
+												ng-click="doExportDataTxt(tabeladata)" data-toggle="tooltip"
+												title="exportar TXT" analytics-event="table:doExportDataTxt">
+												<i class="fa fa-file-text"></i>
+											</button>
+											<button class="btn btn-sm"
+												ng-click="doExportDataCsv(tabeladata)" data-toggle="tooltip"
+												title="exportar CSV" analytics-event="table:doExportDataCsv">
+												<i class="fa fa-file-excel-o"></i>
+											</button>
+										</div>
+										<div st-pagination="" st-items-by-page="itemsOnPage.value"
+											st-displayed-pages="7"></div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+						<div class="alert alert-warning ng-hide"
+							ng-show="fulltblData == undefined">Nenhum dado localizado.
+						</div>
+					</div>
+				</div>
+				<!-- id:rule - name:Separador (hr) -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- elemento Separador -->
+					<div class="theme-main-line-rule">
+						&nbsp;
+						<hr />
+					</div>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                           				tipo: Navegacao
+                           				destino:  avaliacaodeRiscoOperacao
+                           				id: btnAvaliaropcrdito2
+                           				ajuda: {{ 'label.clique.aqui.para.avaliar.op..crdito' | translate}}
+                           				título: {{ 'label.avaliar.op..crdito' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone:  
+                           			-->
+					<button id="btnAvaliaropcrdito2" ng-disabled="formMain.$invalid"
+						ng-click="openViewDelayed('avaliacaodeRiscoOperacao',3,$event,'Procedimento executado com sucesso')"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.avaliar.op..crdito' | translate}}"
+						title="{{ 'label.clique.aqui.para.avaliar.op..crdito' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-right sizeAuto theme-main-button btn-padrao"
+						ng-disabled="!true" analytics-event="button:Avaliar Op. Crédito">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.avaliar.op..crdito' | translate}}</span>
+					</button>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                           				tipo: Navegacao
+                           				destino:  avaliacaodeRiscoClienteComercial
+                           				id: btnClientecomercial2
+                           				ajuda: {{ 'label.clique.aqui.para.ir.para.cliente.comercial' | translate}}
+                           				título: {{ 'label.cliente.comercial' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone:  
+                           			-->
+					<button id="btnClientecomercial2" ng-disabled="formMain.$invalid"
+						ng-click="openViewDelayed('avaliacaodeRiscoClienteComercial',3,$event,'Procedimento executado com sucesso')"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.ir.para.cliente.comercial' | translate}}"
+						title="{{ 'label.clique.aqui.para.ir.para.cliente.comercial' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-right sizeAuto theme-main-button btn-padrao"
+						ng-disabled="!true" analytics-event="button:Cliente Comercial">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.cliente.comercial' | translate}}</span>
+					</button>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                           				tipo: Acao  
+                           					ATENCAO: no ng-click defina sua acao
+                           					ex: ng-click="incluir()" ou ng-click="salvar()"
+                           				id: btnAtualizar
+                           				ajuda: {{ 'label.clique.aqui.para' | translate}}
+                           				título: {{ 'label.atualizar' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone:  
+                           			-->
+					<button id="btnAtualizar" ng-disabled="formMain.$invalid"
+						ng-click="openViewDelayed('',3,$event,'Procedimento executado com sucesso')"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para' | translate}}"
+						title="{{ 'label.clique.aqui.para' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-right sizeAuto theme-main-button btn-padrao"
+						ng-disabled="!true" analytics-event="button:Atualizar">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.atualizar' | translate}}</span>
+					</button>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- 
+                           				tipo: Navegacao
+                           				destino:  autorizacaoDocumental
+                           				id: btnVoltar2
+                           				ajuda: {{ 'label.clique.aqui.para.voltar' | translate}}
+                           				título: {{ 'label.voltar' | translate}}
+                           				estilo: btn-warning
+                           				alinhamento: pull-left
+                           				ativo: true
+                           				ícone:  
+                           			-->
+					<button id="btnVoltar2" ng-disabled="formMain.$invalid"
+						ng-click="openViewDelayed('autorizacaoDocumental',3,$event,'Procedimento executado com sucesso')"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						title="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						class="btn btn-sm margin-3x btn-warning pull-left col-xs-4 theme-main-button btn-padrao"
+						ng-disabled="!true" analytics-event="button:Voltar">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.voltar' | translate}}</span>
+					</button>
+				</div>
+			</div>
+			<div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<br>&nbsp; <br>&nbsp;
+		</div>
+	</form>
+</div>

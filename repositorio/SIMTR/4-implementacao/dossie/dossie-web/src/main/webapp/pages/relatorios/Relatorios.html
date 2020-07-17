@@ -1,0 +1,247 @@
+
+
+<div ng-controller="RelatoriosController" style = "margin-left : -30px"
+	analytics-page="Página Relatório de Documentos">
+	
+	<caixa-alert error="error" show="showError" on-close="hideAlert();"></caixa-alert>
+
+  
+	<div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="box-Info " style = "background-color: steelblue !important;">           
+              <p class = "qtdDoc">{{resumo.total_dossie_criado}}</p>
+    		<div class = "infoDoc">
+              <p class = "infoDoc-texto" >Dossiês </p>
+              <p clas = "infoDoc-texto" ><strong> Criados </strong></p>
+           </div>           
+              <i class="glyphicon glyphicon-file icone-doc" ></i>       
+          </div>
+        </div>
+
+
+			<div class="col-lg-3 col-xs-6">
+				<!-- small box -->
+				<div class="box-Info" style = "background-color: lightseagreen !important;">
+					<p class="qtdDoc">{{resumo.total_dossie_atualizado}}</p>
+					<div class="infoDoc">
+						<p class="infoDoc-texto">Dossiês</p>
+						<p clas="infoDoc-texto">
+							<strong> Atualizados </strong>
+						</p>
+					</div>
+					<i class="glyphicon glyphicon-duplicate icone-doc" />
+				</div>
+			</div>
+
+			
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="box-Info" style="background-color: cadetblue !important;">
+						<p class="qtdDoc">{{resumo.total_dossie_interrompidos}}</p>
+						<div class="infoDoc">
+							<p class="infoDoc-texto">Atendimentos</p>
+							<p clas="infoDoc-texto">
+								<strong> Interrompidos </strong>
+							</p>
+						</div>
+						<i class="glyphicon glyphicon-ban-circle icone-doc" />
+					</div>
+				</div>
+
+					
+				<div class="col-lg-3 col-xs-6">
+					<!-- small box -->
+					<div class="box-Info" style="background-color: lightslategray !important;">
+						<p class="qtdDoc">{{resumo.total_documentos_utilizados}}</p>
+						<div class="infoDoc">
+							<p class="infoDoc-texto">Documentos</p>
+							<p clas="infoDoc-texto">
+								<strong> Utilizados </strong>
+							</p>
+						</div>
+						<i class="glyphicon glyphicon-check icone-doc" />
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+			        <div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+                             <div class="dttable col-xs-12" >
+                                 <label style="margin-top: 5px;">Filtro de Pesquisa</label>
+                             </div>
+                        </div>
+                        
+                      <div class="form-group col-xs-4">
+                             <label>Dire</label>
+							<select class="form-control" id="cmbDire" 
+                                 		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" 
+                                 		title="{{ 'label.selecione.o.item' | translate}}" ng-model="direSelecionado" ng-change="carregarSrs();"
+                                 		data-ng-options="item as item.nome for item in listaDires">
+                                 		</select>
+                            </div>
+                            <div class="form-group col-xs-4">
+                                <label>SR</label>
+						  <select class="form-control" id="cmbSR" ng-model="srSelecionado" ng-change="carregarUnidades();"		
+                                 		placeholder="{{ 'label.selecione.o.item' | translate}}" 
+                                 		title="{{ 'label.selecione.o.item' | translate}}"
+                                 		data-ng-options="item as item.nome for item in listaSrs">
+                                 		</select>
+                            </div>
+                    
+                            <div class="form-group col-xs-4">
+                                <label>Agência</label>
+						  <select class="form-control" id="cmbAgencias" ng-model="agenciaSelecionado" 											
+                                 		placeholder="{{ 'label.selecione.o.item' | translate}}" 
+                                 		title="{{ 'label.selecione.o.item' | translate}}"
+                                 		data-ng-options="item as item.nome for item in listaUnidadesSr"></select>
+                            </div>
+                      
+                             <div class="form-group col-xs-4">
+                                 <label>Agrupador</label>
+						   			
+						   			<select class="form-control" id="cmbListaAgrupador" ng-model="agrupadorSelecionado" 											
+                                 		placeholder="{{ 'label.selecione.o.item' | translate}}" 
+                                 		title="{{ 'label.selecione.o.item' | translate}}"
+                                 		data-ng-options="item.value as item.value for item in listaAgrupador"></select>
+                                 		
+                             </div>
+                     
+                             <div class="form-group col-xs-4">
+                                 <label>Situação</label>
+						   		 <select class="form-control" id="cmbListaSituacao" ng-model="situacaoSelecionado"
+                                 		ng-disabled="!true" placeholder="{{ 'label.selecione.o.item' | translate}}" 
+                                 		title="{{ 'label.selecione.o.item' | translate}}"
+                                 		data-ng-options="item.value as item.value for item in listaSituacao"></select>
+                             </div>
+
+					<div class="form-group col-xs-4">
+						<div class="form-group col-xs-1">
+						 	<label for="dataInicio">De </label>
+						 </div>
+						 <div class="form-group col-xs-5">
+								<input class="form-control"	id="dataInicio" ng-model="dataInicial" ui-mask="99/99/9999" />
+						 </div>
+							
+						<div class="form-group col-xs-1">	
+							<label for="dataFim">Até </label>
+						</div>
+						<div class="form-group col-xs-5">	
+							 <input class="form-control "id="dataFim" ng-model="dataFinal" ui-mask="99/99/9999" />
+						</div>									
+					</div>		 								
+					<script>
+						$(function() {
+							$("#dataInicio").daterangepicker({
+								singleDatePicker: true,
+			                    showDropdowns: true,
+			                    "locale": {
+							    "format": "DD/MM/YYYY",
+							    "customRangeLabel": "Custom",
+							    "daysOfWeek": [
+							        "Dom",
+							        "Seg",
+							        "Ter",
+							        "Qua",
+							        "Qui",
+							        "Sex",
+							        "Sáb"
+							    ],
+							    "monthNames": [
+							        "Janeiro",
+							        "Fevereiro",
+							        "Março",
+							        "Abril",
+							        "Maio",
+							        "Junho",
+							        "Julho",
+							        "Agosto",
+							        "Setembro",
+							        "Outubro",
+							        "Novembro",
+							        "Dezembro"
+							    ],
+							    "firstDay": 0
+							}});
+							
+							$("#dataFim").daterangepicker({
+								singleDatePicker: true,
+			                    showDropdowns: true,
+			                    "locale": {
+							    "format": "DD/MM/YYYY",
+							    "daysOfWeek": [
+							        "Dom",
+							        "Seg",
+							        "Ter",
+							        "Qua",
+							        "Qui",
+							        "Sex",
+							        "Sáb"
+							    ],
+							    "monthNames": [
+							        "Janeiro",
+							        "Fevereiro",
+							        "Março",
+							        "Abril",
+							        "Maio",
+							        "Junho",
+							        "Julho",
+							        "Agosto",
+							        "Setembro",
+							        "Outubro",
+							        "Novembro",
+							        "Dezembro"
+							    ],
+							    "firstDay": 0
+							}});
+						});
+					</script>
+									
+		</div>
+		
+		<div class="row" style="margin-top: 20px;">
+			<button type="button" ng-click="consultar();" class="btn btn-primary pull-right" style="margin-right: 20px; padding-right: 40px; padding-left: 40px;">
+				Filtrar</button>
+			<button type='button' ng-click="limparDados()" class='btn btn-primary pull-right' style="margin-right: 20px; padding-right: 40px; padding-left: 40px;">Limpar</button>
+		</div>		
+		
+		
+		<div ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+		 
+			 <table class="table table-striped dt" data-sort-name="date" data-sort-order="desc">
+				    <thead class="dttable ">
+				      <tr>
+				        <th data-field="agrupadorSelecionado" data-sortable="true"><span> {{agrupadorSelecionado}}</span></th>
+				        <th>Documentos Utilizados</th>
+				        <th>Situação</th>
+				        <th>Total</th>
+				        <th>Exportar XLS</th>
+				      </tr>
+				    </thead>
+			
+				    <tbody>
+				    	<tr class="dtline" ng-repeat="item in resultadoRelatorio" >
+	                              <td >
+	                               	{{item.agrupador}}
+	                              </td>
+	                              <td>
+	                               	{{item.total_documentos}}
+	                              </td>
+	                              <td>
+	                              	 {{item.acao}}
+	                              </td>
+	                              <td>
+	                              		{{item.total_dossie}}
+	                              </td>
+	                              <td>
+	                               	<span class="fa fa-file-excel-o" 
+								  ng-click="gerarRelatorioExcel(item)"  
+								  placeholder="Gerar relatório Excel"
+								  title="Gerar relatório Excel" />
+	                              </td>
+	                           </tr>
+				    </tbody>
+			  </table>	
+		  </div>
+</div>

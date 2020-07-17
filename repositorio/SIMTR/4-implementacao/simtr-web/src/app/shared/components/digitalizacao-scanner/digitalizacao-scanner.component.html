@@ -1,0 +1,116 @@
+<div class="btn-group btnDigitalizar">
+  <button id="digitalizarDocumento" type="button" (click)="digitalizarDocumento()" class="btn btn-primary" [disabled]="!userExiste">Digitalizar</button>
+  <button id="openMenuDigitalizar" type="button" class="btn btn-primary dropdown-toggle" [disabled]="!userExiste" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li id="openConfigurarModalScaner" data-toggle="modal" data-target="#myModal" (click)="carregarScaner()"><span class="glyphicon glyphicon-cog"></span> Configurar</li>
+  </ul>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Configurar Scanner</h4>
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-12 class espacoAlert" *ngIf="habilitaMensagemDispositivos">
+          <cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess"
+            [messagesError]="messagesError" (onCloseMessageInfo)="onCloseMessageInfo()"
+            (onCloseMessageError)="onCloseMessageError()" (onCloseMessageSuccess)="onCloseMessageSuccess()"
+            [messagesWarning]="messagesWarning" (onCloseMessageWarning)="onCloseMessageWarning()">
+          </cx-alert-message>
+        </div>
+      </div>
+      <div class="modal-body modalDigitalizar">
+        <div class="container-fluid form-group">
+          <div class="row linhaInput">
+            <div class="col-md-9">
+              <label class="control-label"> Dispositivo: </label>
+              <select id="scan_Dispositivo" class="form-control" [(ngModel)]="dispositivo" required>                
+                <option value="Selecione">Selecione</option>
+                <option value="{{item.indice}}" *ngFor="let item of listaDispositivos">{{item.desc}}</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="control-label"> Resolução: </label>
+              <select id="scan_Resolucao" class="form-control" [(ngModel)]="resolucao" required>
+                <option value="{{item}}" *ngFor="let item of listaResolucao">{{item + ' DPI'}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="row linhaInput">
+            <div class="col-md-9">
+              <label class="control-label"> Cor: </label>
+              <select id="scan_cor" class="form-control" [(ngModel)]="cor" required>
+                <option value="{{item.value}}" *ngFor="let item of listaCor">{{item.desc}}</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label class="control-label"> Formato: </label>
+              <select id="scan_formato" class="form-control" [(ngModel)]="formato" required>
+                <option value="{{item}}" *ngFor="let item of listaFormato">{{item}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row linhaInput">
+            <div class="col-md-6">
+              <label class="control-label"> Frente/Verso: </label>
+              <select id="scan_Opc_Frente_verso" class="form-control" [(ngModel)]="duplex" required>
+                <option value="{{item}}" *ngFor="let item of listaDuplex">{{item}}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="control-label"> Digitalização Contínua: </label>
+              <select id="scan_Dig_Continua" class="form-control" [(ngModel)]="continuo" required>
+                <option value="{{item}}" *ngFor="let item of listaDuplex">{{item}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row linhaInput">
+            <a id="scan_open_conf_Avancada" data-toggle="collapse" href="#collapse_host" aria-expanded="false" aria-controls="collapse_host">
+              <label class="control-label labelAvancado">Avançado </label>
+              <i class="glyphicon glyphicon-menu-down labelAvancado"></i>
+              <i class="glyphicon glyphicon-menu-up labelAvancado"></i>
+            </a>
+          </div>
+          <div class="row linhaInput">
+            <div class="collapse " id="collapse_host">
+              
+              <div class="col-md-12">
+                  <div class="col-md-3">
+                    <label class="control-label">Protocolo: </label>
+                    <select id="scan_protocolo" class="form-control" id="tipoConexao"  [(ngModel)]="protocolo" name="tipoConexao" required>
+                        <option value="http" [selected]="this.protocolo == 'http'">http</option>
+                        <option value="https" [selected]="this.protocolo == 'https'">https</option>
+                    </select>
+                  </div>
+                  <div class="col-md-9">
+                    <label class="control-label"> Host: </label>
+                    <input id="scan_host" class="form-control" [(ngModel)]="hostInputText" />
+                  </div> 
+              </div>
+              <div class="col-md-12 marginTop10px">
+                  <button id="atualizarDispositivos" type="button" (click)="atualizarDispositivos()" class="btn btn-success">
+                    Atualizar Dispositivos
+                  </button>
+                  <button id="restauraPadroes" type="button" (click)="restaurapadroes()" class="btn btn-success">
+                    Restaurar Padrões
+                  </button>
+              </div>
+            </div>   
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer modalDigitalizar">
+        <button id="salvarDadosScanner" class="marginRight14px" type="button" (click)="salvarDadosScanner()" class="btn btn-primary" data-dismiss="modal">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<p-fieldset class="cabecalho-dossie" [collapsed]="collapsed" [toggleable]="true">
+  <p-header>
+      <div class="titulo-container">Informações do Dossiê Cliente</div>
+  </p-header>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <span *ngIf="undefined != dossieCliente.cpf" class="label-visualizacao">CPF</span>
+      <span *ngIf="undefined != dossieCliente.cnpj" class="label-visualizacao">CNPJ</span><br/>
+      <span class="conteudo-visualizacao">{{dossieCliente.cnpj|kzCpfCnpj }}{{dossieCliente.cpf|kzCpfCnpj }}</span>
+    </li>
+    <li class="list-group-item">
+      <span class="label-visualizacao">Nome</span><br/>
+      <span class="conteudo-visualizacao">{{dossieCliente.nome}}</span>
+    </li>
+    <li *ngIf="undefined != dossieCliente.data_fundacao" class="list-group-item">
+        <span class="label-visualizacao">Data da Fundação</span><br/>
+        <span class="conteudo-visualizacao">{{dossieCliente.data_fundacao}}</span>
+    </li>
+    <li *ngIf="undefined != dossieCliente.data_nascimento" class="list-group-item">
+        <span class="label-visualizacao">Data de Nascimento</span><br/>
+        <span class="conteudo-visualizacao">{{dossieCliente.data_nascimento}}</span>
+    </li>
+  </ul>
+</p-fieldset>

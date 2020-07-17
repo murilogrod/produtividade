@@ -1,0 +1,20 @@
+{%- set navlevel = navlevel + 1 %}
+<ul class="subnav">
+    {%- if nav_item.is_page and nav_item.active %}
+     <!-- {%- include 'toc.html' %} -->
+    {%- elif nav_item.is_section %}
+        {%- for nav_item in nav_item.children %}
+            <li class="{% if nav_item.active %} current {% endif %}">
+                <a class="" href="{% if not nav_item.is_section %}{{ nav_item.url|url }}{% else %}#{% endif %}">{{nav_item.title}}</a>
+            </li>
+            {%- if nav_item.is_section %}
+                {%- include 'nav_sub.html' %}
+            {%- elif nav_item.is_page and nav_item.active %}
+                {% set many_level = true %}
+                <!-- {%- include 'toc.html'%} -->
+            {%- endif %}
+        {%- endfor %}
+    {% endif %}
+</ul>
+
+{%- set navlevel = navlevel - 1 %}

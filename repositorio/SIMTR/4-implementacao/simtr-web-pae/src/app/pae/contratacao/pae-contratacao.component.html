@@ -1,0 +1,102 @@
+<div class="cx-page box box-primary" style="min-height:590px;margin-bottom:0px;">
+		
+  <cx-header-widget></cx-header-widget>
+  <cx-alert-message [messagesInfo]="messagesInfo" [messagesSuccess]="messagesSuccess" [messagesError]="messagesError"
+    (onCloseMessageInfo)="onCloseMessageInfo()" (onCloseMessageError)="onCloseMessageError()"
+    (onCloseMessageSuccess)="onCloseMessageSuccess()" [messagesWarning]="messagesWarning"
+    (onCloseMessageWarning)="onCloseMessageWarning()">
+  </cx-alert-message>
+  <div class="box-body" >
+    <div class="box-body">
+      <div *ngIf="sucessoConsulta" class="container info-processo">
+        <div  class="row">
+            <div class="col-md-4">
+              <i class="fa fa-file-text"></i>
+              <label class="control-label">Processo:</label>
+             {{entidade.numero_processo}}/{{entidade.ano_processo}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-map-marker"></i>
+                <label class="control-label">Unidade Demandante:</label>
+                {{entidade.unidade_demandante}}
+            </div>
+            <div class="col-md-4">
+              <i class="fa fa-clipboard"></i>
+              <label class="control-label">Protocolo SICLG:</label>
+              {{entidade.protocolo_siclg}}
+            </div>
+        </div>
+        <div class="row col-md-4 col-sm-4">
+            <i class="fa fa-shopping-cart"></i>
+            <label for="objContrato" class="control-label">Objeto Contratação:</label>
+            {{entidade.objeto_contratacao}}
+        </div>
+      </div>
+      <div *ngIf="sucessoConsulta && perfilExporta">
+        <a  name="btn-refresh" class="btn btn-link download" 
+          title="Exportar Processo em PDF" rel="tooltip" data-placement="top" (click)="exportarPdf()">
+          <span class="fa fa-download"></span>Exportar
+        </a>
+        <p-dropdown name="icTipoExporta"  id="icTipoExporta" [style]="{'width':'100px'}"  [options]="tiposExporta" [(ngModel)]="tipoExportaSelecionado">
+              
+        </p-dropdown>
+      </div>
+      
+
+      <p-tabView #tbv [activeIndex]="index">
+        <div>
+					<p-tabPanel header="Dados do Processo" >
+            <div class="container">
+                <div class="col-md-8" style="padding:4px 10px;border-bottom: 0 none">
+                  <div class="col-md-6" style="margin-bottom: 10px;" *ngIf="perfilLeitura">
+                    <input style="margin-right: 10px;" #numero type="number" [(ngModel)]="numero_processo" (blur)="novaConsulta" min="1" pInputText maxlength="7" size="10" placeholder="Nr. Processo">/
+                    <input style="margin-left: 10px; width: 60px;" #ano name="TxtAno" type="number" (ngModelChange)="mudouAnoProcesso($event)" [ngModel]="ano_processo | zerosEsquerda:4" pInputText min="1" ng-minlength= "4" ng-maxlength="4" max="9999" placeholder="Ano" size="4" >
+                    <a name="btn-search" class="btn btn-link btn-xs" 
+                      title="Consultar Processo" rel="tooltip" data-placement="top" (click)="consultar()">
+                      <span class="fa fa-search"></span>
+                    </a>
+                    <a name="btn-refresh" class="btn btn-link btn-xs" 
+                      title="limpar Consulta" rel="tooltip" data-placement="top" (click)="refreshForm()">
+                      <span class="fa fa-refresh"></span>
+                    </a>
+                  </div>
+                  <div *ngIf="incluir && perfilEscrita" class="alert alert-danger col-md-12 row" role="alert">
+                      Processo não locallizado. Informe os dados do novo processo e pressione o botão Incluir Processo.
+                  </div>
+                  <div *ngIf="incluidoSucesso" class="col-md-12 alert alert-success row" role="alert">
+                    Processo Incluído com Sucesso
+                  </div>
+                  <div *ngIf="alteradoSucesso" class="col-md-12 alert alert-success row" role="alert">
+                    Processo Alterado com Sucesso.
+                 </div>
+                 <div *ngIf="exibirMensagem" class="col-md-12 alert alert-{{tipoMensagem}} row" role="alert">
+                  {{mensagem}}
+                </div>
+               
+              </div>  
+            </div>
+            
+            <pae-processo (incluiuProcesso)="quandoIncluirProcesso($event)" 
+              [(processo)]="entidade" [(numero_processo)]="numero_processo" 
+              (alterouProcesso)="quandoAlterarProcesso($event)"
+              [(ano_processo)]="ano_processo" [(consultou)]="consultou"></pae-processo>
+          </p-tabPanel>
+          <p-tabPanel header="Documentos do Processo" [disabled]="!sucessoConsulta">
+            <pae-docs [(docPara)]="docPara" [(processo)]="entidade" [(objeto)]="entidade"></pae-docs>
+         </p-tabPanel>
+          <p-tabPanel header="Contratos do Processo">
+              <pae-contrato (pesquisouContrato)="quandoPesquisarPorContrato($event)" [(processo)]="entidade" 
+                [(limparContratos)]="limparContratos" [(exibirConsultaContratos)]="exibirConsultaContratos"
+                [(consultaPorContrato)]="consultaPorContrato" [(contratoNaoLocalizado)]="contratoNaoLocalizado" ></pae-contrato>
+          </p-tabPanel>
+            
+          <p-tabPanel header="Apensos do Processo" [disabled]="!sucessoConsulta">
+            <pae-apensos [(processo)]="entidade" [(exibirConsultaApensos)]="exibirConsultaApensos"></pae-apensos>
+          </p-tabPanel>
+         
+				</div>
+      </p-tabView>
+    </div>
+    <a id='dwnldLnk' download='processo.pdf' style="display:none;"> </a>
+  </div>
+ 

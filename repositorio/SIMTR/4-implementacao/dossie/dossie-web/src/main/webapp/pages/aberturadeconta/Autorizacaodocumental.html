@@ -1,0 +1,123 @@
+<div class="theme-main" ng-controller="AutorizacaodocumentalController"
+	analytics-page="Página Autorização Documental">
+	<form id="formMain" name="formMain" tabindex="0">
+		<div class="row">
+			<div class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+				<tr>
+					<td><b><div style="text-align: left; color: #267fb9;">{{
+								'LABEL.AUTORIZAO.DOCUMENTAL' | translate}}</div></b>
+						<div style="text-align: left; color: #555a6d">{{ 'label.' |
+							translate}}</div>
+						<br></td>
+				</tr>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+				<span ncy-breadcrumb></span>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h5 class="padding text-primary bold col-xs-12 theme-main-h4"
+						align="left">
+						<i class="fa  ">&nbsp;</i> <span>{{
+							'label.abertura.de.conta.dossi.digital' | translate}}</span>
+					</h5>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="padding text-center col-xs-12 theme-main-img"
+						align="center">
+						<img class="img-responsive center-block" id="imgBarra05png"
+							ng-src="./imgs/barra05.png">
+					</div>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h5 class="padding text-primary bold col-xs-12 theme-main-h4"
+						align="left">
+						<i class="fa  ">&nbsp;</i> <span>{{
+							'label.autorizao.documental' | translate}}</span>
+					</h5>
+				</div>
+				<div ng-show="callingBackend"
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h6 class="padding text-primary bold col-xs-12 theme-main-h6"
+						align="left">
+						<i class="fa ">&nbsp;</i> <span>{{
+							'label.autorizacao.backend' | translate}}</span>
+					</h6>
+				</div>
+				<div ng-show="!callingBackend && showMessageOk"
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h6 class="padding text-primary bold col-xs-12 theme-main-h6"
+						align="left">
+						<i class="fa ">&nbsp;</i> <span>{{
+							'label.parabns,.voc.j.pode.contratar.o.produto!' | translate}}</span>
+					</h6>
+				</div>
+				<div ng-show="!callingBackend && showMessageOk"
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h6 class="padding text-primary bold col-xs-12 theme-main-h6"
+						align="left">
+						<i class="fa ">&nbsp;</i> <span>{{
+							'label.autorizacao.number' | translate }} <strong>{{
+								autorizacao.autorizacao }}</strong>
+						</span>
+					</h6>
+				</div>
+				<div ng-show="!callingBackend && !showMessageOk"
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<span class="padding text-danger bold col-xs-12 theme-main-h6"
+						title="Texto"> {{ 'label.autorizacao.denied' | translate}}
+					</span>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="theme-main-line-rule">
+						&nbsp;
+						<hr />
+					</div>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<button id="btnVoltar2" ng-click="goBack()"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						title="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						class="btn btn-sm margin-3x btn-warning pull-left col-xs-4 theme-main-button btn-padrao">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.voltar' | translate}}</span>
+					</button>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<button id="btnContinuar2" ng-disabled="!showMessageOk"
+						ng-click="advance()" loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para' | translate}}"
+						title="{{ 'label.clique.aqui.para' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-right col-xs-4 theme-main-button btn-padrao">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.continuar' | translate}}</span>
+					</button>
+				</div>
+			</div>
+			<div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<br>&nbsp; <br>&nbsp;
+		</div>
+	</form>
+</div>

@@ -1,0 +1,94 @@
+﻿OBSERVAÇÕES:
+O endereço de <compartilhamento> será fornecido pelo PEDES/GO.
+
+**HMP**
+1) Acessar o cloud config do SIMTR-API deste ambiente (http://cloudconfig.caixa/SIMTR/simtr-api-hmp/tree/master/) e alterar o arquivo ".s2i/bin/assemble":
+
+	1.1) Corrigir a linha 1, para que fique como abaixo:
+		echo "Baixando EAR"
+
+	1.2) Inserir como linha 4 o seguinte conteúdo: (logo acima da cópia do standalone.xml)
+		cp -f /tmp/src/simtr-keystore.jceks /opt/jboss/standalone/configuration/
+
+	1.3) Adicionar via upload o arquivo simtr-keystore.jceks na raiz do cloud config. O arquivo está disponível no <compartilhamento>.
+	
+2) Alterar o standalone.xml do SIMTR-API:
+	2.1) Alterar a propriedade url.servico.bpm (linha 69):	
+    	<property name="url.servico.bpm" value="https://simtr-jbpm.hmp.caixa/kie-server/services/rest"/>
+	
+	2.2) Incluir a propriedade url.servico.atualiza.cliente.sicli logo abaixo de url.servico.avalia.documento.sicod (uma nova linha 65):
+		<property name="url.servico.atualiza.cliente.sicli" value="http://api.des.caixa:8080/cadastro/v1/clientes"/>
+	
+	2.3) Incluir no final da lista de propriedades as seguintes:
+    	
+         name="usuario.nome.servico.bpm" value="kieserver"
+         name="simtr.keystore.url" value="${jboss.server.config.dir}/simtr-keystore.jceks"
+         name="simtr.keystore.type" value="JCEKS"
+         name="simtr.keystore.secret" value="serverpwd"
+         name="simtr.keystore.bpm.alias" value="bpm-usr-alias"
+         name="simtr.keystore.bpm.secret" value="bpm-usr-secret"
+
+		 
+3) Iniciar transação no PostgreSQL abrindo janela de execução de SQL e lançando o comando abaixo:
+	BEGIN;
+
+	3.1) Executar script disponível em: http://alm.caixa/tfs/PEDeS/SIMTR/_git/SIMTR_DOC?path=/6-implantacao/resources/scripts/DDL_PROD_2019-10-08.sql
+
+	3.2) Avaliar o resultado do script executado no passo 2, escolhendo entre as ações abaixo de acordo com o resultado dele:
+
+		3.2.1) Caso o resultado seja de sucesso, com retorno como "Query returned successfully with no result in xx msec", executar o comando abaixo para salvar a transação:
+			COMMIT;
+		
+		3.2.2) Caso a execução do script no passo 2 lance quaisquer erro, executar o comando abaixo para desfazer de maneira segura a transação:
+			ROLLBACK;
+		
+4) Implantar o pacote 20191008.1 do SIMTR-API em HMP.
+
+5) Implantar o pacote 20191008.2 do SIMTR-WEB em HMP.
+
+6) Implantar o pacote 20191008.1 do SIMTR-DOSSIE em HMP.
+
+-------------------------------------------------------------------------------
+
+**PRD**
+1) Acessar o cloud config do SIMTR-API deste ambiente (http://cloudconfig.caixa/SIMTR/simtr-api-prd/tree/master/) e alterar o arquivo ".s2i/bin/assemble":
+
+	1.1) Inserir como linha 4 o seguinte conteúdo: (logo acima da cópia do standalone.xml)
+		cp -f /tmp/src/simtr-keystore.jceks /opt/jboss/standalone/configuration/
+
+	1.2) Adicionar via upload o arquivo simtr-keystore.jceks na raiz do cloud config. O arquivo está disponível no <compartilhamento>.
+	
+2) Alterar o standalone.xml do SIMTR-API:
+	2.1) Alterar a propriedade url.servico.bpm (linha 68):	
+    	<property name="url.servico.bpm" value="https://simtr-jbpm.caixa/kie-server/services/rest"/>
+	
+	2.2) Incluir a propriedade url.servico.atualiza.cliente.sicli logo abaixo de url.servico.avalia.documento.sifrc (uma nova linha 64):
+		<property name="url.servico.atualiza.cliente.sicli" value="https://api.caixa:8443/cadastro/v1/clientes"/>
+
+	2.3) Incluir no final da lista de propriedades as seguintes:
+    	
+         name="usuario.nome.servico.bpm" value="kieserver"
+         name="simtr.keystore.url" value="${jboss.server.config.dir}/simtr-keystore.jceks"
+         name="simtr.keystore.type" value="JCEKS"
+         name="simtr.keystore.secret" value="serverpwd"
+         name="simtr.keystore.bpm.alias" value="bpm-usr-alias"
+         name="simtr.keystore.bpm.secret" value="bpm-usr-secret"
+
+3) Iniciar transação no PostgreSQL abrindo janela de execução de SQL e lançando o comando abaixo:
+	BEGIN;
+
+	3.1) Executar script disponível em: http://alm.caixa/tfs/PEDeS/SIMTR/_git/SIMTR_DOC?path=/6-implantacao/resources/scripts/DDL_PROD_2019-10-08.sql
+
+	3.2) Avaliar o resultado do script executado no passo 2, escolhendo entre as ações abaixo de acordo com o resultado dele:
+
+		3.2.1) Caso o resultado seja de sucesso, com retorno como "Query returned successfully with no result in xx msec", executar o comando abaixo para salvar a transação:
+			COMMIT;
+		
+		3.2.2) Caso a execução do script no passo 2 lance quaisquer erro, executar o comando abaixo para desfazer de maneira segura a transação:
+			ROLLBACK;
+		
+4) Implantar o pacote 20191008.1 do SIMTR-API em PRD.
+
+5) Implantar o pacote 20191008.2 do SIMTR-WEB em PRD.
+
+6) Implantar o pacote 20191008.1 do SIMTR-DOSSIE em PRD.

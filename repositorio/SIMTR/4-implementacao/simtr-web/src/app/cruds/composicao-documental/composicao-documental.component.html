@@ -1,0 +1,102 @@
+<section class="content">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-10">
+        <div class="box box-primary" >
+          <div class="content">
+          <div class="box-header with-border">
+              <h3 class="box-title">Cadastro Composição Documental</h3>
+          </div>
+          <div *ngIf="exibirMensagem" class="alert alert-{{tipoMensagem}} alert-dismissible col-md-12">
+            <h4><i class="fa fa-{{tipoIcone}}"></i>&nbsp;&nbsp;Atenção!</h4>
+                {{ mensagem }}
+          </div>
+          <div *ngIf="telaCadastro" id="incluir"  >
+            <form #f="ngForm" >
+              <div class="box-body">
+                <div class="row">
+                  <div class="form-group col-md-9">
+                      <label for="nome">Nome:</label>
+                      <input class="form-control" id="nome" [(ngModel)]="entidade.nome_composicao_documental" name="nome" autofocus
+                        placeholder="Nome" required #nome="ngModel" minlength="5">
+                      <div *ngIf="!f.pristine && !nome.valid && nome.touched" class="alert alert-danger">
+                          Nome não informado ou não tem no mínimo 5 caracteres!
+                      </div>
+                  </div>
+                </div>
+                <div class= "row">
+                  <div class="form-group col-md-3">
+                    <label for="icConclusao">Indicador Conclusão:</label>
+                    <select class="contato-select form-control"  id="icConclusao" [(ngModel)]="icConclusao" name="icConclusao"  >
+                      <option value="false" selected>Não</option>
+                      <option value="true" >Sim</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group col-md-3">
+                    <label for="horaInc">Data/Hora Inclusão</label>
+                    <input class="form-control" id="horaInc" [(ngModel)]="entidade.data_hora_inclusao" name="horaInc"
+                        disabled>
+                  </div>
+
+                  <div class="form-group col-md-3">
+                    <label for="matriculaInc">Matrícula Inclusão</label>
+                    <input class="form-control" id="matriculaInc" [(ngModel)]="entidade.matricula_inclusao" name="matriculaInc"
+                        disabled>
+                  </div>
+
+                </div>
+             
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="cancelar(f)" >Voltar</button>
+                  <button type="button" name="submitModal" (click)="salvar(f)" [disabled]="!f.valid" class="btn btn-primary">Gravar</button>
+              </div>
+            </form>
+            
+          </div>
+          <div *ngIf="!telaCadastro">
+            <button style="margin-top: 10px; margin-left: 15px; margin-bottom: 8px" type="button" name="novo" (click)="abrirModal()" class="btn btn-primary">Nova Composição Documental</button>
+            <div class="" style="padding:4px 10px;border-bottom: 0 none">
+              <i class="fa fa-search" style="margin:10px 10px 10px 10px"></i>
+              <input #gb type="text" pInputText size="50" placeholder="Filtro Global">
+            </div> 
+            <p-dataTable [value] = "itens"  emptyMessage="Não existem dados cadastrados"
+              [globalFilter]="gb" #dt [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,15,20]">
+              <p-column field="nome_composicao_documental" sortable="true" header="NOME" [style]="{'width':'30%', 'text-align':'left'}"></p-column>
+              <p-column header="INDICADOR CONCLUSÃO" [style]="{'width':'10%','text-align':'center'}">
+                <ng-template let-dados="rowData" pTemplate="body">
+                    {{dados.indicador_conclusao == true? 'Sim': 'Não'}}
+                </ng-template>
+              </p-column>
+              <p-column field="data_hora_inclusao" header="DATA/HORA INCLUSÃO" [style]="{'width':'10%','text-align':'center'}"></p-column>
+              <p-column field="matricula_inclusao" header="MATRÍCULA INCLUSÃO" [style]="{'width':'10%','text-align':'center'}"></p-column>
+
+              <p-column header="AÇÕES" [style]="{'width':'6%', 'text-align':'center'}">
+                  <ng-template let-col let-dados="rowData" pTemplate="body">
+                    <a name="btn-excluir" class="btn btn-link btn-xs" (click)="excluir(dados,f)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a name="btn-alterar" class="btn btn-link btn-xs" (click)="alterar(dados)">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                  </ng-template>
+              </p-column>
+            </p-dataTable>
+          </div>
+          <p-confirmDialog id="modalConfirma" header="Confirmação" icon="fa fa-question-circle" width="425" #cd>
+            <p-footer>
+                <button type="button" pButton label="Não" icon="fa fa-close" (click)="cd.reject()"></button>
+                <button type="button" pButton label="Sim" icon="fa fa-check"  (click)="cd.accept()"></button>
+            </p-footer>
+        
+          </p-confirmDialog>
+          
+        
+        </div>  
+
+
+        </div>
+    </div>
+    </div>
+    </section>

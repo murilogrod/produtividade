@@ -1,0 +1,7 @@
+{
+  "realm": "intranet",
+  "auth-server-url": "${url.sso.auth}",
+  "ssl-required": "external",
+  "resource": "cli-web-mtr",
+  "public-client": true
+}

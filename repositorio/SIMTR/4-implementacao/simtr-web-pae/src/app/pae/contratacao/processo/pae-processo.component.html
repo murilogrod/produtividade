@@ -1,0 +1,131 @@
+<div class="cx-page box box-primary">
+		
+  <div class="box-body">
+    <div *ngIf="atualizou" class="alert alert-{{tipoRetorno}} col-md-12" role="alert">
+          {{mensagem}}
+    </div>
+    
+    <div *ngIf="consultou" class="container ">
+      
+      <form #f="ngForm" class="form-horizontal col-md-12" id="Crud" name="Crud">
+        
+        <div class="row">
+          <div class="col-md-6">
+              <label for="nrProcesso" class="label-form" >Número Processo:</label>
+          </div>
+          <div class="col-md-6">
+              <label for="anoProcesso" class="label-form">Ano Processo:</label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <input class="form-control" id="nrProcesso" (ngModelChange)="mudouNumeroProcesso()" [ngModel]="entidade.numero_processo | zerosEsquerda: 5" name="nrProcesso" 
+              [disabled] = "true" placeholder="Número Processo" required disabled #nrProcesso="ngModel" minlength="5" maxlength="7">
+            <div *ngIf="!f.pristine && !nrProcesso.valid && nrProcesso.touched" class="alert alert-danger">
+                Número do processo não tem no mínimo 5 caracteres!
+            </div>
+          </div>
+          <div class="col-md-6">
+              <input class="form-control" id="anoProcesso" [(ngModel)]="entidade.ano_processo" name="anoProcesso" 
+              [disabled] = "true" placeholder="Ano Processo" required disabled #anoProcesso="ngModel" minlength="4" maxlength="4">
+              <div *ngIf="!f.pristine && !anoProcesso.valid && anoProcesso.touched" class="alert alert-danger">
+                  Ano do Processo não tem 4 dígitos!
+              </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <label for="nrCertame" class="label-form">Número Certame:</label>
+          </div>
+          <div class="col-md-6">
+              <label for="anoCertame" class="label-form" autofocus>Ano Certame:</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <input type="number"  class="form-control" id="nrCertame" (ngModelChange)="mudouNumeroCertame($event)"  [ngModel]="entidade.numero_pregao | zerosEsquerda: 5" name="nrCertame" 
+              placeholder="Número Certame" required #nrCertame="ngModel" min= "1" minlength="5" maxlength="7">
+            <div *ngIf="!f.pristine && !nrCertame.valid && nrCertame.touched" class="alert alert-danger">
+                Número do Certame não tem entre 5 e 7 dígitos!
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="number" pattern=".{4,}" class="form-control" id="anoCertame" [(ngModel)]="entidade.ano_pregao" name="anoCertame" 
+              placeholder="Ano Certame" required #anoCertame="ngModel" min= "1" minlength="4" maxlength="4">
+            <div *ngIf="!f.pristine && !anoCertame.valid && anoCertame.touched" class="alert alert-danger">
+                Ano do Certame não tem 4 dígitos!
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <label for="nrProtocolo" class="label-form">Número Protocolo SICLG:</label>
+          </div>
+          <div class="col-md-6">
+              <label for="unidadeDemandante" class="label-form">Unidade Demandante:</label>
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-md-6">
+            <input type="number" pattern=".{5,8}"  class="form-control" id="nrProtocolo" [(ngModel)]="entidade.protocolo_siclg" name="nrProtocolo" 
+              placeholder="Número Protocolo SICLG" #nrProtocolo="ngModel" min= "1" minlength="5" maxlength="8">
+            <div *ngIf="!f.pristine && !nrProtocolo.valid && nrProtocolo.touched" class="alert alert-danger">
+                Número do Protocolo SICLG não tem entre 5 e 8 dígitos!
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="number" pattern=".{1,4}" class="form-control" id="unidadeDemandante" (ngModelChange)="mudouUnidadeDemandante($event)" [ngModel]="entidade.unidade_demandante | zerosEsquerda:4" name="unidadeDemandante" 
+              placeholder="Unidade Demandante" required #unidadeDemandante="ngModel" min= "1" minlength="1" maxlength="4">
+            <div *ngIf="!f.pristine && !unidadeDemandante.valid && unidadeDemandante.touched" class="alert alert-danger">
+                Unidade Demandante não tem 4 dígitos!
+            </div>
+          </div>
+        </div>
+         
+        <div class="row">
+          <div class="col-md-6">
+              <label for="unidadeContratacao" class="label-form">Unidade Contratação:</label>
+          </div>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <input type="number" pattern=".{1,4}"  class="form-control" id="unidadeContratacao" (ngModelChange)="mudouUnidadeContratacao($event)" [ngModel]="entidade.unidade_contratacao | zerosEsquerda:4" name="unidadeContratacao" 
+              placeholder="Unidade Contratação" required #unidadeContratacao="ngModel" min= "1" minlength="1" maxlength="4">
+            <div *ngIf="!f.pristine && !unidadeContratacao.valid && unidadeContratacao.touched" class="alert alert-danger">
+                Unidade de Contratação não tem 4 dígitos!
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="objContrato" class="label-form">Objeto Contratação:</label>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <textarea pInputTextarea autoResize="false" rows="5" cols="30" class="form-control" id="descricao" [(ngModel)]="entidade.objeto_contratacao" name="objContrato" 
+              placeholder="Objeto Contratação" style='min-height: 8em' minlength="10" required #objContrato="ngModel"></textarea>
+      
+              <div *ngIf="!f.pristine && !objContrato.valid && objContrato.touched" class="alert alert-danger">
+                Objeto Contratação não informado ou não tem no mínimo 15 caracteres!
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-right no-padding botao" *ngIf="perfilEscrita">
+            <button *ngIf="exibirBotaoIncluir" type="button" name="btnIncluirContrato" (click)="salvar(f)" [disabled]="!f.valid" class="btn btn-primary btn-inclui">INCLUIR PROCESSO</button>
+            <button *ngIf="exibirBotaoAlterar" type="button" name="btnAlterarContrato" (click)="salvar(f)" [disabled]="!f.valid && entidade != null" class="btn btn-primary btn-inclui">ALTERAR PROCESSO</button>
+        </div>
+      </form>
+    </div>
+    
+  </div>
+</div>
+ 

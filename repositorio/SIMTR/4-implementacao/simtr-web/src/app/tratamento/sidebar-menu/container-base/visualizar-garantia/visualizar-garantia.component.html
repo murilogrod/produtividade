@@ -1,0 +1,29 @@
+<p-fieldset class="cabecalho-dossie" [collapsed]="collapsed" [toggleable]="true">
+  <p-header>
+      <div class="titulo-container" pTooltip="{{garantiaVinculada.nome_garantia}}">{{garantiaVinculada.nome_garantia}}</div>
+  </p-header>
+  <ul class="list-group">
+    <li class="list-group-item" *ngIf="undefined != garantiaVinculada.produto_modalidade && undefined != garantiaVinculada.produto_operacao">
+      <span class="label-visualizacao">Código do Produto</span><br/>
+      <span class="conteudo-visualizacao">{{garantiaVinculada.produto_modalidade}}-{{garantiaVinculada.produto_operacao}}</span>
+    </li>
+    <li class="list-group-item" *ngIf="garantiaVinculada.dossies_cliente.length > 0">
+      <span class="label-visualizacao">Pessoas</span><br/>
+      <div *ngFor="let dossieCliente of garantiaVinculada.dossies_cliente">
+        <span class="conteudo-visualizacao" *ngIf="dossieCliente.tipo_pessoa == 'J'">{{dossieCliente.cnpj|kzCpfCnpj}}</span>
+        <span class="conteudo-visualizacao" *ngIf="dossieCliente.tipo_pessoa == 'F'">{{dossieCliente.cpf|kzCpfCnpj}}</span>
+      </div>
+    </li>
+    <li class="list-group-item">
+        <span class="label-visualizacao">Valor</span><br/>
+        <span class="conteudo-visualizacao">{{formatValor(garantiaVinculada.valor)}}</span>
+    </li>
+    <li class="list-group-item">
+        <formulario-resposta-generico
+          [respostasCampoFormulario]="respostasFormulario"
+          [titulo]="'Dados Adicionais'"
+          [dossieProduto]="dossieProduto">
+      </formulario-resposta-generico>
+    </li>
+  </ul>
+</p-fieldset>

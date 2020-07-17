@@ -1,0 +1,18 @@
+#corpAlertInformativo {
+    background: rgb(217, 237, 247);
+    padding: 10px 5px;
+    border-radius: 0.3em;
+    color: rgb(35, 88, 128);
+}
+    #corpAlertInformativo label, #corpAlertInformativo a {
+        padding: 0px 7px;
+    }
+
+    #corpAlertInformativo a {
+        float: right;
+        cursor: pointer;
+    }
+
+    #corpAlertInformativo p {
+        padding: 5px 7px;
+    }

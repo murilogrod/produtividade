@@ -1,0 +1,45 @@
+<body class="hold-transition skin-blue-light" [ngClass]="sideBarClass()">
+	<div class="wrapper">
+		<cx-loader></cx-loader>
+		<cx-header></cx-header>
+
+		<!-- Left side column. contains the logo and sidebar 
+		<aside class="main-sidebar ng-hide" *ngIf="userLogged()">
+			<cx-menu></cx-menu>
+		</aside>
+		-->
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="margin-left:0px;min-height: 100%">
+		
+			<!-- Content Header (Page header) -->
+			<!-- 			    <section class="content-header" *ngIf="userLogged()"> -->
+			<!-- 			      <h1> -->
+			<!-- 			        {{currentview.title}} -->
+			<!-- 			      </h1> -->
+			<!-- 			      <ol class="breadcrumb"> -->
+			<!-- 			         <li [ngClass]="{active: bread.active}" *ngFor="let bread of app.breadcrumb"> -->
+			<!-- 			       		<a href="#" (click)="goLink(bread.link)"> -->
+			<!-- 			       			<i class="fa" [className]="bread.icon"></i>{{bread.label}} -->
+			<!-- 			       		</a> -->
+			<!-- 			        </li> -->
+			<!-- 			      </ol> -->
+			<!-- 			    </section> -->
+
+			<!-- Main content -->
+			<section class="content" > 
+				<router-outlet></router-outlet>
+			</section>
+			<div *ngIf="ajustarLayout()"></div>
+		</div>
+		<cx-footer></cx-footer>
+
+		<!-- Control Sidebar 
+		<aside class="control-sidebar control-sidebar-light">
+		</aside>
+	
+		 Add the sidebar's background. This div must be placed
+	       immediately after the control sidebar 
+		  <div class="control-sidebar-bg"></div>
+		-->
+	</div>
+</body>

@@ -1,0 +1,48 @@
+site_name: SIMTR
+site_description: Documentação SIMTR
+site_author: Caixa Econômica Federal
+copyright: Copyright &copy; 2019 Caixa Econômica Federal.
+
+nav:
+    - Início: index.md
+    - Objetivo: objetivo.md
+    - 'Cadastramento de Usuários': cadastramento_usuario.md
+    - 'Acesso': acesso.md
+    - 'Estrutura do sistema': estrutura_sistema.md   
+    - 'Dashboard': dashboard.md
+    - 'Criação/Manutenção Dossiê Cliente': dossie_cliente.md
+    - 'Criação/Manutenção Dossiê Produto': dossie_produto.md
+    - 'Glossário': glossario.md
+    - 'Logout': logout.md
+   
+ 
+
+   
+
+theme: 
+    name: mkdocs
+    include_search_page: true
+    search_index_only: false
+    highlightjs: true
+    hljs_languages: []
+
+    include_homepage_in_sidebar: true
+    prev_next_buttons_location: bottom
+    titles_only: false
+    collapse_navigation: true 
+    navigation_depth: 4
+    custom_dir: caixa_theme/
+    
+    shortcuts:
+        help: 191    # ?
+        next: 78     # n
+        previous: 80 # p
+        search: 83   # s
+
+
+extra_css:
+    - css/extra.css
+
+plugins:
+    - search:
+        separator: '[\s\-\.]+'

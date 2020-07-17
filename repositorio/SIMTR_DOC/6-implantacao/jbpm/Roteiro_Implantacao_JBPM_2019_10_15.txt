@@ -1,0 +1,49 @@
+ROTEIRO DE IMPLANTAÇÃO:
+
+** HMP **
+Observações:
+<jboss_dir>: o diretório onde o JBoss está instalado nesse ambiente (onde fica sua pasta /bin do JBoss).
+
+
+
+1) Ir até a pasta <jboss_dir>/configuration/ e executar o comando abaixo, visando inserir a senha do usuário de serviço neste arquivo de senhas preexistente:
+	keytool -importpassword -keystore <diretorio_keystore>/jBPMKeystore.jceks -keypass smtrPassword -alias smtrAlias -storepass jBPMKeyStorePassword -storetype JCEKS	
+	
+	a) Será solicitada a digitação e em seguida confirmação da senha do usuário de serviço. No ambiente HMP a senha é: h6d6dgp4
+
+
+
+2) Ainda na pasta <jboss_dir>/configuration/, editar o arquivo standalone.xml adicionando as propriedades:
+		name="kie.keystore.user.mtr.alias" value="smtrAlias"
+        name="kie.keystore.user.mtr.secret" value="smtrPassword"
+        name="kie.keystore.type" value="JCEKS"
+        name="bpm.sso.client.user" value="cli-web-mtr-bpm"
+        name="bpm.sso.client.secret" value="2de09011-6253-418a-8542-e34da93e0817"
+		name="simtr.service.user" value="smtrbd01"
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+** PRD **
+Observações:
+<jboss_dir>: o diretório onde o JBoss está instalado nesse ambiente (onde fica sua pasta /bin do JBoss).
+
+
+
+1) Ir até a pasta <jboss_dir>/configuration/ e executar o comando abaixo, visando inserir a senha do usuário de serviço neste arquivo de senhas preexistente:
+	keytool -importpassword -keystore <diretorio_keystore>/jBPMKeystore.jceks -keypass smtrPassword -alias smtrAlias -storepass jBPMKeyStorePassword -storetype JCEKS	
+	
+	a) Será solicitada a digitação e em seguida confirmação da senha do usuário de serviço do BPM de PRD.
+	b) O nome e a senha do usuário de serviço de PRD estão em poder da CEPTIBR, favor verificá-los com Marcelo Santana.
+
+
+
+2) Ainda na pasta <jboss_dir>/configuration/, editar o arquivo standalone.xml adicionando as propriedades abaixo.
+	a) Substituir o secret <secret_cli-web-mtr-bpm_prd> pelo secret de PRD (em poder da CEPTIBR)
+	b) Substituir o nome do usuário de serviço do BPM <usuario_servico_bpm> pelo nome desse usuário em PRD (em poder da CEPTIBR)
+	
+		name="kie.keystore.user.mtr.alias" value="smtrAlias"
+        name="kie.keystore.user.mtr.secret" value="smtrPassword"
+        name="kie.keystore.type" value="JCEKS"
+        name="bpm.sso.client.user" value="cli-web-mtr-bpm"
+        name="bpm.sso.client.secret" value="<secret_cli-web-mtr-bpm_prd>"
+		name="simtr.service.user" value="<usuario_servico_bpm>"
+

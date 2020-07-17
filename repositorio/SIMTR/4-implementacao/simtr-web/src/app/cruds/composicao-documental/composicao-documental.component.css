@@ -1,0 +1,25 @@
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid red
+}
+
+.painel, ng-trigger-panelContent {
+    margin: 0 auto;
+}
+
+.box {
+    padding: 20px;
+    margin: 20px;
+}
+
+.coluna-centralizada {
+    text-align: center;
+    
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}

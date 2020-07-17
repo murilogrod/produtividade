@@ -1,0 +1,21 @@
+{
+    "id": 1,
+    "versao": 1,
+    "sigla": "SIMTR",
+    "descricao": "SIMTR - WEB",
+    "canalCaixa": "AGE",
+    "clienteSSO": "cli-web-mtr",
+    "janelaExtracaoM0": true,
+    "janelaExtracaoM30": true,
+    "janelaExtracaoM60": true,
+    "indicadorAvaliacaoAutenticidade": true,
+    "indicadorAtualizacaoDocumento": true,
+    "indicadorOutorgaReceita": true,
+    "indicadorOutorgaCadastroCaixa": true,
+    "dataHoraUltimaAlteracao": 1556294572984,
+	"indicadorOutorgaApimanager": null,
+	"indicadorOutorgaSiric": null,
+	"urlCallbackDocumento": null,
+	"urlCallbackDossie": null,
+    "documentos": []
+}

@@ -1,0 +1,37 @@
+<form #formProduto="ngForm" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Produto Vinculado</h4>
+        </div>
+      
+        <div class="modal-body">
+          <div class="col-md-12 form-group">
+            <label class="col-md-12" for="fundacao">Produto:</label>
+            <div class="col-md-12">{{vinculoProduto.nome}}</div>
+          </div>
+          <div class="col-md-6 form-group" *ngFor="let resposta of listaCampos">
+              <label class="col-md-12" for="">{{resposta.label}}</label>
+              <div class="col-md-12" *ngIf="resposta.tipoCampo == 'MONETARIO'">
+                {{resposta.value | currency:'BRL':'symbol':'0.0-2':'pt'}}
+              </div>
+              <div class="col-md-12" *ngIf="resposta.mascara && resposta.tipoCampo != 'MONETARIO'">
+                {{resposta.value | mask: resposta.mascara}}
+              </div>
+              <div class="col-md-12" *ngIf="!resposta.mascara && resposta.tipoCampo != 'MONETARIO'">
+                  {{resposta.value}}
+                </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="col-md-12" style="padding-top: 15px;">
+              <button id="fechar-modal-produto-visualizacao" type="button" class="btn btn-primary pull-right" (click)="cancel()">Fechar</button>
+          </div>
+        </div>
+      
+      
+    </div>
+    </div>
+  </form>
+    

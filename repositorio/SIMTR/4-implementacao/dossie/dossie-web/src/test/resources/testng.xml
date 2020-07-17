@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+	<!-- <test name="Internet Explorer - Windows">
+		<parameter name="browser" value="internet explorer" />
+		<parameter name="platform" value="windows" />
+		<parameter name="version" value="9" />
+		<parameter name="hubUrlFabrica" value="http://cr7265et691.corerj.caixa:4444/wd/hub" />
+		<parameter name="hubUrlCaixa" value="http://cr7265et691.corerj.caixa:4444/wd/hub" />
+		<classes>
+			
+
+		</classes>
+	</test>
+	<test name="Chrome - Windows">
+		<parameter name="browser" value="chrome" />
+		<parameter name="platform" value="windows" />
+		<parameter name="version" value="23" />
+		<parameter name="hubUrlFabrica" value="http://cr7265et691.corerj.caixa:4444/wd/hub" />
+		<parameter name="hubUrlCaixa" value="http://cr7265et691.corerj.caixa:4444/wd/hub" />
+		<classes>
+			
+
+		</classes>
+	</test> -->
+	<test name="Firefox - Windows">
+		<parameter name="browser" value="firefox" />
+		<parameter name="platform" value="windows" />
+		<parameter name="version" value="17" />
+		<parameter name="hubUrlFabrica" value="http://localhost:4444/wd/hub" />
+		<parameter name="hubUrlCaixa" value="http://localhost:4444/wd/hub" />
+		<parameter name="proxyHost" value="" />
+		<classes>
+
+		</classes>
+	</test>
+	<listeners>
+		<listener class-name="br.gov.caixa.dossie.generic.GeradorDoRelatorio" />
+	</listeners>
+</suite>

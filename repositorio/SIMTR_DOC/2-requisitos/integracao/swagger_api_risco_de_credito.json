@@ -1,0 +1,2497 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Disponibiliza recursos do sistema de mensuração de risco de crédito para solicitar, consultar e cancelar avaliações de risco de crédito e cadastrar informações de contratos.",
+    "contact": {
+      "name": "CEDESBR230",
+      "email": "CEDESBR230@caixa.gov.br"
+    },
+    "version": "1.0.0",
+    "title": "Risco de Crédito"
+  },
+  "paths": {
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-tomador/{codigo-avaliacao}/cancelar": {
+      "put": {
+        "summary": "Cancela a avaliação de tomador",
+        "description": "Permite cancelar a avaliação de risco de crédito de tomador",
+        "operationId": "cancelaAvaliacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-avaliacao",
+            "in": "path",
+            "description": "Código de identificação da avaliação",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso"
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar o cancelamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao efetuar o cancelamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-operacao": {
+      "get": {
+        "summary": "Consulta o resultado das avaliações de operação do cliente informado",
+        "description": "São retornadas as avaliações que não estejam contratadas e canceladas",
+        "operationId": "consultaAvaliacoesOperacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-produto",
+            "in": "query",
+            "description": "Filtra as avaliações retornadas pelo produto",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          {
+            "name": "codigo-modelo-avaliacao",
+            "in": "query",
+            "description": "Filtra as avaliações retornadas pelo modelo",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 99999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvaliacaoOperacao"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar consultar as avaliações de operação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao consultar as avaliações de operação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/propostas-operacao": {
+      "post": {
+        "summary": "Solicita a proposta de avaliação de operação",
+        "description": "Permite solicitar avaliação de risco de crédito de operação para o cliente informado",
+        "operationId": "recebePropostaOperacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropostaAvaliacaoOperacao"
+              }
+            }
+          },
+          "description": "Parâmetros da solicitação de avaliação",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtocoloProposta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-tomador/{codigo-avaliacao}": {
+      "get": {
+        "summary": "Consulta o resultado da avaliação de tomador informada",
+        "description": "O resultado será retornado quando for identificada a avaliação para o cliente informado e a mesma não esteja bloqueada",
+        "operationId": "consultaAvaliacaoTomador",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-avaliacao",
+            "in": "path",
+            "description": "Código de identificação da avaliação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minimum": 1,
+              "maximum": 999999999
+            }
+          },
+          {
+            "name": "codigo-produto",
+            "in": "query",
+            "description": "Filtra as avaliações retornadas pelo produto",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 9999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvaliacaoTomador"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar consultar a avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao consultar as avaliações válidas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/propostas-tomador": {
+      "post": {
+        "summary": "Solicita a proposta de avaliação de tomador",
+        "description": "Permite solicitar avaliação de risco de crédito de tomador para o cliente informado",
+        "operationId": "recebePropostaTomador",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropostaAvaliacaoTomador"
+              }
+            }
+          },
+          "description": "Parâmetros da solicitação de avaliação",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProtocoloProposta"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-tomador": {
+      "get": {
+        "summary": "Consulta o resultado das avaliações de tomador do cliente informado",
+        "description": "São retornadas as avaliações que não estejam contratadas e canceladas",
+        "operationId": "consultaAvaliacoesTomador",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-produto",
+            "in": "query",
+            "description": "Filtra as avaliações retornadas pelo produto",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 9999
+            }
+          },
+          {
+            "name": "codigo-modelo-avaliacao",
+            "in": "query",
+            "description": "Filtra as avaliações retornadas pelo modelo",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 99999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AvaliacaoTomador"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar consultar as avaliações de tomador",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao consultar as avaliações de tomador",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-operacao/{codigo-avaliacao}": {
+      "get": {
+        "summary": "Consulta o resultado da avaliação de operação informada",
+        "description": "O resultado será retornado quando for identificada a avaliação para o cliente informado e a mesma não esteja contratada",
+        "operationId": "consultaAvaliacaoOperacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-avaliacao",
+            "in": "path",
+            "description": "Código de identificação da avaliação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minimum": 1,
+              "maximum": 999999999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvaliacaoOperacao"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar consultar a avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao consultar as avaliações válidas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/propostas-tomador/{protocolo}": {
+      "get": {
+        "summary": "Consulta o resultado da proposta de avaliação de tomador",
+        "description": "Permite consultar o resultado da proposta de avaliação de tomador a partir do protocolo gerado na solicitação",
+        "operationId": "consultaPropostaTomador",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "protocolo",
+            "in": "path",
+            "description": "Protocolo de solicitação da proposta de avaliação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultadoPropostaTomador"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/propostas-operacao/{protocolo}": {
+      "get": {
+        "summary": "Consulta o resultado da proposta de avaliação de operação",
+        "description": "Permite consultar o resultado da proposta de avaliação de operação a partir do protocolo gerado na solicitação",
+        "operationId": "consultaPropostaAvaliacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "protocolo",
+            "in": "path",
+            "description": "Protocolo de solicitação da proposta de avaliação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResultadoPropostaOperacao"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/avaliacoes-operacao/{codigo-avaliacao}/cancelar": {
+      "put": {
+        "summary": "Cancela avaliação de operação",
+        "description": "Permite cancelar a avaliação de risco de crédito de operação",
+        "operationId": "cancelaAvaliacaoOperacao",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          },
+          {
+            "name": "codigo-avaliacao",
+            "in": "path",
+            "description": "Código de identificação da avaliação",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 999999999
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso"
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar o cancelamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao efetuar o cancelamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/tomadores-credito/{identificacao-pessoa}/propostas-tomador": {
+      "post": {
+        "summary": "Solicita a proposta de avaliação de tomador",
+        "description": "Permite solicitar avaliação de risco de crédito de tomador para o cliente informado",
+        "operationId": "recebePropostaTomadorV2",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropostaAvaliacaoTomadorV2"
+              }
+            }
+          },
+          "description": "Parâmetros da solicitação de avaliação",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventoPropostaTomador"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/tomadores-credito/{identificacao-pessoa}/propostas-operacao": {
+      "post": {
+        "summary": "Solicita a proposta de avaliação de operação",
+        "description": "Permite solicitar avaliação de risco de crédito de operação para o cliente informado",
+        "operationId": "recebePropostaOperacaoV2",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropostaAvaliacaoOperacaoV2"
+              }
+            }
+          },
+          "description": "Parâmetros da solicitação de avaliação",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventoPropostaOperacao"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar efetuar a solicitação de avaliação",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao avaliar o cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tomadores-credito/{identificacao-pessoa}/contratos": {
+      "post": {
+        "summary": "Manutenção de contratos",
+        "description": "Possibilita enviar as informações de contratos para cadastro e atualização no SIRIC",
+        "operationId": "recebeContrato",
+        "parameters": [
+          {
+            "name": "identificacao-pessoa",
+            "in": "path",
+            "description": "CPF do cliente com 11 posições ou CNPJ com 14 posições",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 11,
+              "maxLength": 14
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contrato"
+              }
+            }
+          },
+          "description": "Parâmetros do contrato",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contrato"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Falha ao tentar receber o contrato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no SIRIC ao receber o contrato",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RespostaIntegracao"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.des.caixa:8443/risco-credito"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "RespostaIntegracao": {
+        "type": "object",
+        "required": [
+          "msg_erro"
+        ],
+        "properties": {
+          "msg_erro": {
+            "type": "string",
+            "description": "Mensagem de resposta",
+            "minLength": 1,
+            "maxLength": 250
+          }
+        },
+        "description": "Registros comuns para resposta"
+      },
+      "AvaliacaoOperacao": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "string",
+            "description": "Conceito de risco atribuído à operação na avaliação de risco",
+            "minLength": 0,
+            "maxLength": 3
+          },
+          "garantias": {
+            "type": "array",
+            "description": "Garantias da operação",
+            "items": {
+              "$ref": "#/components/schemas/GarantiaAvaliacaoOperacao"
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "valor_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor máximo calculado para o empréstimo",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta recebida na solicitação da avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de identificação da modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "codigo_produto": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de identificação do produto da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "codigo_avaliacao": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número identificador da avaliação de risco da operação",
+            "minimum": 1,
+            "maximum": 999999999
+          },
+          "identificador_tipo_pessoa": {
+            "type": "string",
+            "description": "Indicador do tipo de pessoa",
+            "enum": [
+              "1 - CPF",
+              "2 - CNPJ"
+            ]
+          },
+          "identificacao_pessoa": {
+            "type": "string",
+            "description": "CPF/CNPJ do cliente avaliado",
+            "minLength": 11,
+            "maxLength": 14
+          },
+          "data_inicio_validade": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data de início de validade da avaliação de risco da operação"
+          },
+          "data_fim_validade": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data fim de validade da avaliação de risco da operação"
+          },
+          "resultado_aprovacao": {
+            "type": "string",
+            "description": "Indica se avaliação foi aprovada ou não",
+            "enum": [
+              "1 - Aprovada",
+              "2 - Não Aprovada"
+            ]
+          },
+          "valor_limite_global": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor máximo calculado para a operação na avaliação de tomador, independente da renda comprometida do tomador",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_capacidade_pagamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor máximo calculado para a prestação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_bloqueio_alcada": {
+            "type": "string",
+            "description": "Indica se a avaliação está bloqueada por alçada",
+            "minLength": 1,
+            "maxLength": 1,
+            "enum": [
+              "S - Sim",
+              "N - Não"
+            ]
+          },
+          "acao_venda": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ação de venda",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo máximo, em meses, ao final do qual a operação deverá estar liquidada",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Informações da avaliação da operação"
+      },
+      "FiadorGarantiaAvaliacaoOperacao": {
+        "type": "object",
+        "properties": {
+          "cocli_fiador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "COCLI do fiador",
+            "minimum": 0,
+            "maximum": 9999999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "identificador_pessoa_fiador": {
+            "type": "string",
+            "description": "Indicador do tipo de fiador",
+            "enum": [
+              "1 - CPF",
+              "2 - CNPJ"
+            ]
+          },
+          "identificacao_fiador": {
+            "type": "string",
+            "description": "CPF/CNPJ do fiador",
+            "minLength": 11,
+            "maxLength": 14
+          }
+        },
+        "description": "Garantia da operação"
+      },
+      "GarantiaAvaliacaoOperacao": {
+        "type": "object",
+        "properties": {
+          "fiadores": {
+            "type": "array",
+            "description": "Fiadores da garantia",
+            "items": {
+              "$ref": "#/components/schemas/FiadorGarantiaAvaliacaoOperacao"
+            },
+            "maxItems": 30,
+            "minItems": 0
+          },
+          "prioridade_garantia": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prioridade de execução da garantia",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "percentual_garantia": {
+            "type": "number",
+            "format": "double",
+            "description": "Percentual que a garantia corresponde sobre o valor total das garantias",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "sequencial_garantia": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Sequencial da garantia",
+            "minimum": 0,
+            "maximum": 9
+          },
+          "valor_garantia": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da garantia",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "tipo_garantia": {
+            "type": "string",
+            "description": "Identificação da garantia utilizada",
+            "minLength": 0,
+            "maxLength": 4
+          }
+        },
+        "description": "Garantia da operação"
+      },
+      "ProtocoloProposta": {
+        "type": "object",
+        "required": [
+          "protocolo"
+        ],
+        "properties": {
+          "protocolo": {
+            "type": "string",
+            "description": "Protocolo gerado para consulta do resultado da proposta",
+            "minLength": 50,
+            "maxLength": 50
+          }
+        },
+        "description": "Retorna o protocolo da requisição da proposta de avaliação para consulta do resultado"
+      },
+      "PropostaAvaliacaoOperacao": {
+        "type": "object",
+        "required": [
+          "codigo_produto",
+          "indicador_tomador"
+        ],
+        "properties": {
+          "relacionamentos": {
+            "type": "array",
+            "description": "Dados de relacionamentos da proposta",
+            "items": {
+              "$ref": "#/components/schemas/RelacionamentoProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "quadros": {
+            "type": "array",
+            "description": "Dados quadros de valores da proposta",
+            "items": {
+              "$ref": "#/components/schemas/QuadroValorProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "prestacao_necessaria_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação do financiamento",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_convenio": {
+            "type": "string",
+            "description": "Indica se possui convênio",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "codigo_correspondente": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de identificação do correspondente",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "origem_recurso": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Origem do Recurso utilizado para o financiamento",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_convenio": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "valor_operacao": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da operação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do financiamento solicitado",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta de avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "codigo_ponto_atendimento": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do ponto de venda responsável pela avaliação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "classe_consulta_sicli": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Número da classe que deverá ser consultada no SICLI",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "comprovacao_aluguel": {
+            "type": "string",
+            "description": "Indicador de comprovação de aluguel",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "valor_margem_consignavel": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da margem consignável",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "cnpj_convenente": {
+            "type": "string",
+            "description": "CNPJ da convenente",
+            "minLength": 14,
+            "maxLength": 14
+          },
+          "sistema_armotizacao": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Sistema de armotização",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "codigo_produto": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do produto solicitado conforme SIICO",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "indicador_tomador": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Indica se o SIRIC deve gerar avaliação do tomador",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "tipo_garantia": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Tipo de garantia oferecida na operação",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "ano_veiculo": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ano do veículo da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "taxa_juros": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da taxa de juros",
+            "minimum": 0,
+            "maximum": 99999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo em meses para liquidação da operação",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Parâmetros da solicitação de avaliação de operação"
+      },
+      "QuadroValorProposta": {
+        "type": "object",
+        "required": [
+          "codigo_quadro_valor",
+          "identificacao_pessoa",
+          "identificador_tipo_pessoa"
+        ],
+        "properties": {
+          "codigo_quadro_valor": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do quadro de valor",
+            "minimum": 1,
+            "maximum": 99999
+          },
+          "identificador_tipo_pessoa": {
+            "type": "string",
+            "description": "Tipo de pessoa",
+            "enum": [
+              "1 - Pessoa Física",
+              "2 - Pessoa Jurídica"
+            ]
+          },
+          "identificacao_pessoa": {
+            "type": "string",
+            "description": "CPF ou CNPJ da pessoa",
+            "minLength": 11,
+            "maxLength": 14
+          },
+          "linhas_quadro_valor": {
+            "type": "array",
+            "description": "Linhas do quadro de valor, na ordem de apresentação do quadro",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "maxItems": 400,
+            "minItems": 0
+          }
+        },
+        "description": "Informações de quadro de valor da proposta"
+      },
+      "RelacionamentoProposta": {
+        "type": "object",
+        "required": [
+          "codigo_pergunta",
+          "data_inicio",
+          "identificacao_pessoa",
+          "identificacao_pessoa_reciproco",
+          "identificador_tipo_pessoa",
+          "identificador_tipo_pessoa_reciproco"
+        ],
+        "properties": {
+          "codigo_produto": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do produto para cadastro do relacionamento",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "identificador_tipo_pessoa": {
+            "type": "string",
+            "description": "Tipo de pessoa",
+            "enum": [
+              "1 - Pessoa Física",
+              "2 - Pessoa Jurídica"
+            ]
+          },
+          "identificacao_pessoa": {
+            "type": "string",
+            "description": "CPF ou CNPJ da pessoa",
+            "minLength": 11,
+            "maxLength": 14
+          },
+          "valor_relacionamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do relacionamento",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_pergunta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da pergunta do relacionamento",
+            "minimum": 1,
+            "maximum": 99999
+          },
+          "linhas_quadro_valor": {
+            "type": "array",
+            "description": "Linhas do quadro de valor do relacionamento, na ordem de apresentação do quadro",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "maxItems": 400,
+            "minItems": 0
+          },
+          "identificador_tipo_pessoa_reciproco": {
+            "type": "string",
+            "description": "Tipo de pessoa recíproca do relacionamento",
+            "enum": [
+              "1 - Pessoa Física",
+              "2 - Pessoa Jurídica",
+              "3 - Pessoa ID",
+              "4 - Pessoa Nome"
+            ]
+          },
+          "identificacao_pessoa_reciproco": {
+            "type": "string",
+            "description": "Identificação da pessoa recíproca do relacionamento",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "data_inicio": {
+            "type": "string",
+            "description": "Data início do relacionamento",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          },
+          "data_fim": {
+            "type": "string",
+            "description": "Data fim do relacionamento",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          }
+        },
+        "description": "Informações de relacionamento da proposta"
+      },
+      "AvaliacaoTomador": {
+        "type": "object",
+        "properties": {
+          "produtos": {
+            "type": "array",
+            "description": "Resultado da avaliação de tomador para cada produto avaliado",
+            "items": {
+              "$ref": "#/components/schemas/ProdutoAvaliacaoTomador"
+            },
+            "maxItems": 50,
+            "minItems": 1
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta recebida na solicitação da avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "codigo_avaliacao": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número identificador da avaliação de risco de tomador",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "identificador_tipo_pessoa": {
+            "type": "string",
+            "description": "Indicador do tipo de pessoa",
+            "enum": [
+              "1 - CPF",
+              "2 - CNPJ"
+            ]
+          },
+          "identificacao_pessoa": {
+            "type": "string",
+            "description": "CPF/CNPJ do cliente avaliado",
+            "minLength": 11,
+            "maxLength": 14
+          },
+          "data_inicio_validade": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data de início de validade da avaliação de risco"
+          },
+          "data_fim_validade": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Data fim de validade da avaliação de risco"
+          },
+          "avaliacao_bloqueada_tomador": {
+            "type": "string",
+            "description": "Indica se a avaliação está bloqueada",
+            "minLength": 1,
+            "maxLength": 1,
+            "enum": [
+              "S - Sim",
+              "N - Não"
+            ]
+          },
+          "motivo_reprovacao": {
+            "type": "array",
+            "description": "Motivo de reprovação",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 50,
+            "minItems": 0
+          }
+        },
+        "description": "Informações da avaliação da operação"
+      },
+      "ProdutoAvaliacaoTomador": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "string",
+            "description": "Conceito de risco atribuído ao produto na avaliação de risco",
+            "minLength": 0,
+            "maxLength": 3
+          },
+          "codigo_modalidade": {
+            "type": "string",
+            "description": "Código de identificação da modalidade"
+          },
+          "codigo_produto": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de identificação do produto",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "resultado_avaliacao": {
+            "type": "string",
+            "description": "Resultado da avaliação para o produto",
+            "enum": [
+              "0 - Não Aceito",
+              "1 - Aceito",
+              "2 - Não avaliado",
+              "3 - Quadro de Valor com Erro",
+              "4 - Condicionada",
+              "5 - Sem Requisito"
+            ]
+          },
+          "valor_disponivel": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor máximo calculado para o empréstimo",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_calculado_total": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor máximo calculado para a prestação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo máximo, em meses, ao final do qual a operação deverá estar liquidada",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Resultado da avaliação de tomador para o produto"
+      },
+      "PropostaAvaliacaoTomador": {
+        "type": "object",
+        "properties": {
+          "relacionamentos": {
+            "type": "array",
+            "description": "Dados de relacionamentos da proposta",
+            "items": {
+              "$ref": "#/components/schemas/RelacionamentoProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "quadros": {
+            "type": "array",
+            "description": "Dados quadros de valores da proposta",
+            "items": {
+              "$ref": "#/components/schemas/QuadroValorProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "prestacao_necessaria_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação do financiamento",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_convenio": {
+            "type": "string",
+            "description": "Indica se possui convênio",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "modelo_avaliacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número do modelo para avaliação de tomador",
+            "minimum": 0,
+            "maximum": 99999
+          },
+          "codigo_correspondente": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de identificação do correspondente",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "origem_recurso": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Origem do Recurso utilizado para o financiamento",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_convenio": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "valor_operacao": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da operação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do financiamento solicitado",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta de avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "modelo_validacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número do modelo de validação para avaliação de tomador",
+            "minimum": 0,
+            "maximum": 99999
+          },
+          "codigo_ponto_atendimento": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do ponto de venda responsável pela avaliação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "classe_consulta_sicli": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Número da classe que deverá ser consultada no SICLI",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "comprovacao_aluguel": {
+            "type": "string",
+            "description": "Indicador de comprovação de aluguel",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "valor_margem_consignavel": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da margem consignável",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "cnpj_convenente": {
+            "type": "string",
+            "description": "CNPJ da convenente",
+            "minLength": 14,
+            "maxLength": 14
+          },
+          "sistema_armotizacao": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Sistema de armotização",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "tipo_garantia": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Tipo de garantia oferecida na operação",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "ano_veiculo": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ano do veículo da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "taxa_juros": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da taxa de juros",
+            "minimum": 0,
+            "maximum": 99999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo em meses para liquidação da operação",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Parâmetros da solicitação de avaliação de tomador"
+      },
+      "ResultadoPropostaTomador": {
+        "type": "object",
+        "properties": {
+          "resultado_validacao": {
+            "type": "array",
+            "description": "Mensagens de validação",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "codigo_situacao": {
+            "type": "string",
+            "description": "Código da situação da proposta",
+            "enum": [
+              "0 - Em Processamento",
+              "1 - Concluído"
+            ]
+          },
+          "codigo_avaliacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          }
+        },
+        "description": "Retorna o resultado das avaliações de tomador e operação solicitadas"
+      },
+      "ResultadoPropostaOperacao": {
+        "type": "object",
+        "properties": {
+          "resultado_validacao": {
+            "type": "array",
+            "description": "Mensagens de validação",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "codigo_situacao": {
+            "type": "string",
+            "description": "Código da situação da proposta",
+            "enum": [
+              "0 - Em Processamento",
+              "1 - Concluído"
+            ]
+          },
+          "codigo_avaliacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "codigo_avaliacao_operacao": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          }
+        },
+        "description": "Retorna o resultado das avaliações de tomador e operação solicitadas"
+      },
+      "EventoPropostaTomador": {
+        "type": "object",
+        "required": [
+          "protocolo",
+          "tipo_evento"
+        ],
+        "properties": {
+          "protocolo": {
+            "type": "string",
+            "description": "Protocolo gerado para consulta do resultado da proposta",
+            "minLength": 50,
+            "maxLength": 50
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/ResultadoPropostaTomador"
+          },
+          "tipo_evento": {
+            "type": "string",
+            "description": "Identificador do tipo de evento",
+            "minLength": 1,
+            "maxLength": 50,
+            "enum": [
+              "proposta.recebida",
+              "proposta.pesquisa.contigenciada",
+              "proposta.avaliacao.erro",
+              "proposta.concluida"
+            ]
+          }
+        }
+      },
+      "PropostaAvaliacaoTomadorV2": {
+        "type": "object",
+        "properties": {
+          "relacionamentos": {
+            "type": "array",
+            "description": "Dados de relacionamentos da proposta",
+            "items": {
+              "$ref": "#/components/schemas/RelacionamentoProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "quadros": {
+            "type": "array",
+            "description": "Dados quadros de valores da proposta",
+            "items": {
+              "$ref": "#/components/schemas/QuadroValorProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "callback_url": {
+            "type": "string",
+            "description": "URL de CallBack para a aplicação sinalizar o eventos e resultado da proposta",
+            "minLength": 1,
+            "maxLength": 250
+          },
+          "prestacao_necessaria_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação do financiamento",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_convenio": {
+            "type": "string",
+            "description": "Indica se possui convênio",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "modelo_avaliacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número do modelo para avaliação de tomador",
+            "minimum": 0,
+            "maximum": 99999
+          },
+          "codigo_correspondente": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de identificação do correspondente",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "origem_recurso": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Origem do Recurso utilizado para o financiamento",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_convenio": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "valor_operacao": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da operação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do financiamento solicitado",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta de avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "modelo_validacao_tomador": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Número do modelo de validação para avaliação de tomador",
+            "minimum": 0,
+            "maximum": 99999
+          },
+          "codigo_ponto_atendimento": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do ponto de venda responsável pela avaliação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "classe_consulta_sicli": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Número da classe que deverá ser consultada no SICLI",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "comprovacao_aluguel": {
+            "type": "string",
+            "description": "Indicador de comprovação de aluguel",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "valor_margem_consignavel": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da margem consignável",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "cnpj_convenente": {
+            "type": "string",
+            "description": "CNPJ da convenente",
+            "minLength": 14,
+            "maxLength": 14
+          },
+          "sistema_armotizacao": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Sistema de armotização",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "tipo_garantia": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Tipo de garantia oferecida na operação",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "ano_veiculo": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ano do veículo da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "taxa_juros": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da taxa de juros",
+            "minimum": 0,
+            "maximum": 99999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo em meses para liquidação da operação",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Parâmetros da solicitação de avaliação de tomador"
+      },
+      "EventoPropostaOperacao": {
+        "type": "object",
+        "required": [
+          "protocolo",
+          "tipo_evento"
+        ],
+        "properties": {
+          "protocolo": {
+            "type": "string",
+            "description": "Protocolo gerado para consulta do resultado da proposta",
+            "minLength": 50,
+            "maxLength": 50
+          },
+          "resultado": {
+            "$ref": "#/components/schemas/ResultadoPropostaOperacao"
+          },
+          "tipo_evento": {
+            "type": "string",
+            "description": "Identificador do tipo de evento",
+            "minLength": 1,
+            "maxLength": 50,
+            "enum": [
+              "proposta.recebida",
+              "proposta.pesquisa.contigenciada",
+              "proposta.avaliacao.erro",
+              "proposta.concluida"
+            ]
+          }
+        },
+        "description": "Evento da requisição da proposta de avaliação para consulta do resultado"
+      },
+      "PropostaAvaliacaoOperacaoV2": {
+        "type": "object",
+        "required": [
+          "codigo_produto",
+          "indicador_tomador"
+        ],
+        "properties": {
+          "relacionamentos": {
+            "type": "array",
+            "description": "Dados de relacionamentos da proposta",
+            "items": {
+              "$ref": "#/components/schemas/RelacionamentoProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "quadros": {
+            "type": "array",
+            "description": "Dados quadros de valores da proposta",
+            "items": {
+              "$ref": "#/components/schemas/QuadroValorProposta"
+            },
+            "maxItems": 500,
+            "minItems": 0
+          },
+          "callback_url": {
+            "type": "string",
+            "description": "URL de CallBack para a aplicação sinalizar o eventos e resultado da proposta",
+            "minLength": 1,
+            "maxLength": 250
+          },
+          "prestacao_necessaria_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação do financiamento",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_convenio": {
+            "type": "string",
+            "description": "Indica se possui convênio",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "codigo_correspondente": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de identificação do correspondente",
+            "minimum": 0,
+            "maximum": 9999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "origem_recurso": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Origem do Recurso utilizado para o financiamento",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_convenio": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do convênio com a Caixa Econômica Federal",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "valor_operacao": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da operação",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_financiamento": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do financiamento solicitado",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "codigo_proposta": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código da proposta de avaliação",
+            "minimum": 0,
+            "maximum": 99999999
+          },
+          "codigo_ponto_atendimento": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do ponto de venda responsável pela avaliação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "classe_consulta_sicli": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Número da classe que deverá ser consultada no SICLI",
+            "minimum": 0,
+            "maximum": 99
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "comprovacao_aluguel": {
+            "type": "string",
+            "description": "Indicador de comprovação de aluguel",
+            "enum": [
+              "0 - Não",
+              "1 - Sim"
+            ]
+          },
+          "valor_margem_consignavel": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da margem consignável",
+            "minimum": 0,
+            "maximum": 99999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "cnpj_convenente": {
+            "type": "string",
+            "description": "CNPJ da convenente",
+            "minLength": 14,
+            "maxLength": 14
+          },
+          "sistema_armotizacao": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Sistema de armotização",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "codigo_produto": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código do produto solicitado conforme SIICO",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "indicador_tomador": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Indica se o SIRIC deve gerar avaliação do tomador",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "tipo_garantia": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Tipo de garantia oferecida na operação",
+            "minimum": 0,
+            "maximum": 999999999
+          },
+          "ano_veiculo": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Ano do veículo da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "taxa_juros": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da taxa de juros",
+            "minimum": 0,
+            "maximum": 99999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_meses": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo em meses para liquidação da operação",
+            "minimum": 0,
+            "maximum": 9999
+          }
+        },
+        "description": "Parâmetros da solicitação de avaliação de operação"
+      },
+      "ContaCorrente": {
+        "type": "object",
+        "required": [
+          "agencia",
+          "digito",
+          "numero",
+          "produto"
+        ],
+        "properties": {
+          "agencia": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Agência da conta corrente",
+            "minimum": 1,
+            "maximum": 9999
+          },
+          "produto": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Produto da conta corrente",
+            "minimum": 1,
+            "maximum": 9999
+          },
+          "numero": {
+            "type": "integer",
+            "description": "Número da conta corrente",
+            "minimum": 1,
+            "maximum": 999999999999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "digito": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Digito verificador da conta corrente",
+            "minimum": 0,
+            "maximum": 9
+          }
+        },
+        "description": "Informações da conta corrente"
+      },
+      "Contrato": {
+        "type": "object",
+        "required": [
+          "codigo_avaliacao",
+          "codigo_operacao",
+          "codigo_sistema",
+          "data_contratacao",
+          "data_saldo_devedor",
+          "data_vencimento_contrato",
+          "indicador_contrato",
+          "indicador_papel_pessoa_contrato",
+          "indicador_situacao_contrato",
+          "numero_contrato",
+          "percentual_participacao_cliente",
+          "percentual_taxa_juros",
+          "prazo_remanescente",
+          "tipo_prazo",
+          "valor_contrato",
+          "valor_prestacao_atual",
+          "valor_saldo_devedor"
+        ],
+        "properties": {
+          "indicador_papel_pessoa_contrato": {
+            "type": "string",
+            "description": "Indicador do tipo de pessoa",
+            "enum": [
+              "1 - Tomador",
+              "2 - Coobrigado",
+              "3 - Avalista"
+            ]
+          },
+          "percentual_participacao_cliente": {
+            "type": "number",
+            "format": "double",
+            "description": "Percentual de participação do cliente",
+            "minimum": 0,
+            "maximum": 99999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "conta_corrente": {
+            "$ref": "#/components/schemas/ContaCorrente"
+          },
+          "codigo_modalidade": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código de identificação da modalidade da operação",
+            "minimum": 0,
+            "maximum": 9999
+          },
+          "valor_prestacao_atual": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação atual",
+            "minimum": 0,
+            "maximum": 9999999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "indicador_contrato": {
+            "type": "string",
+            "description": "Código identificador do tipo de contrato",
+            "enum": [
+              "1 - Operação Bancária - Renegociação",
+              "2 - Operação Bancária - Normal"
+            ]
+          },
+          "codigo_sistema": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código do sistema de origem do contrato",
+            "minimum": 1,
+            "maximum": 99
+          },
+          "valor_prestacao_carencia": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor da prestação de carência",
+            "minimum": 0,
+            "maximum": 9999999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "valor_contrato": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do contrato",
+            "minimum": 0,
+            "maximum": 9999999999999.99,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "prazo_carencia_dias": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo de carência em dias",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "numero_contrato": {
+            "type": "string",
+            "description": "Número do contrato",
+            "minLength": 1,
+            "maxLength": 20
+          },
+          "data_contratacao": {
+            "type": "string",
+            "description": "Data de geração do contrato",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          },
+          "data_liquidacao": {
+            "type": "string",
+            "description": "Data de liquidação do contrato",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          },
+          "codigo_operacao": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código da operação",
+            "minimum": 1,
+            "maximum": 9999
+          },
+          "codigo_avaliacao": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Código de autorização do contrato",
+            "minimum": 1,
+            "maximum": 999999999
+          },
+          "prazo_remanescente": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Prazo remanescente em dias",
+            "minimum": 0,
+            "maximum": 999
+          },
+          "data_saldo_devedor": {
+            "type": "string",
+            "description": "Data do saldo devedor",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          },
+          "valor_saldo_devedor": {
+            "type": "number",
+            "format": "double",
+            "description": "Valor do saldo devedor",
+            "minimum": 0,
+            "maximum": 1000000000000000,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "data_vencimento_contrato": {
+            "type": "string",
+            "description": "Data fim do contrato",
+            "pattern": "^\\d{4}[\\-\\/\\s]?((((0[13578])|(1[02]))[\\-\\/\\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\\-\\/\\s]?(([0-2][0-9])|(30)))|(02[\\-\\/\\s]?[0-2][0-9]))$"
+          },
+          "indicador_situacao_contrato": {
+            "type": "string",
+            "description": "Situação do contrato",
+            "enum": [
+              "1 - Normal",
+              "2 - Normal com Renegociação",
+              "3 - Crédito em Atraso",
+              "4 - Crédito em Atraso e com Renegociação",
+              "5 - Crédito em Liquidação",
+              "6 - Crédito em Liquidação com Renegociação",
+              "7 - Prejuízo"
+            ]
+          },
+          "percentual_taxa_juros": {
+            "type": "number",
+            "format": "double",
+            "description": "Percentual de taxa de juros",
+            "minimum": 0,
+            "maximum": 9999.99999,
+            "exclusiveMinimum": false,
+            "exclusiveMaximum": false
+          },
+          "tipo_prazo": {
+            "type": "string",
+            "description": "Tipo de prazo",
+            "enum": [
+              "1 - Diário",
+              "2 - Mensal",
+              "3 - Quinzenal",
+              "4 - Semanal",
+              "5 - Bimestral",
+              "6 - Trimestral",
+              "7 - Quadrimestral",
+              "8 - Semestral",
+              "9 - Anual"
+            ]
+          }
+        },
+        "description": "Informações da contrato"
+      }
+    }
+  }
+}

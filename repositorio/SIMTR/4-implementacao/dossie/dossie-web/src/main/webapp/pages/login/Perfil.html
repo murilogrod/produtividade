@@ -1,0 +1,263 @@
+					<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+<div class="theme-main" ng-controller="PerfilController" analytics-page="Página Perfil">
+		<form id="formMain" name="formMain" tabindex="0">
+   			<div class="row">
+   				<div  class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+						<tr>
+							<td><b><div style="text-align: left; color:#267fb9;">{{ 'LABEL.PERFIL' | translate}}</div></b>
+								   <div style="text-align: left; color:#555a6d" >{{ 'label.tela.de.perfil.do.usurio' | translate}}</div><br>
+							</td>
+						</tr>
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+                        <div >
+	                    </div>    	
+				</div>
+					<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+    			<span ncy-breadcrumb></span>
+                        <!-- id:h4 - name:Título -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- 
+                            			estilo: col-xs-12 col-sm-12 col-md-12 col-lg-12
+                            			alinhamento: left
+                            		-->
+                                <h5 class="padding text-primary bold col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-h4" align="left">
+                                    <span>{{ 'label.perfil.do.usurio' | translate}}</span>
+                                </h5>
+                        </div>
+                        <!-- id:img - name:Imagem -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- 
+                            			id: imagem
+                            			origem: /imgs/anonymous-user-small.png         
+                            			estilo: col-xs-12 col-sm-12 col-md-12 col-lg-12
+                            			alinhamento: text-center col-xs-12 col-sm-12 col-md-12 col-lg-12                 		
+                            		-->
+                                <div class="padding text-center col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-img" align="center">
+                                    <img class="img-responsive center-block" id="imagem" ng-src="./imgs/anonymous-user-small.png">
+                                </div>
+                        </div>
+                        <!-- id:input-text - name:Entrada de Texto -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Entrada de Texto 
+                            			id: usuario
+                            			contexto: container.usuario
+                            			ajuda: {{ 'label.' | translate}}
+                            			ativo: false
+                            			tamanho max: 
+                            			ATENCAO: acessivel por $scope.container.usuario no seu controller
+                            		-->
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-input-text">
+                                    <label>{{ 'label.nome' | translate}}</label>
+									<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</span>
+										<input id="usuario" type="text" ng-model="container.usuario" class="form-control" placeholder="{{ 'label.' | translate}}" title="{{ 'label.' | translate}}" ng-readonly="!false" maxlength="" ng-required=""/>
+										<label class="label-mobilidade" ng-if="contextEditable" ng-model="container.usuario" contenteditable="{{contextEditable}}"></label>
+										<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.nome' | translate}}</label>
+									</div>
+                                </div>
+                        </div>
+                        <!-- id:input-mail - name:Entrada de Email -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Entrada de Email 
+                            			id: email
+                            			contexto: container.email
+                            			ajuda: {{ 'label.email.do.usurio' | translate}}
+                            			ativo: false
+                            			tamanho max: 
+                            			ATENCAO: acessivel por $scope.container.email no seu controller                              		
+                            		-->
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-input-mask">
+                                    <label>{{ 'label.email.do.usurio' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope-o"></i>
+                                            </span>
+                                        <input id="email" type="email" ng-model="container.email" class="form-control" placeholder="{{ 'label.email.do.usurio' | translate}}" title="{{ 'label.email.do.usurio' | translate}}" ng-readonly="!false" maxlength="" ng-required=""/>
+                                        <label class="label-mobilidade" ng-if="contextEditable" ng-model="container.email" contenteditable="{{contextEditable}}"></label>
+										<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.email.do.usurio' | translate}}</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:input-date - name:Entrada de Data (calendário) -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Entrada de Data 
+                            			id: datadecadastro
+                            			contexto: container.datadecadastro
+                            			ajuda: {{ 'label.data.de.cadastramento' | translate}}
+                            			ativo: false
+                            			tamanho max: 
+                            			ATENCAO: acessivel por $scope.container.datadecadastro no seu controller                               		
+                            		-->
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-input-date">
+                                    <label>{{ 'label.data.de.cadastramento' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        <input id="datadecadastro" ng-model="container.datadecadastro" type="text" class="form-control" placeholder="{{ 'label.data.de.cadastramento' | translate}}" title="{{ 'label.data.de.cadastramento' | translate}}" ng-readonly="!false" ng-init="initDate('datadecadastro')" ng-required=""/>
+                                        <label class="label-mobilidade" ng-if="contextEditable" ng-model="container.datadecadastro" contenteditable="{{contextEditable}}"></label>
+										<label class="label-mobilidade" ng-if="!contextEditable">{{ 'label.data.de.cadastramento' | translate}}</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:input-select - name:Entrada de Combo -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Entrada de Combo 
+                            			id: cargo
+                            			contexto: container.cargo
+                            			ajuda: {{ 'label.cargo.do.funcionrio' | translate}}
+                            			ativo: false
+                            			tamanho max: 
+                            			título: Cargo do Funcionário
+                            			ATENCAO: acessivel por $scope.container.cargo no seu controller                               			
+                            		-->
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-input-select">
+                                    <label>{{ 'label.cargo.do.funcionrio' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-wrench"></i>
+                                            </span>
+                                        <select id="cargo" ng-model="container.cargo" class="form-control" 
+                                        		ng-disabled="!false" placeholder="{{ 'label.cargo.do.funcionrio' | translate}}" title="{{ 'label.cargo.do.funcionrio' | translate}}"
+                                        		data-ng-options="item as item for item in container.cargoContent" >
+                                        </select>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:text-area - name:Caixa de Texto -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Caixa de Texto 
+                            			id: descricao
+                            			contexto: container.descricao
+                            			ajuda: {{ 'label.' | translate}}
+                            			ativo: false
+                            			tamanho max: 
+                            			ATENCAO: acessivel por $scope.container.descricao no seu controller                                  		
+                            		-->
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12 theme-main-text-area">
+                                    <label>{{ 'label.descrio.da.atividade' | translate}}</label>
+                                    <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-keyboard-o"></i>
+                                            </span>
+                                        <textarea id="descricao" type="text" ng-model="container.descricao" class="form-control" placeholder="{{ 'label.' | translate}}" title="{{ 'label.' | translate}}" ng-readonly="!false" rows="5" ng-required=""></textarea>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- id:line-break - name:Quebra de linha (br) -->
+                        <div ng-class='getPlatforms(null)'>
+                            		<!-- elemento Quebra de Linha -->
+                                <br class="theme-main-line-break"/>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms(null)'>
+                           			<!-- 
+                           				tipo: Acao  
+                           					ATENCAO: no ng-click defina sua acao
+                           					ex: ng-click="incluir()" ou ng-click="salvar()"
+                           				id: trocasenha
+                           				ajuda: {{ 'label.clique.para.trocar.a.senha' | translate}}
+                           				título: {{ 'label.trocar.a.senha' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-left
+                           				ativo: true
+                           				ícone: fa-certificate
+                           			-->
+	                                	<button id="trocasenha" ng-click="openViewDelayed('',3,$event,'')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.para.trocar.a.senha' | translate}}" title="{{ 'label.clique.para.trocar.a.senha' | translate}}" class="btn btn-sm margin-3x btn-primary pull-left  theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Trocar a Senha">
+                                    <i class="fa fa-certificate">&nbsp;</i>
+                                        <span style="font-size: ;">{{ 'label.trocar.a.senha' | translate}}</span>
+                                </button>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms(null)'>
+                           			<!-- 
+                           				tipo: Navegacao
+                           				destino:  principal
+                           				id: retornar
+                           				ajuda: {{ 'label.clique.para.retornar' | translate}}
+                           				título: {{ 'label.retornar' | translate}}
+                           				estilo: btn-default
+                           				alinhamento: pull-right
+                           				ativo: true
+                           				ícone: fa-sign-out
+                           			-->
+	                                	<button id="retornar" ng-click="openViewDelayed('principal',3,$event,'')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.para.retornar' | translate}}" title="{{ 'label.clique.para.retornar' | translate}}" class="btn btn-sm margin-3x btn-default pull-right  theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Retornar">
+                                    <i class="fa fa-sign-out">&nbsp;</i>
+                                        <span style="font-size: ;">{{ 'label.retornar' | translate}}</span>
+                                </button>
+                        </div>
+                        <!-- id:button - name:Botão -->
+                        <div ng-class='getPlatforms(null)'>
+                           			<!-- 
+                           				tipo: Navegacao
+                           				destino:  login
+                           				id: deslogar
+                           				ajuda: {{ 'label.clique.para.deslogar' | translate}}
+                           				título: {{ 'label.deslogar' | translate}}
+                           				estilo: btn-primary
+                           				alinhamento: pull-left
+                           				ativo: true
+                           				ícone: fa-sign-in
+                           			-->
+	                                	<button id="deslogar" ng-click="openViewDelayed('login',3,$event,'')" loading="{{'label.processando' | translate}}" placeholder="{{ 'label.clique.para.deslogar' | translate}}" title="{{ 'label.clique.para.deslogar' | translate}}" class="btn btn-sm margin-3x btn-primary pull-left  theme-main-button btn-padrao" ng-disabled="!true" analytics-event="button:Deslogar">
+                                    <i class="fa fa-sign-in">&nbsp;</i>
+                                        <span style="font-size: ;">{{ 'label.deslogar' | translate}}</span>
+                                </button>
+                        </div>
+                </div>
+                <div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+                        <div >
+	                    </div>
+				</div>
+                <br>&nbsp;
+                <br>&nbsp;
+    	</div>
+    </form>
+</div>

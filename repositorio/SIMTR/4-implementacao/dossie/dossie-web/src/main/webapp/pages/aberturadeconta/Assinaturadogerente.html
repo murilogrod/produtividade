@@ -1,0 +1,208 @@
+
+<!--
+					Aqui é definido o conteúdo apresentado pela tela do seu projeto (a parte visível).
+					Cada tela do seu projeto define um estado. 
+					Cada estado é composto por um controller (js) e uma tela (html)
+					Os estados são definidos no App.js
+					As páginas são armazenadas na pasta pages										
+				-->
+<div class="theme-main" ng-controller="AssinaturadogerenteController"
+	analytics-page="Página Assinatura do Gerente">
+	<caixa-alert error="error" show="showError" on-close="hideAlert();"></caixa-alert>
+
+	<form id="formMain" name="formMain" tabindex="0">
+		<div class="row">
+			<div class="coluna-esquerda col-xs-12 col-sm-2 col-md-2">
+				<tr>
+					<td><b><div style="text-align: left; color: #267fb9;">{{
+								'LABEL.ASSINATURA.DO.GERENTE' | translate}}</div></b>
+						<div style="text-align: left; color: #555a6d">{{ 'label.' |
+							translate}}</div>
+						<br></td>
+				</tr>
+			</div>
+			<div class="coluna-central col-xs-12 col-sm-12 col-md-12">
+				<span ncy-breadcrumb></span>
+				<div class="form-group col-xs-2 theme-main-input-date"
+					style="margin-bottom: 30px">
+					<button ng-click="makeToken()"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+						title="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-success">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">Gerar
+							Token</span>
+					</button>
+				</div>
+				<div class="form-group col-xs-8 theme-main-input-date">
+					<div id="messages" class="alert alert-info" ng-show="tokenWasMade">
+						{{'label.tokenGenerate' | translate}} {{token}}</div>
+				</div>
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h5 class="padding text-primary bold col-xs-12 theme-main-h4"
+						align="left">
+						<i class="fa  ">&nbsp;</i> <span>{{
+							'label.assinatura.do.gerente' | translate}}</span>
+					</h5>
+				</div>
+				<!-- id:h6 - name:Sub-título -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h6 class="padding text-primary bold col-xs-12 theme-main-h6"
+						align="left">
+						<i class="fa ">&nbsp;</i> <span>{{
+							'label.aprovao.do.cadastro' | translate}}</span>
+					</h6>
+				</div>
+				<!-- id:input-mask - name:Entrada de Senha -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="form-group col-xs-4 theme-main-input-date">
+						<label>{{ 'label.informe.a.senha' | translate}}</label>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="fa fa-slack"></i>
+							</span> <input id="mskInformeasenha"
+								ng-disabled="!tokenWasMade || firstTokenApproved"
+								type="password" ng-model="firstPassword" class="form-control"
+								placeholder="{{ 'label.informe.a.senha' | translate}}"
+								title="{{ 'label.informe.a.senha' | translate}}" maxlength="70"
+								ng-required="false" />
+						</div>
+					</div>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="form-group col-xs-4 theme-main-input-date">
+						<div class="input-group" style="margin-top: 10px">
+							<button id="btnAprovar" ng-show="!firstTokenApproved"
+								ng-disabled="!tokenWasMade || firstPassword == null || firstPassword == ''"
+								ng-click="approveFirstPassword()"
+								loading="{{'label.processando' | translate}}"
+								placeholder="{{ 'label.clique.aqui.para' | translate}}"
+								title="{{ 'label.clique.aqui.para' | translate}}"
+								class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-padrao">
+								<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+									'label.aprovar' | translate}}</span>
+							</button>
+							<button ng-show="firstTokenApproved" ng-disabled="true"
+								loading="{{'label.processando' | translate}}"
+								placeholder="{{ 'label.clique.aqui.para' | translate}}"
+								title="{{ 'label.clique.aqui.para' | translate}}"
+								class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-success">
+								<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">Aprovado</span>
+							</button>
+						</div>
+					</div>
+
+				</div>
+				<!-- id:rule - name:Separador (hr) -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<!-- elemento Separador -->
+					<div class="theme-main-line-rule">
+						&nbsp;
+						<hr />
+					</div>
+				</div>
+				<!-- id:h6 - name:Sub-título -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<h6 class="padding text-primary bold col-xs-12 theme-main-h6"
+						align="left">
+						<i class="fa ">&nbsp;</i> <span>{{
+							'label.aprovao.da.abertura.de.conta' | translate}}</span>
+					</h6>
+				</div>
+				<!-- id:input-mask - name:Entrada de Senha -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="form-group col-xs-4 theme-main-input-date">
+						<label>{{ 'label.informe.a.senha' | translate}}</label>
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="fa fa-slack"></i>
+							</span> <input id="mskInformeasenha2"
+								ng-disabled="!firstTokenApproved || secondTokenApproved"
+								type="password" ng-model="secondPassword" class="form-control"
+								placeholder="{{ 'label.informe.a.senha' | translate}}"
+								title="{{ 'label.informe.a.senha' | translate}}"
+								ng-readonly="!true" maxlength="70" ng-required="false" />
+						</div>
+					</div>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="form-group col-xs-4 theme-main-input-date"
+						style="margin-top: 10px">
+						<button id="btnAprovar2" ng-show="!secondTokenApproved"
+							ng-disabled="!firstTokenApproved || secondPassword == null || secondPassword == ''"
+							ng-click="approveSecondPassword()"
+							loading="{{'label.processando' | translate}}"
+							placeholder="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+							title="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+							class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-padrao">
+							<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+								'label.aprovar' | translate}}</span>
+						</button>
+						<button ng-show="secondTokenApproved" ng-disabled="true"
+							loading="{{'label.processando' | translate}}"
+							placeholder="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+							title="{{ 'label.clique.aqui.para.aprovar' | translate}}"
+							class="btn btn-sm margin-3x btn-primary pull-left sizeAuto theme-main-button btn-success">
+							<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">Aprovado</span>
+						</button>
+					</div>
+				</div>
+				<!-- id:rule - name:Separador (hr) -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<div class="theme-main-line-rule">
+						&nbsp;
+						<hr />
+					</div>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<button id="btnVoltar" ng-click="goBack();"
+						loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						title="{{ 'label.clique.aqui.para.voltar' | translate}}"
+						class="btn btn-sm margin-3x btn-warning pull-left col-xs-4 theme-main-button btn-padrao">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.voltar' | translate}}</span>
+					</button>
+				</div>
+				<!-- id:button - name:Botão -->
+				<div
+					ng-class='getPlatforms([{"name":"Desktop","icon":"fa fa-desktop","id":"desktop","check":true},{"name":"Browser Mobile","icon":"glyphicon glyphicon-globe","id":"mobile","check":true},{"name":"App Mobile","icon":"fa fa-mobile","id":"nativo","check":true},{"name":"Android","icon":"fa fa-android","id":"android","check":true},{"name":"IOS","icon":"fa fa-apple","id":"ios","check":true},{"name":"WinPhone","icon":"fa fa-windows","id":"winphone","check":true},{"name":"Impressão","icon":"fa fa-print","id":"printer","check":true}])'>
+					<button id="btnContinuar2"
+						ng-disabled="!firstTokenApproved || !secondTokenApproved"
+						ng-click="advance()" loading="{{'label.processando' | translate}}"
+						placeholder="{{ 'label.clique.aqui.para' | translate}}"
+						title="{{ 'label.clique.aqui.para' | translate}}"
+						class="btn btn-sm margin-3x btn-primary pull-right col-xs-4 theme-main-button btn-padrao">
+						<i class="fa  ">&nbsp;</i> <span style="font-size: 14px;">{{
+							'label.continuar' | translate}}</span>
+					</button>
+				</div>
+			</div>
+			<div class="coluna-direita col-xs-12 col-sm-2 col-md-2">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<br>&nbsp; <br>&nbsp;
+		</div>
+	</form>
+</div>

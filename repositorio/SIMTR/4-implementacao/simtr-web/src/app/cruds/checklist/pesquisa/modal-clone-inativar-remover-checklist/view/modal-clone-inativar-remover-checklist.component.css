@@ -1,0 +1,18 @@
+.font {
+    font-size: 15px;
+}
+
+.legend-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0c4477;
+}
+
+.legend-description {
+    font-size: 15px;
+    color: #0c4477;
+}
+
+.background-checkbox{
+    border: none;
+}

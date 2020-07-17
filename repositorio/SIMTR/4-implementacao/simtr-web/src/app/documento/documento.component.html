@@ -1,0 +1,49 @@
+<div class="col-md-12 form-group" style="margin-top: .1em; width: 150px; margin-top: 5px;" *ngIf="!readOnly">
+    <a class="btn btn-primary btn-xs" (click)="chooseAll()">{{isChosenAll ? 'Desmarcar Todos': 'Marcar Todos'}}</a>
+    <!-- <a *ngIf="showCategorizar" style="float:right;" (click)="showModalCategorizar()" class="btn btn-success btn-xs">Categorizar</a> -->
+    <!--<a class="btn btn-success btn-xs pull-right" (click)="chooseCategory()">Categorizar </a> -->
+</div>
+
+<div id="listImagesCategorizar" class="col-md-12" draggable [dragScope]="'image'" (onDragStart)="dragStarted($event)" [dragClass]="'drag-border'"
+    [dragTransitClass]="'drag-border'" (onDragEnd)="dragEnded($event)" *ngIf="!readOnly">
+    <p-carousel [value]="images" [numVisible]="'5'">
+        <ng-template let-item pTemplate="item">
+            <div class="text-center">
+                <a class="glyphicon glyphicon-search" title="Visualizar Imagem" (click)="imageClicked(item)"></a>
+                <a class="glyphicon glyphicon-remove removeImagem" (click)="removeImage(item.index)">
+                </a>
+                <a class="glyphicon glyphicon-circle-arrow-up" *ngIf="item.index !== 0" (click)="moveDown(item.index)">
+                </a>
+                <a class="glyphicon glyphicon-circle-arrow-down" *ngIf="item.index !== (images.length -1)" (click)="moveUp(item.index)"></a>
+            </div>
+            <div class="text-center">
+                <a href="javascript:void(0)" id="hrefImageCategorizar{{item.index}}" (click)="imageChecked(item,item.index)">
+                    <img id="imageCategorizar-{{item.index}}" border="0" src="data:image/png;base64,{{ item.image }}" width="75" height="100" />
+                </a>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<!-- READ ONLY -->
+<div id="listImagesVisualizar" class="col-md-12" *ngIf="readOnly">
+    <p-carousel [value]="images" [numVisible]="'5'">
+        <ng-template let-item pTemplate="item">
+            <div class="text-center">
+                <a class="fa fa-fw fa-search" title="Visualizar Imagem" style="cursor: pointer" (click)="imageClicked(item)"></a>
+            </div>
+            <div class="text-center">
+                <a href="javascript:void(0)" id="hrefImageVisualizar{{item.index}}" (click)="imageChecked(item,item.index)">
+                    <img id="imageVisualizar-{{item.index}}" border="0" src="data:image/png;base64,{{ getVerificaImg(item.image) }}" width="75" height="100" />
+                </a>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<div class="col-md-12" id="divImageToShowCategorizar" *ngIf="!readOnly" style="cursor: pointer" >
+    <img  id="imageToShowCategorizar" border="0" src="data:image/png;base64,{{ getVerificaImg(currentImage)}}" (click)="onClickImageToShowInModal()" />
+</div>
+<div class="col-md-12" id="divImageToShowVisualizar" *ngIf="readOnly" style="cursor: pointer">
+    <img id="imageToShowVisualizar" style="width: inherit" border="0" src="data:image/png;base64,{{ getVerificaImg(currentImage) }}" (click)="onClickImageToShowInModal()" />
+</div>

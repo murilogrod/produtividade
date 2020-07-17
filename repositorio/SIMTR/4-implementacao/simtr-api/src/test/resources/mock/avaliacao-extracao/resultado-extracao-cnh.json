@@ -1,0 +1,76 @@
+{
+    "tipoDocumento": null,
+    "codigoRejeicao": null,
+    "atributos": [
+        {
+            "chave": "data_validade",
+            "valor": "15/01/2022",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "cpf",
+            "valor": "22199586120",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "data_emissao",
+            "valor": "12/01/2018",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "data_nascimento",
+            "valor": "05/01/1985",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "nome",
+            "valor": "Ronaldo de Cerqueira",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "numero_documento",
+            "valor": "1234567",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "data_1a_habilitacao",
+            "valor": "05/04/2010",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "numero_identidade",
+            "valor": "34557657",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "marca_documento_principal",
+            "valor": "false",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "uf",
+            "valor": "MA",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "orgao_emissor",
+            "valor": "DETRAN",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "filiacao",
+            "valor": "MARIA DE LOURDES HENRIQUES DE CERQUEIRA",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "filiacao_pai",
+            "valor": "JOSE DA SILVA",
+            "indiceAssertividade": 98
+        },
+        {
+            "chave": "categoria",
+            "valor": "AB",
+            "indiceAssertividade": 98
+        }
+    ]
+}

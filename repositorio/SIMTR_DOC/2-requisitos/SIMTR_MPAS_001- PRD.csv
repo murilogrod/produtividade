@@ -1,0 +1,35 @@
+MPAS;Gerado por c025759 em 27/12/2017 10:38:48;#CONFIDENCIAL 05;
+Versão: 001 - PRD (28/09/2017);Situação: Nova (7875)
+Sistema: SIMTR - SISTEMA DE MODERNIZAÇÃO DO TRATAMENTO E REUSO DE DOCUMENTOS E IMAGENS
+Módulo: SIMTR - MODULO DE TRATAMENTO
+
+MPAS - Matriz de Perfis de Acesso a Sistemas
+Transação/Processo/Grupo LDAP;Abrangência;Ação;Perfil/Grupo;Situação;
+manter_campo_formulario - Manter Campo Formulario;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_campo_formulario - Manter Campo Formulario;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+manter_documento - Manter Documento;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_documento - Manter Documento;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+manter_documento - Manter Documento;V;E-A-C-L-I;UNIDADE_ATENDIMENTO;Nova;
+manter_dossie_cliente - Manter Dossie Cliente;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_dossie_cliente - Manter Dossie Cliente;T;E-A-C-L-I;UNIDADE_APOIO,UNIDADE_TRATAMENTO,GESTOR_PROCESSO;Nova;
+manter_dossie_cliente - Manter Dossie Cliente;V;E-A-I;UNIDADE_ATENDIMENTO;Nova;
+manter_dossie_cliente - Manter Dossie Cliente;T;C-L;AUDITOR,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA;Nova;
+manter_dossie_produto  - Manter Dossie Produto ;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_dossie_produto  - Manter Dossie Produto ;T;E-A-C-L-I;UNIDADE_APOIO,UNIDADE_TRATAMENTO,GESTOR_PROCESSO;Nova;
+manter_dossie_produto  - Manter Dossie Produto ;V;E-A-I;UNIDADE_ATENDIMENTO;Nova;
+manter_dossie_produto  - Manter Dossie Produto ;T;C-L;AUDITOR,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA;Nova;
+manter_funcao_documental - Manter Função Documental;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_funcao_documental - Manter Função Documental;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+manter_macroprocesso  - Manter Macroprocesso;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_macroprocesso  - Manter Macroprocesso;T;E-A-C-L-I;GESTOR_PROCESSO;Nova;
+manter_macroprocesso  - Manter Macroprocesso;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA;Nova;
+manter_processo - Manter Processo;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_processo - Manter Processo;T;E-A-C-L-I;GESTOR_PROCESSO;Nova;
+manter_processo - Manter Processo;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA;Nova;
+manter_produto - Manter Produto;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_produto - Manter Produto;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+manter_tipo_documento - Manter Tipo Documento;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_tipo_documento - Manter Tipo Documento;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+manter_tipo_garantia - Manter Tipo Garantia;T-G;E-A-C-L-I;GESTOR_SISTEMA;Nova;
+manter_tipo_garantia - Manter Tipo Garantia;T;C-L;UNIDADE_APOIO,AUDITOR,UNIDADE_TRATAMENTO,UNIDADE_ATENDIMENTO,CENTRAL_SUPORTE,OPERADOR_CONSULTA,GESTOR_PROCESSO;Nova;
+Total de Transações/Processos/Grupos LDAP: 27

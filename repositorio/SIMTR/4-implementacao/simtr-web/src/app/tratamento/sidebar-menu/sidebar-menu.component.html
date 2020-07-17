@@ -1,0 +1,12 @@
+<div class="container-sidebar">
+    <div class="clearfix"></div>
+    <container-base *ngIf="undefined != dossieProduto && undefined != processoDossieReFerenciaPatriarca" class="dimensoes-container-base"
+       [processoDossieReFerenciaPatriarca]="processoDossieReFerenciaPatriarca"  
+       [dossieProduto]="dossieProduto" [listaChekList]="listaChekList" [listaDocumentoObrigatorio]="listaDocumentoObrigatorio" [idDoPrimeiroInstanciaDocumentoASerCarregado]="idDoPrimeiroInstanciaDocumentoASerCarregado" (listaCheklistChanged)="handleChangeListaChekList($event)" (listDocumentosImagemChanged)="handleChangeListDocumentosImagem($event)"
+       (idCheckListAtivadoChanged)="handlleChangeEventCheckList($event)">
+    </container-base>
+</div>
+
+
+
+		

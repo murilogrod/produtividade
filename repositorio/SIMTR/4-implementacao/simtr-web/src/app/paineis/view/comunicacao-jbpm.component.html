@@ -1,0 +1,74 @@
+<div class="box caixa-box">
+  <div class="box-header caixa-header">
+    <h3 class="box-title">Relatórios</h3>
+    <a data-toggle="collapse" href="#collapseRelatorio" id="btnExpandedDossie" class="caixa-white" 
+      aria-controls="collapseRelatorio" aria-expanded="true">
+        <i class="fa fa-minus"></i>
+        <i class="fa fa-plus"></i>
+    </a>
+  </div>
+  <div class="box-body collapse in" id="collapseRelatorio">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box caixa-box">
+          <div class="box-header caixa-header">
+            <h3 class="box-title">Analítico</h3>
+            <a data-toggle="collapse" href="#collapseAnalitico" id="btnExpandedanalitico" class="caixa-white"
+              aria-expanded="true" aria-controls="collapseAnalitico">
+              <i class="fa fa-minus"></i>
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+          <div class="box-body collapse in" aria-expanded="true" id="collapseAnalitico">
+            <div class="row">
+              <div class="col-md-12">
+                <tabela-analitico [falhaJBPMs]="comunicacaoJBPMPresenter.comunicacaoJBPM.falhaJBPMs">
+                </tabela-analitico>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="box caixa-box">
+          <div class="box-header caixa-header">
+            <h3 class="box-title">Sintético por unidade</h3>
+            <a data-toggle="collapse" href="#collapseSinteticoUnidade" id="btnExpandedanalitico" class="caixa-white"
+              aria-expanded="true" aria-controls="collapseSinteticoUnidade">
+              <i class="fa fa-minus"></i>
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+          <div class="box-body collapse in" aria-expanded="true" id="collapseSinteticoUnidade">
+            <div class="row">
+              <div class="col-md-12">
+                <tabela-sintetico-unidade [falhaJBPMs]="comunicacaoJBPMPresenter.comunicacaoJBPM.falhaJBPMs">
+                </tabela-sintetico-unidade>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="box caixa-box">
+          <div class="box-header caixa-header">
+            <h3 class="box-title">Sintético por processo</h3>
+            <a data-toggle="collapse" href="#collapseSinteticoProcesso" id="btnExpandedanalitico" class="caixa-white"
+              aria-expanded="true" aria-controls="collapseSinteticoProcesso">
+              <i class="fa fa-minus"></i>
+              <i class="fa fa-plus"></i>
+            </a>
+          </div>
+          <div class="box-body collapse in" aria-expanded="true" id="collapseSinteticoProcesso">
+            <div class="row">
+              <div class="col-md-12">
+                <tabela-sintetico-processo [falhaJBPMs]="comunicacaoJBPMPresenter.comunicacaoJBPM.falhaJBPMs">
+                </tabela-sintetico-processo>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

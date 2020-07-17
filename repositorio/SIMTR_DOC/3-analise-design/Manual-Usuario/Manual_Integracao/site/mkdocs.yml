@@ -1,0 +1,54 @@
+site_name: SIMTR
+site_description: Manual de Integração
+site_author: Caixa Econômica Federal
+copyright: Copyright &copy; 2019 Caixa Econômica Federal.
+
+nav:
+    - Início: index.md
+    - Objetivo: objetivo.md
+    - 'Acesso': acesso.md
+    - 'Estrutura da Integração': estrutura_integracao.md   
+    - 'Apoio ao Negócio - Processo': apoio_negocio_processo.md 
+    - 'Apoio ao Negócio - Dossiê Produto': apoio_negocio_dossie_produto.md 
+    - 'Apoio ao Negócio - Dossiê Cliente': apoio_negocio_dossie_cliente.md 
+    - 'Apoio ao Negócio - Dashboard': apoio_negocio_dashboard.md 
+    - 'Apoio ao Negócio - Documento': apoio_negocio_documento.md 
+    - 'Retaguarda - Outsourcing': retaguarda.md 
+    - 'Dossiê Digital - Dossiê Cliente': dossie_digital_cliente.md 
+    - 'Dossiê Digital - Autorização': dossie_digital_autorizacao.md
+    - 'Dossiê Digital - Documento': dossie_digital_documento.md
+    - 'Glossário': glossario.md
+    - 'Anexo I': anexo1.md
+    - 'Integracao': integracao.md
+
+   
+
+   
+
+theme: 
+    name: mkdocs
+    include_search_page: true
+    search_index_only: false
+    highlightjs: true
+    hljs_languages: []
+
+    include_homepage_in_sidebar: true
+    prev_next_buttons_location: bottom
+    titles_only: false
+    collapse_navigation: true 
+    navigation_depth: 4
+    custom_dir: caixa_theme/
+    
+    shortcuts:
+        help: 191    # ?
+        next: 78     # n
+        previous: 80 # p
+        search: 83   # s
+
+
+extra_css:
+    - css/extra.css
+
+plugins:
+    - search:
+        separator: '[\s\-\.]+'

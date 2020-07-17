@@ -1,0 +1,57 @@
+.modal {
+    z-index: 9999999 !important;
+}
+.espacoAlert {
+    height: 64px;
+}
+.btnDigitalizar{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.marginTop10px {
+    margin-top: 10px;
+    text-align: right;
+    padding-right: 14px;
+}
+
+.btnDigitalizar .dropdown-menu {
+    min-width: 114px;
+    background: rgb(216, 216, 216);
+    cursor: pointer;
+    text-align: center;
+    top: 94%;
+}
+
+.marginRight14px {
+    margin-right: 14px;
+}
+
+.linhaInput{   
+    margin-bottom: 10px;
+}
+
+.modalDigitalizar{
+    background : white !important;
+    margin-top: 0px;
+    padding: 10px 10px;
+}
+
+.labelAvancado  {
+    color :rgb(0, 90, 156);
+    margin-left: 15px;
+    margin-bottom: 0px;
+}
+
+.modalDigitalizar-title{
+    margin-left :20px;
+    margin-top : 20px;
+    background : white;
+}
+
+a[aria-expanded=true] .glyphicon-menu-down {
+    display: none;
+}
+a[aria-expanded=false] .glyphicon-menu-up {
+    display: none;
+}
+
