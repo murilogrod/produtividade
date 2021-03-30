@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Resposta>
-    <operacao>CRIA_DOSSIE</operacao>
-    <codigoRetorno>1</codigoRetorno>
-    <mensagem>NAO FOI POSSIVEL CRIAR O DOSSIE - ERRO = A pasta informada já existe: 00065179609 METODO: criarPasta</mensagem>
-</Resposta>

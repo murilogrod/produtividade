@@ -1,9 +1,0 @@
-<div id="body-load" [class.loader-hidden]="!show">
-    <div class="loader-overlay">
-        <div class="loader-img">
-            <img id="loading-img" src="../../../../assets/img/loading/load_caixa_azul.gif"/>
-            <figcaption *ngIf="progressShow" class="progressBarLoading">{{progress}}%</figcaption>
-            <a *ngIf="closeLoading && !progressShow"><i class="fa fa-close closeFechar" tooltipPosition="right" pTooltip="Fechar" (click)="fecharLoading()"></i></a>
-        </div>
-    </div>
-</div>

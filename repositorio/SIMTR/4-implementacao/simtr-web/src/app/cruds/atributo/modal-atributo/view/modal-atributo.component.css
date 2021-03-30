@@ -1,9 +1,0 @@
-.custum-dropdown-atributo-extracao::ng-deep .ui-dropdown {
-    width: 100% !important;
-    height: 36px;
-}
-
-.custum-dropdown-atributo-extracao::ng-deep .ui-dropdown-label{
-    margin: 4px;
-    width: 90%;
-}

@@ -1,6 +1,0 @@
-<input id="inputDocument" type="file" multiple style="display:none" accept="*" #inputFile (click)="clickFile()"
-    (change)="onChangeFile($event)">
-<button id="uploadDocumentoNew" [disabled]="habilitaBotoesSalvar" class="btn btn-primary"
-    (click)="insertDocuments(inputFile)" tooltipPosition="top" pTooltip="Encontrar novo documento">Upload</button>
-<app-digitalizacao-scanner [userExiste]="!habilitaBotoesSalvar"
-    (ImgCarregadaEvent)="handleImgCarregadaScanner($event)"></app-digitalizacao-scanner>

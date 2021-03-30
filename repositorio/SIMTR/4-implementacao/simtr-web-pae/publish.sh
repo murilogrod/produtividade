@@ -1,1 +1,0 @@
-scp -p -r dist/* root@go7875sx029.goiania.caixa:/var/www/simtr/

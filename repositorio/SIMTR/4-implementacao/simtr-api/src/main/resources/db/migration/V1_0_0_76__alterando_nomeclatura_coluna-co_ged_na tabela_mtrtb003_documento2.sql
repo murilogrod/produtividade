@@ -1,1 +1,0 @@
-ALTER TABLE mtr.mtrtb003_documento RENAME COLUMN cod_ged TO co_ged;

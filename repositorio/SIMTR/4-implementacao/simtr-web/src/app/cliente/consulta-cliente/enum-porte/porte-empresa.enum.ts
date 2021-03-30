@@ -1,6 +1,0 @@
-export enum PorteEmpresa {
-    ME = "MICROEMPRESA",
-    MEI = "MICRO EMPREENDEDOR INDIVIDUAL",
-    EPP = "EMPRESA DE PEQUENO PORTE",
-    DEMAIS = "DEMAIS"
-}

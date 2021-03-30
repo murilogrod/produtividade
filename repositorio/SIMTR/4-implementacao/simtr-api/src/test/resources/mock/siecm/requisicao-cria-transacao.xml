@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CriaTransacao>
-    <dadosRequisicao>
-        <tipoRequisicao>GRAVA_DOCUMENTO_DOSSIE</tipoRequisicao>
-        <localArmazenamento>OS_DOSSIEDIGITAL</localArmazenamento>
-        <ipUsuarioFinal>127.0.0.1</ipUsuarioFinal>
-    </dadosRequisicao>
-    <transacao>DOCUMENTO_TRATADO_53</transacao>
-</CriaTransacao>

@@ -1,6 +1,0 @@
-<div *ngIf="ativo" class="corpoLoadingRelativo input-group" [ngClass]="{'corpoLoadingRelativo': true, 'porcentagemBloco': bloco}">
-    <label class="porcentagemLoadingRelativo">{{mensagemInformativa}}</label>
-    <span *ngIf="close" class="input-group-addon transparent">
-        <a><i class="fa fa-close" tooltipPosition="left" pTooltip="Fechar" (click)="fecharLoading()"></i></a>
-    </span>
-</div>

@@ -1,5 +1,0 @@
-export const GLOBAL_ERROR = {
-	CAMINHO: "GLOBAL_ERROR",
-	CAMINHO_LOCALSTORE: "CAMINHO_LOCALSTORE",
-	TITULO_GRID: "Atenção - Ocorreu um erro."
-}
